@@ -1,6 +1,5 @@
 import "./App.css";
 import PrimeButton from "@material-ui/core/Button";
-import { Login } from "./components/Login";
 
 function App() {
   return (
@@ -15,7 +14,6 @@ function App() {
           </PrimeButton>
         </div>
       </div>
-      <Login />
     </div>
   );
 }
