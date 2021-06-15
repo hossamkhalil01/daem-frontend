@@ -1,10 +1,10 @@
-import './App.css';
 import PrimeButton from "@material-ui/core/Button";
+import "./App.css";
+import LanguageSelect from "./components/LanguageSelect";
 
 function App() {
   return (
     <div className="App">
-
       <h3 className="text-center"> Daem is Running!!</h3>
       <h4 className="text-center mb-5">Testing Libraries: </h4>
       <div className="text-center">
@@ -14,6 +14,7 @@ function App() {
             Material UI
           </PrimeButton>
         </div>
+          <LanguageSelect />
       </div>
     </div>
   );
