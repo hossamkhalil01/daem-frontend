@@ -13,7 +13,7 @@ const languageMap = {
   ar: { label: "العربية", dir: "rtl", active: false },
 };
 
-export default function TicketCard() {
+export default function LanguageSelect() {
   const selected = localStorage.getItem("i18nextLng") || "en";
   const { t } = useTranslation();
 
