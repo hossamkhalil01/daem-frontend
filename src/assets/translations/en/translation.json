@@ -2,5 +2,13 @@
   "select_language": "Select Language",
   "female": "female",
   "male": "male",
-  "year": "year"
+  "year": "year",
+  "delete": "Delete",
+  "assign-doctor": "Assign Doctor",
+  "urgency": "Urgency",
+  "low": "Low",
+  "medium": "Medium",
+  "high": "High",
+  "critical": "Critical",
+  "language": "en-US"
 }

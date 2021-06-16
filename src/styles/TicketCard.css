@@ -8,11 +8,17 @@
     width: 70%;
     min-width: 320px;
     padding: 5px;
+    margin-bottom: 30px;
+}
+
+.ticket-card h4:hover {
+    color: rgba(13, 19, 99, 0.603);
+    cursor: pointer;
 }
 
 .ticket__header {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-evenly;
     width: 80%;
     margin: auto;
 

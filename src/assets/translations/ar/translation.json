@@ -2,5 +2,13 @@
   "select_language": "اختار اللغة",
   "female": "أنثى",
   "male": "ذكر",
-  "year": "سنة"
+  "year": "سنة",
+  "delete": "حذف",
+  "assign-doctor": "تعيين طبيب",
+  "urgency": "الضرورة",
+  "low": "منخفض",
+  "medium": "متوسط",
+  "high": "مرتفع",
+  "critical": "حرج",
+  "language": "ar-EG"
 }
