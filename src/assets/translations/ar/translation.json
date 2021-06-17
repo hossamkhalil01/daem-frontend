@@ -11,5 +11,9 @@
   "high": "مرتفع",
   "critical": "حرج",
   "language": "ar-EG",
-  "checked": "تحقق"
+  "checked": "تحقق",
+  "delete-confirmation": "هل أنت متأكد من حذف هذه البطاقة؟",
+  "sure":"متأكد",
+  "cancel": "الغاء",
+  "confirmation": "تأكيد"
 }
