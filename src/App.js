@@ -1,10 +1,10 @@
 import "./App.css";
+import Router from "./components/Router";
 
 function App() {
   return (
-    <div className="App">
-      <h3 className="text-center"> Daem is Running!!</h3>
-    </div>
+
+    <Router />
   );
 }
 
