@@ -3,6 +3,8 @@ import { green } from "@material-ui/core/colors";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import { withStyles } from "@material-ui/core/styles";
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
+import { updateTicket } from "../../../services/ticketsService";
 
 const GreenCheckbox = withStyles({
   root: {
@@ -14,11 +16,13 @@ const GreenCheckbox = withStyles({
   checked: {},
 })((props) => <Checkbox color="default" {...props} />);
 
-export default function CheckTicket({ ticketId }) {
-  const [check, setCheck] = useState(false);
+export default function CheckTicket({ ticketId, isChecked }) {
+  const [check, setCheck] = useState(isChecked);
+  const { t } = useTranslation();
 
-  const handleChange = (event) => {
+  const handleChange = async (event) => {
     setCheck(event.target.checked);
+    await updateTicket(ticketId, { isChecked: event.target.checked });
   };
 
   return (
@@ -30,7 +34,7 @@ export default function CheckTicket({ ticketId }) {
           name="checkedG"
         />
       }
-      label="Checked"
+      label={t("checked")}
     />
   );
 }

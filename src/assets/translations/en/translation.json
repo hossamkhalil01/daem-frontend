@@ -10,5 +10,6 @@
   "medium": "Medium",
   "high": "High",
   "critical": "Critical",
-  "language": "en-US"
+  "language": "en-US",
+  "checked": "Checked"
 }

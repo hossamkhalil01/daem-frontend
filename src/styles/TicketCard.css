@@ -48,10 +48,10 @@ hr {
     margin: 0.5rem 0;
 }
 
-@media only screen and(max-width: 480px) {
+@media (max-width: 480px) {
     .ticket__footer {
         flex-direction: column;
-        align-items: baseline;
+        align-items: center;
     }
     .ticket__footer button {
         margin-top: 10px;

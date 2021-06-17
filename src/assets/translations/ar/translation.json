@@ -10,5 +10,6 @@
   "medium": "متوسط",
   "high": "مرتفع",
   "critical": "حرج",
-  "language": "ar-EG"
+  "language": "ar-EG",
+  "checked": "تحقق"
 }
