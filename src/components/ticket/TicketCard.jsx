@@ -7,15 +7,6 @@ import SetUrgency from "./ticketActions/SetUrgency";
 
 export default function TicketCard({ ticket }) {
   const { t } = useTranslation();
-  const doctors = [
-    {
-      _id: "60ca3d8f4589492a190e1bba",
-      title: "The Shawshank Redemption",
-      year: 1994,
-    },
-    { _id: "60ca3d8f4589492a190e1bba", title: "The Godfather", year: 1972 },
-  ];
-
   const formatDate = (date) =>
     date.toLocaleString(t("language"), {
       day: "numeric",
@@ -40,11 +31,10 @@ export default function TicketCard({ ticket }) {
       <div className="ticket__footer">
         <AssignDoctor
           ticketId={ticket._id}
-          doctors={doctors}
           ticketDoctor={ticket.doctor}
         />{" "}
         <SetUrgency ticketId={ticket._id} ticketUrgency={ticket.urgency} />{" "}
-        <DeleteTicket ticketId="" />
+        <DeleteTicket ticketId={ticket._id} />
         <CheckTicket ticketId={ticket._id} isChecked={ticket.isChecked} />
       </div>
     </div>
