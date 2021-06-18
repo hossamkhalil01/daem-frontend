@@ -1,22 +1,11 @@
 import PrimeButton from "@material-ui/core/Button";
 import "./App.css";
-import LanguageSelect from "./components/LanguageSelect";
+import Router from "./components/Router";
 
 function App() {
   return (
-    <div className="App">
-      <h3 className="text-center"> Daem is Running!!</h3>
-      <h4 className="text-center mb-5">Testing Libraries: </h4>
-      <div className="text-center">
-        <button className="btn btn-primary mb-3 text-center">Bootstrap </button>
-        <div>
-          <PrimeButton variant="contained" color="primary">
-            Material UI
-          </PrimeButton>
-        </div>
-          <LanguageSelect />
-      </div>
-    </div>
+
+    <Router />
   );
 }
 
