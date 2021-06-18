@@ -1,0 +1,19 @@
+{
+  "select_language": "Select Language",
+  "female": "female",
+  "male": "male",
+  "year": "year",
+  "delete": "Delete",
+  "assign-doctor": "Assign Doctor",
+  "urgency": "Urgency",
+  "low": "Low",
+  "medium": "Medium",
+  "high": "High",
+  "critical": "Critical",
+  "language": "en-US",
+  "checked": "Checked",
+  "delete-confirmation": "Are you sure you want to delete this ticket?",
+  "sure":"Sure",
+  "cancel": "Cancel",
+  "confirmation": "Confirmation"
+}
