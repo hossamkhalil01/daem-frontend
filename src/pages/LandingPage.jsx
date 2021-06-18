@@ -1,10 +1,13 @@
-import React from 'react';
+import React from "react";
+import TicketForm from "../components/ticket/TicketForm";
 
 const LandingPage = (props) => {
-
-    return (
+  return (
+    <>
       <h3> Landing Page </h3>
-    );
+      <TicketForm />
+    </>
+  );
 };
 
 export default LandingPage;
