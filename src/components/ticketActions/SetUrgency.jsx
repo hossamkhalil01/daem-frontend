@@ -4,7 +4,7 @@ import MenuItem from "@material-ui/core/MenuItem";
 import Select from "@material-ui/core/Select";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { updateTicket } from "../../../services/ticketsService";
+import { updateTicket } from "../../services/ticketsService";
 
 
 export default function SetUrgency({ ticketId, ticketUrgency }) {

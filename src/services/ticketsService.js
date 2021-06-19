@@ -14,3 +14,7 @@ export const updateTicket = async (ticketId, updates) => {
 export const removeTicketDoctor = async (ticketId) => {
   return axios.delete(TICKET_API.removeTicketDoctor(ticketId));
 };
+
+export const getTicket = async (ticketId) => {
+  return axios.get(TICKET_API.getTicket(ticketId));
+};
