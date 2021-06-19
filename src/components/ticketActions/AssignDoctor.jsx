@@ -10,23 +10,23 @@ import {
 
 export default function AssignDoctor({ ticketId, ticketDoctor }) {
   const { t } = useTranslation();
-  const [doctor, setDoctor] = useState(ticketDoctor||{});
+  const clearField = { _id: "", firstname: "", lastname: "" };
+  const [doctor, setDoctor] = useState(ticketDoctor || clearField);
   const doctors = useContext(DoctorsContext);
 
-  const handleChange = async (event, newValue, reason) => {
+  const handleChange = async (event, newValue) => {
     if (newValue) {
       setDoctor(newValue);
       await updateTicket(ticketId, { doctor: newValue._id });
     } else {
-      setDoctor({ _id: "", firstname: "", lastname: "" });
+      setDoctor(clearField);
       await removeTicketDoctor(ticketId);
     }
   };
 
-
   return (
     <Autocomplete
-      value={doctor || {}}
+      value={doctor || clearField}
       id={ticketId}
       size="medium"
       style={{ width: 200 }}
