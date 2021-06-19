@@ -1,31 +1,41 @@
 import moment from "moment";
-import storage from "../utils/storage";
+import * as storage from "../utils/storage";
+import * as  clientService from "./clientService";
 
-
-const login = (res) => {
+export const login = (res) => {
 
   const expires = moment().add(res.expiresIn);
 
   storage.set("token", res.token);
-  storage.set("token", res.expires.valueOf());
+  storage.set("token", expires.valueOf());
   storage.set("user", res.user);
 
-  // register the client
-
+  // register the token to the client
+  clientService.setHeaderToken(res.token);
 }
 
-const logout = () => {
+export const logout = () => {
 
   const keys = ["token", "expires", "user"];
 
   for (let key in keys) {
     storage.remove(key);
-  }
+  };
+
+  // remove the token from the client
+  clientService.setHeaderToken('');
 }
 
-const getExpiration = () => moment(storage.get("expires"));
+export const getExpiration = () => moment(storage.get("expires"));
 
-const getToken = () => storage.get("token");
+export const getToken = () => storage.get("token");
 
-const getUser = () => storage.get("user");
+export const getUser = () => storage.get("user");
+
+export const checkTokenValid = () => {
+
+  if (!moment().isBefore(getExpiration(), "second")) {
+    logout();
+  }
+}
 

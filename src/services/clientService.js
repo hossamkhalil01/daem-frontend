@@ -2,13 +2,24 @@ import axios from "axios";
 import { BASE_URL } from "../api/urls";
 
 
-const axiosObj = null;
+let axiosObj = null;
+let token = '';
 
-const getClient = () => {
-  return axiosObj || axiosObj = axios.create({
-    baseURL: BASE_URL,
-    header: {
-      Authorization: token,
-    },
-  })
+export const setHeaderToken = (newToken) => {
+  token = newToken;
+  if (axiosObj)
+    axiosObj.defaults.headers['Authorization'] = token;
+}
+
+export const getClientObj = () => {
+
+  if (!axiosObj) {
+    axiosObj = axios.create({
+      baseURL: BASE_URL,
+      headers: {
+        Authorization: token,
+      },
+    });
+  }
+  return axiosObj;
 }
