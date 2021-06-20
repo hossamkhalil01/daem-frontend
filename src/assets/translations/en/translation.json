@@ -15,5 +15,6 @@
   "delete-confirmation": "Are you sure you want to delete this ticket?",
   "sure":"Sure",
   "cancel": "Cancel",
-  "confirmation": "Confirmation"
+  "confirmation": "Confirmation",
+  "edit": "Edit"
 }

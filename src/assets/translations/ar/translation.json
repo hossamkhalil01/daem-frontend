@@ -15,5 +15,6 @@
   "delete-confirmation": "هل أنت متأكد من حذف هذه البطاقة؟",
   "sure":"متأكد",
   "cancel": "الغاء",
-  "confirmation": "تأكيد"
+  "confirmation": "تأكيد",
+  "edit": "تعديل"
 }

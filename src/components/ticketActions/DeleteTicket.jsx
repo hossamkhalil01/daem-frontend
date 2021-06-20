@@ -9,7 +9,7 @@ import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { deleteTicket } from "../../../services/ticketsService";
+import { deleteTicket } from "../../services/ticketsService";
 
 export default function DeleteTicket({ ticketId }) {
   const [openModal, setOpenModal] = useState(false);
