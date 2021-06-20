@@ -1,6 +1,6 @@
-import axios from "axios";
+import requests from "../api/requests";
 import { DOCTORS_API } from "../api/urls";
 
 export const getAllDoctors = async () => {
-  return await axios.get(DOCTORS_API.getAllDoctors());
+  return await requests.get(DOCTORS_API.getAllDoctors());
 };
