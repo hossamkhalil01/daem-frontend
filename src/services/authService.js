@@ -1,15 +1,14 @@
 import moment from "moment";
 import * as storage from "../utils/storage";
-import * as  clientService from "./clientService";
+import { setHeaderToken } from "./clientService";
+import requests from "../api/requests";
 import { AUTH_API } from "../api/urls";
-import { getClientObj } from "../services/clientService";
 
-const client = getClientObj();
 
 export const login = async ({ email, password }) => {
 
   // send request 
-  const { data: { data } } = await client.post(AUTH_API.login, {
+  const { data: { data } } = await requests.create(AUTH_API.login, {
     email,
     password
   });
@@ -22,8 +21,7 @@ export const login = async ({ email, password }) => {
   storage.set("user", data.user);
 
   // register the token to the client
-  clientService.setHeaderToken(data.token);
-
+  setHeaderToken(data.token);
 }
 
 export const logout = () => {
@@ -35,7 +33,7 @@ export const logout = () => {
   };
 
   // remove the token from the client
-  clientService.setHeaderToken('');
+  setHeaderToken('');
 }
 
 export const getExpiration = () => moment(storage.get("expires"));
