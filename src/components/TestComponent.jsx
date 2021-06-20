@@ -1,6 +1,7 @@
 import React, {useEffect} from "react";
 import {getClientObj} from "../services/clientService";
 import * as authService from "../services/authService";
+import * as storage from "../utils/storage";
 
 let client =  getClientObj();
 
@@ -17,10 +18,11 @@ const TestComponent = (props) => {
           "password": "12345"
         });
         authService.login(data);
-        const res2= await client.get("http://localhost:8000/tickets");
+        const res2= await client.get("http://localhost:8000/tickets/12345");
       }
 
       func();
+
 
   },[]);
  

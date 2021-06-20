@@ -1,12 +1,18 @@
 
-export const set = () => {
-  console.log("setted to storage");
+export const set = (key, item) => {
+  if (typeof (item) !== 'string')
+    item = JSON.stringify(item);
+
+  localStorage.setItem(key, item);
 }
 
-export const get = () => {
-  console.log("get from the storage");
+export const get = (key) => {
+  const item = localStorage.getItem(key);
+  if (item && typeof (item) !== 'string') return JSON.parse(item);
+
+  return item;
 }
 
-export const remove = () => {
-  console.log("remove from the storage");
+export const remove = (key) => {
+  localStorage.removeItem(key);
 }

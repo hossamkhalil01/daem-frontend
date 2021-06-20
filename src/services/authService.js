@@ -7,7 +7,7 @@ export const login = (res) => {
   const expires = moment().add(res.expiresIn);
 
   storage.set("token", res.token);
-  storage.set("token", expires.valueOf());
+  storage.set("expiresIn", expires.valueOf());
   storage.set("user", res.user);
 
   // register the token to the client
