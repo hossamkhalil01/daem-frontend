@@ -1,9 +1,10 @@
 import React from 'react';
+import Login from '../components/Login';
 
 const LoginPage = (props) => {
 
     return (
-      <h3> Login Page </h3>
+      <Login/>
     );
 };
 
