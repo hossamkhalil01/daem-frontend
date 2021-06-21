@@ -13,9 +13,10 @@
   "language": "en-US",
   "checked": "Checked",
   "delete-confirmation": "Are you sure you want to delete this ticket?",
-  "sure":"Sure",
+  "sure": "Sure",
   "cancel": "Cancel",
   "confirmation": "Confirmation",
   "edit": "Edit",
-"close":"Close"
+  "close": "Close",
+  "go-to-ticket": "Go to ticket"
 }
