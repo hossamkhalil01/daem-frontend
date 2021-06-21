@@ -1,0 +1,46 @@
+.record-card {
+    border: 1px solid rgb(216, 216, 216);
+    border-radius: 4px;
+    background-color: white;
+    -webkit-box-shadow: 0 0 8px -2px rgba(0, 0, 0, 0.07);
+    box-shadow: 0 0 8px -2px rgba(0, 0, 0, 0.07);
+    margin: auto;
+    width: 70%;
+    min-width: 320px;
+    padding: 5px;
+    margin-bottom: 30px;
+}
+
+.record-card:hover{
+    cursor: pointer;
+    background-color: rgb(247, 247, 248);
+}
+
+.record__header {
+    display: flex;
+    justify-content: space-evenly;
+    width: 80%;
+    margin: auto;
+
+}
+
+.record__header {
+    color: rgb(85, 85, 85);
+}
+
+
+.record__body {
+    margin: 0 30px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* number of lines to show */
+    -webkit-box-orient: vertical;
+    font-size: 14px;
+    color: rgb(82, 81, 81);
+}
+
+.record__date{
+    color: gray;
+    font-size: 15px;
+}

@@ -1,15 +1,10 @@
 import { useTranslation } from "react-i18next";
+import { formatDate, getAge } from "../services/dateService";
 import "../styles/TicketCard.css";
 import TicketActions from './ticketActions/Tic";';
 
 export default function TicketCard({ ticket }) {
   const { t } = useTranslation();
-  const formatDate = (date) =>
-    date.toLocaleString(t("language"), {
-      day: "numeric",
-      month: "short",
-      year: "numeric",
-    });
 
   return (
     <div className="ticket-card">
@@ -17,7 +12,7 @@ export default function TicketCard({ ticket }) {
       <div className="ticket__header">
         <p>
           <span>{t(ticket.patient.gender) + " , "}</span>
-          <span>{ticket.age + " " + t("year")}</span>
+          <span>{getAge(ticket.patient.DOB) + " " + t("year")}</span>
         </p>
         <p>{formatDate(ticket.createdAt)}</p>
       </div>
