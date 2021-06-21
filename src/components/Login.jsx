@@ -7,9 +7,16 @@ import {
   InputLabel,
   Paper,
 } from "@material-ui/core";
-import { useState } from "react";
 
-export const Login = () => {
+import { useState } from "react";
+import { useHistory } from "react-router-dom";
+import * as authService from "../services/authService";
+
+
+const Login = () => {
+
+  const history = useHistory();
+
   const [formValues, setFormValues] = useState({
     email: "",
     password: "",
@@ -62,7 +69,8 @@ export const Login = () => {
     setFormValues({ ...formValues, [prop]: event.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
+
     e.preventDefault();
 
     if (!errorsExist) {
@@ -70,7 +78,22 @@ export const Login = () => {
         email: formValues.email,
         password: formValues.password,
       };
-      console.log(data);
+
+      // sumbit request to the backend
+      try{
+        await authService.login(data);
+        history.push("/");
+      }catch(err){
+
+        // invalid login credientials
+        setErrorsExist(true);
+        setFormValidations({
+          ...formValidations,
+    
+          email: { err: true, msg: "Invalid email or password." },
+          password: { err: true, msg: "" },
+        });
+      }
     }
   };
   return (
@@ -139,3 +162,6 @@ export const Login = () => {
     </form>
   );
 };
+
+
+export default Login;

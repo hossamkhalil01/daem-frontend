@@ -1,10 +1,8 @@
-import PrimeButton from "@material-ui/core/Button";
 import "./App.css";
 import Router from "./components/Router";
 
 function App() {
   return (
-
     <Router />
   );
 }
