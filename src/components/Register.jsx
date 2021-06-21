@@ -10,8 +10,9 @@ import {
   Paper,
   Select,
   MenuItem,
+  TextField,
 } from "@material-ui/core";
-
+import TextareaAutosize from "@material-ui/core/TextareaAutosize";
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { Visibility, VisibilityOff } from "@material-ui/icons";
@@ -37,6 +38,10 @@ const useStyles = makeStyles((theme) => ({
     marginTop: theme.spacing(2),
     width: "30ch",
   },
+  datePicker: {
+    marginLeft: theme.spacing(3),
+    width: "30ch",
+  },
 }));
 
 const Register = ({ setAuthenticated }) => {
@@ -51,6 +56,8 @@ const Register = ({ setAuthenticated }) => {
     gender: "",
     confirmPassword: "",
     avatar: "",
+    dob: null,
+    diseases: "",
     showPassword: false,
     showConfirmPassword: false,
   });
@@ -77,6 +84,8 @@ const Register = ({ setAuthenticated }) => {
     let lastnameMsg = "";
     let genderErr = false;
     let genderMsg = "";
+    let dobMsg = "";
+    let dobErr = false;
 
     let errsArray = ["email: Email already exists"];
 
@@ -198,6 +207,7 @@ const Register = ({ setAuthenticated }) => {
       lastname: formValues.lastname,
       password: formValues.password,
       gender: formValues.gender,
+      diseases: formValues.diseases,
     };
 
     // create form data
@@ -233,7 +243,6 @@ const Register = ({ setAuthenticated }) => {
                 id="firstname"
                 type="text"
                 value={formValues.firstname}
-                onBlur={handleChange("firstname")}
                 onChange={handleChange("firstname")}
                 error={formValidations.firstname.err}
               />
@@ -252,7 +261,6 @@ const Register = ({ setAuthenticated }) => {
                 type="text"
                 value={formValues.lastname}
                 onChange={handleChange("lastname")}
-                onBlur={handleChange("lastname")}
                 error={formValidations.lastname.err}
               />
               <FormHelperText error={formValidations.lastname.err}>
@@ -270,7 +278,6 @@ const Register = ({ setAuthenticated }) => {
                 type="email"
                 value={formValues.email}
                 onChange={handleChange("email")}
-                onBlur={handleChange("email")}
                 error={formValidations.email.err}
               />
               <FormHelperText error={formValidations.email.err}>
@@ -288,7 +295,6 @@ const Register = ({ setAuthenticated }) => {
                 type={formValues.showPassword ? "text" : "password"}
                 value={formValues.password}
                 onChange={handleChange("password")}
-                onBlur={handleChange("password")}
                 error={formValidations.password.err}
                 endAdornment={
                   <InputAdornment position="end">
@@ -321,7 +327,6 @@ const Register = ({ setAuthenticated }) => {
                 type={formValues.showConfirmPassword ? "text" : "password"}
                 value={formValues.confirmPassword}
                 onChange={handleChange("confirmPassword")}
-                onBlur={handleChange("confirmPassword")}
                 error={formValidations.confirmPassword.err}
                 endAdornment={
                   <InputAdornment position="end">
@@ -352,7 +357,6 @@ const Register = ({ setAuthenticated }) => {
                 id="gender"
                 value={formValues.gender}
                 onChange={handleChange("gender")}
-                onBlur={handleChange("gender")}
                 error={formValidations.gender.err}
                 className={classes.selectEmpty}
               >
@@ -363,7 +367,36 @@ const Register = ({ setAuthenticated }) => {
                 {formValidations.gender.msg}
               </FormHelperText>
             </FormControl>
+            <FormControl required>
+              <TextField
+                id="dob"
+                onChange={handleChange("dob")}
+                label="Date of Birth *"
+                type="date"
+                InputLabelProps={{
+                  shrink: true,
+                }}
+                className={classes.datePicker}
+              />
+            </FormControl>
           </Grid>
+
+          <Grid item xs={12}>
+            <InputLabel htmlFor="diseases">Diseases</InputLabel>
+
+            <FormControl fullWidth>
+              <TextareaAutosize
+                labelId="diseases"
+                rowsMin={3}
+                rowsMax={5}
+                aria-label="maximum height"
+                placeholder="Please describe any diseases you have that might be useful to know"
+                value={formValues.diseases}
+                onChange={handleChange("diseases")}
+              />
+            </FormControl>
+          </Grid>
+
           <Grid item xs={12}>
             <FormControl fullWidth>
               <Button
