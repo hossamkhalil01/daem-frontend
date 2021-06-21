@@ -18,5 +18,6 @@
   "confirmation": "Confirmation",
   "edit": "Edit",
   "close": "Close",
-  "go-to-ticket": "Go to ticket"
+  "go-to-ticket": "Go to ticket",
+  "no-previous-tickets":"No previous tickets"
 }

@@ -18,5 +18,6 @@
   "confirmation": "تأكيد",
   "edit": "تعديل",
   "close":"اغلاق",
-  "go-to-ticket":"الذهاب للبطاقة"
+  "go-to-ticket":"الذهاب للبطاقة",
+  "no-previous-tickets":"لا يوجد بطاقات سابقة"
 }

@@ -7,7 +7,6 @@ import { getAllDoctors } from "../services/doctorsService";
 import { getTicket } from "../services/ticketsService";
 import "../styles/Ticket.css";
 import Carousel from "./Carousel";
-import LanguageSelect from "./LanguageSelect";
 import Loading from "./Loading";
 import TicketActions from "./ticketActions/TicketActions";
 
@@ -37,7 +36,6 @@ export default function Ticket() {
     <Loading/>
   ) : (
     <div className="ticket">
-      <LanguageSelect />
       <h2>{ticket.subject}</h2>
       <div className="ticket__details">
         <p>

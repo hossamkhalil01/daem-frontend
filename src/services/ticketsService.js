@@ -18,3 +18,7 @@ export const removeTicketDoctor = async (ticketId) => {
 export const getTicket = async (ticketId) => {
   return requests.get(TICKET_API.getTicket(ticketId));
 };
+
+export const getTickets = async (params) => {
+  return requests.get(TICKET_API.getTickets(),params)
+}
