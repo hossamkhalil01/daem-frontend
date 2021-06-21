@@ -50,8 +50,7 @@ const Register = ({ setAuthenticated }) => {
     lastname: "",
     gender: "",
     confirmPassword: "",
-    avatarFile: "",
-    avatarFileName: "",
+    avatar: "",
     showPassword: false,
     showConfirmPassword: false,
   });
@@ -76,6 +75,8 @@ const Register = ({ setAuthenticated }) => {
     let firstnameMsg = "";
     let lastnameErr = false;
     let lastnameMsg = "";
+    let genderErr = false;
+    let genderMsg = "";
 
     let errsArray = ["email: Email already exists"];
 
@@ -98,6 +99,10 @@ const Register = ({ setAuthenticated }) => {
         lastnameErr = true;
         lastnameMsg = e.split("lastname: ");
       }
+      if (e.includes("gender")) {
+        genderErr = true;
+        genderMsg = e.split("gender: ");
+      }
     }
     setFormValidations({
       ...formValidations,
@@ -105,6 +110,7 @@ const Register = ({ setAuthenticated }) => {
       lastname: { err: lastnameErr, msg: lastnameMsg },
       email: { err: emailErr, msg: emailMsg },
       password: { err: passErr, msg: passMsg },
+      gender: { err: genderErr, msg: genderMsg },
     });
     setErrorsExist(true);
   };
@@ -176,8 +182,7 @@ const Register = ({ setAuthenticated }) => {
   const handleUploadClick = (e) => {
     setFormValues({
       ...formValues,
-      avatarFile: e.target.files[0],
-      avatarFileName: e.target.files[0].name,
+      avatar: e.target.files[0],
     });
   };
 
@@ -194,9 +199,19 @@ const Register = ({ setAuthenticated }) => {
       password: formValues.password,
       gender: formValues.gender,
     };
+
+    // create form data
+    const formData = new FormData();
+
+    // append the data
+    Object.keys(data).forEach((key) => {
+      formData.append(key, data[key]);
+    });
+    formData.append("avatar", formValues.avatar);
+
     // sumbit request to the backend
     try {
-      await authService.register(data);
+      await authService.register(formData);
       history.push("/");
     } catch (err) {
       // registeration validations
@@ -206,7 +221,7 @@ const Register = ({ setAuthenticated }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit} encType="multipart/form-data">
+    <form onSubmit={handleSubmit} className="mt-5">
       <Paper style={{ padding: 16, maxWidth: 600 }} elevation={3}>
         <Grid container alignItems="flex-start" justify="center" spacing={2}>
           <Grid item xs={6}>
