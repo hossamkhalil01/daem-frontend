@@ -4,7 +4,7 @@ import FormControlLabel from "@material-ui/core/FormControlLabel";
 import { withStyles } from "@material-ui/core/styles";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { updateTicket } from "../../../services/ticketsService";
+import { updateTicket } from "../../services/ticketsService";
 
 const GreenCheckbox = withStyles({
   root: {

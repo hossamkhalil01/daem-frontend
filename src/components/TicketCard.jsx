@@ -1,9 +1,6 @@
 import { useTranslation } from "react-i18next";
-import "../../styles/TicketCard.css";
-import AssignDoctor from "./ticketActions/AssignDoctor";
-import CheckTicket from "./ticketActions/CheckTicket";
-import DeleteTicket from "./ticketActions/DeleteTicket";
-import SetUrgency from "./ticketActions/SetUrgency";
+import "../styles/TicketCard.css";
+import TicketActions from './ticketActions/Tic";';
 
 export default function TicketCard({ ticket }) {
   const { t } = useTranslation();
@@ -19,7 +16,7 @@ export default function TicketCard({ ticket }) {
       <h4>{ticket.subject}</h4>
       <div className="ticket__header">
         <p>
-          <span>{t(ticket.gender) + " , "}</span>
+          <span>{t(ticket.patient.gender) + " , "}</span>
           <span>{ticket.age + " " + t("year")}</span>
         </p>
         <p>{formatDate(ticket.createdAt)}</p>
@@ -29,13 +26,7 @@ export default function TicketCard({ ticket }) {
       </div>
       <hr />
       <div className="ticket__footer">
-        <AssignDoctor
-          ticketId={ticket._id}
-          ticketDoctor={ticket.doctor}
-        />{" "}
-        <SetUrgency ticketId={ticket._id} ticketUrgency={ticket.urgency} />{" "}
-        <DeleteTicket ticketId={ticket._id} />
-        <CheckTicket ticketId={ticket._id} isChecked={ticket.isChecked} />
+        <TicketActions ticket={ticket} />
       </div>
     </div>
   );

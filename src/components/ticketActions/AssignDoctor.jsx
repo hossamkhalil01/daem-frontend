@@ -2,30 +2,31 @@ import { TextField } from "@material-ui/core";
 import { Autocomplete } from "@material-ui/lab";
 import { useContext, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { DoctorsContext } from "../../../contexts/doctorsContext";
+import { DoctorsContext } from "../../contexts/doctorsContext";
 import {
   removeTicketDoctor,
   updateTicket
-} from "../../../services/ticketsService";
+} from "../../services/ticketsService";
 
 export default function AssignDoctor({ ticketId, ticketDoctor }) {
   const { t } = useTranslation();
-  const [doctor, setDoctor] = useState(ticketDoctor);
+  const clearField = { _id: "", firstname: "", lastname: "" };
+  const [doctor, setDoctor] = useState(ticketDoctor || clearField);
   const doctors = useContext(DoctorsContext);
 
-  const handleChange = async (event, newValue, reason) => {
+  const handleChange = async (event, newValue) => {
     if (newValue) {
       setDoctor(newValue);
       await updateTicket(ticketId, { doctor: newValue._id });
     } else {
-      setDoctor({ _id: "", firstname: "", lastname: "" });
+      setDoctor(clearField);
       await removeTicketDoctor(ticketId);
     }
   };
 
   return (
     <Autocomplete
-      value={doctor || {}}
+      value={doctor || clearField}
       id={ticketId}
       size="medium"
       style={{ width: 200 }}
