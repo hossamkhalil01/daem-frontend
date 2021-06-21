@@ -1,0 +1,33 @@
+.avatar {
+    position: relative;
+    display: inline-block;
+    width: 3rem;
+    height: 3rem;
+    font-size: 1.25rem;
+}
+
+.avatar-img{
+    width: 100%;
+    height: 100%;
+    border-radius: inherit;
+    display: block;
+    -o-object-fit: cover;
+    object-fit: cover;
+}
+.comment{
+    border-bottom: 1px solid rgb(231, 231, 231);
+    border-radius: 4px;
+    padding: 10px;
+    background-color: rgb(252, 252, 252);
+}
+
+.comment__doctor-name{
+    color:rgb(0, 0, 0);
+    margin: 0;
+}
+
+.comment__time{
+    color: rgb(180, 180, 180);
+    font-size: 14px;
+    padding-top: 3px;
+}
