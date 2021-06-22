@@ -8,7 +8,8 @@ export const TICKET_API = {
   updateTicket: (ticketId) => `${BASE_URL}/tickets/${ticketId}`,
   deleteTicket: (ticketId) => `${BASE_URL}/tickets/${ticketId}`,
   removeTicketDoctor: (ticketId) => `${BASE_URL}/tickets/${ticketId}/remove-doctor`,
-  getTicket: (ticketId)=> `${BASE_URL}/tickets/${ticketId}`
+  getTicket: (ticketId)=> `${BASE_URL}/tickets/${ticketId}`,
+  getTickets: ()=>`${BASE_URL}/tickets`
 };
 
 export const DOCTORS_API = {
