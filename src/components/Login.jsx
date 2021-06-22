@@ -11,10 +11,9 @@ import {
 import { useState } from "react";
 import { useHistory } from "react-router-dom";
 import * as authService from "../services/authService";
-
+import validate from "../utils/validations";
 
 const Login = () => {
-
   const history = useHistory();
 
   const [formValues, setFormValues] = useState({
@@ -26,76 +25,79 @@ const Login = () => {
     email: { err: false, msg: "" },
     password: { err: false, msg: "" },
   });
-  const [errorsExist, setErrorsExist] = useState(false);
 
-  const handleChange = (prop) => (event) => {
-    if (!event.target.value) {
-      setFormValidations({
-        ...formValidations,
-        [prop]: { err: true, msg: "This field is required" },
-      });
-      setErrorsExist(true);
-    } else if (prop === "email") {
-      if (
-        !event.target.value.match(/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/)
-      ) {
-        setFormValidations({
-          ...formValidations,
-          email: { err: true, msg: "Please enter a valid email." },
-        });
-        setErrorsExist(true);
-      } else {
-        setFormValidations({
-          ...formValidations,
-          email: { err: false, msg: "" },
-        });
-        setErrorsExist(false);
+  const isValidForm = () => {
+    const { email, password } = formValidations;
+
+    return !email.err && !password.err;
+  };
+
+  const checkRequiredFields = () => {
+    let hasErrors = false;
+    let errors = [];
+    const validationsObj = { ...formValidations };
+
+    Object.keys(formValidations).forEach((field) => {
+      errors = validate.required(formValues[field]);
+
+      if (errors.length) {
+        hasErrors = true;
+
+        // Set the errors
+        validationsObj[field] = { err: true, msg: errors[0] };
       }
-    } else {
-      if (event.target.value.length < 8) {
-        setFormValidations({
-          ...formValidations,
-          [prop]: { err: true, msg: "Password must be at least 8 characters" },
-        });
-        setErrorsExist(true);
-      } else {
-        setFormValidations({
-          ...formValidations,
-          [prop]: { err: false, msg: "" },
-        });
-        setErrorsExist(false);
-      }
+    });
+
+    setFormValidations(validationsObj);
+
+    return !hasErrors;
+  };
+
+  const handleChange = (prop, validationMethod) => (event) => {
+    let err = false;
+    let msg = "";
+
+    const errorsArr = validationMethod(event.target.value);
+
+    // set the errors if found
+    if (errorsArr.length) {
+      err = true;
+      msg = errorsArr[0];
     }
+    // Set the states
+    setFormValidations({
+      ...formValidations,
+      [prop]: { err, msg },
+    });
+
     setFormValues({ ...formValues, [prop]: event.target.value });
   };
 
   const handleSubmit = async (e) => {
-
     e.preventDefault();
 
-    if (!errorsExist) {
-      const data = {
-        email: formValues.email,
-        password: formValues.password,
-      };
+    if (!checkRequiredFields()) return;
+    if (!isValidForm()) return;
 
-      // sumbit request to the backend
-      try{
-        await authService.login(data);
-        history.push("/");
-      }catch(err){
+    const data = {
+      email: formValues.email,
+      password: formValues.password,
+    };
 
-        // invalid login credientials
-        setErrorsExist(true);
-        setFormValidations({
-          ...formValidations,
-    
-          email: { err: true, msg: "Invalid email or password." },
-          password: { err: true, msg: "" },
-        });
-      }
+    // sumbit request to the backend
+    try {
+      await authService.login(data);
+      history.push("/");
+    } catch (err) {
+      // invalid login credientials
+      setFormValidations({
+        ...formValidations,
+        email: { err: true, msg: "Invalid email or password." },
+        password: { err: true, msg: "" },
+      });
     }
   };
+
   return (
     <form
       onSubmit={handleSubmit}
@@ -117,12 +119,10 @@ const Login = () => {
               <Input
                 id="email"
                 value={formValues.email}
-                onBlur={handleChange("email")}
-                onChange={handleChange("email")}
+                onChange={handleChange("email", validate.email)}
                 error={formValidations.email.err}
                 autoComplete="username"
-                type="email"
-                required
+                type="text"
               />
 
               <FormHelperText error={formValidations.email.err}>
@@ -138,11 +138,9 @@ const Login = () => {
               <Input
                 id="password"
                 type="password"
-                onBlur={handleChange("password")}
-                onChange={handleChange("password")}
+                onChange={handleChange("password", validate.password)}
                 error={formValidations.password.err}
                 autoComplete="current-password"
-                required
               />
 
               <FormHelperText error={formValidations.password.err}>
@@ -162,6 +160,5 @@ const Login = () => {
     </form>
   );
 };
-
 
 export default Login;
