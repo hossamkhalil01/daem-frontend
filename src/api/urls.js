@@ -5,7 +5,7 @@ export const TICKET_API = {
   deleteTicket: (ticketId) => `${BASE_URL}/tickets/${ticketId}`,
   removeTicketDoctor: (ticketId) =>
     `${BASE_URL}/tickets/${ticketId}/remove-doctor`,
-  createTicket: () => `${BASE_URL}/tickets/multipleupload`,
+  createTicket: () => `${BASE_URL}/tickets/`,
 };
 
 export const DOCTORS_API = {

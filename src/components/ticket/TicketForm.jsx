@@ -37,10 +37,9 @@ export default function TicketForm() {
     formData.append("description", description);
 
     // Update the formData object with images array
-    // formData.append("images", images);
 
     for (const key of Object.keys(images)) {
-      formData.append("images", images[key]);
+      formData.append("images",images[key]);
     }
 
     // Request made to the backend api
@@ -90,14 +89,14 @@ export default function TicketForm() {
               Upload related images if any:{" "}
             </label>
             <input
-              name="ticketImages"
+              type="file"
+              name="images"
               accept="image/*"
               id="images"
               multiple
-              type="file"
               className="form-control"
-              onChange={(event) => {
-                setImages(event.target.files);
+              onChange={(e) => {
+                setImages(e.target.files);
               }}
             />
           </div>
