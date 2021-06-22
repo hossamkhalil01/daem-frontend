@@ -19,6 +19,7 @@ import { Visibility, VisibilityOff } from "@material-ui/icons";
 import CloudUploadIcon from "@material-ui/icons/CloudUpload";
 import { useHistory } from "react-router-dom";
 import * as authService from "../services/authService";
+import validate from "../utils/validations";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -30,6 +31,9 @@ const useStyles = makeStyles((theme) => ({
   },
   withoutLabel: {
     marginTop: theme.spacing(3),
+  },
+  submit: {
+    marginTop: theme.spacing(5),
   },
   textField: {
     width: "25ch",
@@ -53,10 +57,10 @@ const Register = ({ setAuthenticated }) => {
     password: "",
     firstname: "",
     lastname: "",
-    gender: "",
+    gender: "male",
     confirmPassword: "",
     avatar: "",
-    dob: null,
+    dob: "",
     diseases: "",
     showPassword: false,
     showConfirmPassword: false,
@@ -69,107 +73,80 @@ const Register = ({ setAuthenticated }) => {
     password: { err: false, msg: "" },
     confirmPassword: { err: false, msg: "" },
     gender: { err: false, msg: "" },
+    dob: { err: false, msg: "" },
   });
-  const [errorsExist, setErrorsExist] = React.useState(false);
+
+  const checkRequriedFields = () => {
+    let hasErrors = false;
+    let errors = [];
+    const validationsObj = { ...formValidations };
+
+    Object.keys(formValidations).forEach((field) => {
+      errors = validate.required(formValues[field]);
+
+      if (errors.length) {
+        hasErrors = true;
+
+        // Set the errors
+        validationsObj[field] = { err: true, msg: errors[0] };
+      }
+    });
+
+    setFormValidations(validationsObj);
+
+    return !hasErrors;
+  };
+
+  const isFormValid = () => {
+    for (const key in formValidations) {
+      if (formValidations[key].err) return false;
+    }
+    return true;
+  };
 
   const checkServerValidation = (msg) => {
     const errors = msg.split("User validation failed: ");
-    let emailErr = false;
-    let emailMsg = "";
-    let passErr = false;
-    let passMsg = "";
-    let firstnameErr = false;
-    let firstnameMsg = "";
-    let lastnameErr = false;
-    let lastnameMsg = "";
-    let genderErr = false;
-    let genderMsg = "";
-    let dobMsg = "";
-    let dobErr = false;
+
+    const validationsObj = { ...formValidations };
 
     let errsArray = ["email: Email already exists"];
 
     if (errors[1]) errsArray = errors[1].split(", ");
 
     for (const e of errsArray) {
-      if (e.includes("email")) {
-        emailErr = true;
-        emailMsg = e.split("email: ");
-      }
-      if (e.includes("password")) {
-        passErr = true;
-        passMsg = e.split("password: ");
-      }
-      if (e.includes("firstname")) {
-        firstnameErr = true;
-        firstnameMsg = e.split("firstname: ");
-      }
-      if (e.includes("lastname")) {
-        lastnameErr = true;
-        lastnameMsg = e.split("lastname: ");
-      }
-      if (e.includes("gender")) {
-        genderErr = true;
-        genderMsg = e.split("gender: ");
-      }
+      Object.keys(formValidations).forEach((field) => {
+        if (e.includes(field))
+          validationsObj[field] = { err: true, msg: e.split(`${field}: `) };
+      });
     }
-    setFormValidations({
-      ...formValidations,
-      firstname: { err: firstnameErr, msg: firstnameMsg },
-      lastname: { err: lastnameErr, msg: lastnameMsg },
-      email: { err: emailErr, msg: emailMsg },
-      password: { err: passErr, msg: passMsg },
-      gender: { err: genderErr, msg: genderMsg },
-    });
-    setErrorsExist(true);
+
+    setFormValidations(validationsObj);
   };
 
-  const handleChange = (prop) => (event) => {
-    if (!event.target.value) {
-      setFormValidations({
-        ...formValidations,
-        [prop]: { err: true, msg: "This field is required" },
-      });
-      setErrorsExist(true);
-    } else if (prop === "email") {
-      if (
-        !event.target.value.match(/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/)
-      ) {
-        setFormValidations({
-          ...formValidations,
-          email: { err: true, msg: "Please enter a valid email." },
-        });
-        setErrorsExist(true);
-      } else {
-        setFormValidations({
-          ...formValidations,
-          email: { err: false, msg: "" },
-        });
-        setErrorsExist(false);
+  const handleChange = (prop, validationMethod) => (event) => {
+    let err = false;
+    let msg = "";
+
+    if (validationMethod) {
+      // call the method with password as param if the prop is confirm password
+      const errorsArr =
+        prop === "confirmPassword"
+          ? validationMethod(formValues.password, event.target.value)
+          : validationMethod(event.target.value);
+
+      // set the errors if found
+      if (errorsArr.length) {
+        err = true;
+        msg = errorsArr[0];
       }
-    } else if (prop === "confirmPassword" || prop === "password") {
-      if (formValues.password !== event.target.value) {
-        setFormValidations({
-          ...formValidations,
-          password: { err: true, msg: "Passwords don't match." },
-          confirmPassword: { err: true, msg: "" },
-        });
-        setErrorsExist(true);
-      } else {
-        setFormValidations({
-          ...formValidations,
-          password: { err: false, msg: "" },
-          confirmPassword: { err: false, msg: "" },
-        });
-        setErrorsExist(false);
-      }
-    } else {
-      setFormValidations({
-        ...formValidations,
-        [prop]: { err: false, msg: "" },
-      });
-      setErrorsExist(false);
     }
+
+    // Set the states
+    setFormValidations({
+      ...formValidations,
+      [prop]: { err, msg },
+    });
+
     setFormValues({ ...formValues, [prop]: event.target.value });
   };
 
@@ -198,8 +175,11 @@ const Register = ({ setAuthenticated }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    // check if all the requried fields exists
+    if (!checkRequriedFields()) return;
+
     // don't submit if there are errors
-    if (errorsExist) return;
+    if (!isFormValid()) return;
 
     const data = {
       email: formValues.email,
@@ -207,6 +187,7 @@ const Register = ({ setAuthenticated }) => {
       lastname: formValues.lastname,
       password: formValues.password,
       gender: formValues.gender,
+      DOB: formValues.dob,
       diseases: formValues.diseases,
     };
 
@@ -243,7 +224,7 @@ const Register = ({ setAuthenticated }) => {
                 id="firstname"
                 type="text"
                 value={formValues.firstname}
-                onChange={handleChange("firstname")}
+                onChange={handleChange("firstname", validate.name)}
                 error={formValidations.firstname.err}
               />
             </FormControl>
@@ -260,7 +241,7 @@ const Register = ({ setAuthenticated }) => {
                 id="lastname"
                 type="text"
                 value={formValues.lastname}
-                onChange={handleChange("lastname")}
+                onChange={handleChange("lastname", validate.name)}
                 error={formValidations.lastname.err}
               />
               <FormHelperText error={formValidations.lastname.err}>
@@ -275,9 +256,9 @@ const Register = ({ setAuthenticated }) => {
               </InputLabel>
               <Input
                 id="email"
-                type="email"
+                type="text"
                 value={formValues.email}
-                onChange={handleChange("email")}
+                onChange={handleChange("email", validate.email)}
                 error={formValidations.email.err}
               />
               <FormHelperText error={formValidations.email.err}>
@@ -294,7 +275,7 @@ const Register = ({ setAuthenticated }) => {
                 id="password"
                 type={formValues.showPassword ? "text" : "password"}
                 value={formValues.password}
-                onChange={handleChange("password")}
+                onChange={handleChange("password", validate.password)}
                 error={formValidations.password.err}
                 endAdornment={
                   <InputAdornment position="end">
@@ -326,7 +307,10 @@ const Register = ({ setAuthenticated }) => {
                 id="confirm-password"
                 type={formValues.showConfirmPassword ? "text" : "password"}
                 value={formValues.confirmPassword}
-                onChange={handleChange("confirmPassword")}
+                onChange={handleChange(
+                  "confirmPassword",
+                  validate.passwordsMatch
+                )}
                 error={formValidations.confirmPassword.err}
                 endAdornment={
                   <InputAdornment position="end">
@@ -370,7 +354,7 @@ const Register = ({ setAuthenticated }) => {
             <FormControl required>
               <TextField
                 id="dob"
-                onChange={handleChange("dob")}
+                onChange={handleChange("dob", validate.dateOfBirth)}
                 label="Date of Birth *"
                 type="date"
                 InputLabelProps={{
@@ -378,6 +362,12 @@ const Register = ({ setAuthenticated }) => {
                 }}
                 className={classes.datePicker}
               />
+              <FormHelperText
+                error={formValidations.dob.err}
+                className={classes.datePicker}
+              >
+                {formValidations.dob.msg}
+              </FormHelperText>
             </FormControl>
           </Grid>
 
@@ -417,7 +407,12 @@ const Register = ({ setAuthenticated }) => {
               </Button>
             </FormControl>
           </Grid>
-          <Grid item xs={6}>
+          <Grid
+            container
+            direction="row"
+            justify="center"
+            className={classes.submit}
+          >
             <Button variant="contained" color="primary" type="submit">
               Sign Up
             </Button>
