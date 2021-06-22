@@ -15,5 +15,9 @@
   "delete-confirmation": "هل أنت متأكد من حذف هذه البطاقة؟",
   "sure":"متأكد",
   "cancel": "الغاء",
-  "confirmation": "تأكيد"
+  "confirmation": "تأكيد",
+  "edit": "تعديل",
+  "close":"اغلاق",
+  "go-to-ticket":"الذهاب للبطاقة",
+  "no-previous-tickets":"لا يوجد بطاقات سابقة"
 }

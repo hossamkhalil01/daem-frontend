@@ -1,12 +1,12 @@
 import React from "react";
 import { BrowserRouter, Redirect, Route, Switch } from "react-router-dom";
-import PrivateRoute from "./PrivateRoute";
 import LandingPage from "../pages/LandingPage";
-import RegisterPage from "../pages/RegisterPage";
 import LoginPage from "../pages/LoginPage";
-
 // Test page to test the pricate routes redirection
 import PrivatePage from "../pages/PrivatePage";
+import RegisterPage from "../pages/RegisterPage";
+import PrivateRoute from "./PrivateRoute";
+import Ticket from "./ticket/Ticket";
 
 const Router = () => {
   return (
@@ -26,8 +26,11 @@ const Router = () => {
         <Route path="/home">
           <LandingPage />
         </Route>
-        <Route path="/">
+        <Route exact path="/">
           <Redirect to="/home"></Redirect>
+        </Route>
+        <Route exact path="/ticket/:id">
+          <Ticket />
         </Route>
       </Switch>
     </BrowserRouter>

@@ -1,0 +1,24 @@
+.ticket {
+    width: 70%;
+    margin: auto;
+}
+
+.ticket__actions {
+    display: flex;
+    justify-content: space-evenly;
+}
+.ticket__details {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin: auto;
+    color: grey;
+}
+
+@media(max-width: 480px) {
+    .ticket__actions {
+        flex-wrap: wrap;
+        align-items: center;
+
+    }
+}
