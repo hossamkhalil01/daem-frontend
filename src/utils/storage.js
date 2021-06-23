@@ -16,3 +16,12 @@ export const get = (key) => {
 export const remove = (key) => {
   localStorage.removeItem(key);
 }
+
+
+const storage = {
+  set,
+  get,
+  remove,
+}
+
+export default storage;

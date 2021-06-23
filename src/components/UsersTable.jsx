@@ -51,7 +51,7 @@ const UsersTable = ({ users }) => {
           {users.map((user) => (
             <TableRow key={user._id}>
               <TableCell align="center" component="th" scope="row">
-                <Avatar alt="avatar" src={`${BASE_URL}${user.avatar}`} />
+                <Avatar alt="avatar" src={`${BASE_URL}/${user.avatar}`} />
               </TableCell>
               <TableCell align="center">{capitalize(user.firstname)}</TableCell>
               <TableCell align="center">{capitalize(user.lastname)}</TableCell>
