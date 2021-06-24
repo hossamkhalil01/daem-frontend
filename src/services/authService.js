@@ -1,17 +1,11 @@
 import moment from "moment";
-import * as storage from "../utils/storage";
+import storage from "../utils/storage";
 import { setHeaderToken } from "./clientService";
 import requests from "../api/requests";
 import { AUTH_API } from "../api/urls";
 
 
-export const login = async ({ email, password }) => {
-
-  // send request 
-  const { data: { data } } = await requests.create(AUTH_API.login, {
-    email,
-    password
-  });
+const storeAuthData = (data) => {
 
   // save auth data
   const expires = moment().add(data.expiresIn);
@@ -22,6 +16,24 @@ export const login = async ({ email, password }) => {
 
   // register the token to the client
   setHeaderToken(data.token);
+}
+
+export const login = async ({ email, password }) => {
+
+  // send request 
+  const { data: { data } } = await requests.create(AUTH_API.login, {
+    email,
+    password
+  });
+
+  storeAuthData(data);
+}
+
+export const register = async (formData) => {
+  // send request 
+  const { data: { data } } = await requests.create(AUTH_API.register, formData);
+
+  storeAuthData(data);
 }
 
 export const logout = () => {

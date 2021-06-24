@@ -1,6 +1,7 @@
+import moment from "moment";
 import React from "react";
-import { timeSincePublication } from "../services/dateService";
 import "../styles/Comment.css";
+
 export default function Comment({ comment }) {
   return (
     <div class="comment d-flex">
@@ -21,7 +22,7 @@ export default function Comment({ comment }) {
         </div>
         <div class="comment-body">{comment.body}</div>
         <span class="text-muted comment__time">
-          {timeSincePublication(comment.createdAt)}
+          { moment(comment.createdAt, "YYYY-MM-DDTh:mm:ss").fromNow()}
         </span>
       </div>
     </div>
