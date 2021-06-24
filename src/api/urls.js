@@ -22,3 +22,8 @@ export const AUTH_API = {
   login: `${AUTH_BASE}/login`,
   register: `${AUTH_BASE}/register`,
 };
+
+export const ADMIN_API = {
+  getAllUsers: `${BASE_URL}/users`,
+  updateUser: (userId) => `${BASE_URL}/users/${userId}`,
+};

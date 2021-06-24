@@ -2,20 +2,20 @@ import React from "react";
 import { BrowserRouter, Redirect, Route, Switch } from "react-router-dom";
 import LandingPage from "../pages/LandingPage";
 import LoginPage from "../pages/LoginPage";
-// Test page to test the pricate routes redirection
-import PrivatePage from "../pages/PrivatePage";
 import RegisterPage from "../pages/RegisterPage";
-import PrivateRoute from "./PrivateRoute";
-import Ticket from "./ticket/Ticket";
+import UsersPage from "../pages/admin/UsersPage";
+import PrivateRoute from "./routes/PrivateRoute";
+import AdminRoute from "./routes/AdminRoute";
+import Ticket from "./Ticket";
 
 const Router = () => {
   return (
     <BrowserRouter>
       <Switch>
-        <Route path="/testPrivate">
-          <PrivateRoute>
-            <PrivatePage />
-          </PrivateRoute>
+        <Route path="/admin/users">
+          <AdminRoute>
+            <UsersPage />
+          </AdminRoute>
         </Route>
         <Route path="/register">
           <RegisterPage />

@@ -1,8 +1,9 @@
 import axios from "axios";
 import { BASE_URL } from "../api/urls";
+import storage from "../utils/storage";
 
 let axiosObj = null;
-let token = "";
+let token = storage.get("token") || "";
 
 export const setHeaderToken = (newToken) => {
   token = newToken;
