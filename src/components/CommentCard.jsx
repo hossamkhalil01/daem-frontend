@@ -10,13 +10,13 @@ import moment from "moment";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { getUser } from "../services/authService";
-import { deleteComment } from "../services/commentsService";
 import "../styles/Comment.css";
 import EditComment from "./EditComment";
 
-export default function Comment({ comment }) {
+export default function Comment({ comment ,removeCommentFromList}) {
   const [editMode, setEditMode] = useState(false);
   const [commentBody, setCommentBody] = useState(comment.body);
+  
   const [openModal, setOpenModal] = useState(false);
   const { t } = useTranslation();
 
@@ -27,14 +27,15 @@ export default function Comment({ comment }) {
     setOpenModal(true);
   };
   const handleSure = (event) => {
-    deleteComment(comment._id);
+    // deleteComment(comment._id);
+    removeCommentFromList(comment._id);
     setOpenModal(false);
   };
   const handleCancel = () => {
     setOpenModal(false);
   };
 
-  const isAuthor = () => JSON.parse(getUser())._id === comment.authorId;
+  const isAuthor = () => JSON.parse(getUser())._id === comment.author._id;
 
   return (
     <div className="comment d-flex">
@@ -42,7 +43,7 @@ export default function Comment({ comment }) {
         <div className="avatar avatar-sm rounded-circle">
           <img
             className="avatar-img"
-            src={"http://localhost:8000/public/images/" + comment.avatar}
+            src={"http://localhost:8000/public/images/" + comment.author.avatar}
             alt=""
           />
         </div>
@@ -50,7 +51,7 @@ export default function Comment({ comment }) {
       <div className="flex-shrink-1 ms-sm-3">
         <div className="comment-meta d-flex">
           <p className="me-2 comment__doctor-name">
-            {comment.firstname + " " + comment.lastname}
+            {comment.author.firstname + " " + comment.author.lastname}
           </p>
         </div>
         {editMode ? (

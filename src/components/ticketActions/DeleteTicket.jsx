@@ -13,7 +13,7 @@ import { deleteTicket } from "../../services/ticketsService";
 
 export default function DeleteTicket({ ticketId }) {
   const [openModal, setOpenModal] = useState(false);
-
+  
   const { t } = useTranslation();
 
   const handleClickOpen = () => {

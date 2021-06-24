@@ -21,7 +21,6 @@ export default function MedicalRecord({ userId }) {
       page: _records.data.data.page,
       totalPages: _records.data.data.totalPages,
     });
-    console.log(pagination);
     setLoading(false);
   };
 
