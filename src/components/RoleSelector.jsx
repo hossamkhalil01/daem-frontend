@@ -1,16 +1,22 @@
 import { Select } from "@material-ui/core";
 import MenuItem from "@material-ui/core/MenuItem";
-import { useState, useEffect } from "react";
+import { useState } from "react";
+import { updateUserRole } from "../services/adminService";
 import capitalize from "../utils/capitalize";
 import ROLES from "../api/roles";
 
-const RoleSelector = ({ currentRole, onStatusChange }) => {
-  const [selected, setSelected] = useState(currentRole ? currentRole : "");
+const RoleSelector = ({ user, onError }) => {
+  const [selected, setSelected] = useState(user.role);
 
-  const handleChange = (event) => {
-    setSelected(event.target.value);
-    // emit event to parent
-    onStatusChange(event.target.value);
+  const handleChange = async (event) => {
+    const newSelection = event.target.value;
+
+    // send update request & update selection
+    await updateUserRole(user._id, newSelection)
+      .then((res) => setSelected(newSelection))
+      .catch((err) => {
+        onError(err);
+      });
   };
 
   return (
