@@ -24,4 +24,5 @@ export const AUTH_API = {
 
 export const ADMIN_API = {
   getAllUsers: `${BASE_URL}/users`,
+  updateUser: (userId) => `${BASE_URL}/users/${userId}`,
 };
