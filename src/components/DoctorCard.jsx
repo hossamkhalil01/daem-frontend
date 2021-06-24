@@ -23,7 +23,7 @@ export default function DoctorCard({ user }) {
           component="img"
           alt="User Image"
           height="140"
-          image={BASE_URL + "/public/images/avatars/" + user.avatar}
+          image={BASE_URL + "/" + user.avatar}
           title="User Image"
         />
         <CardContent>
