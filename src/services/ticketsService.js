@@ -2,7 +2,7 @@ import requests from "../api/requests";
 import { TICKET_API } from "../api/urls";
 
 export const createTicket = async (formData) => {
-  return requests.create(TICKET_API.createTicket(),formData);
+  return requests.create(TICKET_API.createTicket(), formData);
 };
 
 export const deleteTicket = async (ticketId) => {
@@ -10,9 +10,8 @@ export const deleteTicket = async (ticketId) => {
 };
 
 export const updateTicket = async (ticketId, updates) => {
-  return requests.update(TICKET_API.updateTicket(ticketId),
-    updates
-  );
+  console.log(updates);
+  return requests.update(TICKET_API.updateTicket(ticketId), updates);
 };
 
 export const removeTicketDoctor = async (ticketId) => {
@@ -24,5 +23,5 @@ export const getTicket = async (ticketId) => {
 };
 
 export const getTickets = async (params) => {
-  return requests.get(TICKET_API.getTickets(),params)
-}
+  return requests.get(TICKET_API.getTickets(), params);
+};

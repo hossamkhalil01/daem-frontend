@@ -1,10 +1,8 @@
-
-import { getClientObj } from '../services/clientService';
+import { getClientObj } from "../services/clientService";
 
 const client = getClientObj();
 
 const requests = {
-
   create: async function (url, body = {}, params = {}) {
     return client.post(url, body, { params });
   },
@@ -19,7 +17,7 @@ const requests = {
 
   delete: async function (url, params = {}) {
     return client.delete(url, { params });
-  }
+  },
 };
 
 export default requests;

@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 import { auto } from "@popperjs/core";
 import Button from "@material-ui/core/Button";
-import { createTicket } from "../../services/ticketsService";
+import { createTicket, updateTicket } from "../../services/ticketsService";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -17,11 +17,20 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function TicketForm() {
+export default function TicketForm({ ticket }) {
   const classes = useStyles();
   const [subject, setSubject] = useState("");
   const [description, setDescription] = useState("");
   const [images, setImages] = useState([]);
+  const [editMode, seteditMode] = useState(false);
+
+  useEffect(() => {
+    if (ticket) {
+      setSubject(ticket.subject);
+      setDescription(ticket.description);
+      seteditMode(true);
+    }
+  }, []);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -38,17 +47,22 @@ export default function TicketForm() {
     // Update the formData object with images array
 
     for (const key of Object.keys(images)) {
-      formData.append("images",images[key]);
+      formData.append("images", images[key]);
     }
 
     // Request made to the backend api
-    // Send formData object
-    createTicket(formData);
+    if (ticket) {
+      // Send formData object in case of update
+      updateTicket(ticket._id, formData);
+    } else {
+      // Send formData object
+      createTicket(formData);
+    }
   };
   return (
     <>
       <div className="text-center" style={{ margin: auto }}>
-        <h2>Submit new ticket</h2>
+        <h2>{editMode ? "Edit" : "Submit new"} ticket</h2>
         <form
           className={classes.root}
           noValidate
@@ -63,10 +77,12 @@ export default function TicketForm() {
             placeholder="Subject"
             variant="outlined"
             fullWidth
+            multiline
             style={{ margin: 10 }}
             onChange={(event) => {
               setSubject(event.target.value);
             }}
+            defaultValue={subject}
           />
           <TextField
             required
@@ -78,9 +94,10 @@ export default function TicketForm() {
             variant="outlined"
             fullWidth
             style={{ margin: 10 }}
-            onChange={(event) => {
-              setDescription(event.target.value);
+            onChange={(e) => {
+              setDescription(e.target.value);
             }}
+            defaultValue={description}
           />
 
           <div className="w-100 text-start">
@@ -105,7 +122,7 @@ export default function TicketForm() {
             type="submit"
             className="m-auto mt-3"
           >
-            Submit
+            {editMode ? "Edit" : "Add"}
           </Button>
         </form>
       </div>
