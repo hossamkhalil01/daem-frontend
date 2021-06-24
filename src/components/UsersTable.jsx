@@ -9,6 +9,7 @@ import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import capitalize from "../utils/capitalize";
 import { BASE_URL } from "../api/urls";
+import RoleSelector from "./RoleSelector";
 
 const useStyles = makeStyles({
   table: {
@@ -16,7 +17,7 @@ const useStyles = makeStyles({
   },
 });
 
-const UsersTable = ({ users }) => {
+const UsersTable = ({ users, onSelectionError }) => {
   const checkEmptyTable = () => {
     if (users.length) return;
 
@@ -56,7 +57,9 @@ const UsersTable = ({ users }) => {
               <TableCell align="center">{capitalize(user.firstname)}</TableCell>
               <TableCell align="center">{capitalize(user.lastname)}</TableCell>
               <TableCell align="center">{user.email}</TableCell>
-              <TableCell align="center"> {user.role}</TableCell>
+              <TableCell align="center">
+                <RoleSelector user={user} onError={onSelectionError} />
+              </TableCell>
             </TableRow>
           ))}
         </TableBody>

@@ -20,13 +20,25 @@ const UsersPage = () => {
     });
 
     // get the new page from api
-    const { data, paginationInfo } = parsePaginatedResponse(
-      await getAllUsers(params)
-    );
+    try {
+      const res = await getAllUsers(params);
+      const { data, paginationInfo } = parsePaginatedResponse(res);
+      // set the values
+      setPagination(paginationInfo);
+      setUsers(data);
+    } catch (err) {
+      handleUserError(err);
+    }
+  };
 
-    // set the values
-    setPagination(paginationInfo);
-    setUsers(data);
+  // TODO
+  const handleSelectionError = (err) => {
+    console.log(err);
+  };
+
+  // TODO
+  const handleUserError = (err) => {
+    console.log(err);
   };
 
   useEffect(() => {
@@ -43,6 +55,7 @@ const UsersPage = () => {
               <Paginator
                 paginationInfo={pagination}
                 onPageChange={handlePageChange}
+                onSelectionError={handleSelectionError}
               />
             </div>
           </div>
