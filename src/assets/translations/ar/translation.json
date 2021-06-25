@@ -22,5 +22,6 @@
   "no-previous-tickets":"لا يوجد بطاقات سابقة",
   "medical-record": "السجل الطبي",
   "comments": "التعليقات",
-  "submit":"تسليم"
+  "submit":"تسليم",
+  "load-more":"تحميل المزيد"
 }

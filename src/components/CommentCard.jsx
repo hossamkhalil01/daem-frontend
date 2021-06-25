@@ -42,10 +42,12 @@ export default function Comment({ comment, removeCommentFromList }) {
           />
         ) : (
           <div>
-            <div className="comment-body">{commentBody}</div>
-            <span className="text-muted comment__time">
-              {moment(comment.createdAt, "YYYY-MM-DDTh:mm:ss").fromNow()}
-            </span>
+            <p className="comment__body">{commentBody}</p>
+            <div className="comment__time">
+              <span className="text-muted comment__time">
+                {moment(comment.createdAt, "YYYY-MM-DDTh:mm:ss").fromNow()}
+              </span>
+            </div>
             {isAuthor() ? (
               <div className="comment-actions">
                 <FontAwesomeIcon

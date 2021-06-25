@@ -8,6 +8,9 @@ import i18next from "i18next";
 import React from "react";
 import { useTranslation } from "react-i18next";
 import storage from "../utils/storage";
+import moment from 'moment';
+import localization from 'moment/locale/ar';
+
 
 const languageMap = {
   en: { label: "English", dir: "ltr", active: true },
@@ -52,6 +55,7 @@ export default function LanguageSelect() {
                 onClick={() => {
                   i18next.changeLanguage(item);
                   setMenuAnchor(null);
+                  moment.updateLocale(item, localization);
                 }}
               >
                 {languageMap[item].label}

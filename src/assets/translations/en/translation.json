@@ -22,5 +22,6 @@
   "no-previous-tickets":"No previous tickets",
   "medical-record": "Medical Record",
   "comments": "Comments",
-  "submit":"Submit"
+  "submit":"Submit",
+  "load-more":"Load more"
 }
