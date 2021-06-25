@@ -2,7 +2,6 @@ import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState } from "react";
 import { deleteComment } from "../../services/commentsService";
-import "../../styles/Comment.css";
 import ConfirmationModal from "../ConfirmationModal";
 export default function DeleteComment({ comment, removeCommentFromList }) {
   const [openModal, setOpenModal] = useState(false);

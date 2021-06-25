@@ -12,7 +12,7 @@ const Navbar = (props) => {
         <div className="container">
           <NavLink className="navbar-brand" to="/" exact>
             <img
-              src="assets/images/logo-text.png"
+              src="/assets/images/logo-text.png"
               alt="Daem"
               width="200"
               height="200"
@@ -69,88 +69,6 @@ const Navbar = (props) => {
                 </NavLink>
               </li>
 
-              {/* <li className="nav-item dropdown">
-                <NavLink
-                  className="nav-link"
-                  activeClassName="active"
-                  to="/test"
-                  exact
-                  id="dropdown02"
-                  data-toggle="dropdown"
-                  aria-haspopup="true"
-                  aria-expanded="false"
-                >
-                  Department <i className="icofont-thin-down"></i>
-                </NavLink>
-                <ul className="dropdown-menu" aria-labelledby="dropdown02">
-                  <li>
-                    <NavLink
-                      className="dropdown-item"
-                      activeClassName="active"
-                      to="/test"
-                      exact
-                    >
-                      Departments
-                    </NavLink>
-                  </li>
-                  <li>
-                    <NavLink
-                      className="dropdown-item"
-                      activeClassName="active"
-                      to="/test"
-                      exact
-                    >
-                      Department Single
-                    </NavLink>
-                  </li>
-                </ul>
-              </li>
-              <li className="nav-item dropdown">
-                <NavLink
-                  className="nav-link"
-                  activeClassName="active"
-                  to="/test"
-                  exact
-                  id="dropdown03"
-                  data-toggle="dropdown"
-                  aria-haspopup="true"
-                  aria-expanded="false"
-                >
-                  Doctors <i className="icofont-thin-down"></i>
-                </NavLink>
-                <ul className="dropdown-menu" aria-labelledby="dropdown03">
-                  <li>
-                    <NavLink
-                      className="dropdown-item"
-                      activeClassName="active"
-                      to="/test"
-                      exact
-                    >
-                      Doctors
-                    </NavLink>
-                  </li>
-                  <li>
-                    <NavLink
-                      className="dropdown-item"
-                      activeClassName="active"
-                      to="/test"
-                      exact
-                    >
-                      Doctor Single
-                    </NavLink>
-                  </li>
-                  <li>
-                    <NavLink
-                      className="dropdown-item"
-                      activeClassName="active"
-                      to="/test"
-                      exact
-                    >
-                      Appoinment
-                    </NavLink>
-                  </li>
-                </ul>
-              </li>*/}
               <li className="nav-item">
                 <NavLink
                   className="nav-link"
