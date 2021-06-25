@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Navbar from "../components/layouts/Navbar";
 import Footer from "../components/layouts/Footer";
 import Paginator from "../components/Paginator";
+import { NavLink } from "react-router-dom";
 import { BASE_URL } from "../api/urls";
 import { getAllDoctors } from "../services/doctorsService";
 import capitalize from "../utils/capitalize";
@@ -56,7 +57,7 @@ const DoctorsPage = (props) => {
           </div>
         </div>
       </section>
-      {/* <!-- portfolio --> */}
+      {/* <!-- Doctors --> */}
       <section className="section doctors">
         <div className="container">
           <div className="row justify-content-center">
@@ -65,48 +66,11 @@ const DoctorsPage = (props) => {
                 <h2>Doctors</h2>
                 <div className="divider mx-auto my-4"></div>
                 <p>
-                  We provide a wide range of creative services adipisicing elit.
-                  Autem maxime rem modi eaque, voluptate. Beatae officiis neque{" "}
+                  Our doctors are avaialbe for your help and answer your
+                  inquiries <br />
+                  to keep you safe.
                 </p>
               </div>
-            </div>
-          </div>
-
-          <div className="col-12 text-center  mb-5">
-            <div className="btn-group btn-group-toggle " data-toggle="buttons">
-              <label className="btn active ">
-                <input
-                  type="radio"
-                  name="shuffle-filter"
-                  value="all"
-                  checked="checked"
-                />
-                All Department
-              </label>
-              <label className="btn ">
-                <input type="radio" name="shuffle-filter" value="cat1" />
-                Cardiology
-              </label>
-              <label className="btn">
-                <input type="radio" name="shuffle-filter" value="cat2" />
-                Dental
-              </label>
-              <label className="btn">
-                <input type="radio" name="shuffle-filter" value="cat3" />
-                Neurology
-              </label>
-              <label className="btn">
-                <input type="radio" name="shuffle-filter" value="cat4" />
-                Medicine
-              </label>
-              <label className="btn">
-                <input type="radio" name="shuffle-filter" value="cat5" />
-                Pediatric
-              </label>
-              <label className="btn">
-                <input type="radio" name="shuffle-filter" value="cat6" />
-                Traumatology
-              </label>
             </div>
           </div>
 
@@ -152,7 +116,7 @@ const DoctorsPage = (props) => {
           />
         </div>
       </section>
-      {/* <!-- /portfolio --> */}
+      {/* <!-- call to action section --> */}
       <section className="section cta-page">
         <div className="container">
           <div className="row">
@@ -160,17 +124,16 @@ const DoctorsPage = (props) => {
               <div className="cta-content">
                 <div className="divider mb-4"></div>
                 <h2 className="mb-5 text-lg">
-                  We are pleased to offer you the{" "}
-                  <span className="title-color">
-                    chance to have the healthy
-                  </span>
+                  We are pleased to help you <br />
+                  <span className="title-color">To stay safe.</span>
                 </h2>
-                <a
-                  href="appoinment.html"
+                <NavLink
+                  to="/tickets/new"
+                  exact
                   className="btn btn-main-2 btn-round-full"
                 >
-                  Get appoinment<i className="icofont-simple-right  ml-2"></i>
-                </a>
+                  Create Ticket<i className="icofont-simple-right ml-2"></i>
+                </NavLink>
               </div>
             </div>
           </div>

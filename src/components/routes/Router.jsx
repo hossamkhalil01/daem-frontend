@@ -18,6 +18,8 @@ const Router = () => {
             <UsersPage />
           </AdminRoute>
         </Route>
+
+        <Route path="/tickets/new">{/* TODO: NEW TICEKT */}</Route>
         <Route path="/doctors">
           <DoctorsPage />
         </Route>
