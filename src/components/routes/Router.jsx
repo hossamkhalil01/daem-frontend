@@ -4,6 +4,7 @@ import LandingPage from "../../pages/LandingPage";
 import LoginPage from "../../pages/LoginPage";
 import Logout from "../auth/Logout";
 import RegisterPage from "../../pages/RegisterPage";
+import DoctorsPage from "../../pages/DoctorsPage";
 import UsersPage from "../../pages/admin/UsersPage";
 import AdminRoute from "./AdminRoute";
 import Ticket from "../ticket/Ticket";
@@ -16,6 +17,9 @@ const Router = () => {
           <AdminRoute>
             <UsersPage />
           </AdminRoute>
+        </Route>
+        <Route path="/doctors">
+          <DoctorsPage />
         </Route>
         <Route path="/register">
           <RegisterPage />
