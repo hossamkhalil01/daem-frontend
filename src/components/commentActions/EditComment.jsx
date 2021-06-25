@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { updateComment } from "../services/commentsService";
-import "../styles/Comment.css";
+import { updateComment } from "../../services/commentsService";
+import "../../styles/Comment.css";
 export default function EditComment({ commentBody , commentId ,setEditMode, setCommentBody}) {
     const [commentText , setCommentText] = useState(commentBody);
 

@@ -1,38 +1,18 @@
-import { faEdit, faTrash } from "@fortawesome/free-solid-svg-icons";
+import { faEdit } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { default as Button } from "@material-ui/core/Button";
-import Dialog from "@material-ui/core/Dialog";
-import DialogActions from "@material-ui/core/DialogActions";
-import DialogContent from "@material-ui/core/DialogContent";
-import DialogContentText from "@material-ui/core/DialogContentText";
-import DialogTitle from "@material-ui/core/DialogTitle";
 import moment from "moment";
 import { useState } from "react";
-import { useTranslation } from "react-i18next";
 import { getUser } from "../services/authService";
 import "../styles/Comment.css";
-import EditComment from "./EditComment";
+import DeleteComment from "./commentActions/DeleteComment";
+import EditComment from "./commentActions/EditComment";
 
 export default function Comment({ comment ,removeCommentFromList}) {
   const [editMode, setEditMode] = useState(false);
   const [commentBody, setCommentBody] = useState(comment.body);
   
-  const [openModal, setOpenModal] = useState(false);
-  const { t } = useTranslation();
-
   const enterEditMode = () => {
     setEditMode(true);
-  };
-  const handleClickOpen = () => {
-    setOpenModal(true);
-  };
-  const handleSure = (event) => {
-    // deleteComment(comment._id);
-    removeCommentFromList(comment._id);
-    setOpenModal(false);
-  };
-  const handleCancel = () => {
-    setOpenModal(false);
   };
 
   const isAuthor = () => JSON.parse(getUser())._id === comment.author._id;
@@ -74,35 +54,7 @@ export default function Comment({ comment ,removeCommentFromList}) {
                   onClick={enterEditMode}
                   className="comment__action"
                 ></FontAwesomeIcon>{" "}
-                <FontAwesomeIcon
-                  icon={faTrash}
-                  onClick={handleClickOpen}
-                  className="comment__action"
-                ></FontAwesomeIcon>
-                <Dialog
-                  open={openModal}
-                  onClose={handleCancel}
-                  aria-labelledby="alert-dialog-title"
-                  aria-describedby="alert-dialog-description"
-                  disableBackdropClick
-                >
-                  <DialogTitle id="alert-dialog-title">
-                    {t("confirmation")}
-                  </DialogTitle>
-                  <DialogContent>
-                    <DialogContentText id="alert-dialog-description">
-                      {t("delete-confirmation")}
-                    </DialogContentText>
-                  </DialogContent>
-                  <DialogActions>
-                    <Button onClick={handleSure} color="primary">
-                      {t("sure")}
-                    </Button>
-                    <Button onClick={handleCancel} color="primary" autoFocus>
-                      {t("cancel")}
-                    </Button>
-                  </DialogActions>
-                </Dialog>
+              <DeleteComment comment={comment} removeCommentFromList={removeCommentFromList}/>
               </div>
             ) : (
               ""

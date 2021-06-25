@@ -33,6 +33,11 @@
     padding-top: 3px;
 }
 
+.comment-actions{
+    display: flex;
+    align-items: baseline;
+}
+
 .comment__action{
     color:gray;
 }
@@ -45,4 +50,9 @@
 .comment__textarea{
     overflow:hidden;
     width: 40vw;
+}
+
+.delete-comment{
+    margin-bottom: 2px;
+    margin-left: 3px;
 }

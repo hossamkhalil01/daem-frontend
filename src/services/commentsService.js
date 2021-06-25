@@ -9,6 +9,6 @@ export const updateComment = async (commentId, updates) => {
   return requests.update(COMMENTS_API.comment(commentId), updates);
 };
 
-export const getComments = async (ticketId) => {
-  return requests.get(COMMENTS_API.ticketComments(ticketId));
+export const getComments = async (ticketId,params) => {
+  return requests.get(COMMENTS_API.ticketComments(ticketId),params);
 };

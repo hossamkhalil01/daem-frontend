@@ -20,6 +20,6 @@ export const AUTH_API = {
 }
 
 export const COMMENTS_API = {
-  comment: (commentId)=> `${BASE_URL}/comments/${commentId}`,
+  comment: (commentId,ticketId)=> `${BASE_URL}/tickets/${ticketId}/comments/${commentId}`,
   ticketComments: (ticketId)=> `${BASE_URL}/tickets/${ticketId}/comments`
 }

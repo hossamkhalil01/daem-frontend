@@ -10,7 +10,6 @@ export default function MedicalRecord({ userId }) {
   const { t } = useTranslation();
   const [loading, setLoading] = useState(true);
   const [pagination, setPagination] = useState({ page: 1, totalPages: 1 });
-
   const [records, setRecords] = useState([]);
 
   const getUserRecords = async (newPage) => {
@@ -29,7 +28,7 @@ export default function MedicalRecord({ userId }) {
   };
 
   useEffect(() => {
-    getUserRecords();
+    getUserRecords(1);
   }, []);
 
   return loading ? (
