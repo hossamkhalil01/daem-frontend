@@ -3,7 +3,6 @@ import { useTranslation } from "react-i18next";
 import { DoctorsProvider } from "../../contexts/doctorsContext";
 import { formatDate, getAge } from "../../services/dateService";
 import { getAllDoctors } from "../../services/doctorsService";
-import "../../styles/TicketDetails.css";
 import Carousel from "../Carousel";
 import TicketActions from "../ticketActions/TicketActions";
 

@@ -1,8 +1,12 @@
 import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import CommentCard from "../components/CommentCard";
 import { getComments } from "../services/commentsService";
 import LoadMore from "./LoadMore";
+
+
 export default function TicketComments({ ticketId }) {
+  const { t } = useTranslation();
   const [pagination, setPagination] = useState({ page: 1, totalPages: 1 });
   const [comments, setComments] = useState([]);
   const isLastPage = () => pagination.page === pagination.totalPages;
@@ -38,7 +42,7 @@ export default function TicketComments({ ticketId }) {
   return (
     <>
       <div className="ticket-comments">
-        <h3>Comments</h3>
+        <h3>{t("comments")}</h3>
         {comments.map((comment) => (
           <CommentCard
             key={comment._id}

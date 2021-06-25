@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { getTickets } from "../services/ticketsService";
-import "../styles/MedicalRecord.css";
 import Loading from "./Loading";
 import Paginator from "./Paginator";
 import RecordCard from "./RecordCard";
@@ -35,7 +34,7 @@ export default function MedicalRecord({ userId }) {
     <Loading />
   ) : (
     <div className="medical-record">
-      <h3>Medical Record</h3>
+      <h3>{t("medical-record")}</h3>
       {records.length ? (
         <div>
           <div className="medical-record__records">

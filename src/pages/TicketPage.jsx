@@ -1,19 +1,19 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { getUser } from "../services/authService";
 import Footer from "../components/layouts/Footer";
 import Navbar from "../components/layouts/Navbar";
 import Loading from "../components/Loading";
 import MedicalRecord from "../components/MedicalRecord";
 import TicketDetails from "../components/ticket/TicketDetails";
 import TicketComments from "../components/TicketComments";
+import { getUser } from "../services/authService";
 import { getTicket } from "../services/ticketsService";
-import "../styles/TicketPage.css";
 
 export default function TicketPage() {
   const { id } = useParams();
   const [ticket, setTicket] = useState({});
   const [loading, setLoading] = useState(true);
+
 
   const currentUser = getUser();
   const getTicketDetails = async () => {

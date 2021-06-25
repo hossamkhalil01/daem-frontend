@@ -1,5 +1,4 @@
 import { getUser } from "../../services/authService";
-import "../../styles/TicketActions.css";
 import AssignDoctor from "./AssignDoctor";
 import CheckTicket from "./CheckTicket";
 import DeleteTicket from "./DeleteTicket";

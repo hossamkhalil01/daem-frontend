@@ -1,4 +1,3 @@
-import "../styles/Carousel.css";
 export default function Carousel({ images }) {
   return (
     <div

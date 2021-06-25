@@ -3,7 +3,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import moment from "moment";
 import { useState } from "react";
 import { getUser } from "../services/authService";
-import "../styles/Comment.css";
 import DeleteComment from "./commentActions/DeleteComment";
 import EditComment from "./commentActions/EditComment";
 
