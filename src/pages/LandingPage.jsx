@@ -1,12 +1,10 @@
 import React from "react";
 import Navbar from "../components/layouts/Navbar";
 import Footer from "../components/layouts/Footer";
-import { AddComments } from "../components/commentActions/AddComment";
 
 const LandingPage = (props) => {
   return (
     <>
-      <AddComments />
       <Navbar />
       <div>
         {/* <!-- Slider Start --> */}
