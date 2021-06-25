@@ -18,8 +18,8 @@ import { makeStyles } from "@material-ui/core/styles";
 import { Visibility, VisibilityOff } from "@material-ui/icons";
 import CloudUploadIcon from "@material-ui/icons/CloudUpload";
 import { useHistory } from "react-router-dom";
-import * as authService from "../services/authService";
-import validate from "../utils/validations";
+import * as authService from "../../services/authService";
+import validate from "../../utils/validations";
 
 const useStyles = makeStyles((theme) => ({
   root: {

@@ -10,8 +10,8 @@ import {
 
 import { useState } from "react";
 import { useHistory } from "react-router-dom";
-import * as authService from "../services/authService";
-import validate from "../utils/validations";
+import * as authService from "../../services/authService";
+import validate from "../../utils/validations";
 
 const Login = () => {
   const history = useHistory();
