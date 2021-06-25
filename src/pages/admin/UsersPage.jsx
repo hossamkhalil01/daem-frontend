@@ -6,6 +6,8 @@ import {
   createPaginationParams,
   parsePaginatedResponse,
 } from "../../utils/pagination";
+import Navbar from "../../components/layouts/Navbar";
+import Footer from "../../components/layouts/Footer";
 
 const UsersPage = () => {
   const [pagination, setPagination] = useState({ page: 1, totalPages: 1 });
@@ -46,21 +48,25 @@ const UsersPage = () => {
   }, []);
 
   return (
-    <div>
-      <div className="row mt-5 container-fluid justify-content-center main-content">
-        <div className="col-8">
-          <UsersTable users={users} onSelectionError={handleSelectionError} />
-          <div className="row justify-content-end">
-            <div className="w-auto mt-4">
-              <Paginator
-                paginationInfo={pagination}
-                onPageChange={handlePageChange}
-              />
+    <>
+      <Navbar />
+      <div>
+        <div className="row mt-5 container-fluid justify-content-center main-content">
+          <div className="col-8">
+            <UsersTable users={users} onSelectionError={handleSelectionError} />
+            <div className="row justify-content-end">
+              <div className="w-auto mt-4">
+                <Paginator
+                  paginationInfo={pagination}
+                  onPageChange={handlePageChange}
+                />
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
+      <Footer />
+    </>
   );
 };
 
