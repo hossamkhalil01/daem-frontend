@@ -1,5 +1,6 @@
 import React from "react";
 import Avatar from "@material-ui/core/Avatar";
+import LanguageSelect from "../LanguageSelect";
 import { NavLink } from "react-router-dom";
 import { getUser } from "../../services/authService";
 import { BASE_URL } from "../../api/urls";
@@ -43,17 +44,32 @@ const Navbar = (props) => {
                   Home
                 </NavLink>
               </li>
+              {getUser()?._id ? (
+                <li className="nav-item">
+                  <NavLink
+                    className="nav-link"
+                    activeClassName="active"
+                    to="/tickets"
+                    exact
+                  >
+                    Tickets
+                  </NavLink>
+                </li>
+              ) : (
+                ""
+              )}
               <li className="nav-item">
                 <NavLink
                   className="nav-link"
                   activeClassName="active"
-                  to="/test"
+                  to="/doctors"
                   exact
                 >
-                  Services
+                  Doctors
                 </NavLink>
               </li>
-              <li className="nav-item dropdown">
+
+              {/* <li className="nav-item dropdown">
                 <NavLink
                   className="nav-link"
                   activeClassName="active"
@@ -134,7 +150,7 @@ const Navbar = (props) => {
                     </NavLink>
                   </li>
                 </ul>
-              </li>
+              </li>*/}
               <li className="nav-item">
                 <NavLink
                   className="nav-link"
@@ -210,6 +226,7 @@ const Navbar = (props) => {
                   </li>
                 </>
               )}
+              <LanguageSelect />
             </ul>
           </div>
         </div>
