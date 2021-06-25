@@ -12,6 +12,11 @@
     margin: auto;
 }
 
+.medical-record h3 {
+    color: grey;
+    margin: auto;
+    margin-bottom: 3vh;
+}
 
 .medical-record__records {
     min-height: 40vh;
@@ -21,3 +26,4 @@
     width: fit-content;
     margin: auto;
 }
+

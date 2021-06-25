@@ -37,18 +37,21 @@ export default function TicketComments({ ticketId }) {
 
   return (
     <>
-      {comments.map((comment) => (
-        <CommentCard
-          key={comment._id}
-          removeCommentFromList={removeComment}
-          comment={comment}
-        />
-      ))}
-      {!isLastPage() ? (
-        <LoadMore page={pagination.page} onLoadMore={onLoadMore} />
-      ) : (
-        ""
-      )}
+      <div className="ticket-comments">
+        <h3>Comments</h3>
+        {comments.map((comment) => (
+          <CommentCard
+            key={comment._id}
+            removeCommentFromList={removeComment}
+            comment={comment}
+          />
+        ))}
+        {!isLastPage() ? (
+          <LoadMore page={pagination.page} onLoadMore={onLoadMore} />
+        ) : (
+          ""
+        )}
+      </div>
     </>
   );
 }

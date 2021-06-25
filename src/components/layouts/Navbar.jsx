@@ -9,7 +9,7 @@ const Navbar = (props) => {
         <div className="container">
           <NavLink className="navbar-brand" to="/" exact>
             <img
-              src="assets/images/logo-text.png"
+              src="/assets/images/logo-text.png"
               alt="Daem"
               width="200"
               height="200"

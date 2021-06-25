@@ -5,7 +5,7 @@ import { useTranslation } from "react-i18next";
 import { DoctorsContext } from "../../contexts/doctorsContext";
 import {
   removeTicketDoctor,
-  updateTicket
+  updateTicket,
 } from "../../services/ticketsService";
 
 export default function AssignDoctor({ ticketId, ticketDoctor }) {
@@ -26,6 +26,7 @@ export default function AssignDoctor({ ticketId, ticketDoctor }) {
 
   return (
     <Autocomplete
+      className="ticket-doctor"
       value={doctor || clearField}
       id={ticketId}
       size="medium"

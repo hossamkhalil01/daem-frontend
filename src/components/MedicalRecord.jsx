@@ -35,11 +35,12 @@ export default function MedicalRecord({ userId }) {
     <Loading />
   ) : (
     <div className="medical-record">
+      <h3>Medical Record</h3>
       {records.length ? (
         <div>
           <div className="medical-record__records">
             {records.map((record) => (
-              <RecordCard ticket={record} />
+              <RecordCard key={record._id} ticket={record} />
             ))}
           </div>
           <div className="medical-record__paginator">

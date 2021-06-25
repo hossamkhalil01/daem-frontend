@@ -7,15 +7,15 @@ import "../styles/Comment.css";
 import DeleteComment from "./commentActions/DeleteComment";
 import EditComment from "./commentActions/EditComment";
 
-export default function Comment({ comment ,removeCommentFromList}) {
+export default function Comment({ comment, removeCommentFromList }) {
   const [editMode, setEditMode] = useState(false);
   const [commentBody, setCommentBody] = useState(comment.body);
-  
+
   const enterEditMode = () => {
     setEditMode(true);
   };
 
-  const isAuthor = () => JSON.parse(getUser())._id === comment.author._id;
+  const isAuthor = () => getUser()._id === comment.author._id;
 
   return (
     <div className="comment d-flex">
@@ -23,7 +23,7 @@ export default function Comment({ comment ,removeCommentFromList}) {
         <div className="avatar avatar-sm rounded-circle">
           <img
             className="avatar-img"
-            src={"http://localhost:8000/public/images/" + comment.author.avatar}
+            src={"http://localhost:8000/" + comment.author.avatar}
             alt=""
           />
         </div>
@@ -54,7 +54,10 @@ export default function Comment({ comment ,removeCommentFromList}) {
                   onClick={enterEditMode}
                   className="comment__action"
                 ></FontAwesomeIcon>{" "}
-              <DeleteComment comment={comment} removeCommentFromList={removeCommentFromList}/>
+                <DeleteComment
+                  comment={comment}
+                  removeCommentFromList={removeCommentFromList}
+                />
               </div>
             ) : (
               ""
