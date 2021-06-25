@@ -1,6 +1,7 @@
 import React from "react";
 import Navbar from "../components/layouts/Navbar";
 import Footer from "../components/layouts/Footer";
+import { NavLink } from "react-router-dom";
 
 const LandingPage = (props) => {
   return (
@@ -27,14 +28,14 @@ const LandingPage = (props) => {
                     suscipit placeat.
                   </p>
                   <div className="btn-container ">
-                    <a
-                      href="appoinment.html"
-                      target="_blank"
+                    <NavLink
+                      to="/tickets/new"
+                      exact
                       className="btn btn-main-2 btn-icon btn-round-full"
                     >
-                      Make appoinment{" "}
+                      Create Ticket{" "}
                       <i className="icofont-simple-right ml-2  "></i>
-                    </a>
+                    </NavLink>
                   </div>
                 </div>
               </div>
