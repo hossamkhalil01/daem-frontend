@@ -1,6 +1,6 @@
 import { useTranslation } from "react-i18next";
 import { useHistory } from "react-router";
-import { formatDate, getAge } from "../services/dateService";
+import { formatDate, getAge } from "../../services/dateService";
 import "../styles/TicketCard.css";
 import TicketActions from './ticketActions/Tic";';
 

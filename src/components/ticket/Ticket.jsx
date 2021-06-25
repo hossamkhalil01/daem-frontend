@@ -1,14 +1,14 @@
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useParams } from "react-router-dom";
-import { DoctorsProvider } from "../contexts/doctorsContext";
-import { formatDate, getAge } from "../services/dateService";
-import { getAllDoctors } from "../services/doctorsService";
-import { getTicket } from "../services/ticketsService";
-import "../styles/Ticket.css";
-import Carousel from "./Carousel";
-import Loading from "./Loading";
-import TicketActions from "./ticketActions/TicketActions";
+import { DoctorsProvider } from "../../contexts/doctorsContext";
+import { formatDate, getAge } from "../../services/dateService";
+import { getAllDoctors } from "../../services/doctorsService";
+import { getTicket } from "../../services/ticketsService";
+import "../../styles/Ticket.css";
+import Carousel from "../Carousel";
+import Loading from "../Loading";
+import TicketActions from "../ticketActions/TicketActions";
 
 export default function Ticket() {
   const { t } = useTranslation();
