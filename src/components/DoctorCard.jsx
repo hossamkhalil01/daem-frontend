@@ -13,7 +13,7 @@ const useStyles = makeStyles({
   },
 });
 
-export default function DoctorCard({ user }) {
+export default function DoctorCard({ doctor }) {
   const classes = useStyles();
 
   return (
@@ -23,17 +23,17 @@ export default function DoctorCard({ user }) {
           component="img"
           alt="User Image"
           height="140"
-          image={BASE_URL + "/" + user.avatar}
+          image={BASE_URL + "/" + doctor.avatar}
           title="User Image"
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="h2">
-            {user.firstname + " " + user.lastname}
+            {doctor.firstname + " " + doctor.lastname}
           </Typography>
           <Typography variant="body2" color="textSecondary" component="p">
-            <p>Email: {user.email}</p>
-            <p>Age: {user.age}</p>
-            <p>Gender: {user.gender}</p>
+            <p>Email: {doctor.email}</p>
+            <p>Age: {doctor.age}</p>
+            <p>Gender: {doctor.gender}</p>
           </Typography>
         </CardContent>
       </CardActionArea>

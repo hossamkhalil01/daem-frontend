@@ -177,6 +177,13 @@ input[type="tel"]:focus {
   border-left: 1px solid rgba(0, 0, 0, 0.09);
 }
 
+.btn-main-2 {
+  color: white !important;
+  background-color: #223a66 !important;
+}
+.btn-main-2:hover {
+  background-color: #1b8c97 !important;
+}
 .btn-transparent {
   background: transparent;
   color: #222;

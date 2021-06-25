@@ -7,6 +7,7 @@ import ArrowDropDown from "@material-ui/icons/ArrowDropDown";
 import i18next from "i18next";
 import React from "react";
 import { useTranslation } from "react-i18next";
+import storage from "../utils/storage";
 
 const languageMap = {
   en: { label: "English", dir: "ltr", active: true },
@@ -14,7 +15,7 @@ const languageMap = {
 };
 
 export default function LanguageSelect() {
-  const selected = localStorage.getItem("i18nextLng") || "en";
+  const selected = storage.get("i18nextLng") || "en";
   const { t } = useTranslation();
 
   const [menuAnchor, setMenuAnchor] = React.useState(null);
@@ -61,4 +62,4 @@ export default function LanguageSelect() {
       </Popover>
     </div>
   );
-};
+}
