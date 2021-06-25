@@ -1,9 +1,23 @@
 import { useState } from "react";
-export const AddComments = ({ ticketId }) => {
+import { addComment } from "../../services/commentsService";
+import { getUser } from "../../services/authService";
+
+export const AddComments = ({ ticketId = "60d5ea70180efb2719f2d412" }) => {
   const [comment, updateComment] = useState("");
   const [error, setError] = useState("");
   const handleCommentSubmit = async () => {
     if (comment === "") return setError("you can't add empty comment ");
+    try {
+      await addComment(ticketId, {
+        body: comment,
+        author: getUser()?._id,
+        ticket: ticketId,
+      });
+      updateComment("");
+      setError("");
+    } catch (error) {
+      setError("something went wrong");
+    }
   };
 
   const upadteInputStates = () => {
