@@ -1,6 +1,8 @@
 import React from "react";
+import Avatar from "@material-ui/core/Avatar";
 import { NavLink } from "react-router-dom";
 import { getUser } from "../../services/authService";
+import { BASE_URL } from "../../api/urls";
 
 const Navbar = (props) => {
   return (
@@ -147,11 +149,43 @@ const Navbar = (props) => {
 
             <ul className="navbar-nav ml-auto">
               {getUser()?._id ? (
-                <li className="nav-item">
-                  <NavLink className="nav-link" to="/logout" exact>
-                    Logout
-                  </NavLink>
-                </li>
+                <>
+                  <li className="nav-item dropdown">
+                    <a
+                      href="#"
+                      className="nav-link"
+                      id="dropdown04"
+                      data-toggle="dropdown"
+                      aria-haspopup="true"
+                      aria-expanded="false"
+                    >
+                      <Avatar
+                        alt="avatar"
+                        src={`${BASE_URL}/${getUser().avatar}`}
+                      ></Avatar>{" "}
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="dropdown02">
+                      <li className="nav-item">
+                        <NavLink
+                          className="dropdown-item nav-link"
+                          to="/profile"
+                          exact
+                        >
+                          Profile
+                        </NavLink>
+                      </li>
+                      <li className="nav-item">
+                        <NavLink
+                          className="dropdown-item nav-link"
+                          to="/logout"
+                          exact
+                        >
+                          Logout
+                        </NavLink>
+                      </li>
+                    </ul>
+                  </li>
+                </>
               ) : (
                 <>
                   <li className="nav-item">
