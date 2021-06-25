@@ -2,7 +2,7 @@ import { useState } from "react";
 import { addComment } from "../../services/commentsService";
 import { getUser } from "../../services/authService";
 
-export const AddComments = ({ ticketId = "60d5ea70180efb2719f2d412" }) => {
+export const AddComments = ({ ticketId }) => {
   const [comment, updateComment] = useState("");
   const [error, setError] = useState("");
   const handleCommentSubmit = async () => {
