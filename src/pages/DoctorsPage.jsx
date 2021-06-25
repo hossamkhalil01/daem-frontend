@@ -77,7 +77,7 @@ const DoctorsPage = (props) => {
           <div className="row shuffle-wrapper portfolio-gallery">
             {doctors.map((doctor) => (
               <div
-                class="col-lg-3 col-sm-6 col-md-6 mb-4 shuffle-item"
+                className="col-lg-3 col-sm-6 col-md-6 mb-4 shuffle-item"
                 data-groups='["cat1","cat2"]'
               >
                 <div className="position-relative doctor-inner-box">
@@ -92,11 +92,11 @@ const DoctorsPage = (props) => {
                   </div>
                   <div className="content mt-3">
                     <h4 className="mb-0">
-                      <a href="doctor-single.html">
+                      <NavLink to={"/doctors/" + doctor._id} exact>
                         {capitalize(doctor.firstname) +
                           " " +
                           capitalize(doctor.lastname)}
-                      </a>
+                      </NavLink>
                     </h4>
                     <p>Cardiology</p>
                   </div>

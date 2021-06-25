@@ -4,6 +4,7 @@ import LandingPage from "../../pages/LandingPage";
 import LoginPage from "../../pages/LoginPage";
 import Logout from "../auth/Logout";
 import RegisterPage from "../../pages/RegisterPage";
+import DoctorPage from "../../pages/DoctorPage";
 import DoctorsPage from "../../pages/DoctorsPage";
 import UsersPage from "../../pages/admin/UsersPage";
 import AdminRoute from "./AdminRoute";
@@ -20,9 +21,13 @@ const Router = () => {
         </Route>
 
         <Route path="/tickets/new">{/* TODO: NEW TICEKT */}</Route>
+        <Route path="/doctors/:id">
+          <DoctorPage />
+        </Route>
         <Route path="/doctors">
           <DoctorsPage />
         </Route>
+
         <Route path="/register">
           <RegisterPage />
         </Route>
