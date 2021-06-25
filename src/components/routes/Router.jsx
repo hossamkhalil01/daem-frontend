@@ -1,11 +1,14 @@
 import React from "react";
 import { BrowserRouter, Redirect, Route, Switch } from "react-router-dom";
-import LandingPage from "../pages/LandingPage";
-import LoginPage from "../pages/LoginPage";
-import RegisterPage from "../pages/RegisterPage";
-import UsersPage from "../pages/admin/UsersPage";
-import AdminRoute from "./routes/AdminRoute";
-import Ticket from "./ticket/Ticket";
+import LandingPage from "../../pages/LandingPage";
+import LoginPage from "../../pages/LoginPage";
+import Logout from "../auth/Logout";
+import RegisterPage from "../../pages/RegisterPage";
+import DoctorPage from "../../pages/DoctorPage";
+import DoctorsPage from "../../pages/DoctorsPage";
+import UsersPage from "../../pages/admin/UsersPage";
+import AdminRoute from "./AdminRoute";
+import Ticket from "../ticket/Ticket";
 
 const Router = () => {
   return (
@@ -16,11 +19,23 @@ const Router = () => {
             <UsersPage />
           </AdminRoute>
         </Route>
+
+        <Route path="/tickets/new">{/* TODO: NEW TICEKT */}</Route>
+        <Route path="/doctors/:id">
+          <DoctorPage />
+        </Route>
+        <Route path="/doctors">
+          <DoctorsPage />
+        </Route>
+
         <Route path="/register">
           <RegisterPage />
         </Route>
         <Route path="/login">
           <LoginPage />
+        </Route>
+        <Route path="/logout">
+          <Logout />
         </Route>
         <Route path="/home">
           <LandingPage />

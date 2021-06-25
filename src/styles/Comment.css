@@ -19,6 +19,7 @@
     border-radius: 4px;
     padding: 10px;
     background-color: rgb(252, 252, 252);
+    width: 50%;
 }
 
 .comment__doctor-name{
@@ -30,4 +31,28 @@
     color: rgb(180, 180, 180);
     font-size: 14px;
     padding-top: 3px;
+}
+
+.comment-actions{
+    display: flex;
+    align-items: baseline;
+}
+
+.comment__action{
+    color:gray;
+}
+
+.comment__action:hover{
+    color:rgb(175, 175, 175);
+    cursor: pointer;
+}
+
+.comment__textarea{
+    overflow:hidden;
+    width: 40vw;
+}
+
+.delete-comment{
+    margin-bottom: 2px;
+    margin-left: 3px;
 }

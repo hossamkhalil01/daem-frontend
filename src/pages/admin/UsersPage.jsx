@@ -49,13 +49,12 @@ const UsersPage = () => {
     <div>
       <div className="row mt-5 container-fluid justify-content-center main-content">
         <div className="col-8">
-          <UsersTable users={users} />
+          <UsersTable users={users} onSelectionError={handleSelectionError} />
           <div className="row justify-content-end">
             <div className="w-auto mt-4">
               <Paginator
                 paginationInfo={pagination}
                 onPageChange={handlePageChange}
-                onSelectionError={handleSelectionError}
               />
             </div>
           </div>
