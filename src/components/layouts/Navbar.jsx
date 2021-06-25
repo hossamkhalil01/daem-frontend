@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { NavLink } from "react-router-dom";
 import { getUser } from "../../services/authService";
 
@@ -10,7 +10,7 @@ const Navbar = (props) => {
           <NavLink className="navbar-brand" to="/" exact>
             <img
               src="assets/images/logo-text.png"
-              alt=""
+              alt="Daem"
               width="200"
               height="200"
               className="img-fluid"

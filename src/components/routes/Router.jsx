@@ -1,12 +1,12 @@
 import React from "react";
 import { BrowserRouter, Redirect, Route, Switch } from "react-router-dom";
-import LandingPage from "../pages/LandingPage";
-import LoginPage from "../pages/LoginPage";
-import Logout from "./auth/Logout";
-import RegisterPage from "../pages/RegisterPage";
-import UsersPage from "../pages/admin/UsersPage";
-import AdminRoute from "./routes/AdminRoute";
-import Ticket from "./ticket/Ticket";
+import LandingPage from "../../pages/LandingPage";
+import LoginPage from "../../pages/LoginPage";
+import Logout from "../auth/Logout";
+import RegisterPage from "../../pages/RegisterPage";
+import UsersPage from "../../pages/admin/UsersPage";
+import AdminRoute from "./AdminRoute";
+import Ticket from "../ticket/Ticket";
 
 const Router = () => {
   return (
