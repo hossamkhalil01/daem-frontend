@@ -29,3 +29,8 @@ export const ADMIN_API = {
   getAllUsers: `${BASE_URL}/users`,
   updateUser: (userId) => `${BASE_URL}/users/${userId}`,
 };
+
+export const USER_API = {
+  getUser: (userId) => `${BASE_URL}/users/${userId}`,
+  updateUser: () => `${BASE_URL}/users/`,
+};
