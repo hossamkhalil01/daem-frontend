@@ -20,6 +20,7 @@ import CloudUploadIcon from "@material-ui/icons/CloudUpload";
 import { useHistory } from "react-router-dom";
 import * as authService from "../services/authService";
 import validate from "../utils/validations";
+import { BASE_URL } from "../api/urls";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -76,7 +77,11 @@ const Register = ({ setAuthenticated }) => {
     dob: { err: false, msg: "" },
   });
 
-  const checkRequriedFields = () => {
+  const [imageSource, setImageSource] = React.useState(
+    BASE_URL + "/public/images/avatars/default.png"
+  );
+
+  const checkRequiredFields = () => {
     let hasErrors = false;
     let errors = [];
     const validationsObj = { ...formValidations };
@@ -165,18 +170,25 @@ const Register = ({ setAuthenticated }) => {
     event.preventDefault();
   };
 
-  const handleUploadClick = (e) => {
+  const handleUploadClick = (event) => {
     setFormValues({
       ...formValues,
-      avatar: e.target.files[0],
+      avatar: event.target.files[0],
     });
+    if (event.target.files && event.target.files[0]) {
+      let reader = new FileReader();
+      reader.onload = (e) => {
+        setImageSource(e.target.result);
+      };
+      reader.readAsDataURL(event.target.files[0]);
+    }
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // check if all the requried fields exists
-    if (!checkRequriedFields()) return;
+    // check if all the required fields exists
+    if (!checkRequiredFields()) return;
 
     // don't submit if there are errors
     if (!isFormValid()) return;
@@ -200,12 +212,12 @@ const Register = ({ setAuthenticated }) => {
     });
     formData.append("avatar", formValues.avatar);
 
-    // sumbit request to the backend
+    // submit request to the backend
     try {
       await authService.register(formData);
       history.push("/");
     } catch (err) {
-      // registeration validations
+      // registration validations
       const msg = err.response.data.message;
       checkServerValidation(msg);
     }
@@ -399,13 +411,20 @@ const Register = ({ setAuthenticated }) => {
                 <input
                   accept="image/*"
                   id="avatar"
-                  multiple
                   type="file"
                   onChange={handleUploadClick}
                   hidden
                 />
               </Button>
             </FormControl>
+            <div className="text-center">
+              <img
+                className="m-3"
+                src={imageSource}
+                style={{ maxHeight: "200px" }}
+                alt="Pic"
+              />
+            </div>
           </Grid>
           <Grid
             container
