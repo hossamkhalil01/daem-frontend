@@ -98,7 +98,7 @@ const DoctorsPage = (props) => {
                           capitalize(doctor.lastname)}
                       </NavLink>
                     </h4>
-                    <p>Cardiology</p>
+                    <p></p>
                   </div>
                 </div>
               </div>
