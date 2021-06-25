@@ -38,10 +38,10 @@ export const register = async (formData) => {
 
 export const logout = () => {
 
-  const keys = ["token", "expires", "user"];
+  const keys = ["token", "expiresIn", "user"];
 
-  for (let key in keys) {
-    storage.remove(key);
+  for (let indx in keys) {
+    storage.remove(keys[indx]);
   };
 
   // remove the token from the client
