@@ -1,14 +1,14 @@
 import React from "react";
 import { BrowserRouter, Redirect, Route, Switch } from "react-router-dom";
-import LandingPage from "../../pages/LandingPage";
-import LoginPage from "../../pages/LoginPage";
-import Logout from "../auth/Logout";
-import RegisterPage from "../../pages/RegisterPage";
+import UsersPage from "../../pages/admin/UsersPage";
 import DoctorPage from "../../pages/DoctorPage";
 import DoctorsPage from "../../pages/DoctorsPage";
-import UsersPage from "../../pages/admin/UsersPage";
+import LandingPage from "../../pages/LandingPage";
+import LoginPage from "../../pages/LoginPage";
+import RegisterPage from "../../pages/RegisterPage";
+import TicketPage from "../../pages/TicketPage";
+import Logout from "../auth/Logout";
 import AdminRoute from "./AdminRoute";
-import Ticket from "../ticket/Ticket";
 
 const Router = () => {
   return (
@@ -44,7 +44,7 @@ const Router = () => {
           <Redirect to="/home"></Redirect>
         </Route>
         <Route exact path="/ticket/:id">
-          <Ticket />
+          <TicketPage />
         </Route>
       </Switch>
     </BrowserRouter>

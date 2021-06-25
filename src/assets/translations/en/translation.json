@@ -19,5 +19,9 @@
   "edit": "Edit",
   "close": "Close",
   "go-to-ticket": "Go to ticket",
-  "no-previous-tickets":"No previous tickets"
+  "no-previous-tickets":"No previous tickets",
+  "medical-record": "Medical Record",
+  "comments": "Comments",
+  "submit":"Submit",
+  "load-more":"Load more"
 }

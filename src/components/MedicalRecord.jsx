@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { getTickets } from "../services/ticketsService";
-import "../styles/MedicalRecord.css";
 import Loading from "./Loading";
 import Paginator from "./Paginator";
 import RecordCard from "./RecordCard";
@@ -35,11 +34,12 @@ export default function MedicalRecord({ userId }) {
     <Loading />
   ) : (
     <div className="medical-record">
+      <h3>{t("medical-record")}</h3>
       {records.length ? (
         <div>
           <div className="medical-record__records">
             {records.map((record) => (
-              <RecordCard ticket={record} />
+              <RecordCard key={record._id} ticket={record} />
             ))}
           </div>
           <div className="medical-record__paginator">

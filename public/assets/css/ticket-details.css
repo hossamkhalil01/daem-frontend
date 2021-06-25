@@ -1,0 +1,12 @@
+.ticket {
+    width: 70%;
+    margin: auto;
+}
+
+.ticket__details {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin: auto;
+    color: grey;
+}

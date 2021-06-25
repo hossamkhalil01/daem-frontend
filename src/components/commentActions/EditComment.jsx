@@ -1,8 +1,10 @@
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import { updateComment } from "../../services/commentsService";
-import "../../styles/Comment.css";
+
 export default function EditComment({ commentBody , commentId ,setEditMode, setCommentBody}) {
     const [commentText , setCommentText] = useState(commentBody);
+    const { t } = useTranslation();
 
   const editCommentHandler = () => {
       updateComment(commentId,{body: commentText});
@@ -18,7 +20,7 @@ export default function EditComment({ commentBody , commentId ,setEditMode, setC
       <textarea onChange={handleChange} className="comment__textarea" value={commentText} required/>
       <br/>
       <button id="submit" type="submit" className="btn btn-success">
-        submit
+        {t("submit")}
       </button>
     </form>
   );

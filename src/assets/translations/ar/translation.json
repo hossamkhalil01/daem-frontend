@@ -19,5 +19,9 @@
   "edit": "تعديل",
   "close":"اغلاق",
   "go-to-ticket":"الذهاب للبطاقة",
-  "no-previous-tickets":"لا يوجد بطاقات سابقة"
+  "no-previous-tickets":"لا يوجد بطاقات سابقة",
+  "medical-record": "السجل الطبي",
+  "comments": "التعليقات",
+  "submit":"تسليم",
+  "load-more":"تحميل المزيد"
 }
