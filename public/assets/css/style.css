@@ -500,13 +500,32 @@ a:focus {
   position: relative;
 }
 
+.about{
+  position: relative;
+  overflow: hidden;
+  background-size: cover;
+}
+.about-ar-EG{
+  background: url("../images/bg/doctors-right.jpg") no-repeat;
+}
+.about-en-US{
+  background: url("../images/bg/doctors-left.jpg") no-repeat;
+}
+
 .banner {
   position: relative;
   overflow: hidden;
   background: #fff;
-  background: url("../images/bg/slider-bg-1.jpg") no-repeat;
   background-size: cover;
   min-height: 550px;
+}
+
+.banner-en-US{
+  background: url("../images/bg/slider-bg-1.jpg") no-repeat;
+}
+
+.banner-ar-EG{
+  background: url("../images/bg/slider-bg-2.jpg") no-repeat;
 }
 
 .banner .block {

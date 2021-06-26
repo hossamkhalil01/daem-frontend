@@ -1,31 +1,35 @@
-import React from "react";
-import Navbar from "../components/layouts/Navbar";
-import Footer from "../components/layouts/Footer";
+import React, { useEffect } from "react";
+import { useTranslation } from "react-i18next";
 import { NavLink } from "react-router-dom";
+import Footer from "../components/layouts/Footer";
+import Navbar from "../components/layouts/Navbar";
 
 const LandingPage = (props) => {
+  const {t} = useTranslation();
+  let direction = t("language");
+
+  useEffect(()=>{
+    direction = t("language");
+  },[t("language")])
   return (
     <>
       <Navbar />
       <div>
         {/* <!-- Slider Start --> */}
-        <section className="banner">
+        <section className={`banner banner-${direction}`}>
           <div className="container">
             <div className="row">
               <div className="col-lg-6 col-md-12 col-xl-7">
                 <div className="block">
                   <div className="divider mb-3"></div>
                   <span className="text-uppercase text-sm letter-spacing ">
-                    Total Health care solution
                   </span>
                   <h1 className="mb-3 mt-3">
-                    Your most trusted health partner
+                  {t("banner-header")}
                   </h1>
 
                   <p className="mb-4 pr-5">
-                    A repudiandae ipsam labore ipsa voluptatum quidem quae
-                    laudantium quisquam aperiam maiores sunt fugit, deserunt rem
-                    suscipit placeat.
+                  {t("banner-body")}
                   </p>
                   <div className="btn-container ">
                     <NavLink
@@ -33,7 +37,7 @@ const LandingPage = (props) => {
                       exact
                       className="btn btn-main-2 btn-icon btn-round-full"
                     >
-                      Create Ticket{" "}
+                      {t("ask-doctor")}{" "}
                       <i className="icofont-simple-right ml-2  "></i>
                     </NavLink>
                   </div>
@@ -42,7 +46,7 @@ const LandingPage = (props) => {
             </div>
           </div>
         </section>
-        <section className="features">
+        {/* <section className="features">
           <div className="container">
             <div className="row">
               <div className="col-lg-12">
@@ -100,9 +104,9 @@ const LandingPage = (props) => {
               </div>
             </div>
           </div>
-        </section>
+        </section> */}
 
-        <section className="section about">
+        <section className={`section about about-${t("language")}`}>
           <div className="container">
             <div className="row align-items-center">
               <div className="col-lg-4 col-sm-6">
@@ -131,26 +135,24 @@ const LandingPage = (props) => {
               <div className="col-lg-4">
                 <div className="about-content pl-4 mt-4 mt-lg-0">
                   <h2 className="title-color">
-                    Personal care <br />& healthy living
+                    {t("doctor-register-header")}
                   </h2>
                   <p className="mt-4 mb-5">
-                    We provide best leading medicle service Nulla perferendis
-                    veniam deleniti ipsum officia dolores repellat laudantium
-                    obcaecati neque.
+                  {t("doctor-register-body")}
                   </p>
 
                   <a
                     href="service.html"
                     className="btn btn-main-2 btn-round-full btn-icon"
                   >
-                    Services<i className="icofont-simple-right ml-3"></i>
+                    {t("doctor-register-btn")}<i className="icofont-simple-right ml-3"></i>
                   </a>
                 </div>
               </div>
             </div>
           </div>
         </section>
-        <section className="cta-section ">
+        {/* <section className="cta-section ">
           <div className="container">
             <div className="cta position-relative">
               <div className="row">
@@ -294,8 +296,8 @@ const LandingPage = (props) => {
               </div>
             </div>
           </div>
-        </section>
-        <section className="section appoinment">
+        </section> */}
+        {/* <section className="section appoinment">
           <div className="container">
             <div className="row align-items-center">
               <div className="col-lg-6 ">
@@ -432,8 +434,8 @@ const LandingPage = (props) => {
               </div>
             </div>
           </div>
-        </section>
-        <section className="section testimonial-2 gray-bg">
+        </section> */}
+        {/* <section className="section testimonial-2 gray-bg">
           <div className="container">
             <div className="row justify-content-center">
               <div className="col-lg-7">
@@ -563,8 +565,8 @@ const LandingPage = (props) => {
               </div>
             </div>
           </div>
-        </section>
-        <section className="section clients">
+        </section> */}
+        {/* <section className="section clients">
           <div className="container">
             <div className="row justify-content-center">
               <div className="col-lg-7">
@@ -635,7 +637,7 @@ const LandingPage = (props) => {
               </div>
             </div>
           </div>
-        </section>
+        </section> */}
         {/* <!-- footer Start --> */}
       </div>
 
