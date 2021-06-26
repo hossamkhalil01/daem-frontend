@@ -2,7 +2,7 @@ import { useHistory, withRouter } from "react-router-dom";
 import { logout } from "../../services/authService";
 
 const Logout = (props) => {
-  let history = useHistory();
+  const history = useHistory();
 
   const logoutHandle = () => {
     logout();
