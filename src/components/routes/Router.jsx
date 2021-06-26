@@ -9,6 +9,7 @@ import RegisterPage from "../../pages/RegisterPage";
 import TicketPage from "../../pages/TicketPage";
 import Logout from "../auth/Logout";
 import AdminRoute from "./AdminRoute";
+import { AboutUsPage } from "../../pages/AboutUs";
 
 const Router = () => {
   return (
@@ -45,6 +46,9 @@ const Router = () => {
         </Route>
         <Route exact path="/ticket/:id">
           <TicketPage />
+        </Route>
+        <Route exact path="/about-us">
+          <AboutUsPage />
         </Route>
       </Switch>
     </BrowserRouter>
