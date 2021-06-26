@@ -1,7 +1,7 @@
 import { useTranslation } from "react-i18next";
 import { useHistory } from "react-router";
 import { formatDate, getAge } from "../../services/dateService";
-import TicketActions from './ticketActions/Tic";';
+import TicketActions from "../ticketActions/TicketActions";
 
 export default function TicketCard({ ticket }) {
   const { t } = useTranslation();
