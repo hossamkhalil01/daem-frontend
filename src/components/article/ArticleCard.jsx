@@ -2,6 +2,7 @@ import { faClock, faUser } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import moment from "moment";
 import { useHistory } from "react-router";
+import { BASE_URL } from "../../api/urls";
 
 export default function ArticleCard({ article }) {
   const history = useHistory();
@@ -9,16 +10,16 @@ export default function ArticleCard({ article }) {
     history.push(`/article/${article._id}`);
 
   return (
-    <div class="grid">
-      <div class="card">
-        <div class="card__image">
+    <div className="grid">
+      <div className="card">
+        <div className="card__image">
           <img
-            src="https://cdn.altibbi.com/cdn/image/2021/06/27/90e15fbe5f2f2178283267b08fa19d1c.png"
+            src={BASE_URL + "/public/images/" + article.image}
             alt=""
           />
-          <div class="card__overlay card__overlay--indigo">
-            <div class="card__overlay-content">
-              <ul class="card__meta">
+          <div className="card__overlay card__overlay--indigo">
+            <div className="card__overlay-content">
+              <ul className="card__meta">
                 <li>
                   <FontAwesomeIcon icon={faClock}></FontAwesomeIcon>{" "}
                   {moment(article.createdAt, "YYYY-MM-DDTh:mm:ss").fromNow()}
@@ -27,7 +28,7 @@ export default function ArticleCard({ article }) {
               <div className="card__title">
                 <p onClick={handleArticleRedirection}>{article.title}</p>
               </div>
-              <ul class="card__meta card__meta--last">
+              <ul className="card__meta card__meta--last">
                 <li>
                   <FontAwesomeIcon icon={faUser}></FontAwesomeIcon>{" "}
                   {article.author.role === "doctor" ? "Dr." : ""}
