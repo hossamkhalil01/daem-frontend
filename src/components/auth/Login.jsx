@@ -119,9 +119,9 @@ const Login = () => {
                         }
                         autoComplete="username"
                         placeholder="Email*"
-                        autofocus
+                        autoFocus
                       />
-                      <label for="inputEmail">Email *</label>
+                      <label htmlFor="inputEmail">Email *</label>
                       <FormHelperText error={formValidations.email.err}>
                         {formValidations.email.msg}
                       </FormHelperText>
@@ -141,7 +141,7 @@ const Login = () => {
                         value={formValues.password}
                         autoComplete="current-password"
                       />
-                      <label for="inputPassword">Password *</label>
+                      <label htmlFor="inputPassword">Password *</label>
                       <FormHelperText error={formValidations.password.err}>
                         {formValidations.password.msg}
                       </FormHelperText>
@@ -155,7 +155,7 @@ const Login = () => {
                       />
                       <label
                         className="custom-control-label"
-                        for="customCheck1"
+                        htmlFor="customCheck1"
                       >
                         Remember password
                       </label>
