@@ -92,7 +92,7 @@ const Login = () => {
 
   return (
     <>
-      <h3 className="login-heading mb-4">Welcome back!</h3>
+      <h3 className="login-heading mb-4 text-center">Welcome back!</h3>
       <form onSubmit={handleSubmit} encType="multipart/form-data">
         <div className="form-label-group">
           <input

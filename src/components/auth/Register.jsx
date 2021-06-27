@@ -142,165 +142,170 @@ const Register = ({ setAuthenticated }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <div className="form-label-group">
-        <input
-          type="text"
-          id="firstname"
-          value={formValues.firstname}
-          onChange={handleChange("firstname", validate.name)}
-          className={
-            formValidations.firstname.err
-              ? "form-control error"
-              : "form-control "
-          }
-          placeholder="First Name*"
-          autoFocus
-        />
-        <label htmlFor="firstname">First Name *</label>
-        <FormHelperText error={formValidations.firstname.err}>
-          {formValidations.firstname.msg}
-        </FormHelperText>
-      </div>
-      <div className="form-label-group">
-        <input
-          type="text"
-          id="lastname"
-          value={formValues.lastname}
-          onChange={handleChange("lastname", validate.name)}
-          className={
-            formValidations.lastname.err
-              ? "form-control error"
-              : "form-control "
-          }
-          placeholder="Last Name*"
-        />
-        <label htmlFor="lastname">Last Name *</label>
-        <FormHelperText error={formValidations.lastname.err}>
-          {formValidations.lastname.msg}
-        </FormHelperText>
-      </div>
-
-      <div className="form-label-group">
-        <input
-          type="text"
-          id="email"
-          value={formValues.email}
-          onChange={handleChange("email", validate.email)}
-          className={
-            formValidations.email.err ? "form-control error" : "form-control "
-          }
-          autoComplete="username"
-          placeholder="Email*"
-        />
-        <label htmlFor="email">Email *</label>
-        <FormHelperText error={formValidations.email.err}>
-          {formValidations.email.msg}
-        </FormHelperText>
-      </div>
-
-      <div className="form-label-group">
-        <input
-          type="password"
-          id="password"
-          className={
-            formValidations.password.err
-              ? "form-control error"
-              : "form-control "
-          }
-          placeholder="Password*"
-          onChange={handleChange("password", validate.password)}
-          value={formValues.password}
-          autoComplete="current-password"
-        />
-        <label htmlFor="password">Password *</label>
-        <FormHelperText error={formValidations.password.err}>
-          {formValidations.password.msg}
-        </FormHelperText>
-      </div>
-
-      <div className="form-label-group">
-        <input
-          type="password"
-          id="confirm-password"
-          className={
-            formValidations.confirmPassword.err
-              ? "form-control error"
-              : "form-control "
-          }
-          placeholder="Confirm Password*"
-          onChange={handleChange("confirmPassword", validate.passwordsMatch)}
-          value={formValues.confirmPassword}
-          autoComplete="current-password"
-        />
-        <label htmlFor="confirm-password">Confirm Password *</label>
-        <FormHelperText error={formValidations.confirmPassword.err}>
-          {formValidations.confirmPassword.msg}
-        </FormHelperText>
-      </div>
-
-      <div className="row justify-content-around">
-        <div className="form-label-group col-md-12 col-lg-6">
-          <select
-            id="gender"
-            value={formValues.gender}
-            className={
-              formValidations.gender.err ? "form-control error" : "form-control"
-            }
-            onChange={handleChange("gender")}
-          >
-            <option value="" disabled>
-              Gender *
-            </option>
-            <option value="male">Male</option>
-            <option value="female">Female</option>
-          </select>
-          <FormHelperText error={formValidations.gender.err}>
-            {formValidations.gender.msg}
-          </FormHelperText>
-        </div>
-        <div className="form-label-group col-md-12 col-lg-6">
+    <>
+      <h3 className="login-heading mb-4 text-center">Register</h3>
+      <form onSubmit={handleSubmit}>
+        <div className="form-label-group">
           <input
-            type="date"
-            id="dob"
-            onChange={handleChange("dob", validate.dateOfBirth)}
+            type="text"
+            id="firstname"
+            value={formValues.firstname}
+            onChange={handleChange("firstname", validate.name)}
             className={
-              formValidations.dob.err ? "form-control error" : "form-control"
+              formValidations.firstname.err
+                ? "form-control error"
+                : "form-control "
             }
+            placeholder="First Name*"
+            autoFocus
           />
-          <label htmlFor="dob ">Date Of Birth *</label>
-
-          <FormHelperText error={formValidations.dob.err}>
-            {formValidations.dob.msg}
+          <label htmlFor="firstname">First Name *</label>
+          <FormHelperText error={formValidations.firstname.err}>
+            {formValidations.firstname.msg}
           </FormHelperText>
         </div>
-      </div>
+        <div className="form-label-group">
+          <input
+            type="text"
+            id="lastname"
+            value={formValues.lastname}
+            onChange={handleChange("lastname", validate.name)}
+            className={
+              formValidations.lastname.err
+                ? "form-control error"
+                : "form-control "
+            }
+            placeholder="Last Name*"
+          />
+          <label htmlFor="lastname">Last Name *</label>
+          <FormHelperText error={formValidations.lastname.err}>
+            {formValidations.lastname.msg}
+          </FormHelperText>
+        </div>
 
-      <div className="form-label-group row justify-content-center">
-        <textarea
-          id="diseases"
-          name="diseases"
-          rows="3"
-          placeholder="Please describe any diseases you have that might be useful to know"
-          value={formValues.diseases}
-          onChange={handleChange("diseases")}
-        />
-      </div>
+        <div className="form-label-group">
+          <input
+            type="text"
+            id="email"
+            value={formValues.email}
+            onChange={handleChange("email", validate.email)}
+            className={
+              formValidations.email.err ? "form-control error" : "form-control "
+            }
+            autoComplete="username"
+            placeholder="Email*"
+          />
+          <label htmlFor="email">Email *</label>
+          <FormHelperText error={formValidations.email.err}>
+            {formValidations.email.msg}
+          </FormHelperText>
+        </div>
 
-      <button
-        className="btn btn-lg btn-primary btn-block btn-login text-uppercase font-weight-bold mb-2"
-        type="submit"
-      >
-        Sign Up
-      </button>
-      <div className="text-center">
-        Already have an acoount?
-        <NavLink to="/login" exact>
-          {" "}
-          Sign in
-        </NavLink>
-      </div>
-    </form>
+        <div className="form-label-group">
+          <input
+            type="password"
+            id="password"
+            className={
+              formValidations.password.err
+                ? "form-control error"
+                : "form-control "
+            }
+            placeholder="Password*"
+            onChange={handleChange("password", validate.password)}
+            value={formValues.password}
+            autoComplete="current-password"
+          />
+          <label htmlFor="password">Password *</label>
+          <FormHelperText error={formValidations.password.err}>
+            {formValidations.password.msg}
+          </FormHelperText>
+        </div>
+
+        <div className="form-label-group">
+          <input
+            type="password"
+            id="confirm-password"
+            className={
+              formValidations.confirmPassword.err
+                ? "form-control error"
+                : "form-control "
+            }
+            placeholder="Confirm Password*"
+            onChange={handleChange("confirmPassword", validate.passwordsMatch)}
+            value={formValues.confirmPassword}
+            autoComplete="current-password"
+          />
+          <label htmlFor="confirm-password">Confirm Password *</label>
+          <FormHelperText error={formValidations.confirmPassword.err}>
+            {formValidations.confirmPassword.msg}
+          </FormHelperText>
+        </div>
+
+        <div className="row justify-content-around">
+          <div className="form-label-group col-md-12 col-lg-6">
+            <select
+              id="gender"
+              value={formValues.gender}
+              className={
+                formValidations.gender.err
+                  ? "form-control error"
+                  : "form-control"
+              }
+              onChange={handleChange("gender")}
+            >
+              <option value="" disabled>
+                Gender *
+              </option>
+              <option value="male">Male</option>
+              <option value="female">Female</option>
+            </select>
+            <FormHelperText error={formValidations.gender.err}>
+              {formValidations.gender.msg}
+            </FormHelperText>
+          </div>
+          <div className="form-label-group col-md-12 col-lg-6">
+            <input
+              type="date"
+              id="dob"
+              onChange={handleChange("dob", validate.dateOfBirth)}
+              className={
+                formValidations.dob.err ? "form-control error" : "form-control"
+              }
+            />
+            <label htmlFor="dob ">Date Of Birth *</label>
+
+            <FormHelperText error={formValidations.dob.err}>
+              {formValidations.dob.msg}
+            </FormHelperText>
+          </div>
+        </div>
+
+        <div className="form-label-group row justify-content-center">
+          <textarea
+            id="diseases"
+            name="diseases"
+            rows="3"
+            placeholder="Please describe any diseases you have that might be useful to know"
+            value={formValues.diseases}
+            onChange={handleChange("diseases")}
+          />
+        </div>
+
+        <button
+          className="btn btn-lg btn-primary btn-block btn-login text-uppercase font-weight-bold mb-2"
+          type="submit"
+        >
+          Sign Up
+        </button>
+        <div className="text-center">
+          Already have an acoount?
+          <NavLink to="/login" exact>
+            {" "}
+            Sign in
+          </NavLink>
+        </div>
+      </form>
+    </>
   );
 };
 

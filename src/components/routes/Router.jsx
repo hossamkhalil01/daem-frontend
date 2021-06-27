@@ -14,30 +14,32 @@ const Router = () => {
   return (
     <BrowserRouter>
       <Switch>
-        <Route path="/admin/users">
+        <Route exact path="/admin/users">
           <AdminRoute>
             <UsersPage />
           </AdminRoute>
         </Route>
 
-        <Route path="/tickets/new">{/* TODO: NEW TICEKT */}</Route>
-        <Route path="/doctors/:id">
+        <Route exact path="/tickets/new">
+          {/* TODO: NEW TICEKT */}
+        </Route>
+        <Route exact path="/doctors/:id">
           <DoctorPage />
         </Route>
-        <Route path="/doctors">
+        <Route exact path="/doctors">
           <DoctorsPage />
         </Route>
 
-        <Route path="/register">
+        <Route exact path="/register">
           <AuthPage isLogin={false} />
         </Route>
-        <Route path="/login">
+        <Route exact path="/login">
           <AuthPage isLogin={true} />
         </Route>
-        <Route path="/logout">
+        <Route exact path="/logout">
           <Logout />
         </Route>
-        <Route path="/home">
+        <Route exact path="/home">
           <LandingPage />
         </Route>
         <Route exact path="/">
