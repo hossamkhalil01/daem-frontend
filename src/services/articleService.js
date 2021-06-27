@@ -10,7 +10,7 @@ export const updateArticle = async (articleId, updates) => {
 };
 
 export const getArticles = async (params) => {
-  return requests.get(ARTICLE_API.getArticles(), params);
+  return requests.get(ARTICLE_API.allArticles(), params);
 };
 
 export const createArticle = async (formData) => {

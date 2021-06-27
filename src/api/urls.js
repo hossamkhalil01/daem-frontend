@@ -40,5 +40,5 @@ export const USER_API = {
 
 export const ARTICLE_API = {
   article: (articleId) => `${BASE_URL}/articles/${articleId}`,
-  allArticles: `${BASE_URL}/articles`,
+  allArticles: ()=> `${BASE_URL}/articles`,
 };

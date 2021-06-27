@@ -29,5 +29,6 @@
   "ask-doctor":"Ask a doctor",
   "doctor-register-header": "Are you a doctor?",
   "doctor-register-body": "If you would like to join the medical team to support and help hundreds of patients.. Register now",
-  "doctor-register-btn":"Register as a doctor"
+  "doctor-register-btn":"Register as a doctor",
+  "articles-section-header":"Medical articles and news"
 }
