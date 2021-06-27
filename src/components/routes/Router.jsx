@@ -4,8 +4,7 @@ import UsersPage from "../../pages/admin/UsersPage";
 import DoctorPage from "../../pages/DoctorPage";
 import DoctorsPage from "../../pages/DoctorsPage";
 import LandingPage from "../../pages/LandingPage";
-import LoginPage from "../../pages/LoginPage";
-import RegisterPage from "../../pages/RegisterPage";
+import AuthPage from "../../pages/AuthPage";
 import TicketPage from "../../pages/TicketPage";
 import Logout from "../auth/Logout";
 import AdminRoute from "./AdminRoute";
@@ -30,10 +29,10 @@ const Router = () => {
         </Route>
 
         <Route path="/register">
-          <RegisterPage />
+          <AuthPage isLogin={false} />
         </Route>
         <Route path="/login">
-          <LoginPage />
+          <AuthPage isLogin={true} />
         </Route>
         <Route path="/logout">
           <Logout />

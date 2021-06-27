@@ -1,8 +1,22 @@
-import React from "react";
-import Register from "../components/auth/Register";
+import React, { useEffect } from "react";
+import { useHistory } from "react-router-dom";
+import Login from "../components/auth/Login";
 import Navbar from "../components/layouts/Navbar";
 import Footer from "../components/layouts/Footer";
-const RegisterPage = (props) => {
+import { getUser } from "../services/authService";
+import Register from "../components/auth/Register";
+import "../styles/Auth.css";
+
+const AuthPage = ({ isLogin }) => {
+  const history = useHistory();
+
+  useEffect(() => {
+    // check if already logged in
+    if (getUser())
+      // redirect to home
+      history.push("/");
+  }, []);
+
   return (
     <>
       <Navbar />
@@ -18,7 +32,7 @@ const RegisterPage = (props) => {
               <div className="container ">
                 <div className="row">
                   <div className="col-md-9 col-lg-8 mx-auto">
-                    <Register />
+                    {isLogin ? <Login /> : <Register />}
                   </div>
                 </div>
               </div>
@@ -31,4 +45,4 @@ const RegisterPage = (props) => {
   );
 };
 
-export default RegisterPage;
+export default AuthPage;

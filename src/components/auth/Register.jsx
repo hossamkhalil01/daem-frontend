@@ -1,11 +1,8 @@
 import { FormHelperText } from "@material-ui/core";
 import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
 import { useHistory } from "react-router-dom";
 import * as authService from "../../services/authService";
 import validate from "../../utils/validations";
-import { BASE_URL } from "../../api/urls";
-import "../../styles/Login.css";
 import { NavLink } from "react-router-dom";
 
 const Register = ({ setAuthenticated }) => {
@@ -177,7 +174,6 @@ const Register = ({ setAuthenticated }) => {
               : "form-control "
           }
           placeholder="Last Name*"
-          autoFocus
         />
         <label htmlFor="lastname">Last Name *</label>
         <FormHelperText error={formValidations.lastname.err}>
@@ -196,7 +192,6 @@ const Register = ({ setAuthenticated }) => {
           }
           autoComplete="username"
           placeholder="Email*"
-          autoFocus
         />
         <label htmlFor="email">Email *</label>
         <FormHelperText error={formValidations.email.err}>
