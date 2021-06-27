@@ -57,6 +57,16 @@ const LandingPage = (props) => {
               <ArticleCard key={article._id} article={article}></ArticleCard>
             ))}
           </div>
+          <div className="">
+            <NavLink
+              to="/articles"
+              exact
+              className="btn btn-main-1 btn-icon btn-round-full"
+            >
+              {t("view-all-articles")}{" "}
+              <i className="icofont-simple-right ml-2  "></i>
+            </NavLink>
+          </div>
         </section>
         {!currentUser || currentUser.role === "user" ? (
           <section className={`section about about-${t("language")}`}>

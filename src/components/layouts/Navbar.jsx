@@ -1,11 +1,13 @@
-import React from "react";
 import Avatar from "@material-ui/core/Avatar";
-import LanguageSelect from "../LanguageSelect";
+import React from "react";
+import { useTranslation } from "react-i18next";
 import { NavLink } from "react-router-dom";
-import { getUser } from "../../services/authService";
 import { BASE_URL } from "../../api/urls";
+import { getUser } from "../../services/authService";
+import LanguageSelect from "../LanguageSelect";
 
 const Navbar = (props) => {
+  const{t} = useTranslation();
   return (
     <header>
       <nav className="navbar navbar-expand-lg navigation" id="navbar">
@@ -41,7 +43,7 @@ const Navbar = (props) => {
                   to="/home"
                   exact
                 >
-                  Home
+                 {t("home")}
                 </NavLink>
               </li>
               {getUser()?._id ? (
@@ -52,7 +54,7 @@ const Navbar = (props) => {
                     to="/tickets"
                     exact
                   >
-                    Tickets
+                    {t("tickets")}
                   </NavLink>
                 </li>
               ) : (
@@ -65,7 +67,7 @@ const Navbar = (props) => {
                   to="/doctors"
                   exact
                 >
-                  Doctors
+                  {t("tickets")}
                 </NavLink>
               </li>
 
@@ -76,7 +78,7 @@ const Navbar = (props) => {
                   to="/about-us"
                   exact
                 >
-                  About Us
+                 {t("about-us")}
                 </NavLink>
               </li>
             </ul>
@@ -105,7 +107,7 @@ const Navbar = (props) => {
                           to="/profile"
                           exact
                         >
-                          Profile
+                          {t("profile")}
                         </NavLink>
                       </li>
                       <li className="nav-item">
@@ -114,7 +116,7 @@ const Navbar = (props) => {
                           to="/logout"
                           exact
                         >
-                          Logout
+                          {t("logout")}
                         </NavLink>
                       </li>
                     </ul>
@@ -129,7 +131,7 @@ const Navbar = (props) => {
                       to="/login"
                       exact
                     >
-                      Login
+                      {t("login")}
                     </NavLink>
                   </li>
                   <li className="nav-item">
@@ -139,7 +141,7 @@ const Navbar = (props) => {
                       to="/register"
                       exact
                     >
-                      Register
+                     {t("register")}
                     </NavLink>
                   </li>
                 </>

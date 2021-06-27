@@ -30,5 +30,15 @@
   "doctor-register-header":"هل أنت طبيب؟",
   "doctor-register-body":"إذ كنت ترغب في الانضمام للفريق الطبي لدعم و مساعدة مئات المرضى .. سجل الاشتراك الآن",
   "doctor-register-btn":"سجل كطبيب ",
-  "articles-section-header":"أخبار و مقالات طبية"
+  "articles-section-header":"أخبار و مقالات طبية",
+  "view-all-articles":"عرض كل المقالات",
+  "home":"الصفحة الرئيسية",
+  "doctors":"الأطباء",
+  "users":"المستخدمون",
+  "about-us":"معلومات عنا",
+  "login":"تسجيل الدخول",
+  "register":"التسجيل",
+  "tickets":"البطاقات",
+  "profile":"الصفحة الشخصية",
+  "logout":"تسجيل خروج"
 }
