@@ -1540,4 +1540,8 @@ a:focus {
   opacity: 1;
 }
 
+.suggested-articles{
+  display: flex;
+  justify-content: space-evenly;
+}
 /*# sourceMappingURL=maps/style.css.map */
