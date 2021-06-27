@@ -1,3 +1,5 @@
+import { BASE_URL } from "../api/urls";
+
 export default function Carousel({ images }) {
   return (
     <div
@@ -14,7 +16,7 @@ export default function Carousel({ images }) {
           >
             <img
               className="carousel-img d-block w-100"
-              src={"http://localhost:8000/public/images/" + image}
+              src={BASE_URL + "/" + image}
               alt="First slide"
             />
           </div>

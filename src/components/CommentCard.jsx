@@ -2,6 +2,7 @@ import { faEdit } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import moment from "moment";
 import { useState } from "react";
+import { BASE_URL } from "../api/urls";
 import { getUser } from "../services/authService";
 import DeleteComment from "./commentActions/DeleteComment";
 import EditComment from "./commentActions/EditComment";
@@ -22,7 +23,7 @@ export default function Comment({ comment, removeCommentFromList }) {
         <div className="avatar avatar-sm rounded-circle">
           <img
             className="avatar-img"
-            src={"http://localhost:8000/" + comment.author.avatar}
+            src={BASE_URL + comment.author.avatar}
             alt=""
           />
         </div>

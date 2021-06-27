@@ -98,7 +98,7 @@ const Navbar = (props) => {
                         src={`${BASE_URL}/${getUser().avatar}`}
                       ></Avatar>{" "}
                     </a>
-                    <ul class="dropdown-menu" aria-labelledby="dropdown02">
+                    <ul className="dropdown-menu" aria-labelledby="dropdown02">
                       <li className="nav-item">
                         <NavLink
                           className="dropdown-item nav-link"
