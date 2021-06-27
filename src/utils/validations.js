@@ -1,6 +1,8 @@
 const EMAIL_REG = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/;
 const PASS_MIN_LENGTH = 8;
-const MIN_AGE = 15;
+const MIN_AGE = 13;
+const MAX_AGE = 90;
+
 const NAME_MIN_LENGTH = 3;
 const NAME_MAX_LENGTH = 20;
 
@@ -8,7 +10,7 @@ const errMsgs = {
   required: "This field is required.",
   invalidEmail: "Please Enter a valid email.",
   passwordMinLength: "Password must be at least 8 chars.",
-  invalidDOB: `You must be above ${MIN_AGE} years old.`,
+  invalidDOB: `Age must be bewteen ${MIN_AGE} and ${MAX_AGE} years old.`,
   passwordsMatch: "Passwords don't match.",
   nameMaxLength: `Name must not exceed ${NAME_MAX_LENGTH} chars.`,
   nameMinLength: `Name must be at least ${NAME_MIN_LENGTH} chars.`,

@@ -30,12 +30,17 @@
 }
 
 .form-label-group > input,
-.form-label-group > label {
+.form-label-group > label,
+.form-label-group > select,
+.form-label-group > textarea {
   padding: var(--input-padding-y) var(--input-padding-x);
   height: auto;
   border-radius: 2rem;
 }
 
+.form-label-group > select {
+  cursor: pointer;
+}
 .form-label-group > label {
   position: absolute;
   top: 0;
@@ -51,6 +56,9 @@
   border: 1px solid transparent;
   border-radius: 0.25rem;
   transition: all 0.1s ease-in-out;
+}
+.form-label-group > textarea {
+  width: 94%;
 }
 
 .error {
