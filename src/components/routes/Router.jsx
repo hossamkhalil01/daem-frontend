@@ -10,7 +10,7 @@ import TicketPage from "../../pages/TicketPage";
 import Logout from "../auth/Logout";
 import AdminRoute from "./AdminRoute";
 import { AboutUsPage } from "../../pages/AboutUs";
-
+import TicketsPage from "../../pages/TicketsPage";
 const Router = () => {
   return (
     <BrowserRouter>
@@ -46,6 +46,9 @@ const Router = () => {
         </Route>
         <Route exact path="/ticket/:id">
           <TicketPage />
+        </Route>
+        <Route path="/tickets">
+          <TicketsPage />
         </Route>
         <Route exact path="/about-us">
           <AboutUsPage />

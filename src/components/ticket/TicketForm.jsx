@@ -32,7 +32,7 @@ export default function TicketForm({ ticket }) {
       setDescription(ticket.description);
       setEditMode(true);
     }
-  }, []);
+  }, [ticket]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -109,7 +109,8 @@ export default function TicketForm({ ticket }) {
                 setErrorSubject(false);
               }
             }}
-            defaultValue={subject}
+            // defaultValue={subject}
+            value={subject}
           />
 
           {errorDesc ? (
@@ -139,7 +140,8 @@ export default function TicketForm({ ticket }) {
                 setErrorDesc(false);
               }
             }}
-            defaultValue={description}
+            // defaultValue={description}
+            value={description}
           />
 
           {errorImages ? (

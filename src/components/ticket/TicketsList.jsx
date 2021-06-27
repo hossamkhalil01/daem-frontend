@@ -4,8 +4,7 @@ import TicketCard from "./TicketCard";
 import { DoctorsProvider } from "../../contexts/doctorsContext";
 import { getAllDoctors } from "../../services/doctorsService";
 
-export default function TicketList({ tickets }) {
-  const [ticketsList, setTicketsList] = useState([]);
+export default function TicketList({ tickets, onRemoveTicket }) {
   const [doctors, setDoctors] = useState([]);
 
   const getDoctors = async () => {
@@ -13,29 +12,17 @@ export default function TicketList({ tickets }) {
     setDoctors(_doctors.data.data);
   };
 
-  const removeTicket = (ticketId) => {
-    const newTickets = [...ticketsList];
-    const removeIndex = newTickets
-      .map((ticket) => ticket._id)
-      .indexOf(ticketId);
-    newTickets.splice(removeIndex, 1);
-    setTicketsList(newTickets);
-  };
-
   useEffect(() => {
-    setTicketsList(tickets);
     getDoctors();
   }, []);
   return (
     <>
       <DoctorsProvider value={doctors}>
-        {ticketsList.map((ticket) => {
+        {tickets.map((ticket) => {
           return (
-            <TicketCard
-              key={ticket._id}
-              ticket={ticket}
-              removeTicketFromList={removeTicket}
-            />
+            <>
+              <TicketCard key={ticket._id} ticket={ticket} />
+            </>
           );
         })}
       </DoctorsProvider>
