@@ -506,10 +506,10 @@ a:focus {
   background-size: cover;
 }
 .about-ar-EG{
-  background: url("../images/bg/doctors-right.jpg") no-repeat;
+  background: url("../images/bg/doctors-left.jpg") no-repeat;
 }
 .about-en-US{
-  background: url("../images/bg/doctors-left.jpg") no-repeat;
+  background: url("../images/bg/doctors-right.jpg") no-repeat;
 }
 
 .banner {

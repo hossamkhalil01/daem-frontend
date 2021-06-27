@@ -5,11 +5,12 @@ import ArticleCard from "../components/article/ArticleCard";
 import Footer from "../components/layouts/Footer";
 import Navbar from "../components/layouts/Navbar";
 import { getArticles } from "../services/articleService";
-
+import { getUser } from "../services/authService";
 const LandingPage = (props) => {
   const { t } = useTranslation();
   const [articles, setArticles] = useState([]);
   const params = { limit: 3 };
+  const currentUser = getUser();
   const getRecentArticles = async () => {
     const _articles = await getArticles(params);
     setArticles(_articles.data.data.docs);
@@ -52,54 +53,37 @@ const LandingPage = (props) => {
             <h2>{t("articles-section-header")}</h2>
           </div>
           <div className="suggested-articles">
-          {articles.map((article) => (
-            <ArticleCard key={article._id} article={article}></ArticleCard>
-          ))}
+            {articles.map((article) => (
+              <ArticleCard key={article._id} article={article}></ArticleCard>
+            ))}
           </div>
         </section>
-        <section className={`section about about-${t("language")}`}>
-          <div className="container">
-            <div className="row align-items-center">
-              <div className="col-lg-4 col-sm-6">
-                <div className="about-img">
-                  <img
-                    src="images/about/img-1.jpg"
-                    alt=""
-                    className="img-fluid"
-                  />
-                  <img
-                    src="images/about/img-2.jpg"
-                    alt=""
-                    className="img-fluid mt-4"
-                  />
-                </div>
-              </div>
-              <div className="col-lg-4 col-sm-6">
-                <div className="about-img mt-4 mt-lg-0">
-                  <img
-                    src="images/about/img-3.jpg"
-                    alt=""
-                    className="img-fluid"
-                  />
-                </div>
-              </div>
-              <div className="col-lg-4">
-                <div className="about-content pl-4 mt-4 mt-lg-0">
-                  <h2 className="title-color">{t("doctor-register-header")}</h2>
-                  <p className="mt-4 mb-5">{t("doctor-register-body")}</p>
+        {!currentUser || currentUser.role === "user" ? (
+          <section className={`section about about-${t("language")}`}>
+            <div className="container">
+              <div className="row align-items-center">
+                <div className="col-lg-4">
+                  <div className="about-content pl-4 mt-4 mt-lg-0">
+                    <h2 className="title-color">
+                      {t("doctor-register-header")}
+                    </h2>
+                    <p className="mt-4 mb-5">{t("doctor-register-body")}</p>
 
-                  <a
-                    href="service.html"
-                    className="btn btn-main-2 btn-round-full btn-icon"
-                  >
-                    {t("doctor-register-btn")}
-                    <i className="icofont-simple-right ml-3"></i>
-                  </a>
+                    <a
+                      href="service.html"
+                      className="btn btn-main-2 btn-round-full btn-icon"
+                    >
+                      {t("doctor-register-btn")}
+                      <i className="icofont-simple-right ml-3"></i>
+                    </a>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-        </section>
+          </section>
+        ) : (
+          ""
+        )}
       </div>
 
       <Footer />
