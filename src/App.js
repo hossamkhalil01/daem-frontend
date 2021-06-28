@@ -1,9 +1,12 @@
 import "./App.css";
+import { CurrentUserProvider } from "./contexts/CurrentUserContext"
 import Router from "./components/routes/Router";
 function App() {
   return (
     <div className="App">
-      <Router />
+      <CurrentUserProvider>
+        <Router />
+      </CurrentUserProvider>
     </div>
   );
 }

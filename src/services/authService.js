@@ -4,7 +4,7 @@ import { setHeaderToken } from "./clientService";
 import requests from "../api/requests";
 import { AUTH_API } from "../api/urls";
 
-const storeAuthData = (data) => {
+const setAuthData = (data) => {
   // save auth data
   const expires = moment().add(data.expiresIn);
 
@@ -25,7 +25,8 @@ export const login = async ({ email, password }) => {
     password,
   });
 
-  storeAuthData(data);
+  setAuthData(data);
+  return data.user;
 };
 
 export const register = async (formData) => {
@@ -34,8 +35,21 @@ export const register = async (formData) => {
     data: { data },
   } = await requests.create(AUTH_API.register, formData);
 
-  storeAuthData(data);
+  setAuthData(data);
 };
+
+export const getCurrentUser = async () => {
+
+  try {
+    const { data: { data } } = await requests.get(AUTH_API.currrentUser);
+    return data;
+
+    // UnAuthenticated
+  } catch (err) {
+    logout();
+    return null
+  }
+}
 
 export const logout = () => {
   const keys = ["token", "expiresIn", "user"];
@@ -48,11 +62,13 @@ export const logout = () => {
   setHeaderToken("");
 };
 
-export const getExpiration = () => moment(storage.get("expires"));
-
-export const getToken = () => storage.get("token");
+const getToken = () => storage.get("token");
 
 export const getUser = () => storage.get("user");
+export const getExpiration = () => moment(storage.get("expires"));
+
+export const isAuthenticated = () => getToken() ? true : false
+
 
 export const setUser = (user) => storage.set("user", user);
 
