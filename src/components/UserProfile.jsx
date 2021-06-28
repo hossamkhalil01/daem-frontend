@@ -10,12 +10,12 @@ import {
 } from "@material-ui/core";
 import TextareaAutosize from "@material-ui/core/TextareaAutosize";
 import CloudUploadIcon from "@material-ui/icons/CloudUpload";
-import * as authService from "../services/authService";
 import { makeStyles } from "@material-ui/core/styles";
 import "../styles/UserProfile.css";
 import { useState, useEffect } from "react";
 import { BASE_URL } from "../api/urls";
 import validate from "../utils/validations";
+import { useCurrentUser } from "../contexts/CurrentUserContext";
 import * as userService from "../services/userService";
 import Switch from "@material-ui/core/Switch";
 
@@ -47,32 +47,15 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function UserProfile() {
+  const { currentUser, setCurrentUser } = useCurrentUser();
   const classes = useStyles();
-  const [user, setUser] = useState({
-    _id: "",
-    avatar: "",
-    firstname: "",
-    lastname: "",
-    // DOB: "",
-    diseases: "",
-  });
-  const [imageSource, setImageSource] = useState("");
+  const [user, setUser] = useState(currentUser);
 
-  const getCurUserId = () => {
-    const res = authService.getUser();
-    return res._id;
-  };
+  const [imageSource, setImageSource] = useState(
+    BASE_URL + "/" + currentUser.avatar
+  );
 
-  const getCurUser = async (id) => {
-    const res = await userService.getUser(id);
-    setUser(res.data.data);
-    setImageSource(BASE_URL + "/" + res.data.data.avatar);
-  };
-
-  useEffect(() => {
-    const id = getCurUserId();
-    getCurUser(id);
-  }, []);
+  useEffect(() => {}, []);
 
   const [formValidations, setFormValidations] = useState({
     avatar: "",
@@ -196,7 +179,10 @@ export default function UserProfile() {
 
     // submit request to the backend
     try {
-      await userService.updateUser(formData);
+      const {
+        data: { data },
+      } = await userService.updateUser(formData);
+      setCurrentUser(data);
     } catch (err) {
       // registration validations
       const msg = err.response.data.message;
