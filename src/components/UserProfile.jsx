@@ -134,10 +134,7 @@ export default function UserProfile() {
 
     if (validationMethod) {
       // call the method with password as param if the prop is confirm password
-      const errorsArr =
-        prop === "confirmPassword"
-          ? validationMethod(user.password, event.target.value)
-          : validationMethod(event.target.value);
+      const errorsArr = validationMethod(event.target.value);
 
       // set the errors if found
       if (errorsArr.length) {

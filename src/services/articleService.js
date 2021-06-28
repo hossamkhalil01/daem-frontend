@@ -13,6 +13,10 @@ export const getArticles = async (params) => {
   return requests.get(ARTICLE_API.allArticles(), params);
 };
 
+export const getArticle = async (articleId, params) => {
+  return requests.get(ARTICLE_API.article(articleId), params);
+};
+
 export const createArticle = async (formData) => {
   return requests.create(ARTICLE_API.allArticles(), formData);
 };
