@@ -6,16 +6,15 @@ import Loading from "../components/Loading";
 import MedicalRecord from "../components/MedicalRecord";
 import TicketDetails from "../components/ticket/TicketDetails";
 import TicketComments from "../components/TicketComments";
-import { getUser } from "../services/authService";
+import { useCurrentUser } from "../contexts/CurrentUserContext";
 import { getTicket } from "../services/ticketsService";
 
 export default function TicketPage() {
+  const { currentUser } = useCurrentUser();
   const { id } = useParams();
   const [ticket, setTicket] = useState({});
   const [loading, setLoading] = useState(true);
 
-
-  const currentUser = getUser();
   const getTicketDetails = async () => {
     const _ticket = await getTicket(id);
     setTicket(_ticket.data.data);

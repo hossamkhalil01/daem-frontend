@@ -6,7 +6,6 @@ import {
   InputLabel,
   Paper,
   Select,
-  FormHelperText,
 } from "@material-ui/core";
 
 export const UserFilter = ({ filter, setFilter, onUpdateFilterdState }) => {
@@ -17,7 +16,7 @@ export const UserFilter = ({ filter, setFilter, onUpdateFilterdState }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     onUpdateFilterdState((filterd) => !filterd);
-    console.log(filter);
+    // console.log(filter);
   };
   return (
     <form className="mt-5" onSubmit={handleSubmit}>

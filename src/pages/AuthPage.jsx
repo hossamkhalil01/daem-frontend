@@ -3,16 +3,17 @@ import { useHistory } from "react-router-dom";
 import Login from "../components/auth/Login";
 import Navbar from "../components/layouts/Navbar";
 import Footer from "../components/layouts/Footer";
-import { getUser } from "../services/authService";
 import Register from "../components/auth/Register";
+import { useCurrentUser } from "../contexts/CurrentUserContext";
 import "../styles/Auth.css";
 
 const AuthPage = ({ isLogin }) => {
+  const { currentUser } = useCurrentUser();
   const history = useHistory();
 
   useEffect(() => {
     // check if already logged in
-    if (getUser())
+    if (currentUser)
       // redirect to home
       history.push("/");
   }, []);

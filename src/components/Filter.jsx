@@ -70,7 +70,7 @@ export const Filter = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!errorsExist) {
-      console.log("filter data = ", filter);
+      // console.log("filter data = ", filter);
     }
   };
   return (

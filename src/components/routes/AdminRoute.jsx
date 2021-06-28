@@ -1,13 +1,14 @@
 import React from "react";
 import { Redirect, Route, withRouter } from "react-router-dom";
-import { getUser } from "../../services/authService";
+import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import ROLES from "../../api/roles";
 
 function AdminRoute(props) {
+  const { currentUser } = useCurrentUser();
   const { component: Component, ...rest } = props;
 
   //redirect if is not admin
-  if (getUser().role !== ROLES.admin) return <Redirect to="/" />;
+  if (currentUser?.role !== ROLES.admin) return <Redirect to="/" />;
 
   return <Route {...rest} render={(props) => <Component {...props} />} />;
 }
