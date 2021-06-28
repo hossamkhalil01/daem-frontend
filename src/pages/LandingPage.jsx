@@ -5,12 +5,13 @@ import ArticleCard from "../components/article/ArticleCard";
 import Footer from "../components/layouts/Footer";
 import Navbar from "../components/layouts/Navbar";
 import { getArticles } from "../services/articleService";
-import { getUser } from "../services/authService";
+import { useCurrentUser } from "../contexts/CurrentUserContext";
+
 const LandingPage = (props) => {
+  const { currentUser } = useCurrentUser();
   const { t } = useTranslation();
   const [articles, setArticles] = useState([]);
   const params = { limit: 3 };
-  const currentUser = getUser();
   const getRecentArticles = async () => {
     const _articles = await getArticles(params);
     setArticles(_articles.data.data.docs);

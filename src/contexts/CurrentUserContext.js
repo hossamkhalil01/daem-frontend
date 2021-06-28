@@ -4,7 +4,7 @@ import * as authServices from "../services/authService";
 const CurrentUserContext = React.createContext();
 
 export const CurrentUserProvider = ({ children }) => {
-  const [currentUser, setCurrentUser] = useState(false);
+  const [currentUser, setCurrentUser] = useState(null);
 
   useEffect(() => {
 

@@ -3,11 +3,13 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import moment from "moment";
 import { useState } from "react";
 import { BASE_URL } from "../api/urls";
-import { getUser } from "../services/authService";
+import { useCurrentUser } from "../contexts/CurrentUserContext";
 import DeleteComment from "./commentActions/DeleteComment";
 import EditComment from "./commentActions/EditComment";
 
 export default function Comment({ comment, removeCommentFromList }) {
+  const { currentUser } = useCurrentUser();
+
   const [editMode, setEditMode] = useState(false);
   const [commentBody, setCommentBody] = useState(comment.body);
 
@@ -15,7 +17,7 @@ export default function Comment({ comment, removeCommentFromList }) {
     setEditMode(true);
   };
 
-  const isAuthor = () => getUser()._id === comment.author._id;
+  const isAuthor = () => currentUser._id === comment.author._id;
 
   return (
     <div className="comment d-flex">

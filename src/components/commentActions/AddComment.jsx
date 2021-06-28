@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { addComment } from "../../services/commentsService";
-import { getUser } from "../../services/authService";
+import { useCurrentUser } from "../../contexts/CurrentUserContext";
 
 export const AddComments = ({ ticketId }) => {
+  const { currentUser } = useCurrentUser();
   const [comment, updateComment] = useState("");
   const [error, setError] = useState("");
   const handleCommentSubmit = async () => {
@@ -10,7 +11,7 @@ export const AddComments = ({ ticketId }) => {
     try {
       await addComment(ticketId, {
         body: comment,
-        author: getUser()?._id,
+        author: currentUser?._id,
         ticket: ticketId,
       });
       updateComment("");
