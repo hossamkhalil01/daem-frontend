@@ -1,56 +1,11 @@
-import {
-  Button,
-  FormControl,
-  Grid,
-  IconButton,
-  Input,
-  InputAdornment,
-  FormHelperText,
-  InputLabel,
-  Paper,
-  Select,
-  MenuItem,
-  TextField,
-} from "@material-ui/core";
-import TextareaAutosize from "@material-ui/core/TextareaAutosize";
+import { FormHelperText } from "@material-ui/core";
 import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
-import { Visibility, VisibilityOff } from "@material-ui/icons";
-import CloudUploadIcon from "@material-ui/icons/CloudUpload";
 import { useHistory } from "react-router-dom";
 import * as authService from "../../services/authService";
 import validate from "../../utils/validations";
-import { BASE_URL } from "../../api/urls";
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    display: "flex",
-    flexWrap: "wrap",
-  },
-  margin: {
-    margin: theme.spacing(1),
-  },
-  withoutLabel: {
-    marginTop: theme.spacing(3),
-  },
-  submit: {
-    marginTop: theme.spacing(5),
-  },
-  textField: {
-    width: "25ch",
-  },
-  selectEmpty: {
-    marginTop: theme.spacing(2),
-    width: "30ch",
-  },
-  datePicker: {
-    marginLeft: theme.spacing(3),
-    width: "30ch",
-  },
-}));
+import { NavLink } from "react-router-dom";
 
 const Register = ({ setAuthenticated }) => {
-  const classes = useStyles();
   const history = useHistory();
 
   const [formValues, setFormValues] = React.useState({
@@ -58,13 +13,10 @@ const Register = ({ setAuthenticated }) => {
     password: "",
     firstname: "",
     lastname: "",
-    gender: "male",
+    gender: "",
     confirmPassword: "",
-    avatar: "",
     dob: "",
     diseases: "",
-    showPassword: false,
-    showConfirmPassword: false,
   });
 
   const [formValidations, setFormValidations] = React.useState({
@@ -76,10 +28,6 @@ const Register = ({ setAuthenticated }) => {
     gender: { err: false, msg: "" },
     dob: { err: false, msg: "" },
   });
-
-  const [imageSource, setImageSource] = React.useState(
-    BASE_URL + "/public/images/avatars/default.png"
-  );
 
   const checkRequiredFields = () => {
     let hasErrors = false;
@@ -155,35 +103,6 @@ const Register = ({ setAuthenticated }) => {
     setFormValues({ ...formValues, [prop]: event.target.value });
   };
 
-  const handleClickShowPassword = () => {
-    setFormValues({ ...formValues, showPassword: !formValues.showPassword });
-  };
-
-  const handleClickShowConfirmPassword = () => {
-    setFormValues({
-      ...formValues,
-      showConfirmPassword: !formValues.showConfirmPassword,
-    });
-  };
-
-  const handleMouseDownPassword = (event) => {
-    event.preventDefault();
-  };
-
-  const handleUploadClick = (event) => {
-    setFormValues({
-      ...formValues,
-      avatar: event.target.files[0],
-    });
-    if (event.target.files && event.target.files[0]) {
-      let reader = new FileReader();
-      reader.onload = (e) => {
-        setImageSource(e.target.result);
-      };
-      reader.readAsDataURL(event.target.files[0]);
-    }
-  };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -210,7 +129,6 @@ const Register = ({ setAuthenticated }) => {
     Object.keys(data).forEach((key) => {
       formData.append(key, data[key]);
     });
-    formData.append("avatar", formValues.avatar);
 
     // submit request to the backend
     try {
@@ -224,221 +142,170 @@ const Register = ({ setAuthenticated }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="mt-5">
-      <Paper style={{ padding: 16, maxWidth: 600 }} elevation={3}>
-        <Grid container alignItems="flex-start" justify="center" spacing={2}>
-          <Grid item xs={6}>
-            <FormControl fullWidth>
-              <InputLabel htmlFor="firstname" required>
-                First Name
-              </InputLabel>
-              <Input
-                id="firstname"
-                type="text"
-                value={formValues.firstname}
-                onChange={handleChange("firstname", validate.name)}
-                error={formValidations.firstname.err}
-              />
-            </FormControl>
-            <FormHelperText error={formValidations.firstname.err}>
-              {formValidations.firstname.msg}
+    <>
+      <h3 className="login-heading mb-4 text-center">Register</h3>
+      <form onSubmit={handleSubmit}>
+        <div className="form-label-group">
+          <input
+            type="text"
+            id="firstname"
+            value={formValues.firstname}
+            onChange={handleChange("firstname", validate.name)}
+            className={
+              formValidations.firstname.err
+                ? "form-control error"
+                : "form-control "
+            }
+            placeholder="First Name*"
+            autoFocus
+          />
+          <label htmlFor="firstname">First Name *</label>
+          <FormHelperText error={formValidations.firstname.err}>
+            {formValidations.firstname.msg}
+          </FormHelperText>
+        </div>
+        <div className="form-label-group">
+          <input
+            type="text"
+            id="lastname"
+            value={formValues.lastname}
+            onChange={handleChange("lastname", validate.name)}
+            className={
+              formValidations.lastname.err
+                ? "form-control error"
+                : "form-control "
+            }
+            placeholder="Last Name*"
+          />
+          <label htmlFor="lastname">Last Name *</label>
+          <FormHelperText error={formValidations.lastname.err}>
+            {formValidations.lastname.msg}
+          </FormHelperText>
+        </div>
+
+        <div className="form-label-group">
+          <input
+            type="text"
+            id="email"
+            value={formValues.email}
+            onChange={handleChange("email", validate.email)}
+            className={
+              formValidations.email.err ? "form-control error" : "form-control "
+            }
+            autoComplete="username"
+            placeholder="Email*"
+          />
+          <label htmlFor="email">Email *</label>
+          <FormHelperText error={formValidations.email.err}>
+            {formValidations.email.msg}
+          </FormHelperText>
+        </div>
+
+        <div className="form-label-group">
+          <input
+            type="password"
+            id="password"
+            className={
+              formValidations.password.err
+                ? "form-control error"
+                : "form-control "
+            }
+            placeholder="Password*"
+            onChange={handleChange("password", validate.password)}
+            value={formValues.password}
+            autoComplete="current-password"
+          />
+          <label htmlFor="password">Password *</label>
+          <FormHelperText error={formValidations.password.err}>
+            {formValidations.password.msg}
+          </FormHelperText>
+        </div>
+
+        <div className="form-label-group">
+          <input
+            type="password"
+            id="confirm-password"
+            className={
+              formValidations.confirmPassword.err
+                ? "form-control error"
+                : "form-control "
+            }
+            placeholder="Confirm Password*"
+            onChange={handleChange("confirmPassword", validate.passwordsMatch)}
+            value={formValues.confirmPassword}
+            autoComplete="current-password"
+          />
+          <label htmlFor="confirm-password">Confirm Password *</label>
+          <FormHelperText error={formValidations.confirmPassword.err}>
+            {formValidations.confirmPassword.msg}
+          </FormHelperText>
+        </div>
+
+        <div className="row justify-content-around">
+          <div className="form-label-group col-md-12 col-lg-6">
+            <select
+              id="gender"
+              value={formValues.gender}
+              className={
+                formValidations.gender.err
+                  ? "form-control error"
+                  : "form-control"
+              }
+              onChange={handleChange("gender")}
+            >
+              <option value="" disabled>
+                Gender *
+              </option>
+              <option value="male">Male</option>
+              <option value="female">Female</option>
+            </select>
+            <FormHelperText error={formValidations.gender.err}>
+              {formValidations.gender.msg}
             </FormHelperText>
-          </Grid>
-          <Grid item xs={6}>
-            <FormControl fullWidth>
-              <InputLabel htmlFor="lastname" required>
-                Last Name
-              </InputLabel>
-              <Input
-                id="lastname"
-                type="text"
-                value={formValues.lastname}
-                onChange={handleChange("lastname", validate.name)}
-                error={formValidations.lastname.err}
-              />
-              <FormHelperText error={formValidations.lastname.err}>
-                {formValidations.lastname.msg}
-              </FormHelperText>
-            </FormControl>
-          </Grid>
-          <Grid item xs={12}>
-            <FormControl fullWidth>
-              <InputLabel htmlFor="email" required>
-                Email address
-              </InputLabel>
-              <Input
-                id="email"
-                type="text"
-                value={formValues.email}
-                onChange={handleChange("email", validate.email)}
-                error={formValidations.email.err}
-              />
-              <FormHelperText error={formValidations.email.err}>
-                {formValidations.email.msg}
-              </FormHelperText>
-            </FormControl>
-          </Grid>
-          <Grid item xs={6}>
-            <FormControl fullWidth>
-              <InputLabel htmlFor="password" required>
-                Password
-              </InputLabel>
-              <Input
-                id="password"
-                type={formValues.showPassword ? "text" : "password"}
-                value={formValues.password}
-                onChange={handleChange("password", validate.password)}
-                error={formValidations.password.err}
-                endAdornment={
-                  <InputAdornment position="end">
-                    <IconButton
-                      aria-label="toggle password visibility"
-                      onClick={handleClickShowPassword}
-                      onMouseDown={handleMouseDownPassword}
-                    >
-                      {formValues.showPassword ? (
-                        <Visibility />
-                      ) : (
-                        <VisibilityOff />
-                      )}
-                    </IconButton>
-                  </InputAdornment>
-                }
-              />
-              <FormHelperText error={formValidations.password.err}>
-                {formValidations.password.msg}
-              </FormHelperText>
-            </FormControl>
-          </Grid>
-          <Grid item xs={6}>
-            <FormControl fullWidth>
-              <InputLabel htmlFor="confirm-password" required>
-                Confirm Password
-              </InputLabel>
-              <Input
-                id="confirm-password"
-                type={formValues.showConfirmPassword ? "text" : "password"}
-                value={formValues.confirmPassword}
-                onChange={handleChange(
-                  "confirmPassword",
-                  validate.passwordsMatch
-                )}
-                error={formValidations.confirmPassword.err}
-                endAdornment={
-                  <InputAdornment position="end">
-                    <IconButton
-                      aria-label="toggle password visibility"
-                      onClick={handleClickShowConfirmPassword}
-                      onMouseDown={handleMouseDownPassword}
-                    >
-                      {formValues.showConfirmPassword ? (
-                        <Visibility />
-                      ) : (
-                        <VisibilityOff />
-                      )}
-                    </IconButton>
-                  </InputAdornment>
-                }
-              />
-              <FormHelperText error={formValidations.confirmPassword.err}>
-                {formValidations.confirmPassword.msg}
-              </FormHelperText>
-            </FormControl>
-          </Grid>
-          <Grid item xs={12}>
-            <FormControl required className={classes.formControl}>
-              <InputLabel id="gender">Gender</InputLabel>
-              <Select
-                labelId="gender"
-                id="gender"
-                value={formValues.gender}
-                onChange={handleChange("gender")}
-                error={formValidations.gender.err}
-                className={classes.selectEmpty}
-              >
-                <MenuItem value={"male"}>Male</MenuItem>
-                <MenuItem value={"female"}>Female</MenuItem>
-              </Select>
-              <FormHelperText error={formValidations.gender.err}>
-                {formValidations.gender.msg}
-              </FormHelperText>
-            </FormControl>
-            <FormControl required>
-              <TextField
-                id="dob"
-                onChange={handleChange("dob", validate.dateOfBirth)}
-                label="Date of Birth *"
-                type="date"
-                InputLabelProps={{
-                  shrink: true,
-                }}
-                className={classes.datePicker}
-              />
-              <FormHelperText
-                error={formValidations.dob.err}
-                className={classes.datePicker}
-              >
-                {formValidations.dob.msg}
-              </FormHelperText>
-            </FormControl>
-          </Grid>
+          </div>
+          <div className="form-label-group col-md-12 col-lg-6">
+            <input
+              type="date"
+              id="dob"
+              onChange={handleChange("dob", validate.dateOfBirth)}
+              className={
+                formValidations.dob.err ? "form-control error" : "form-control"
+              }
+            />
+            <label htmlFor="dob ">Date Of Birth *</label>
 
-          <Grid item xs={12}>
-            <InputLabel htmlFor="diseases">Diseases</InputLabel>
+            <FormHelperText error={formValidations.dob.err}>
+              {formValidations.dob.msg}
+            </FormHelperText>
+          </div>
+        </div>
 
-            <FormControl fullWidth>
-              <TextareaAutosize
-                labelId="diseases"
-                rowsMin={3}
-                rowsMax={5}
-                aria-label="maximum height"
-                placeholder="Please describe any diseases you have that might be useful to know"
-                value={formValues.diseases}
-                onChange={handleChange("diseases")}
-              />
-            </FormControl>
-          </Grid>
+        <div className="form-label-group row justify-content-center">
+          <textarea
+            id="diseases"
+            name="diseases"
+            rows="3"
+            placeholder="Please describe any diseases you have that might be useful to know"
+            value={formValues.diseases}
+            onChange={handleChange("diseases")}
+          />
+        </div>
 
-          <Grid item xs={12}>
-            <FormControl fullWidth>
-              <Button
-                variant="contained"
-                component="label"
-                color="secondary"
-                startIcon={<CloudUploadIcon />}
-              >
-                Profile Picture
-                <input
-                  accept="image/*"
-                  id="avatar"
-                  type="file"
-                  onChange={handleUploadClick}
-                  hidden
-                />
-              </Button>
-            </FormControl>
-            <div className="text-center">
-              <img
-                className="m-3"
-                src={imageSource}
-                style={{ maxHeight: "200px" }}
-                alt="Pic"
-              />
-            </div>
-          </Grid>
-          <Grid
-            container
-            direction="row"
-            justify="center"
-            className={classes.submit}
-          >
-            <Button variant="contained" color="primary" type="submit">
-              Sign Up
-            </Button>
-          </Grid>
-        </Grid>
-      </Paper>
-    </form>
+        <button
+          className="btn btn-lg btn-primary btn-block btn-login text-uppercase font-weight-bold mb-2"
+          type="submit"
+        >
+          Sign Up
+        </button>
+        <div className="text-center">
+          Already have an acoount?
+          <NavLink to="/login" exact>
+            {" "}
+            Sign in
+          </NavLink>
+        </div>
+      </form>
+    </>
   );
 };
 

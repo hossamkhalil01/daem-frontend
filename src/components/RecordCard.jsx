@@ -29,7 +29,9 @@ export default function RecordCard({ ticket }) {
         <div className="record__header">
           {" "}
           <span>{ticket.subject} </span>{" "}
-          <span className="record__date">{formatDate(ticket.createdAt, t("language"))}</span>
+          <span className="record__date">
+            {formatDate(ticket.createdAt, t("language"))}
+          </span>
         </div>
         <div className="record__body">
           <p>{ticket.description}</p>
