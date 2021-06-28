@@ -1,4 +1,6 @@
-export const BASE_URL = "http://localhost:8000";
+import env from "../utils/env";
+
+export const BASE_URL = env.get("REACT_APP_API_URL") || "http://localhost:8000";
 
 // base urls
 const AUTH_BASE = `${BASE_URL}/auth`;
