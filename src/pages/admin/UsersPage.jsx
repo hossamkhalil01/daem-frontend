@@ -26,7 +26,6 @@ const UsersPage = () => {
       page: newPage,
       limit: 5,
     });
-	console.log(params);
 
     // get the new page from api
     try {

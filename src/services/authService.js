@@ -10,7 +10,6 @@ const setAuthData = (data) => {
 
   storage.set("token", data.token);
   storage.set("expiresIn", expires.valueOf());
-  storage.set("user", data.user);
 
   // register the token to the client
   setHeaderToken(data.token);
@@ -52,11 +51,9 @@ export const getCurrentUser = async () => {
 }
 
 export const logout = () => {
-  const keys = ["token", "expiresIn", "user"];
-
-  for (let indx in keys) {
-    storage.remove(keys[indx]);
-  }
+  // remove keys from storage
+  storage.remove("token");
+  storage.remove("expiresIn");
 
   // remove the token from the client
   setHeaderToken("");
@@ -64,13 +61,9 @@ export const logout = () => {
 
 const getToken = () => storage.get("token");
 
-export const getUser = () => storage.get("user");
 export const getExpiration = () => moment(storage.get("expires"));
 
 export const isAuthenticated = () => getToken() ? true : false
-
-
-export const setUser = (user) => storage.set("user", user);
 
 export const checkTokenValid = () => {
   if (!moment().isBefore(getExpiration(), "second")) {
