@@ -4,8 +4,8 @@ import { NavLink } from "react-router-dom";
 import ArticleCard from "../components/article/ArticleCard";
 import Footer from "../components/layouts/Footer";
 import Navbar from "../components/layouts/Navbar";
-import { getArticles } from "../services/articlesService";
 import { useCurrentUser } from "../contexts/CurrentUserContext";
+import { getArticles } from "../services/articlesService";
 
 const LandingPage = (props) => {
   const { currentUser } = useCurrentUser();
@@ -55,7 +55,9 @@ const LandingPage = (props) => {
           </div>
           <div className="suggested-articles">
             {articles.map((article) => (
+              <div className="grid">
               <ArticleCard key={article._id} article={article}></ArticleCard>
+              </div>
             ))}
           </div>
           <div className="">
