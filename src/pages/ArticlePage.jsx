@@ -7,6 +7,7 @@ import Navbar from "../components/layouts/Navbar";
 import { getArticle, getArticles } from "../services/articlesService";
 import { formatDate } from "../services/dateService";
 import ArticleCard from "../components/article/ArticleCard";
+import { useCurrentUser } from "../contexts/CurrentUserContext";
 
 export default function ArticlePage() {
   const { id } = useParams();
@@ -20,6 +21,7 @@ export default function ArticlePage() {
     updatedAt: "",
   });
   const [latestArticles, setLatestArticles] = useState([]);
+  const { currentUser } = useCurrentUser();
 
   const getLatestArticle = async () => {
     const params = { page: 1, limit: 3 };
@@ -90,6 +92,15 @@ export default function ArticlePage() {
                     </div>
                   </div>
                 </div>
+              </div>
+              <div>
+                {curArticle.author._id === currentUser._id ? (
+                  <div className="d-flex justify-content-around">
+                    <button className="m-4">Edit</button>
+
+                    <button className="m-4">Delete</button>
+                  </div>
+                ) : null}
               </div>
             </div>
             <div className="col-lg-4">
