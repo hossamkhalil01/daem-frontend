@@ -6,7 +6,7 @@ export const BASE_URL = env.get("REACT_APP_API_URL") || "http://localhost:8000";
 const AUTH_BASE = `${BASE_URL}/auth`;
 
 // end points
-export const TICKET_API = {
+export const TICKETS_API = {
   ticket: (ticketId) => `${BASE_URL}/tickets/${ticketId}`,
   removeTicketDoctor: (ticketId) =>
     `${BASE_URL}/tickets/${ticketId}/remove-doctor`,
@@ -18,7 +18,6 @@ export const DOCTORS_API = {
   getAllDoctors: () => `${BASE_URL}/doctors`,
   getDoctor: (id) => `${BASE_URL}/doctors/${id}`,
 };
-
 
 export const AUTH_API = {
   login: `${AUTH_BASE}/login`,
