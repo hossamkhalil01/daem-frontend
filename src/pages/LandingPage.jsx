@@ -4,13 +4,14 @@ import { NavLink } from "react-router-dom";
 import ArticleCard from "../components/article/ArticleCard";
 import Footer from "../components/layouts/Footer";
 import Navbar from "../components/layouts/Navbar";
-import { getArticles } from "../services/articleService";
-import { getUser } from "../services/authService";
+import { useCurrentUser } from "../contexts/CurrentUserContext";
+import { getArticles } from "../services/articlesService";
+
 const LandingPage = (props) => {
+  const { currentUser } = useCurrentUser();
   const { t } = useTranslation();
   const [articles, setArticles] = useState([]);
   const params = { limit: 3 };
-  const currentUser = getUser();
   const getRecentArticles = async () => {
     const _articles = await getArticles(params);
     setArticles(_articles.data.data.docs);
@@ -54,7 +55,9 @@ const LandingPage = (props) => {
           </div>
           <div className="suggested-articles">
             {articles.map((article) => (
+              <div className="grid">
               <ArticleCard key={article._id} article={article}></ArticleCard>
+              </div>
             ))}
           </div>
           <div className="">

@@ -1,16 +1,15 @@
 import moment from "moment";
-import storage from "../utils/storage";
-import { setHeaderToken } from "./clientService";
 import requests from "../api/requests";
 import { AUTH_API } from "../api/urls";
+import storage from "../utils/storage";
+import { setHeaderToken } from "./clientService";
 
-const storeAuthData = (data) => {
+const setAuthData = (data) => {
   // save auth data
   const expires = moment().add(data.expiresIn);
 
   storage.set("token", data.token);
   storage.set("expiresIn", expires.valueOf());
-  storage.set("user", data.user);
 
   // register the token to the client
   setHeaderToken(data.token);
@@ -25,7 +24,8 @@ export const login = async ({ email, password }) => {
     password,
   });
 
-  storeAuthData(data);
+  setAuthData(data);
+  return data.user;
 };
 
 export const register = async (formData) => {
@@ -34,27 +34,36 @@ export const register = async (formData) => {
     data: { data },
   } = await requests.create(AUTH_API.register, formData);
 
-  storeAuthData(data);
+  setAuthData(data);
 };
 
-export const logout = () => {
-  const keys = ["token", "expiresIn", "user"];
+export const getCurrentUser = async () => {
 
-  for (let indx in keys) {
-    storage.remove(keys[indx]);
+  try {
+    const { data: { data } } = await requests.get(AUTH_API.currrentUser);
+    return data;
+
+    // UnAuthenticated
+  } catch (err) {
+    logout();
+    return null
   }
+}
+
+export const logout = () => {
+  // remove keys from storage
+  storage.remove("token");
+  storage.remove("expiresIn");
 
   // remove the token from the client
   setHeaderToken("");
 };
 
+const getToken = () => storage.get("token");
+
 export const getExpiration = () => moment(storage.get("expires"));
 
-export const getToken = () => storage.get("token");
-
-export const getUser = () => storage.get("user");
-
-export const setUser = (user) => storage.set("user", user);
+export const isAuthenticated = () => getToken() ? true : false
 
 export const checkTokenValid = () => {
   if (!moment().isBefore(getExpiration(), "second")) {

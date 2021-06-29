@@ -4,10 +4,12 @@ import { useHistory } from "react-router-dom";
 import * as authService from "../../services/authService";
 import validate from "../../utils/validations";
 import { NavLink } from "react-router-dom";
+import { useCurrentUser } from "../../contexts/CurrentUserContext";
 
 const Register = ({ setAuthenticated }) => {
   const history = useHistory();
 
+  const { setCurrentUser } = useCurrentUser();
   const [formValues, setFormValues] = React.useState({
     email: "",
     password: "",
@@ -133,6 +135,9 @@ const Register = ({ setAuthenticated }) => {
     // submit request to the backend
     try {
       await authService.register(formData);
+      const user = await authService.login(data);
+      setCurrentUser(user);
+
       history.push("/");
     } catch (err) {
       // registration validations

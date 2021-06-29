@@ -1,4 +1,6 @@
-export const BASE_URL = "http://localhost:8000";
+import env from "../utils/env";
+
+export const BASE_URL = env.get("REACT_APP_API_URL") || "http://localhost:8000";
 
 // base urls
 const AUTH_BASE = `${BASE_URL}/auth`;
@@ -17,9 +19,11 @@ export const DOCTORS_API = {
   getDoctor: (id) => `${BASE_URL}/doctors/${id}`,
 };
 
+
 export const AUTH_API = {
   login: `${AUTH_BASE}/login`,
   register: `${AUTH_BASE}/register`,
+  currrentUser: `${AUTH_BASE}/user`,
 };
 
 export const COMMENTS_API = {
@@ -38,7 +42,7 @@ export const USER_API = {
   updateUser: () => `${BASE_URL}/users/`,
 };
 
-export const ARTICLE_API = {
+export const ARTICLES_API = {
   article: (articleId) => `${BASE_URL}/articles/${articleId}`,
-  allArticles: ()=> `${BASE_URL}/articles`,
+  allArticles: () => `${BASE_URL}/articles`,
 };

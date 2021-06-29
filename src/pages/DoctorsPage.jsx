@@ -77,6 +77,7 @@ const DoctorsPage = (props) => {
           <div className="row shuffle-wrapper portfolio-gallery">
             {doctors.map((doctor) => (
               <div
+                key={doctor._id}
                 className="col-lg-3 col-sm-6 col-md-6 mb-4 shuffle-item"
                 data-groups='["cat1","cat2"]'
               >

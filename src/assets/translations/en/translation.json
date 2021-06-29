@@ -40,5 +40,9 @@
   "register":"Register",
   "tickets":"Tickets",
   "profile":"Profile",
-  "logout":"Logout"
+  "logout":"Logout",
+  "unresolved":"Unresolved",
+  "resolved":"Resolved",
+  "expired":"Expired",
+  "state":"State"
 }

@@ -1,7 +1,6 @@
 import Navbar from "../components/layouts/Navbar";
 import Footer from "../components/layouts/Footer";
-import { Link } from "react-router-dom";
-export const AboutUsPage = () => {
+const AboutUsPage = () => {
   return (
     <>
       <Navbar />
@@ -207,3 +206,5 @@ export const AboutUsPage = () => {
     </>
   );
 };
+
+export default AboutUsPage;

@@ -4,9 +4,11 @@ import { useHistory } from "react-router-dom";
 import * as authService from "../../services/authService";
 import validate from "../../utils/validations";
 import { NavLink } from "react-router-dom";
+import { useCurrentUser } from "../../contexts/CurrentUserContext";
 
 const Login = () => {
   const history = useHistory();
+  const { setCurrentUser } = useCurrentUser();
 
   const [formValues, setFormValues] = useState({
     email: "",
@@ -78,7 +80,9 @@ const Login = () => {
 
     // sumbit request to the backend
     try {
-      await authService.login(data);
+      const user = await authService.login(data);
+      setCurrentUser(user);
+
       history.push("/");
     } catch (err) {
       // invalid login credientials

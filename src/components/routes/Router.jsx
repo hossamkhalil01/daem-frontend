@@ -1,15 +1,19 @@
 import React from "react";
 import { BrowserRouter, Redirect, Route, Switch } from "react-router-dom";
+import AboutUsPage from "../../pages/AboutUsPage";
 import UsersPage from "../../pages/admin/UsersPage";
+import ArticlePage from "../../pages/ArticlePage";
+import ArticlesPage from "../../pages/ArticlesPage";
+import AuthPage from "../../pages/AuthPage";
 import DoctorPage from "../../pages/DoctorPage";
 import DoctorsPage from "../../pages/DoctorsPage";
 import LandingPage from "../../pages/LandingPage";
-import AuthPage from "../../pages/AuthPage";
+import ProfilePage from "../../pages/ProfilePage";
 import TicketPage from "../../pages/TicketPage";
 import Logout from "../auth/Logout";
 import AdminRoute from "./AdminRoute";
-import { AboutUsPage } from "../../pages/AboutUs";
 import TicketsPage from "../../pages/TicketsPage";
+
 const Router = () => {
   return (
     <BrowserRouter>
@@ -19,7 +23,6 @@ const Router = () => {
             <UsersPage />
           </AdminRoute>
         </Route>
-
         <Route exact path="/tickets/new">
           {/* TODO: NEW TICEKT */}
         </Route>
@@ -29,7 +32,6 @@ const Router = () => {
         <Route exact path="/doctors">
           <DoctorsPage />
         </Route>
-
         <Route exact path="/register">
           <AuthPage isLogin={false} />
         </Route>
@@ -43,16 +45,25 @@ const Router = () => {
           <LandingPage />
         </Route>
         <Route exact path="/">
-          <Redirect to="/home"></Redirect>
+          <Redirect to="/home" />
         </Route>
-        <Route exact path="/ticket/:id">
+        <Route exact path="/tickets/:id">
           <TicketPage />
         </Route>
         <Route path="/tickets">
           <TicketsPage />
         </Route>
+        <Route exact path="/articles">
+          <ArticlesPage />
+        </Route>
         <Route exact path="/about-us">
           <AboutUsPage />
+        </Route>
+        <Route exact path="/articles/:id">
+          <ArticlePage />
+        </Route>
+        <Route exact path="/profile">
+          <ProfilePage />
         </Route>
       </Switch>
     </BrowserRouter>

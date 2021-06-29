@@ -3,11 +3,13 @@ import React from "react";
 import { useTranslation } from "react-i18next";
 import { NavLink } from "react-router-dom";
 import { BASE_URL } from "../../api/urls";
-import { getUser } from "../../services/authService";
+import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import LanguageSelect from "../LanguageSelect";
 
 const Navbar = (props) => {
-  const{t} = useTranslation();
+  const { currentUser } = useCurrentUser();
+
+  const { t } = useTranslation();
   return (
     <header>
       <nav className="navbar navbar-expand-lg navigation" id="navbar">
@@ -43,10 +45,10 @@ const Navbar = (props) => {
                   to="/home"
                   exact
                 >
-                 {t("home")}
+                  {t("home")}
                 </NavLink>
               </li>
-              {getUser()?._id ? (
+              {currentUser?._id ? (
                 <li className="nav-item">
                   <NavLink
                     className="nav-link"
@@ -67,7 +69,18 @@ const Navbar = (props) => {
                   to="/doctors"
                   exact
                 >
-                  {t("tickets")}
+                  {t("doctors")}
+                </NavLink>
+              </li>
+
+              <li className="nav-item">
+                <NavLink
+                  className="nav-link"
+                  activeClassName="active"
+                  to="/articles"
+                  exact
+                >
+                  {t("articles")}
                 </NavLink>
               </li>
 
@@ -78,13 +91,13 @@ const Navbar = (props) => {
                   to="/about-us"
                   exact
                 >
-                 {t("about-us")}
+                  {t("about-us")}
                 </NavLink>
               </li>
             </ul>
 
             <ul className="navbar-nav ml-auto">
-              {getUser()?._id ? (
+              {currentUser?._id ? (
                 <>
                   <li className="nav-item dropdown">
                     <a
@@ -97,7 +110,7 @@ const Navbar = (props) => {
                     >
                       <Avatar
                         alt="avatar"
-                        src={`${BASE_URL}/${getUser().avatar}`}
+                        src={`${BASE_URL}/${currentUser.avatar}`}
                       ></Avatar>{" "}
                     </a>
                     <ul className="dropdown-menu" aria-labelledby="dropdown02">
@@ -141,7 +154,7 @@ const Navbar = (props) => {
                       to="/register"
                       exact
                     >
-                     {t("register")}
+                      {t("register")}
                     </NavLink>
                   </li>
                 </>

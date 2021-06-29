@@ -1,21 +1,24 @@
-import { getUser } from "../../services/authService";
+import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import AssignDoctor from "./AssignDoctor";
 import CheckTicket from "./CheckTicket";
 import DeleteTicket from "./DeleteTicket";
 import EditTicket from "./EditTicket";
+import SetState from "./SetState";
 import SetUrgency from "./SetUrgency";
 
-export default function TicketActions({ ticket }) {
-  const user = getUser();
 
-  if (user.role === "doctor") {
+export default function TicketActions({ ticket }) {
+  const { currentUser } = useCurrentUser();
+
+  if (currentUser.role === "doctor") {
     return (
       <>
+        <SetState ticketId={ticket._id} ticketUrgency={ticket.urgency} />
         <SetUrgency ticketId={ticket._id} ticketUrgency={ticket.urgency} />
         <AssignDoctor ticketId={ticket._id} ticketDoctor={ticket.doctor} />
       </>
     );
-  } else if (user.role === "moderator") {
+  } else if (currentUser.role === "moderator") {
     return (
       <>
         <SetUrgency ticketId={ticket._id} ticketUrgency={ticket.urgency} />
@@ -24,7 +27,10 @@ export default function TicketActions({ ticket }) {
         <CheckTicket ticketId={ticket._id} isChecked={ticket.isChecked} />
       </>
     );
-  } else if (user._id === ticket.patient._id && ticket.state === "unresolved") {
+  } else if (
+    currentUser._id === ticket.patient._id &&
+    ticket.state === "unresolved"
+  ) {
     return (
       <>
         <EditTicket ticketId={ticket._id} />

@@ -5,7 +5,7 @@ import TicketActions from "../ticketActions/TicketActions";
 
 export default function TicketCard({ ticket }) {
   const { t } = useTranslation();
-  const handleTicketRedirection = () => history.push(`/ticket/${ticket._id}`);
+  const handleTicketRedirection = () => history.push(`/tickets/${ticket._id}`);
   const history = useHistory();
   return (
     <div className="ticket-card">
