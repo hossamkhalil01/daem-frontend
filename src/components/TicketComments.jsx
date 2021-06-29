@@ -2,10 +2,10 @@ import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import CommentCard from "../components/CommentCard";
 import { getComments } from "../services/commentsService";
+import AddComment from "./commentActions/AddComment";
 import LoadMore from "./LoadMore";
 
-
-export default function TicketComments({ ticketId }) {
+export default function TicketComments({ ticketId, ticketState }) {
   const { t } = useTranslation();
   const [pagination, setPagination] = useState({ page: 1, totalPages: 1 });
   const [comments, setComments] = useState([]);
@@ -23,6 +23,9 @@ export default function TicketComments({ ticketId }) {
       totalPages: _comments.data.data.totalPages,
     });
     const newComments = [...comments, ..._comments.data.data.docs];
+    newComments.filter(
+      (comment, index) => index === newComments.indexOf(comment)
+    );
     setComments(newComments);
   };
 
@@ -39,6 +42,11 @@ export default function TicketComments({ ticketId }) {
     setComments(newComments);
   };
 
+  const addComment = (comment) => {
+    const newComments = [...comments, comment];
+    setComments(newComments);
+  };
+
   return (
     <>
       <div className="ticket-comments">
@@ -52,6 +60,11 @@ export default function TicketComments({ ticketId }) {
         ))}
         {!isLastPage() ? (
           <LoadMore page={pagination.page} onLoadMore={onLoadMore} />
+        ) : (
+          ""
+        )}
+        {ticketState === "unresolved" ? (
+          <AddComment addCommentToList={addComment} ticketId={ticketId} />
         ) : (
           ""
         )}
