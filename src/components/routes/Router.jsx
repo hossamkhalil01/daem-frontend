@@ -27,14 +27,14 @@ const Router = () => {
           </AdminRoute>
         </Route>
         <Route exact path="/tickets/new">
-          {/* <PrivateRoute> */}
-          <NewTicketPage />
-          {/* </PrivateRoute> */}
+          <PrivateRoute>
+            <NewTicketPage />
+          </PrivateRoute>
         </Route>
         <Route exact path="/articles/new">
-          {/* <PrivateRoute> */}
-          <NewArticlePage />
-          {/* </PrivateRoute> */}
+          <PrivateRoute>
+            <NewArticlePage />
+          </PrivateRoute>
         </Route>
         <Route exact path="/doctors/:id">
           <DoctorPage />
