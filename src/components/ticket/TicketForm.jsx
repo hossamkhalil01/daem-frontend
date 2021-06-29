@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function TicketForm({ ticket }) {
+export default function TicketForm({ ticket, onCreation }) {
   const classes = useStyles();
   const [subject, setSubject] = useState("");
   const [description, setDescription] = useState("");
@@ -62,7 +62,9 @@ export default function TicketForm({ ticket }) {
         updateTicket(ticket._id, formData);
       } else {
         // Send formData object
-        createTicket(formData);
+        createTicket(formData).then((res) => {
+          onCreation(res.data.data);
+        });
       }
     }
   };
@@ -76,7 +78,7 @@ export default function TicketForm({ ticket }) {
           padding: "2%",
         }}
       >
-        <h2>{editMode ? "Edit" : "Submit new"} ticket</h2>
+        <h2>{editMode ? "Edit" : "New"} Ticket</h2>
         <form
           className={classes.root}
           noValidate
@@ -90,7 +92,6 @@ export default function TicketForm({ ticket }) {
             </small>
           ) : null}
           <TextField
-            required
             error={errorSubject}
             id="subject"
             label="Ticket Subject"
@@ -120,7 +121,6 @@ export default function TicketForm({ ticket }) {
           ) : null}
 
           <TextField
-            required
             error={errorDesc}
             id="description"
             label="Ticket Description"
@@ -173,10 +173,10 @@ export default function TicketForm({ ticket }) {
             variant="contained"
             color="primary"
             type="submit"
-            className="m-auto mt-3"
+            className="m-auto mt-5"
             disabled={errorSubject || errorDesc || errorImages ? true : false}
           >
-            {editMode ? "Edit" : "Add"}
+            {editMode ? "Save" : "Submit"}
           </Button>
         </form>
       </div>
