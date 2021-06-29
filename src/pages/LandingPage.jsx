@@ -6,6 +6,7 @@ import Footer from "../components/layouts/Footer";
 import Navbar from "../components/layouts/Navbar";
 import { useCurrentUser } from "../contexts/CurrentUserContext";
 import { getArticles } from "../services/articlesService";
+import {Filter} from "../components/Filter";
 
 const LandingPage = (props) => {
   const { currentUser } = useCurrentUser();
@@ -21,6 +22,7 @@ const LandingPage = (props) => {
   }, []);
   return (
     <>
+      <Filter />
       <Navbar />
       <div>
         {/* <!-- Slider Start --> */}
@@ -56,7 +58,7 @@ const LandingPage = (props) => {
           <div className="suggested-articles">
             {articles.map((article) => (
               <div className="grid">
-              <ArticleCard key={article._id} article={article}></ArticleCard>
+                <ArticleCard key={article._id} article={article}></ArticleCard>
               </div>
             ))}
           </div>
