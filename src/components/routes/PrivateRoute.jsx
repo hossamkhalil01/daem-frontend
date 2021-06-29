@@ -8,7 +8,7 @@ function PrivateRoute(props) {
   const { component: Component, ...rest } = props;
 
   //redirect if there is no user
-  if (!currentUser) return <Redirect to="/" />;
+  if (!currentUser) return <Redirect to="/login" />;
 
   return <Route {...rest} render={(props) => <Component {...props} />} />;
 }
