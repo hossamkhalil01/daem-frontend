@@ -18,6 +18,7 @@ import validate from "../utils/validations";
 import { useCurrentUser } from "../contexts/CurrentUserContext";
 import * as userService from "../services/userService";
 import Switch from "@material-ui/core/Switch";
+import { Link } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -191,113 +192,175 @@ export default function UserProfile() {
   };
 
   return (
-    <div className="card">
-      <img src={imageSource} alt="Profile" />
-      <section className="title">
-        <div>switch on to update profile data</div>
-        <Switch
-          checked={updatable}
-          onChange={() => {
-            setUpdatable(!updatable);
-          }}
-          name="checkedA"
-          inputProps={{ "aria-label": "secondary checkbox" }}
-        />
-      </section>
-      <form onSubmit={handleSubmit}>
-        <Paper style={{ padding: 16, maxWidth: 600 }} elevation={3}>
-          <Grid container alignItems="flex-start" justify="center" spacing={2}>
-            <Grid item xs={6}>
-              <FormControl fullWidth>
-                <InputLabel htmlFor="firstname" required>
-                  First Name
-                </InputLabel>
-                <Input
-                  id="firstname"
-                  type="text"
-                  value={user.firstname}
-                  onChange={handleChange("firstname", validate.name)}
-                  error={formValidations.firstname.err}
-                  readOnly={!updatable}
-                  disableUnderline={!updatable}
-                />
-              </FormControl>
-              <FormHelperText error={formValidations.firstname.err}>
-                {formValidations.firstname.msg}
-              </FormHelperText>
-            </Grid>
-            <Grid item xs={6}>
-              <FormControl fullWidth>
-                <InputLabel htmlFor="lastname" required>
-                  Last Name
-                </InputLabel>
-                <Input
-                  id="lastname"
-                  type="text"
-                  value={user.lastname}
-                  onChange={handleChange("lastname", validate.name)}
-                  error={formValidations.lastname.err}
-                  readOnly={!updatable}
-                  disableUnderline={!updatable}
-                />
-                <FormHelperText error={formValidations.lastname.err}>
-                  {formValidations.lastname.msg}
-                </FormHelperText>
-              </FormControl>
-            </Grid>
+    <>
+      <div className="main-content">
+        <div className="container mt-7">
+          <div className="row">
+            <div className="col-xl-8 m-auto order-xl-2 mb-5 mb-xl-0">
+              <div className="card card-profile shadow">
+                <div className="row justify-content-center">
+                  <div className="col-lg-3 order-lg-2">
+                    <div className="card-profile-image">
+                      <img
+                        src={imageSource}
+                        alt=""
+                        className="rounded-circle"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div className="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
+                  <div className="d-flex justify-content-between">
+                    <Link to="/home" className="btn btn-sm btn-info mr-4">
+                      Back To Home
+                    </Link>
+                  </div>
+                </div>
+                <div className="card-body pt-0 pt-md-4">
+                  <div className="row">
+                    <div className="col">
+                      <div className="card-profile-stats mt-md-5">
+                        <div className="lead">{user.email}</div>
+                        {/* <div className="text-muted">{user.email}</div> */}
+                      </div>
+                    </div>
+                  </div>
+                  <div className="text-center">
+                    <div>switch on to update profile data</div>
+                    <Switch
+                      checked={updatable}
+                      onChange={() => {
+                        setUpdatable(!updatable);
+                      }}
+                      name="checkedA"
+                      inputProps={{ "aria-label": "secondary checkbox" }}
+                    />
+                    <form
+                      onSubmit={handleSubmit}
+                      className="row justify-content-center"
+                    >
+                      <Paper
+                        style={{ padding: 16, maxWidth: 600 }}
+                        elevation={3}
+                      >
+                        <Grid
+                          container
+                          // alignItems="flex-start"
+                          justify="center"
+                          spacing={2}
+                        >
+                          <Grid item xs={6}>
+                            <FormControl fullWidth>
+                              <InputLabel htmlFor="firstname" required>
+                                First Name
+                              </InputLabel>
+                              <Input
+                                id="firstname"
+                                type="text"
+                                value={user.firstname}
+                                onChange={handleChange(
+                                  "firstname",
+                                  validate.name
+                                )}
+                                error={formValidations.firstname.err}
+                                readOnly={!updatable}
+                                disableUnderline={!updatable}
+                              />
+                            </FormControl>
+                            <FormHelperText
+                              error={formValidations.firstname.err}
+                            >
+                              {formValidations.firstname.msg}
+                            </FormHelperText>
+                          </Grid>
+                          <Grid item xs={6}>
+                            <FormControl fullWidth>
+                              <InputLabel htmlFor="lastname" required>
+                                Last Name
+                              </InputLabel>
+                              <Input
+                                id="lastname"
+                                type="text"
+                                value={user.lastname}
+                                onChange={handleChange(
+                                  "lastname",
+                                  validate.name
+                                )}
+                                error={formValidations.lastname.err}
+                                readOnly={!updatable}
+                                disableUnderline={!updatable}
+                              />
+                              <FormHelperText
+                                error={formValidations.lastname.err}
+                              >
+                                {formValidations.lastname.msg}
+                              </FormHelperText>
+                            </FormControl>
+                          </Grid>
 
-            <Grid item xs={12}>
-              <InputLabel htmlFor="diseases">Diseases</InputLabel>
-              <FormControl fullWidth>
-                <TextareaAutosize
-                  //   labelId="diseases"
-                  rowsMin={3}
-                  rowsMax={5}
-                  aria-label="maximum height"
-                  placeholder="Please describe any diseases you have that might be useful to know"
-                  value={user.diseases}
-                  onChange={handleChange("diseases")}
-                  disabled={!updatable}
-                />
-              </FormControl>
-            </Grid>
+                          <Grid item xs={12}>
+                            <InputLabel htmlFor="diseases">Diseases</InputLabel>
+                            <FormControl fullWidth>
+                              <TextareaAutosize
+                                //   labelId="diseases"
+                                rowsMin={3}
+                                rowsMax={5}
+                                aria-label="maximum height"
+                                placeholder="Please describe any diseases you have that might be useful to know"
+                                value={user.diseases}
+                                onChange={handleChange("diseases")}
+                                disabled={!updatable}
+                              />
+                            </FormControl>
+                          </Grid>
 
-            <Grid item xs={12}>
-              <FormControl fullWidth>
-                <Button
-                  variant="contained"
-                  component="label"
-                  color="secondary"
-                  disabled={!updatable}
-                  startIcon={<CloudUploadIcon />}
-                >
-                  Profile Picture
-                  <input
-                    accept="image/*"
-                    id="avatar"
-                    type="file"
-                    onChange={handleUploadClick}
-                    disabled={!updatable}
-                    hidden
-                  />
-                </Button>
-              </FormControl>
-            </Grid>
-            <Grid
-              container
-              direction="row"
-              justify="center"
-              className={classes.submit}
-            >
-              {updatable ? (
-                <Button variant="contained" color="primary" type="submit">
-                  Done
-                </Button>
-              ) : null}
-            </Grid>
-          </Grid>
-        </Paper>
-      </form>
-    </div>
+                          <Grid item xs={12}>
+                            <FormControl fullWidth>
+                              <Button
+                                variant="contained"
+                                component="label"
+                                color="secondary"
+                                disabled={!updatable}
+                                startIcon={<CloudUploadIcon />}
+                              >
+                                Profile Picture
+                                <input
+                                  accept="image/*"
+                                  id="avatar"
+                                  type="file"
+                                  onChange={handleUploadClick}
+                                  disabled={!updatable}
+                                  hidden
+                                />
+                              </Button>
+                            </FormControl>
+                          </Grid>
+                          <Grid
+                            container
+                            direction="row"
+                            justify="center"
+                            className={classes.submit}
+                          >
+                            {updatable ? (
+                              <Button
+                                variant="contained"
+                                color="primary"
+                                type="submit"
+                              >
+                                Done
+                              </Button>
+                            ) : null}
+                          </Grid>
+                        </Grid>
+                      </Paper>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </>
   );
 }

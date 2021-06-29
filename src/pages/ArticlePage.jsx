@@ -39,7 +39,6 @@ export default function ArticlePage() {
   return (
     <>
       <Navbar />
-      {/* <ArticleForm /> */}
       <section className="page-title bg-1">
         <div className="overlay"></div>
         <div className="container">

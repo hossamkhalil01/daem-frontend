@@ -10,6 +10,7 @@ import Logout from "../auth/Logout";
 import AdminRoute from "./AdminRoute";
 import { AboutUsPage } from "../../pages/AboutUs";
 import ArticlePage from "../../pages/ArticlePage";
+import ProfilePage from "../../pages/ProfilePage";
 
 const Router = () => {
   return (
@@ -46,7 +47,7 @@ const Router = () => {
         <Route exact path="/">
           <Redirect to="/home"></Redirect>
         </Route>
-        <Route exact path="/ticket/:id">
+        <Route exact path="/tickets/:id">
           <TicketPage />
         </Route>
         <Route exact path="/about-us">
@@ -54,6 +55,9 @@ const Router = () => {
         </Route>
         <Route exact path="/articles/:id">
           <ArticlePage />
+        </Route>
+        <Route exact path="/profile">
+          <ProfilePage />
         </Route>
       </Switch>
     </BrowserRouter>
