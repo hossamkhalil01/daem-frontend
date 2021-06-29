@@ -10,6 +10,7 @@ import AboutUsPage from "../../pages/AboutUsPage";
 import ArticlesPage from "../../pages/ArticlesPage";
 import Logout from "../auth/Logout";
 import AdminRoute from "./AdminRoute";
+import ArticlePage from "../../pages/ArticlePage";
 
 const Router = () => {
   return (
@@ -52,6 +53,9 @@ const Router = () => {
         </Route>
         <Route exact path="/about-us">
           <AboutUsPage />
+        </Route>
+        <Route exact path="/articles/:id">
+          <ArticlePage />
         </Route>
       </Switch>
     </BrowserRouter>
