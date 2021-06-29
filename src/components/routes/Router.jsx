@@ -12,6 +12,7 @@ import ProfilePage from "../../pages/ProfilePage";
 import TicketPage from "../../pages/TicketPage";
 import Logout from "../auth/Logout";
 import AdminRoute from "./AdminRoute";
+import TicketsPage from "../../pages/TicketsPage";
 import NewTicketPage from "../../pages/NewTicketPage";
 import PrivateRoute from "./PrivateRoute";
 
@@ -52,6 +53,9 @@ const Router = () => {
         </Route>
         <Route exact path="/tickets/:id">
           <TicketPage />
+        </Route>
+        <Route path="/tickets">
+          <TicketsPage />
         </Route>
         <Route exact path="/articles">
           <ArticlesPage />
