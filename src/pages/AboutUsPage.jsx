@@ -116,8 +116,6 @@ const AboutUsPage = () => {
           </div>
         </div>
       </section>
-
-      
       <Footer />
     </>
   );
