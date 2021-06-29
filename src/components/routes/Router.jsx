@@ -12,6 +12,8 @@ import ProfilePage from "../../pages/ProfilePage";
 import TicketPage from "../../pages/TicketPage";
 import Logout from "../auth/Logout";
 import AdminRoute from "./AdminRoute";
+import NewTicketPage from "../../pages/NewTicketPage";
+import PrivateRoute from "./PrivateRoute";
 
 const Router = () => {
   return (
@@ -23,7 +25,9 @@ const Router = () => {
           </AdminRoute>
         </Route>
         <Route exact path="/tickets/new">
-          {/* TODO: NEW TICEKT */}
+          <PrivateRoute>
+            <NewTicketPage />
+          </PrivateRoute>
         </Route>
         <Route exact path="/doctors/:id">
           <DoctorPage />
