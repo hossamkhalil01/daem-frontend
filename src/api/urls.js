@@ -17,6 +17,12 @@ export const DOCTORS_API = {
   getDoctor: (id) => `${BASE_URL}/doctors/${id}`,
 };
 
+export const ARTICLES_API = {
+  getAllArticles: `${BASE_URL}/articles/`,
+  getArticle: (id) => `${BASE_URL}/articles/${id}`,
+};
+
+
 export const AUTH_API = {
   login: `${AUTH_BASE}/login`,
   register: `${AUTH_BASE}/register`,
