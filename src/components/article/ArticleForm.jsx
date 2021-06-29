@@ -17,7 +17,7 @@ const useStyles = makeStyles((theme) => ({
     width: "25ch",
   },
 }));
-export default function ArticleForm({ article }) {
+export default function ArticleForm({ article, onCreation }) {
   const classes = useStyles();
   const [curArticle, setCurArticle] = useState({
     title: "",
@@ -153,10 +153,12 @@ export default function ArticleForm({ article }) {
 
       if (article) {
         // Send formData object in case of update
-        await updateArticle(article._id, formData);
+        const res = await updateArticle(article._id, formData);
+        onCreation(res.data.data);
       } else {
         // Send formData object
-        await createArticle(formData);
+        const res = await createArticle(formData);
+        onCreation(res.data.data);
       }
     } catch (err) {
       // registration validations

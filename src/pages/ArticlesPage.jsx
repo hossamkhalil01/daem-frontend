@@ -112,14 +112,11 @@ const ArticlesPage = (props) => {
 
                           <p className="mb-4">{article.title}</p>
 
-                          <a
-                            href="blog-single.html"
-                            target="_blank"
-                            className="btn btn-main btn-icon btn-round-full"
-                          >
-                            Read More{" "}
-                            <i className="icofont-simple-right ml-2"></i>
-                          </a>
+                          <div className="btn btn-main btn-icon btn-round-full">
+                            <Link to={`/articles/${article._id}`}>
+                              Read More{" "}
+                            </Link>
+                          </div>
                         </div>
                       </div>
                     </div>

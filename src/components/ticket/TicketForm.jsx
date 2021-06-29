@@ -59,7 +59,9 @@ export default function TicketForm({ ticket, onCreation }) {
       // Request made to the backend api
       if (ticket) {
         // Send formData object in case of update
-        updateTicket(ticket._id, formData);
+        updateTicket(ticket._id, formData).then((res) => {
+          onCreation(res.data.data);
+        });
       } else {
         // Send formData object
         createTicket(formData).then((res) => {
