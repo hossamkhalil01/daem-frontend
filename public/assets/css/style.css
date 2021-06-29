@@ -134,21 +134,21 @@ input[type="tel"]:focus {
 }
 
 .btn-main {
-  background: #223a66;
-  color: #fff;
-  border-color: #223a66;
+  background: #223a66 !important;
+  color: #fff !important;
+  border-color: #223a66 !important;
 }
 
 .btn-main:hover {
-  background: #1b8c97;
-  border-color: #1b8c97;
-  color: #fff;
+  background: #1b8c97 !important;
+  border-color: #1b8c97 !important;
+  color: #fff !important;
 }
 
 .btn-main-2 {
-  background: #1b8c97;
-  color: #fff;
-  border-color: #1b8c97;
+  background: #1b8c97 !important;
+  color: #fff !important;
+  border-color: #1b8c97 !important;
 }
 
 .btn-main-2:hover {
@@ -500,15 +500,15 @@ a:focus {
   position: relative;
 }
 
-.about{
+.about {
   position: relative;
   overflow: hidden;
   background-size: cover;
 }
-.about-ar-EG{
+.about-ar-EG {
   background: url("../images/bg/doctors-left.jpg") no-repeat;
 }
-.about-en-US{
+.about-en-US {
   background: url("../images/bg/doctors-right.jpg") no-repeat;
 }
 
@@ -520,11 +520,11 @@ a:focus {
   min-height: 550px;
 }
 
-.banner-en-US{
+.banner-en-US {
   background: url("../images/bg/slider-bg-1.jpg") no-repeat;
 }
 
-.banner-ar-EG{
+.banner-ar-EG {
   background: url("../images/bg/slider-bg-2.jpg") no-repeat;
 }
 
@@ -1559,7 +1559,7 @@ a:focus {
   opacity: 1;
 }
 
-.suggested-articles-section{
+.suggested-articles-section {
   position: relative;
   overflow: hidden;
   background: #fff;
@@ -1569,24 +1569,24 @@ a:focus {
   padding-bottom: 0;
 }
 
-.suggested-articles{
+.suggested-articles {
   display: flex;
   justify-content: space-evenly;
 }
 
-.suggested-articles__header{
-  color:#223a66;
+.suggested-articles__header {
+  color: #223a66;
   text-align: center;
   margin-bottom: 3vh;
 }
 
-.suggested-articles__header h2{
+.suggested-articles__header h2 {
   margin-bottom: 15vh;
-  color:#223a66;
+  color: #223a66;
 }
 
-@media(max-width:480px){
-  .suggested-articles{
+@media (max-width: 480px) {
+  .suggested-articles {
     flex-direction: column;
   }
 }

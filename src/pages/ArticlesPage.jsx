@@ -2,10 +2,13 @@ import React, { useEffect, useState } from "react";
 import Navbar from "../components/layouts/Navbar";
 import Footer from "../components/layouts/Footer";
 import Paginator from "../components/Paginator";
-import { NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { BASE_URL } from "../api/urls";
-import { getAllArticles } from "../services/articlesService";
+import { getArticles } from "../services/articlesService";
+import { formatDate } from "../services/dateService";
+import ArticleCard from "../components/article/ArticleCard";
 import capitalize from "../utils/capitalize";
+
 import {
   createPaginationParams,
   parsePaginatedResponse,
@@ -14,6 +17,7 @@ import {
 const ArticlesPage = (props) => {
   const [pagination, setPagination] = useState({ page: 1, totalPages: 1 });
   const [articles, setArticles] = useState([]);
+  const [latestArticles, setLatestArticles] = useState([]);
 
   const handlePageChange = async (newPage = 1, filterObj = {}) => {
     // construct the params
@@ -25,7 +29,7 @@ const ArticlesPage = (props) => {
 
     // get the new page from api
     try {
-      const res = await getAllArticles(params);
+      const res = await getArticles(params);
       const { data, paginationInfo } = parsePaginatedResponse(res);
       // set the values
       setPagination(paginationInfo);
@@ -35,13 +39,22 @@ const ArticlesPage = (props) => {
     }
   };
 
+  const getLatestArticle = async () => {
+    const params = { page: 1, limit: 3 };
+    const res = await getArticles(params);
+    const { data } = parsePaginatedResponse(res);
+    setLatestArticles(data);
+  };
+
   useEffect(() => {
+    getLatestArticle();
     handlePageChange();
   }, []);
 
   return (
     <>
       <Navbar />
+
       <section className="page-title bg-1">
         <div className="overlay"></div>
         <div className="container">
@@ -65,28 +78,36 @@ const ArticlesPage = (props) => {
               <div className="row">
                 {articles.map((article) => {
                   return (
-                    <div className="col-lg-12 col-md-12 mb-5">
+                    <div className="col-lg-12 col-md-12 mb-5" key={article._id}>
                       <div className="blog-item">
                         <div className="blog-thumb">
                           <img
                             src={BASE_URL + "/" + article.image}
-                            alt=""
+                            alt="article"
                             className="img-fluid"
                           />
                         </div>
                         <div className="blog-item-content">
                           <div className="blog-item-meta mb-3 mt-4">
                             <span className="text-muted text-capitalize mr-3">
-                              <i className="icofont-comment mr-2"></i>5 Comments
+                              <i className="icofont-user mr-2"></i>{" "}
+                              {article.author.firstname +
+                                " " +
+                                article.author.lastname}
                             </span>
                             <span className="text-black text-capitalize mr-3">
-                              <i className="icofont-calendar mr-1"></i> 28th
-                              January
+                              <i className="icofont-calendar mr-1"></i>
+                              {formatDate(article.createdAt)}
                             </span>
                           </div>
 
                           <h2 className="mt-3 mb-3">
-                            <a href="blog-single.html">{article.title}</a>
+                            <Link
+                              to={`/articles/${article._id}`}
+                              key={article._id}
+                            >
+                              {article.title}
+                            </Link>
                           </h2>
 
                           <p className="mb-4">{article.title}</p>
@@ -105,6 +126,17 @@ const ArticlesPage = (props) => {
                   );
                 })}
               </div>
+
+              {/* Pagination */}
+              <section className="row mt-4 justify-content-center">
+                <div className="w-auto col-lg-8 mb-5">
+                  <Paginator
+                    paginationInfo={pagination}
+                    onPageChange={handlePageChange}
+                    size="large"
+                  />
+                </div>
+              </section>
             </section>
 
             {/* Side Nav */}
@@ -122,45 +154,19 @@ const ArticlesPage = (props) => {
                   </form>
                 </div>
                 <div className="sidebar-widget latest-post mb-3">
-                  <h5>Popular Posts</h5>
+                  <h5>Latest Articles</h5>
 
-                  <div className="py-2">
-                    <span className="text-sm text-muted">03 Mar 2018</span>
-                    <h6 className="my-2">
-                      <a href="#">Thoughtful living in los Angeles</a>
-                    </h6>
-                  </div>
-
-                  <div className="py-2">
-                    <span className="text-sm text-muted">03 Mar 2018</span>
-                    <h6 className="my-2">
-                      <a href="#">Vivamus molestie gravida turpis.</a>
-                    </h6>
-                  </div>
-
-                  <div className="py-2">
-                    <span className="text-sm text-muted">03 Mar 2018</span>
-                    <h6 className="my-2">
-                      <a href="#">
-                        Fusce lobortis lorem at ipsum semper sagittis
-                      </a>
-                    </h6>
-                  </div>
+                  {latestArticles.map((article) => (
+                    <Link to={`/articles/${article._id}`} key={article._id}>
+                      <div className="mb-3">
+                        <ArticleCard article={article} />
+                      </div>
+                    </Link>
+                  ))}
                 </div>
               </div>
             </section>
           </div>
-        </div>
-      </section>
-
-      {/* Pagination */}
-      <section className="row mt-3">
-        <div className="w-auto col-lg-8 mb-5">
-          <Paginator
-            paginationInfo={pagination}
-            onPageChange={handlePageChange}
-            size="large"
-          />
         </div>
       </section>
 
