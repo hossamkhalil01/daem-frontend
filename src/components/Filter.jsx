@@ -14,7 +14,7 @@ export const Filter = () => {
   const [filter, setFilter] = useState({
     from: "",
     to: "",
-    state: "opened",
+    state: "",
   });
   const [formValidations, setFormValidations] = useState({
     from: { err: false, msg: "" },
@@ -23,43 +23,34 @@ export const Filter = () => {
   const [errorsExist, setErrorsExist] = useState(false);
 
   const handleChange = (prop) => (event) => {
-    const startDate = new Date(filter.from).getTime();
-    const endDate = new Date(filter.to).getTime();
     setFormValidations({
       ...formValidations,
       [prop]: { err: false, msg: "" },
     });
     setErrorsExist(false);
-    if (!event.target.value) {
-      setFormValidations({
-        ...formValidations,
-        [prop]: { err: true, msg: "This field is required" },
-      });
-      setErrorsExist(true);
-    } else if (startDate > endDate) {
+    if (prop === "from" || prop === "to") {
+      const date = new Date(event.target.value).getTime();
+      if (Date.now() < date - 10000000) {
+        console.log(prop);
+        setFormValidations({
+          ...formValidations,
+          [prop]: {
+            err: true,
+            msg: `${prop} cannot be greater then Today`,
+          },
+        });
+        setErrorsExist(true);
+      }
+    }
+    const startDate = new Date(filter.from).getTime();
+    const endDate = new Date(filter.to).getTime();
+
+    if (startDate > endDate) {
       setFormValidations({
         ...formValidations,
         [prop]: {
           err: true,
           msg: "Start Date cannot be greater then End Date",
-        },
-      });
-      setErrorsExist(true);
-    } else if (Date.now() < startDate - 10000000) {
-      setFormValidations({
-        ...formValidations,
-        [prop]: {
-          err: true,
-          msg: "Start Date cannot be greater then Today",
-        },
-      });
-      setErrorsExist(true);
-    } else if (Date.now() < endDate - 10000000) {
-      setFormValidations({
-        ...formValidations,
-        [prop]: {
-          err: true,
-          msg: "End Date cannot be greater then Today",
         },
       });
       setErrorsExist(true);
@@ -70,7 +61,7 @@ export const Filter = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!errorsExist) {
-      // console.log("filter data = ", filter);
+      console.log(filter);
     }
   };
   return (
@@ -91,7 +82,6 @@ export const Filter = () => {
               <Input
                 id="dateFrom"
                 type="date"
-                required
                 value={filter.from}
                 onChange={handleChange("from")}
                 onBlur={handleChange("from")}
@@ -107,7 +97,6 @@ export const Filter = () => {
               <Input
                 id="dateTo"
                 type="date"
-                required
                 value={filter.to}
                 onChange={handleChange("to")}
                 onBlur={handleChange("to")}
@@ -125,9 +114,10 @@ export const Filter = () => {
               value={filter.state}
               onChange={(e) => setFilter({ ...filter, state: e.target.value })}
             >
-              <option value={"opened"}>Opened</option>
-              <option value={"pinding"}>Pinding</option>
-              <option value={"closed"}>Closed</option>
+              <option></option>
+              <option value={"unresolved"}>Unresolved</option>
+              <option value={"resolved"}>Resolved</option>
+              <option value={"expired"}>Expired</option>
             </Select>
           </Grid>
           <Grid item xs={3}>

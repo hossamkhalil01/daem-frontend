@@ -56,7 +56,7 @@ const LandingPage = (props) => {
           <div className="suggested-articles">
             {articles.map((article) => (
               <div className="grid">
-              <ArticleCard key={article._id} article={article}></ArticleCard>
+                <ArticleCard key={article._id} article={article}></ArticleCard>
               </div>
             ))}
           </div>

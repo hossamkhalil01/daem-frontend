@@ -15,6 +15,7 @@ import AdminRoute from "./AdminRoute";
 import TicketsPage from "../../pages/TicketsPage";
 import NewTicketPage from "../../pages/NewTicketPage";
 import PrivateRoute from "./PrivateRoute";
+import NewArticlePage from "../../pages/NewArticlePage";
 
 const Router = () => {
   return (
@@ -28,6 +29,11 @@ const Router = () => {
         <Route exact path="/tickets/new">
           <PrivateRoute>
             <NewTicketPage />
+          </PrivateRoute>
+        </Route>
+        <Route exact path="/articles/new">
+          <PrivateRoute>
+            <NewArticlePage />
           </PrivateRoute>
         </Route>
         <Route exact path="/doctors/:id">
