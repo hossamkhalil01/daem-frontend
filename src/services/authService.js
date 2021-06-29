@@ -1,8 +1,8 @@
 import moment from "moment";
-import storage from "../utils/storage";
-import { setHeaderToken } from "./clientService";
 import requests from "../api/requests";
 import { AUTH_API } from "../api/urls";
+import storage from "../utils/storage";
+import { setHeaderToken } from "./clientService";
 
 const setAuthData = (data) => {
   // save auth data
