@@ -1,11 +1,19 @@
 import React, { useEffect, useState } from "react"
+import Loading from "../components/Loading";
 import * as authServices from "../services/authService";
 
 const CurrentUserContext = React.createContext();
 
 export const CurrentUserProvider = ({ children }) => {
-  const [currentUser, setCurrentUser] = useState(null);
+  const [currentUser, setCurrentUser] = useState(false);
 
+  const normalRender = () => {
+    return (
+      <CurrentUserContext.Provider value={{ currentUser, setCurrentUser }}>
+        {children}
+      </CurrentUserContext.Provider>
+    );
+  }
   useEffect(() => {
 
     const fetchCurrentUser = () => {
@@ -21,14 +29,8 @@ export const CurrentUserProvider = ({ children }) => {
 
   }, []);
 
-
-  return (
-    <CurrentUserContext.Provider value={{ currentUser, setCurrentUser }}>
-      {children}
-    </CurrentUserContext.Provider>
-  )
+  return <>{currentUser === false ? <Loading /> : normalRender()}</>;
 }
-
 
 export const useCurrentUser = () => React.useContext(CurrentUserContext);
 
