@@ -177,7 +177,7 @@ export default function ArticleForm({ article, onCreation }) {
           padding: "2%",
         }}
       >
-        <h2>{editMode ? "Edit" : "Submit new"} Article</h2>
+        <h2>{editMode ? "Edit" : "New"} Article</h2>
         <form
           className={classes.root}
           onSubmit={handleSubmit}
@@ -252,7 +252,7 @@ export default function ArticleForm({ article, onCreation }) {
                 : false
             }
           >
-            {editMode ? "Edit" : "Add"}
+            {editMode ? "Save" : "Submit"}
           </Button>
         </form>
       </div>
