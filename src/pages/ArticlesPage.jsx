@@ -7,7 +7,7 @@ import { BASE_URL } from "../api/urls";
 import { getArticles } from "../services/articlesService";
 import { formatDate } from "../services/dateService";
 import ArticleCard from "../components/article/ArticleCard";
-import capitalize from "../utils/capitalize";
+import Search from "../components/Search";
 
 import {
   createPaginationParams,
@@ -111,15 +111,13 @@ const ArticlesPage = (props) => {
                           </h2>
 
                           <p className="mb-4">{article.title}</p>
-
-                          <a
-                            href="blog-single.html"
-                            target="_blank"
+                          <Link
+                            to={`/articles/${article._id}`}
                             className="btn btn-main btn-icon btn-round-full"
                           >
                             Read More{" "}
                             <i className="icofont-simple-right ml-2"></i>
-                          </a>
+                          </Link>
                         </div>
                       </div>
                     </div>
@@ -144,14 +142,11 @@ const ArticlesPage = (props) => {
               <div className="sidebar-wrap pl-lg-4 mt-5 mt-lg-0">
                 <div className="sidebar-widget search mb-3">
                   <h5>Search Here</h5>
-                  <form action="#" className="search-form">
-                    <input
-                      type="text"
-                      className="form-control"
-                      placeholder="search"
-                    />
-                    <i className="ti-search"></i>
-                  </form>
+                  <Search
+                    onSearch={(keys) => {
+                      console.log(keys);
+                    }}
+                  />
                 </div>
                 <div className="sidebar-widget latest-post mb-3">
                   <h5>Latest Articles</h5>
