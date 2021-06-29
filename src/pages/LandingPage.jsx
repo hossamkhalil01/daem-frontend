@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom";
 import ArticleCard from "../components/article/ArticleCard";
 import Footer from "../components/layouts/Footer";
 import Navbar from "../components/layouts/Navbar";
-import { getArticles } from "../services/articleService";
+import { getArticles } from "../services/articlesService";
 import { useCurrentUser } from "../contexts/CurrentUserContext";
 
 const LandingPage = (props) => {

@@ -6,9 +6,10 @@ import DoctorsPage from "../../pages/DoctorsPage";
 import LandingPage from "../../pages/LandingPage";
 import AuthPage from "../../pages/AuthPage";
 import TicketPage from "../../pages/TicketPage";
+import AboutUsPage from "../../pages/AboutUsPage";
+import ArticlesPage from "../../pages/ArticlesPage";
 import Logout from "../auth/Logout";
 import AdminRoute from "./AdminRoute";
-import { AboutUsPage } from "../../pages/AboutUs";
 import ArticlePage from "../../pages/ArticlePage";
 import ProfilePage from "../../pages/ProfilePage";
 
@@ -21,7 +22,6 @@ const Router = () => {
             <UsersPage />
           </AdminRoute>
         </Route>
-
         <Route exact path="/tickets/new">
           {/* TODO: NEW TICEKT */}
         </Route>
@@ -31,7 +31,6 @@ const Router = () => {
         <Route exact path="/doctors">
           <DoctorsPage />
         </Route>
-
         <Route exact path="/register">
           <AuthPage isLogin={false} />
         </Route>
@@ -45,10 +44,13 @@ const Router = () => {
           <LandingPage />
         </Route>
         <Route exact path="/">
-          <Redirect to="/home"></Redirect>
+          <Redirect to="/home" />
         </Route>
         <Route exact path="/tickets/:id">
           <TicketPage />
+        </Route>
+        <Route exact path="/articles">
+          <ArticlesPage />
         </Route>
         <Route exact path="/about-us">
           <AboutUsPage />

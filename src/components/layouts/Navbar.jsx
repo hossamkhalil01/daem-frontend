@@ -77,6 +77,17 @@ const Navbar = (props) => {
                 <NavLink
                   className="nav-link"
                   activeClassName="active"
+                  to="/articles"
+                  exact
+                >
+                  {t("articles")}
+                </NavLink>
+              </li>
+
+              <li className="nav-item">
+                <NavLink
+                  className="nav-link"
+                  activeClassName="active"
                   to="/about-us"
                   exact
                 >

@@ -19,6 +19,7 @@ export const DOCTORS_API = {
   getDoctor: (id) => `${BASE_URL}/doctors/${id}`,
 };
 
+
 export const AUTH_API = {
   login: `${AUTH_BASE}/login`,
   register: `${AUTH_BASE}/register`,
@@ -41,7 +42,7 @@ export const USER_API = {
   updateUser: () => `${BASE_URL}/users/`,
 };
 
-export const ARTICLE_API = {
+export const ARTICLES_API = {
   article: (articleId) => `${BASE_URL}/articles/${articleId}`,
   allArticles: () => `${BASE_URL}/articles`,
 };

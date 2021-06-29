@@ -4,7 +4,7 @@ import { BASE_URL } from "../api/urls";
 import ArticleForm from "../components/article/ArticleForm";
 import Footer from "../components/layouts/Footer";
 import Navbar from "../components/layouts/Navbar";
-import { getArticle, getArticles } from "../services/articleService";
+import { getArticle, getArticles } from "../services/articlesService";
 import { formatDate } from "../services/dateService";
 import ArticleCard from "../components/article/ArticleCard";
 
@@ -71,7 +71,7 @@ export default function ArticlePage() {
                     <div className="blog-item-content mt-5">
                       <div className="blog-item-meta mb-3">
                         <span className="text-color-2 text-capitalize mr-3">
-                          <i className="icofont-book-mark mr-2"></i>{" "}
+                          <i className="icofont-user mr-2"></i>{" "}
                           {curArticle.author.firstname +
                             " " +
                             curArticle.author.lastname}
@@ -98,9 +98,9 @@ export default function ArticlePage() {
                   <h5>Latest Articles</h5>
 
                   {latestArticles.map((article) => (
-                    <Link to={article._id}>
+                    <Link to={`/articles/${article._id}`} key={article._id}>
                       <div className="mb-3">
-                        <ArticleCard article={article} key={article._id} />
+                        <ArticleCard article={article} />
                       </div>
                     </Link>
                   ))}
