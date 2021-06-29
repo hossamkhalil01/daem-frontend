@@ -9,6 +9,7 @@ import TicketPage from "../../pages/TicketPage";
 import Logout from "../auth/Logout";
 import AdminRoute from "./AdminRoute";
 import { AboutUsPage } from "../../pages/AboutUs";
+import ArticlePage from "../../pages/ArticlePage";
 
 const Router = () => {
   return (
@@ -50,6 +51,9 @@ const Router = () => {
         </Route>
         <Route exact path="/about-us">
           <AboutUsPage />
+        </Route>
+        <Route exact path="/articles/:id">
+          <ArticlePage />
         </Route>
       </Switch>
     </BrowserRouter>

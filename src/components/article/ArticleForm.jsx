@@ -69,7 +69,7 @@ export default function ArticleForm({ article }) {
   };
 
   const checkServerValidation = (msg) => {
-    const errors = msg.split("Post validation failed: ");
+    const errors = msg.split("Article validation failed: ");
 
     const validationsObj = { ...formValidations };
 
