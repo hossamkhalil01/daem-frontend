@@ -1,17 +1,17 @@
 import React from "react";
 import { BrowserRouter, Redirect, Route, Switch } from "react-router-dom";
+import AboutUsPage from "../../pages/AboutUsPage";
 import UsersPage from "../../pages/admin/UsersPage";
+import ArticlePage from "../../pages/ArticlePage";
+import ArticlesPage from "../../pages/ArticlesPage";
+import AuthPage from "../../pages/AuthPage";
 import DoctorPage from "../../pages/DoctorPage";
 import DoctorsPage from "../../pages/DoctorsPage";
 import LandingPage from "../../pages/LandingPage";
-import AuthPage from "../../pages/AuthPage";
+import ProfilePage from "../../pages/ProfilePage";
 import TicketPage from "../../pages/TicketPage";
-import AboutUsPage from "../../pages/AboutUsPage";
-import ArticlesPage from "../../pages/ArticlesPage";
 import Logout from "../auth/Logout";
 import AdminRoute from "./AdminRoute";
-import ArticlePage from "../../pages/ArticlePage";
-import ProfilePage from "../../pages/ProfilePage";
 import NewTicketPage from "../../pages/NewTicketPage";
 import PrivateRoute from "./PrivateRoute";
 

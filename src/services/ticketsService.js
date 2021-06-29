@@ -10,7 +10,11 @@ export const deleteTicket = async (ticketId) => {
 };
 
 export const updateTicket = async (ticketId, updates) => {
+<<<<<<< HEAD
   return requests.update(TICKETS_API.ticket(ticketId), updates);
+=======
+  return requests.update(TICKET_API.ticket(ticketId), updates);
+>>>>>>> dev
 };
 
 export const removeTicketDoctor = async (ticketId) => {

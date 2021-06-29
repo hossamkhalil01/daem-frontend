@@ -1,9 +1,11 @@
+import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import AssignDoctor from "./AssignDoctor";
 import CheckTicket from "./CheckTicket";
 import DeleteTicket from "./DeleteTicket";
 import EditTicket from "./EditTicket";
+import SetState from "./SetState";
 import SetUrgency from "./SetUrgency";
-import { useCurrentUser } from "../../contexts/CurrentUserContext";
+
 
 export default function TicketActions({ ticket }) {
   const { currentUser } = useCurrentUser();
@@ -11,6 +13,7 @@ export default function TicketActions({ ticket }) {
   if (currentUser.role === "doctor") {
     return (
       <>
+        <SetState ticketId={ticket._id} ticketUrgency={ticket.urgency} />
         <SetUrgency ticketId={ticket._id} ticketUrgency={ticket.urgency} />
         <AssignDoctor ticketId={ticket._id} ticketDoctor={ticket.doctor} />
       </>

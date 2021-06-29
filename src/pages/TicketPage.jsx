@@ -8,7 +8,6 @@ import TicketDetails from "../components/ticket/TicketDetails";
 import TicketComments from "../components/TicketComments";
 import { useCurrentUser } from "../contexts/CurrentUserContext";
 import { getTicket } from "../services/ticketsService";
-
 export default function TicketPage() {
   const { currentUser } = useCurrentUser();
   const { id } = useParams();
@@ -39,7 +38,7 @@ export default function TicketPage() {
             ) : (
               " "
             )}
-            <TicketComments ticketId={ticket._id} />
+            <TicketComments ticketId={ticket._id} ticketState={ticket.state}/>
           </div>
         </div>
       )}

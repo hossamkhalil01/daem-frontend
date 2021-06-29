@@ -1,19 +1,21 @@
 import { useState } from "react";
-import { addComment } from "../../services/commentsService";
+import { useTranslation } from "react-i18next";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
-
-export const AddComments = ({ ticketId }) => {
+import { addComment } from "../../services/commentsService";
+export default function AddComment ({ ticketId ,addCommentToList}){
   const { currentUser } = useCurrentUser();
   const [comment, updateComment] = useState("");
   const [error, setError] = useState("");
+  const {t} = useTranslation();
   const handleCommentSubmit = async () => {
     if (comment === "") return setError("you can't add empty comment ");
     try {
-      await addComment(ticketId, {
+      const newComment = await addComment(ticketId, {
         body: comment,
         author: currentUser?._id,
         ticket: ticketId,
       });
+      addCommentToList(newComment.data.data);
       updateComment("");
       setError("");
     } catch (error) {
@@ -26,8 +28,8 @@ export const AddComments = ({ ticketId }) => {
   };
 
   return (
-    <div className="row align-baseline">
-      <div className="col-md-10">
+    <div className="row align-baseline justify-content-center mb-4 mt-4">
+      <div className="col-md-6">
         <textarea
           onBlur={() => upadteInputStates()}
           value={comment}
@@ -35,12 +37,12 @@ export const AddComments = ({ ticketId }) => {
           className="form-control"
         ></textarea>
       </div>
-      <div className="col-md-2">
+      <div className="col-md-1">
         <button
           onClick={() => handleCommentSubmit()}
           className="btn btn-success"
         >
-          Add
+          {t("submit")}
         </button>
       </div>
       {error === "" ? (
