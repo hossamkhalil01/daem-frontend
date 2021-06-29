@@ -21,7 +21,7 @@ export default function RecordCard({ ticket }) {
     setOpenModal(false);
   };
 
-  const handleTicketRedirection = () => history.push(`/ticket/${ticket._id}`);
+  const handleTicketRedirection = () => history.push(`/tickets/${ticket._id}`);
 
   return (
     <>
