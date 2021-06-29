@@ -39,6 +39,11 @@ const ArticlesPage = (props) => {
     }
   };
 
+  const handleSearchChange = (searchKey) => {
+    // search with the new key
+    handlePageChange(1, { q: searchKey });
+  };
+
   const getLatestArticle = async () => {
     const params = { page: 1, limit: 3 };
     const res = await getArticles(params);
@@ -142,11 +147,7 @@ const ArticlesPage = (props) => {
               <div className="sidebar-wrap pl-lg-4 mt-5 mt-lg-0">
                 <div className="sidebar-widget search mb-3">
                   <h5>Search Here</h5>
-                  <Search
-                    onSearch={(keys) => {
-                      console.log(keys);
-                    }}
-                  />
+                  <Search onSearch={handleSearchChange} />
                 </div>
                 <div className="sidebar-widget latest-post mb-3">
                   <h5>Latest Articles</h5>
