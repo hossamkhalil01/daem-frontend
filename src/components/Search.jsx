@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const Search = ({ onSearch }) => {
+const Search = ({ placeholder, onSearch }) => {
   const [searchKey, setSearchKey] = useState("");
   const [prevKey, setPrevKey] = useState("");
 
@@ -24,12 +24,12 @@ const Search = ({ onSearch }) => {
     <div className="search-form">
       <input
         type="text"
-        className="form-control"
-        placeholder="search"
+        className="form-control "
+        placeholder={placeholder ? placeholder : "search"}
         value={searchKey}
         onChange={handleInputChange}
       />
-      <i className="icofont-search" onClick={handleSearch}></i>
+      <i className="icofont-search search-icon" onClick={handleSearch}></i>
     </div>
   );
 };

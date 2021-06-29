@@ -42,8 +42,9 @@
   "tickets": "البطاقات",
   "profile": "الصفحة الشخصية",
   "logout": "تسجيل خروج",
-  "unresolved":"لم تحل",
-  "resolved":"تم الحل",
-  "expired":"منتهية الصلاحية",
-  "state":"الحالة"
+  "unresolved": "لم تحل",
+  "resolved": "تم الحل",
+  "expired": "منتهية الصلاحية",
+  "state": "الحالة",
+  "search-by-title": "ابحث بالعنوان"
 }
