@@ -10,12 +10,7 @@ import {
 } from "@material-ui/core";
 import { useState } from "react";
 
-export const Filter = () => {
-  const [filter, setFilter] = useState({
-    from: "",
-    to: "",
-    state: "",
-  });
+export const Filter = ({ filter, setFilter, onUpdateFilteredState }) => {
   const [formValidations, setFormValidations] = useState({
     from: { err: false, msg: "" },
     to: { err: false, msg: "" },
@@ -31,7 +26,6 @@ export const Filter = () => {
     if (prop === "from" || prop === "to") {
       const date = new Date(event.target.value).getTime();
       if (Date.now() < date - 10000000) {
-        console.log(prop);
         setFormValidations({
           ...formValidations,
           [prop]: {
@@ -61,7 +55,7 @@ export const Filter = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!errorsExist) {
-      console.log(filter);
+      onUpdateFilteredState((filtered) => !filtered);
     }
   };
   return (
