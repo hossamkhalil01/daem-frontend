@@ -1,15 +1,19 @@
-import React, { useState, useEffect } from "react";
+import Button from "@material-ui/core/Button";
+import Dialog from "@material-ui/core/Dialog";
+import DialogActions from "@material-ui/core/DialogActions";
+import DialogContent from "@material-ui/core/DialogContent";
+import DialogContentText from "@material-ui/core/DialogContentText";
 import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
-import Button from "@material-ui/core/Button";
-import {
-  createTicket,
-  updateTicket,
-  updateTicketDoctor,
-  updateTicketModerator,
-  updateTicketUser,
-} from "../../services/ticketsService";
+import React, { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
+import { useHistory } from "react-router";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
+import {
+  createTicket, updateTicketDoctor,
+  updateTicketModerator,
+  updateTicketUser
+} from "../../services/ticketsService";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -32,6 +36,10 @@ export default function TicketForm({ ticket, onCreation }) {
   const [errorSubject, setErrorSubject] = useState(false);
   const [errorDesc, setErrorDesc] = useState(false);
   const [errorImages, setErrorImages] = useState(false);
+  const [openAlert, setOpenAlert] = useState(false);
+  const [alertMessage, setAlerMessage] = useState("");
+  const history = useHistory();
+  const { t } = useTranslation();
   const { currentUser } = useCurrentUser();
 
   useEffect(() => {
@@ -41,6 +49,14 @@ export default function TicketForm({ ticket, onCreation }) {
       setEditMode(true);
     }
   }, [ticket]);
+
+  const handleCloseAlert = () => {
+    setOpenAlert(false);
+  };
+
+  const redirectToTickets = () => {
+    history.push(`/tickets`);
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -84,12 +100,18 @@ export default function TicketForm({ ticket, onCreation }) {
         }
       } else {
         // Send formData object
-        createTicket(formData).then((res) => {
-          onCreation(res.data.data);
-        });
+        createTicket(formData)
+          .then((res) => {
+            onCreation(res.data.data);
+          })
+          .catch((err) => {
+            setAlerMessage(err.response.data.data);
+            setOpenAlert(true);
+          });
       }
     }
   };
+  
   return (
     <>
       <div
@@ -202,6 +224,27 @@ export default function TicketForm({ ticket, onCreation }) {
           </Button>
         </form>
       </div>
+
+      <Dialog
+        open={openAlert}
+        onClose={handleCloseAlert}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+        <DialogContent>
+          <DialogContentText id="alert-dialog-description">
+            {t(alertMessage)}
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleCloseAlert} color="primary">
+            {t("ok")}
+          </Button>
+          <Button onClick={redirectToTickets} color="primary" autoFocus>
+            {t("go-to-tickets")}
+          </Button>
+        </DialogActions>
+      </Dialog>
     </>
   );
 }
