@@ -10,7 +10,11 @@ export default function UpdateTicketPage() {
     history.push(`/tickets/${ticket._id}`);
   };
   const location = useLocation();
-  const { ticket } = location.state;
+
+  if (location.state === undefined) {
+    history.push("/tickets/");
+  }
+  const ticket = location.state?.ticket;
   return (
     <>
       <Navbar />
