@@ -43,7 +43,7 @@ export default function TicketComments({ ticketId, ticketState }) {
   };
 
   const addComment = (comment) => {
-    const newComments = [...comments, comment];
+    const newComments = [comment,...comments, ];
     setComments(newComments);
   };
 
