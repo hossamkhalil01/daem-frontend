@@ -1,7 +1,6 @@
 import React from "react";
 import { BrowserRouter, Redirect, Route, Switch } from "react-router-dom";
 import AboutUsPage from "../../pages/AboutUsPage";
-import UsersPage from "../../pages/admin/UsersPage";
 import ArticlePage from "../../pages/ArticlePage";
 import ArticlesPage from "../../pages/ArticlesPage";
 import AuthPage from "../../pages/AuthPage";
@@ -19,20 +18,15 @@ import NewArticlePage from "../../pages/NewArticlePage";
 import UpdateArticlePage from "../../pages/UpdateArticlePage";
 import AdminDoctorRoute from "./AdminDoctorRoute";
 import UpdateTicketPage from "../../pages/UpdateTicketPage";
-import AdminArticlesPage from "../../pages/admin/ArticlesPage";
+import { Dashboard } from "../../pages/admin/Dashboard";
 
 const Router = () => {
   return (
     <BrowserRouter>
       <Switch>
-        <Route exact path="/admin/users">
+        <Route exact path="/admin/dashboard">
           <AdminRoute>
-            <UsersPage />
-          </AdminRoute>
-        </Route>
-        <Route exact path="/admin/articles">
-          <AdminRoute>
-            <AdminArticlesPage />
+            <Dashboard />
           </AdminRoute>
         </Route>
         <Route exact path="/tickets/new">

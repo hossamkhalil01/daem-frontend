@@ -114,6 +114,18 @@ const Navbar = (props) => {
                       ></Avatar>{" "}
                     </a>
                     <ul className="dropdown-menu" aria-labelledby="dropdown02">
+                      {currentUser?.role === "moderator" && (
+                        <li className="nav-item">
+                          <NavLink
+                            className="dropdown-item nav-link"
+                            to="/admin/dashboard"
+                            exact
+                          >
+                            {t("dashboard")}
+                          </NavLink>
+                        </li>
+                      )}
+
                       <li className="nav-item">
                         <NavLink
                           className="dropdown-item nav-link"

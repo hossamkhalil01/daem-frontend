@@ -1,6 +1,4 @@
 import React, { useEffect, useState } from "react";
-import Navbar from "../../components/layouts/Navbar";
-import Footer from "../../components/layouts/Footer";
 import Paginator from "../../components/Paginator";
 import { getArticles } from "../../services/articlesService";
 import Search from "../../components/Search";
@@ -51,7 +49,6 @@ const AdminArticlesPage = (props) => {
 
   return (
     <>
-      <Navbar />
       <UpdateArticlesListProvider value={{ update, setUpdate }}>
         <div className="container">
           <div className="sidebar-wrap pl-lg-4 mt-5 mt-lg-0">
@@ -82,7 +79,6 @@ const AdminArticlesPage = (props) => {
           </div>
         </div>
       </UpdateArticlesListProvider>
-      <Footer />
     </>
   );
 };
