@@ -25,7 +25,7 @@ const LandingPage = (props) => {
       <div>
         {/* <!-- Slider Start --> */}
         <section className={`banner banner-${t("language")}`}>
-          <div className="container-fluid">
+          <div className="container">
             <div className="row">
               <div className="col-lg-6 col-md-12 col-xl-7">
                 <div className="block">
@@ -50,6 +50,7 @@ const LandingPage = (props) => {
           </div>
         </section>
         <section className="section suggested-articles-section">
+        <div className="container">
           <div className="suggested-articles__header">
             <h2>{t("articles-section-header")}</h2>
           </div>
@@ -69,6 +70,7 @@ const LandingPage = (props) => {
               {t("view-all-articles")}{" "}
               <i className="icofont-simple-right ml-2  "></i>
             </NavLink>
+          </div>
           </div>
         </section>
         {!currentUser || currentUser.role === "user" ? (

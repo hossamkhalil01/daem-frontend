@@ -10,7 +10,7 @@ export default function ArticleCard({ article }) {
     history.push(`/articles/${article._id}`);
 
   return (
-    <div className="card">
+    <div className="card article-card">
       <div className="card__image">
         <img src={BASE_URL + "/" + article.image} alt="" />
         <div className="card__overlay card__overlay--indigo">

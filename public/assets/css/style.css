@@ -1593,7 +1593,7 @@ a:focus {
   }
 }
 
-.server-error-container{
+.server-error-container,.notfound-container{
   text-align: center;
 }
 .server-error-container h2{
@@ -1606,3 +1606,8 @@ a:focus {
   display:block;
   margin: auto;
 } 
+.notfound-container img{
+  width:70%;
+  display:block;
+  margin: auto;
+}

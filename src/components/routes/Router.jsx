@@ -10,6 +10,7 @@ import DoctorsPage from "../../pages/DoctorsPage";
 import LandingPage from "../../pages/LandingPage";
 import NewArticlePage from "../../pages/NewArticlePage";
 import NewTicketPage from "../../pages/NewTicketPage";
+import NotFound from "../../pages/NotFound";
 import ProfilePage from "../../pages/ProfilePage";
 import TicketPage from "../../pages/TicketPage";
 import TicketsPage from "../../pages/TicketsPage";
@@ -91,6 +92,9 @@ const Router = () => {
           <PrivateRoute>
             <ProfilePage />
           </PrivateRoute>
+        </Route>
+        <Route path='*'>
+          <NotFound/>
         </Route>
       </Switch>
     </BrowserRouter>
