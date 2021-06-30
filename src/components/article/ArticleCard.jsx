@@ -27,7 +27,7 @@ export default function ArticleCard({ article }) {
             <ul className="card__meta card__meta--last">
               <li>
                 <FontAwesomeIcon icon={faUser}></FontAwesomeIcon>{" "}
-                {article.author.role === "doctor" ? "Dr." : ""}
+                {article.author.role === "doctor" ? "Dr. " : ""}
                 {article.author.firstname + " " + article.author.lastname}
               </li>
             </ul>

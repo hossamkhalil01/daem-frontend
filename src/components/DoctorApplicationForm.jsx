@@ -5,20 +5,23 @@ import * as services from "../services/doctorApplicationsService";
 import { Link } from "react-router-dom";
 import { useCurrentUser } from "../contexts/CurrentUserContext";
 
-const requriedFields = ["speciality"];
+const requriedFields = ["speciality", "nationalId", "doctorId"];
 
 const DoctorApplicationForm = () => {
   const { currentUser } = useCurrentUser();
   const [specialitiesList, setSpecialitiesList] = useState([]);
-
   const [formValues, setFormValues] = useState({
     speciality: "",
     about: "",
+    nationalId: null,
+    doctorId: null,
   });
 
   const [formValidations, setFormValidations] = useState({
     speciality: { err: false, msg: "" },
     about: { err: false, msg: "" },
+    nationalId: { err: false, msg: "" },
+    doctorId: { err: false, msg: "" },
   });
 
   useEffect(() => {
@@ -78,12 +81,24 @@ const DoctorApplicationForm = () => {
     setFormValidations(validationsObj);
   };
 
-  const handleChange = (prop, validationMethod) => (event) => {
+  const handleImageChange = (prop, validationMethod) => (event) => {
+    const value = event.target.files[0];
+    // set value and validate
+    handleChange({ prop, value, validationMethod });
+  };
+
+  const handleFieldChange = (prop, validationMethod) => (event) => {
+    const value = event.target.value;
+    // set value and validate
+    handleChange({ prop, value, validationMethod });
+  };
+
+  const handleChange = ({ prop, value, validationMethod }) => {
     let err = false;
     let msg = "";
 
     if (validationMethod) {
-      const errorsArr = validationMethod(event.target.value);
+      const errorsArr = validationMethod(value);
       // set the errors if found
       if (errorsArr.length) {
         err = true;
@@ -97,7 +112,7 @@ const DoctorApplicationForm = () => {
       [prop]: { err, msg },
     });
 
-    setFormValues({ ...formValues, [prop]: event.target.value });
+    setFormValues({ ...formValues, [prop]: value });
   };
 
   const handleSubmit = async (e) => {
@@ -106,17 +121,12 @@ const DoctorApplicationForm = () => {
     if (!checkRequiredFields()) return;
     if (!isValidForm()) return;
 
-    const data = {
-      speciality: formValues.speciality,
-      about: formValues.about,
-    };
-
     // create form data
     const formData = new FormData();
 
     // append the data
-    Object.keys(data).forEach((key) => {
-      formData.append(key, data[key]);
+    Object.keys(formValues).forEach((key) => {
+      formData.append(key, formValues[key]);
     });
 
     // sumbit request to the backend
@@ -156,7 +166,7 @@ const DoctorApplicationForm = () => {
                           ? "form-control error"
                           : "form-control"
                       }
-                      onChange={handleChange("speciality")}
+                      onChange={handleFieldChange("speciality")}
                     >
                       <option value="" disabled>
                         Speciality *
@@ -183,14 +193,54 @@ const DoctorApplicationForm = () => {
                   rows="6"
                   placeholder="Tell us in brief about you, your career and your professional experience."
                   value={formValues.about}
-                  onChange={handleChange("about", validate.aboutSection)}
+                  onChange={handleFieldChange("about", validate.aboutSection)}
                 ></textarea>
                 <FormHelperText error={formValidations.about.err}>
                   {formValidations.about.msg}
                 </FormHelperText>
               </div>
-
-              <button className="btn btn-main btn-round-full" type="submit">
+              <div className="row">
+                <div class="col-lg-6">
+                  <label htmlFor="nationalId" className="text-muted">
+                    Upload Your National ID Image
+                  </label>
+                  <div class="form-group">
+                    <input
+                      accept="image/*"
+                      id="nationalId"
+                      name="nationalId"
+                      type="file"
+                      class="form-control"
+                      onChange={handleImageChange("nationalId")}
+                    />
+                    <FormHelperText error={formValidations.nationalId.err}>
+                      {formValidations.nationalId.msg}
+                    </FormHelperText>
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <label htmlFor="doctorId" className="text-muted">
+                    Upload Your Doctors Syndicate or Hospital ID Image
+                  </label>
+                  <div class="form-group">
+                    <input
+                      accept="image/*"
+                      id="doctorId"
+                      name="doctorId"
+                      type="file"
+                      class="form-control"
+                      onChange={handleImageChange("doctorId")}
+                    />
+                    <FormHelperText error={formValidations.doctorId.err}>
+                      {formValidations.doctorId.msg}
+                    </FormHelperText>
+                  </div>
+                </div>
+              </div>
+              <button
+                className="btn btn-main btn-lg btn-round-full mt-3"
+                type="submit"
+              >
                 Submit<i className="icofont-simple-right ml-2"></i>
               </button>
             </form>
