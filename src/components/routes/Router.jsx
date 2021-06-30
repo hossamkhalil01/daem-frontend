@@ -19,14 +19,11 @@ import UpdateTicketPage from "../../pages/UpdateTicketPage";
 import Logout from "../auth/Logout";
 import AdminDoctorRoute from "./AdminDoctorRoute";
 import AdminRoute from "./AdminRoute";
-// import Navbar from "../layouts/Navbar";
-// import Footer from "../layouts/Footer";
 import PrivateRoute from "./PrivateRoute";
 
 const Router = () => {
   return (
     <BrowserRouter>
-      {/* <Navbar /> */}
       <Switch>
         <Route exact path="/admin/dashboard">
           <AdminRoute>
@@ -100,7 +97,6 @@ const Router = () => {
           <NotFound/>
         </Route>
       </Switch>
-      {/* <Footer /> */}
     </BrowserRouter>
   );
 };

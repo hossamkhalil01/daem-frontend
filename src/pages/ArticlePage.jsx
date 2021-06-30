@@ -1,14 +1,14 @@
-import React, { useState, useEffect } from "react";
-import { useParams, Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link, useParams } from "react-router-dom";
 import { BASE_URL } from "../api/urls";
+import ArticleCard from "../components/article/ArticleCard";
+import DeleteArticle from "../components/articleActions/DeleteArticle";
+import EditArticle from "../components/articleActions/EditArticle";
 import Footer from "../components/layouts/Footer";
 import Navbar from "../components/layouts/Navbar";
+import { useCurrentUser } from "../contexts/CurrentUserContext";
 import { getArticle, getArticles } from "../services/articlesService";
 import { formatDate } from "../services/dateService";
-import ArticleCard from "../components/article/ArticleCard";
-import { useCurrentUser } from "../contexts/CurrentUserContext";
-import EditArticle from "../components/articleActions/EditArticle";
-import DeleteArticle from "../components/articleActions/DeleteArticle";
 
 export default function ArticlePage() {
   const { id } = useParams();
@@ -32,6 +32,7 @@ export default function ArticlePage() {
 
   const getCurArticle = async () => {
     const res = await getArticle(id);
+    console.log(res);
     setCurArticle(res.data.data);
   };
   useEffect(() => {
@@ -95,7 +96,7 @@ export default function ArticlePage() {
                 </div>
               </div>
               <div>
-                {curArticle.author._id === currentUser._id ? (
+                {currentUser && (curArticle.author._id === currentUser._id) ? (
                   <div className="d-flex justify-content-around">
                     <EditArticle article={curArticle} />
 

@@ -49,5 +49,6 @@
   "exceeded-limit": "You have reached the maximum number of tickets today",
   "go-to-tickets": "Go to tickets",
   "dashboard": "Dashboard",
+  "server-error-label" : "OOPS .. something went worng. Sorry for the inconvenience. We're working on it.",
   "page-not-found": "Page not found"
 }
