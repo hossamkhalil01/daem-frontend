@@ -5,7 +5,7 @@ import { useTranslation } from "react-i18next";
 import { DoctorsContext } from "../../contexts/doctorsContext";
 import {
   removeTicketDoctor,
-  updateTicket,
+  updateTicketDoctor,
 } from "../../services/ticketsService";
 
 export default function AssignDoctor({ ticketId, ticketDoctor }) {
@@ -17,7 +17,7 @@ export default function AssignDoctor({ ticketId, ticketDoctor }) {
   const handleChange = async (event, newValue) => {
     if (newValue) {
       setDoctor(newValue);
-      await updateTicket(ticketId, { doctor: newValue._id });
+      await updateTicketDoctor(ticketId, { doctor: newValue._id });
     } else {
       setDoctor(clearField);
       await removeTicketDoctor(ticketId);

@@ -8,7 +8,12 @@ import TextField from "@material-ui/core/TextField";
 import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useHistory } from "react-router";
-import { createTicket, updateTicket } from "../../services/ticketsService";
+import { useCurrentUser } from "../../contexts/CurrentUserContext";
+import {
+  createTicket, updateTicketDoctor,
+  updateTicketModerator,
+  updateTicketUser
+} from "../../services/ticketsService";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -35,6 +40,8 @@ export default function TicketForm({ ticket, onCreation }) {
   const [alertMessage, setAlerMessage] = useState("");
   const history = useHistory();
   const { t } = useTranslation();
+  const { currentUser } = useCurrentUser();
+
   useEffect(() => {
     if (ticket) {
       setSubject(ticket.subject);
@@ -76,9 +83,21 @@ export default function TicketForm({ ticket, onCreation }) {
       // Request made to the backend api
       if (ticket) {
         // Send formData object in case of update
-        updateTicket(ticket._id, formData).then((res) => {
-          onCreation(res.data.data);
-        });
+        // updateTicket based on role
+
+        if (currentUser.role === "moderator") {
+          updateTicketModerator(ticket._id, formData).then((res) => {
+            onCreation(res.data.data);
+          });
+        } else if (currentUser.role === "doctor") {
+          updateTicketDoctor(ticket._id, formData).then((res) => {
+            onCreation(res.data.data);
+          });
+        } else {
+          updateTicketUser(ticket._id, formData).then((res) => {
+            onCreation(res.data.data);
+          });
+        }
       } else {
         // Send formData object
         createTicket(formData)
