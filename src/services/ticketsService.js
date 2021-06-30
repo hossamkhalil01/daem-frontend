@@ -9,8 +9,16 @@ export const deleteTicket = async (ticketId) => {
   return requests.delete(TICKETS_API.ticket(ticketId));
 };
 
-export const updateTicket = async (ticketId, updates) => {
-  return requests.update(TICKETS_API.ticket(ticketId), updates);
+export const updateTicketUser = async (ticketId, updates) => {
+  return requests.update(TICKETS_API.userUpdateTicket(ticketId), updates);
+};
+
+export const updateTicketDoctor = async (ticketId, updates) => {
+  return requests.update(TICKETS_API.doctorUpdateTicket(ticketId), updates);
+};
+
+export const updateTicketModerator = async (ticketId, updates) => {
+  return requests.update(TICKETS_API.moderatorUpdateTicket(ticketId), updates);
 };
 
 export const removeTicketDoctor = async (ticketId) => {

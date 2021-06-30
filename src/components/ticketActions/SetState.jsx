@@ -4,15 +4,14 @@ import MenuItem from "@material-ui/core/MenuItem";
 import Select from "@material-ui/core/Select";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { updateTicket } from "../../services/ticketsService";
-
+import { updateTicketDoctor } from "../../services/ticketsService";
 
 export default function SetState({ ticketId, ticketState }) {
   const { t } = useTranslation();
   const [state, setState] = useState(ticketState);
 
   const handleChange = async (event) => {
-    await updateTicket(ticketId, { state: event.target.value });
+    await updateTicketDoctor(ticketId, { state: event.target.value });
     setState(event.target.value);
   };
 
