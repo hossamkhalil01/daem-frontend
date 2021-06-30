@@ -74,7 +74,7 @@ export default function ArticleForm({ article, onCreation }) {
   const checkServerValidation = (msg) => {
     const errors = [""];
     if (msg.includes("Article validation failed: ")) {
-      msg.split("Article validation failed: ");
+      errors[1] = msg.split("Article validation failed: ");
     } else {
       errors[0] = msg;
     }
