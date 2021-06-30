@@ -17,6 +17,7 @@ import NewTicketPage from "../../pages/NewTicketPage";
 import PrivateRoute from "./PrivateRoute";
 import NewArticlePage from "../../pages/NewArticlePage";
 import UpdateArticlePage from "../../pages/UpdateArticlePage";
+import AdminDoctorRoute from "./AdminDoctorRoute";
 
 const Router = () => {
   return (
@@ -33,14 +34,14 @@ const Router = () => {
           </PrivateRoute>
         </Route>
         <Route exact path="/articles/new">
-          <PrivateRoute>
+          <AdminDoctorRoute>
             <NewArticlePage />
-          </PrivateRoute>
+          </AdminDoctorRoute>
         </Route>
         <Route exact path="/articles/:id/edit">
-          <PrivateRoute>
+          <AdminDoctorRoute>
             <UpdateArticlePage />
-          </PrivateRoute>
+          </AdminDoctorRoute>
         </Route>
         <Route exact path="/doctors/:id">
           <DoctorPage />
@@ -64,10 +65,14 @@ const Router = () => {
           <Redirect to="/home" />
         </Route>
         <Route exact path="/tickets/:id">
-          <TicketPage />
+          <PrivateRoute>
+            <TicketPage />
+          </PrivateRoute>
         </Route>
         <Route path="/tickets">
-          <TicketsPage />
+          <PrivateRoute>
+            <TicketsPage />
+          </PrivateRoute>
         </Route>
         <Route exact path="/articles">
           <ArticlesPage />
@@ -79,7 +84,9 @@ const Router = () => {
           <ArticlePage />
         </Route>
         <Route exact path="/profile">
-          <ProfilePage />
+          <PrivateRoute>
+            <ProfilePage />
+          </PrivateRoute>
         </Route>
       </Switch>
     </BrowserRouter>
