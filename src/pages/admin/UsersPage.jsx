@@ -70,6 +70,7 @@ const UsersPage = () => {
             <div className="row justify-content-end">
               <div className="w-auto mt-4">
                 <Paginator
+                  size="medium"
                   paginationInfo={pagination}
                   onPageChange={handlePageChange}
                 />

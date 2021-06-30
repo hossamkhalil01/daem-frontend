@@ -19,6 +19,7 @@ import NewArticlePage from "../../pages/NewArticlePage";
 import UpdateArticlePage from "../../pages/UpdateArticlePage";
 import AdminDoctorRoute from "./AdminDoctorRoute";
 import UpdateTicketPage from "../../pages/UpdateTicketPage";
+import AdminArticlesPage from "../../pages/admin/ArticlesPage";
 
 const Router = () => {
   return (
@@ -27,6 +28,11 @@ const Router = () => {
         <Route exact path="/admin/users">
           <AdminRoute>
             <UsersPage />
+          </AdminRoute>
+        </Route>
+        <Route exact path="/admin/articles">
+          <AdminRoute>
+            <AdminArticlesPage />
           </AdminRoute>
         </Route>
         <Route exact path="/tickets/new">
