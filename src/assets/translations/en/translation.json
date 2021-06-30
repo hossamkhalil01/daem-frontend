@@ -48,5 +48,6 @@
   "search-by-title": "Search By Title",
   "exceeded-limit": "You have reached the maximum number of tickets today",
   "go-to-tickets": "Go to tickets",
-  "dashboard": "Dashboard"
+  "dashboard": "Dashboard",
+  "server-error-label" : "OOPS .. something went worng. Sorry for the inconvenience. We're working on it."
 }
