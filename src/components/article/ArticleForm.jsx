@@ -183,16 +183,6 @@ export default function ArticleForm({ article, onCreation }) {
           onSubmit={handleSubmit}
           encType="multipart/form-data"
         >
-          {editMode ? (
-            <div className="row justify-content-center mb-2">
-              <img
-                src={imageSource}
-                alt="Profile"
-                width="600"
-                className="col-5"
-              />
-            </div>
-          ) : null}
           {formValidations.title.err ? (
             <small className="text-danger">{formValidations.title.msg}</small>
           ) : null}
@@ -229,6 +219,18 @@ export default function ArticleForm({ article, onCreation }) {
             value={curArticle.body}
           />
 
+          {editMode ? (
+            <div className="row m-3">
+              <img
+                src={imageSource}
+                alt="Profile"
+                width="300"
+                height="100"
+                className="col-5"
+              />
+            </div>
+          ) : null}
+
           <div className="w-100 text-start">
             <label htmlFor="images" className="pe-3">
               Upload Article image:{" "}
@@ -241,6 +243,7 @@ export default function ArticleForm({ article, onCreation }) {
               onChange={handleUploadClick}
             />
           </div>
+
           <Button
             variant="contained"
             color="primary"
