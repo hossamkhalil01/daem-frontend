@@ -6,8 +6,6 @@ import {
   createPaginationParams,
   parsePaginatedResponse,
 } from "../../utils/pagination";
-import Navbar from "../../components/layouts/Navbar";
-import Footer from "../../components/layouts/Footer";
 import { UserFilter } from "../../components/UsersFilter";
 
 const UsersPage = () => {
@@ -55,7 +53,6 @@ const UsersPage = () => {
 
   return (
     <>
-      <Navbar />
       <div>
         <UserFilter
           filter={filter}
@@ -70,6 +67,7 @@ const UsersPage = () => {
             <div className="row justify-content-end">
               <div className="w-auto mt-4">
                 <Paginator
+                  size="medium"
                   paginationInfo={pagination}
                   onPageChange={handlePageChange}
                 />
@@ -78,7 +76,6 @@ const UsersPage = () => {
           </div>
         </div>
       </div>
-      <Footer />
     </>
   );
 };

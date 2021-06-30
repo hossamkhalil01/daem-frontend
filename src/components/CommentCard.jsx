@@ -17,7 +17,7 @@ export default function Comment({ comment, removeCommentFromList }) {
     setEditMode(true);
   };
 
-  const isAuthor = () => currentUser._id === comment.author._id;
+  const isAuthor = () => currentUser._id === comment.author?._id;
 
   return (
     <div className="comment d-flex">
@@ -25,7 +25,7 @@ export default function Comment({ comment, removeCommentFromList }) {
         <div className="avatar avatar-sm rounded-circle">
           <img
             className="avatar-img"
-            src={BASE_URL + comment.author.avatar}
+            src={BASE_URL +"/"+ comment.author?.avatar}
             alt=""
           />
         </div>
@@ -33,7 +33,7 @@ export default function Comment({ comment, removeCommentFromList }) {
       <div className="flex-shrink-1 ms-sm-3">
         <div className="comment-meta d-flex">
           <p className="me-2 comment__doctor-name">
-            {comment.author.firstname + " " + comment.author.lastname}
+            {comment.author?.firstname + " " + comment.author?.lastname}
           </p>
         </div>
         {editMode ? (

@@ -1,14 +1,15 @@
 import { default as PrimeButton } from "@material-ui/core/Button";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { useHistory } from "react-router-dom";
 import { deleteArticle } from "../../services/articlesService";
 import ConfirmationModal from "../ConfirmationModal";
+import { UpdateArticlesListContext } from "../../contexts/updateArticlesListContext";
+import { useContext } from "react";
 
 export default function DeleteArticle({ articleId }) {
   const [openModal, setOpenModal] = useState(false);
   const { t } = useTranslation();
-  const history = useHistory();
+  const updated = useContext(UpdateArticlesListContext);
 
   const handleClickOpen = () => {
     setOpenModal(true);
@@ -16,7 +17,7 @@ export default function DeleteArticle({ articleId }) {
   const confirmDeletion = async () => {
     await deleteArticle(articleId);
     setOpenModal(false);
-    history.push("/articles");
+    updated.setUpdate(!updated.update);
   };
   return (
     <>
