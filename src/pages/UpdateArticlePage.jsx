@@ -10,7 +10,7 @@ export default function UpdateArticlePage() {
     history.push(`/articles/${article._id}`);
   };
   const location = useLocation();
-  const { article } = location.article;
+  const { article } = location.state;
   return (
     <>
       <Navbar />
