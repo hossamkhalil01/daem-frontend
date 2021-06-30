@@ -46,6 +46,7 @@
   "expired": "Expired",
   "state": "State",
   "search-by-title": "Search By Title",
-  "exceeded-limit":"You have reached the maximum number of tickets today",
-  "go-to-tickets": "Go to tickets"
+  "exceeded-limit": "You have reached the maximum number of tickets today",
+  "go-to-tickets": "Go to tickets",
+  "dashboard": "Dashboard"
 }
