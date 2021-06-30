@@ -6,6 +6,9 @@ a:hover {
   text-decoration: underline;
 }
 
+.article-card{
+  height:300px;
+}
 .site__info {
   clear: both;
   display: block;
@@ -49,8 +52,8 @@ a:hover {
   -ms-transition: all 0.25s ease-in-out;
   -o-transition: all 0.25s ease-in-out;
   transition: all 0.25s ease-in-out;
-  height: auto;
-  max-width: 100%;
+  height: 100%;
+  width: 100%;
 }
 .card__image:hover > img {
   -webkit-transform: scale(1.2);

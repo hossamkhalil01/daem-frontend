@@ -1,28 +1,32 @@
 import React from "react";
 import { BrowserRouter, Redirect, Route, Switch } from "react-router-dom";
 import AboutUsPage from "../../pages/AboutUsPage";
+import { Dashboard } from "../../pages/admin/Dashboard";
 import ArticlePage from "../../pages/ArticlePage";
 import ArticlesPage from "../../pages/ArticlesPage";
 import AuthPage from "../../pages/AuthPage";
 import DoctorPage from "../../pages/DoctorPage";
 import DoctorsPage from "../../pages/DoctorsPage";
 import LandingPage from "../../pages/LandingPage";
+import NewArticlePage from "../../pages/NewArticlePage";
+import NewTicketPage from "../../pages/NewTicketPage";
+import NotFound from "../../pages/NotFound";
 import ProfilePage from "../../pages/ProfilePage";
 import TicketPage from "../../pages/TicketPage";
-import Logout from "../auth/Logout";
-import AdminRoute from "./AdminRoute";
 import TicketsPage from "../../pages/TicketsPage";
-import NewTicketPage from "../../pages/NewTicketPage";
-import PrivateRoute from "./PrivateRoute";
-import NewArticlePage from "../../pages/NewArticlePage";
 import UpdateArticlePage from "../../pages/UpdateArticlePage";
-import AdminDoctorRoute from "./AdminDoctorRoute";
 import UpdateTicketPage from "../../pages/UpdateTicketPage";
-import { Dashboard } from "../../pages/admin/Dashboard";
+import Logout from "../auth/Logout";
+import AdminDoctorRoute from "./AdminDoctorRoute";
+import AdminRoute from "./AdminRoute";
+// import Navbar from "../layouts/Navbar";
+// import Footer from "../layouts/Footer";
+import PrivateRoute from "./PrivateRoute";
 
 const Router = () => {
   return (
     <BrowserRouter>
+      {/* <Navbar /> */}
       <Switch>
         <Route exact path="/admin/dashboard">
           <AdminRoute>
@@ -92,7 +96,11 @@ const Router = () => {
             <ProfilePage />
           </PrivateRoute>
         </Route>
+        <Route path='*'>
+          <NotFound/>
+        </Route>
       </Switch>
+      {/* <Footer /> */}
     </BrowserRouter>
   );
 };
