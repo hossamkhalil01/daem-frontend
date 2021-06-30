@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import validate from "../utils/validations";
 import * as services from "../services/doctorApplicationsService";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import { useCurrentUser } from "../contexts/CurrentUserContext";
 
 const requriedFields = ["speciality", "nationalId", "doctorId"];
@@ -10,6 +11,7 @@ const requriedFields = ["speciality", "nationalId", "doctorId"];
 const DoctorApplicationForm = () => {
   const { currentUser } = useCurrentUser();
   const [specialitiesList, setSpecialitiesList] = useState([]);
+  const { t } = useTranslation();
   const [formValues, setFormValues] = useState({
     speciality: "",
     about: "",
@@ -126,7 +128,9 @@ const DoctorApplicationForm = () => {
 
     // append the data
     Object.keys(formValues).forEach((key) => {
-      formData.append(key, formValues[key]);
+      if (key === "nationalId" || key === "doctorId")
+        formData.append("images", formValues[key]);
+      else formData.append(key, formValues[key]);
     });
 
     // sumbit request to the backend
@@ -144,12 +148,10 @@ const DoctorApplicationForm = () => {
       <div className="row">
         <div className="col-lg-8">
           <div className="appoinment-wrap mt-5 mt-lg-0 pl-lg-5">
-            <h2 className="mb-2 title-color">Book an appoinment</h2>
-            <p className="mb-4">
-              Mollitia dicta commodi est recusandae iste, natus eum asperiores
-              corrupti qui velit . Iste dolorum atque similique praesentium
-              soluta.
-            </p>
+            <h2 className="mb-2 title-color">{t("become-doctor-title")}</h2>
+            <p className=" mt-5 ">{t("become-doctor-form-header1")} </p>
+            <p className="mb-4 ">{t("become-doctor-form-header2")} </p>
+
             <form
               onSubmit={handleSubmit}
               className="appoinment-form"
@@ -169,7 +171,7 @@ const DoctorApplicationForm = () => {
                       onChange={handleFieldChange("speciality")}
                     >
                       <option value="" disabled>
-                        Speciality *
+                        {t("speciality")} *
                       </option>
                       {specialitiesList.map((speciality, indx) => {
                         return (
@@ -191,7 +193,7 @@ const DoctorApplicationForm = () => {
                   id="about"
                   className="form-control"
                   rows="6"
-                  placeholder="Tell us in brief about you, your career and your professional experience."
+                  placeholder={t("become-doctor-form-about")}
                   value={formValues.about}
                   onChange={handleFieldChange("about", validate.aboutSection)}
                 ></textarea>
@@ -202,7 +204,7 @@ const DoctorApplicationForm = () => {
               <div className="row">
                 <div class="col-lg-6">
                   <label htmlFor="nationalId" className="text-muted">
-                    Upload Your National ID Image
+                    {t("become-doctor-form-nationalId")}
                   </label>
                   <div class="form-group">
                     <input
@@ -220,7 +222,7 @@ const DoctorApplicationForm = () => {
                 </div>
                 <div class="col-lg-6">
                   <label htmlFor="doctorId" className="text-muted">
-                    Upload Your Doctors Syndicate or Hospital ID Image
+                    {t("become-doctor-form-doctorId")}
                   </label>
                   <div class="form-group">
                     <input
@@ -241,7 +243,8 @@ const DoctorApplicationForm = () => {
                 className="btn btn-main btn-lg btn-round-full mt-3"
                 type="submit"
               >
-                Submit<i className="icofont-simple-right ml-2"></i>
+                {t("submit")}
+                <i className="icofont-simple-right ml-2"></i>
               </button>
             </form>
           </div>

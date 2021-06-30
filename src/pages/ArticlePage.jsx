@@ -9,10 +9,14 @@ import ArticleCard from "../components/article/ArticleCard";
 import { useCurrentUser } from "../contexts/CurrentUserContext";
 import EditArticle from "../components/articleActions/EditArticle";
 import DeleteArticle from "../components/articleActions/DeleteArticle";
+import { useHistory } from "react-router-dom";
 
 export default function ArticlePage() {
+  const history = useHistory();
+
   const { id } = useParams();
   const [loading, setLoading] = useState(true);
+
   const [curArticle, setCurArticle] = useState({
     title: "",
     body: "",
@@ -31,8 +35,12 @@ export default function ArticlePage() {
   };
 
   const getCurArticle = async () => {
-    const res = await getArticle(id);
-    setCurArticle(res.data.data);
+    try {
+      const res = await getArticle(id);
+      setCurArticle(res.data.data);
+    } catch (error) {
+      history.push("/notFound");
+    }
   };
   useEffect(() => {
     getCurArticle();
@@ -75,9 +83,9 @@ export default function ArticlePage() {
                       <div className="blog-item-meta mb-3">
                         <span className="text-color-2 text-capitalize mr-3">
                           <i className="icofont-user mr-2"></i>{" "}
-                          {curArticle.author.firstname +
+                          {curArticle.author?.firstname +
                             " " +
-                            curArticle.author.lastname}
+                            curArticle.author?.lastname}
                         </span>
                         <span className="text-black text-capitalize mr-3">
                           <i className="icofont-calendar mr-2"></i>{" "}
@@ -95,11 +103,11 @@ export default function ArticlePage() {
                 </div>
               </div>
               <div>
-                {curArticle.author._id === currentUser._id ? (
+                {curArticle.author?._id === currentUser?._id ? (
                   <div className="d-flex justify-content-around">
                     <EditArticle article={curArticle} />
 
-                    <DeleteArticle articleId={curArticle._id} />
+                    <DeleteArticle articleId={curArticle?._id} />
                   </div>
                 ) : null}
               </div>

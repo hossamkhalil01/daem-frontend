@@ -51,5 +51,12 @@
   "dashboard": "Dashboard",
   "page-not-found": "Page not found",
   "doctor": "Doctor",
-  "moderator": "Moderator"
+  "moderator": "Moderator",
+  "become-doctor-title": "Become A Doctor",
+  "become-doctor-form-header1": "Thank you for wanting to become one of our doctors to help patients and support them.",
+  "become-doctor-form-header2": "Please fill the form and submit it so that our team can review your application.",
+  "become-doctor-form-about": "Tell us in brief about you, your career and your professional experience.",
+  "become-doctor-form-nationalId": "Upload Your National ID Image",
+  "become-doctor-form-doctorId": "Upload Your Doctors Syndicate or Hospital ID Image",
+  "speciality": "Speciality"
 }
