@@ -10,7 +10,10 @@ export default function UpdateArticlePage() {
     history.push(`/articles/${article._id}`);
   };
   const location = useLocation();
-  const { article } = location.state;
+  if (location.state === undefined) {
+    history.push("/articles/");
+  }
+  const article = location.state?.article;
   return (
     <>
       <Navbar />

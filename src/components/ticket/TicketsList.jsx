@@ -19,11 +19,7 @@ export default function TicketList({ tickets, onRemoveTicket }) {
     <>
       <DoctorsProvider value={doctors}>
         {tickets.map((ticket) => {
-          return (
-            <>
-              <TicketCard key={ticket._id} ticket={ticket} />
-            </>
-          );
+          return <TicketCard key={ticket._id} ticket={ticket} />;
         })}
       </DoctorsProvider>
     </>
