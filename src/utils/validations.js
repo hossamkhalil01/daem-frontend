@@ -12,6 +12,8 @@ const TITLE_MAX_LENGTH = 200;
 const BODY_MIN_LENGTH = 10;
 const BODY_MAX_LENGTH = 4000;
 
+const ABOUT_MAX_LENGTH = 1000;
+
 const errMsgs = {
   required: "This field is required.",
   invalidEmail: "Please Enter a valid email.",
@@ -24,6 +26,8 @@ const errMsgs = {
   titleMinLength: `Title must be at least ${TITLE_MIN_LENGTH} chars.`,
   bodyMaxLength: `body must not exceed ${BODY_MAX_LENGTH} chars.`,
   bodyMinLength: `body must be at least ${BODY_MIN_LENGTH} chars.`,
+  aboutMaxLength: `body must not exceed ${ABOUT_MAX_LENGTH} chars.`,
+
 };
 
 const required = (field) => {
@@ -115,6 +119,13 @@ const body = (body) => {
   return errorArr;
 };
 
+const aboutSection = (text) => {
+  const errorArr = [];
+  if (text.length > ABOUT_MAX_LENGTH) errorArr.push(errMsgs.AboutMaxLength)
+
+  return errorArr;
+}
+
 const validate = {
   email,
   password,
@@ -124,6 +135,7 @@ const validate = {
   required,
   title,
   body,
+  aboutSection,
 };
 
 export default validate;

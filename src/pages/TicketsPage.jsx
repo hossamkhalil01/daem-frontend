@@ -81,13 +81,15 @@ export default function TicketsPage() {
             </div>
           </>
         ) : (
-          <div className="text-center m-5 alert alert-info">
-            <h2>No tickets yet</h2>
-            <p>
-              <Link to="/">
-                <ArrowBackIcon /> Back to home
-              </Link>
-            </p>
+          <div className="row justify-content-center m-5">
+            <div className="text-center col-12 col-md-6 alert alert-info">
+              <h2>No tickets yet</h2>
+              <p>
+                <Link to="/">
+                  <ArrowBackIcon /> Back to home
+                </Link>
+              </p>
+            </div>
           </div>
         )}
       </UpdateTicketsListProvider>

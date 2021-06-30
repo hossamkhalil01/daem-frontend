@@ -17,17 +17,20 @@ import TicketsPage from "../../pages/TicketsPage";
 import UpdateArticlePage from "../../pages/UpdateArticlePage";
 import UpdateTicketPage from "../../pages/UpdateTicketPage";
 import Logout from "../auth/Logout";
+import DoctorApplicationForm from "../DoctorApplicationForm";
 import AdminDoctorRoute from "./AdminDoctorRoute";
 import AdminRoute from "./AdminRoute";
-// import Navbar from "../layouts/Navbar";
-// import Footer from "../layouts/Footer";
 import PrivateRoute from "./PrivateRoute";
 
 const Router = () => {
   return (
     <BrowserRouter>
-      {/* <Navbar /> */}
       <Switch>
+        <Route exact path="/test">
+          <PrivateRoute>
+            <DoctorApplicationForm />
+          </PrivateRoute>
+        </Route>
         <Route exact path="/admin/dashboard">
           <AdminRoute>
             <Dashboard />
@@ -96,11 +99,10 @@ const Router = () => {
             <ProfilePage />
           </PrivateRoute>
         </Route>
-        <Route path='*'>
-          <NotFound/>
+        <Route path="*">
+          <NotFound />
         </Route>
       </Switch>
-      {/* <Footer /> */}
     </BrowserRouter>
   );
 };
