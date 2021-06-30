@@ -6,7 +6,6 @@ import EditTicket from "./EditTicket";
 import SetState from "./SetState";
 import SetUrgency from "./SetUrgency";
 
-
 export default function TicketActions({ ticket }) {
   const { currentUser } = useCurrentUser();
 
@@ -33,7 +32,7 @@ export default function TicketActions({ ticket }) {
   ) {
     return (
       <>
-        <EditTicket ticketId={ticket._id} />
+        <EditTicket ticket={ticket} />
         <DeleteTicket ticketId={ticket._id} />
       </>
     );
