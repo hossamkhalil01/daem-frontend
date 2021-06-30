@@ -12,6 +12,10 @@ export const TICKETS_API = {
     `${BASE_URL}/tickets/${ticketId}/remove-doctor`,
   getTickets: () => `${BASE_URL}/tickets`,
   createTicket: () => `${BASE_URL}/tickets`,
+  userUpdateTicket: (ticketId) => `${BASE_URL}/tickets/user/${ticketId}`,
+  moderatorUpdateTicket: (ticketId) =>
+    `${BASE_URL}/tickets/moderator/${ticketId}`,
+  doctorUpdateTicket: (ticketId) => `${BASE_URL}/tickets/doctor/${ticketId}`,
 };
 
 export const DOCTORS_API = {

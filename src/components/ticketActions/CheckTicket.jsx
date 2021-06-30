@@ -4,7 +4,7 @@ import FormControlLabel from "@material-ui/core/FormControlLabel";
 import { withStyles } from "@material-ui/core/styles";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { updateTicket } from "../../services/ticketsService";
+import { updateTicketModerator } from "../../services/ticketsService";
 
 const GreenCheckbox = withStyles({
   root: {
@@ -22,7 +22,7 @@ export default function CheckTicket({ ticketId, isChecked }) {
 
   const handleChange = async (event) => {
     setCheck(event.target.checked);
-    await updateTicket(ticketId, { isChecked: event.target.checked });
+    await updateTicketModerator(ticketId, { isChecked: event.target.checked });
   };
 
   return (

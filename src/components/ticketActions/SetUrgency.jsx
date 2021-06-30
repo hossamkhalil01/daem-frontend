@@ -4,15 +4,14 @@ import MenuItem from "@material-ui/core/MenuItem";
 import Select from "@material-ui/core/Select";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { updateTicket } from "../../services/ticketsService";
-
+import { updateTicketDoctor } from "../../services/ticketsService";
 
 export default function SetUrgency({ ticketId, ticketUrgency }) {
   const { t } = useTranslation();
   const [urgency, setUrgency] = useState(ticketUrgency);
 
   const handleChange = async (event) => {
-    await updateTicket(ticketId, { urgency: event.target.value });
+    await updateTicketDoctor(ticketId, { urgency: event.target.value });
     setUrgency(event.target.value);
   };
 
