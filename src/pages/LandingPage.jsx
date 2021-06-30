@@ -25,7 +25,7 @@ const LandingPage = (props) => {
       <div>
         {/* <!-- Slider Start --> */}
         <section className={`banner banner-${t("language")}`}>
-          <div className="container">
+          <div className="container-fluid">
             <div className="row">
               <div className="col-lg-6 col-md-12 col-xl-7">
                 <div className="block">

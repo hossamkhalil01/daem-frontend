@@ -503,7 +503,7 @@ a:focus {
 .about {
   position: relative;
   overflow: hidden;
-  background-size: cover;
+  background-size: cover !important;
 }
 .about-ar-EG {
   background: url("../images/bg/doctors-left.jpg") no-repeat;
@@ -515,9 +515,8 @@ a:focus {
 .banner {
   position: relative;
   overflow: hidden;
-  background: #fff;
-  background-size: cover;
   min-height: 550px;
+  background-size: cover !important;
 }
 
 .banner-en-US {
@@ -1562,11 +1561,10 @@ a:focus {
 .suggested-articles-section {
   position: relative;
   overflow: hidden;
-  background: #fff;
-  background-size: contain;
   min-height: 450px;
-  background: url("../images/bg/articles-bg.jpg") no-repeat;
   padding-bottom: 0;
+  background-size: cover !important;
+  background-color: white;
 }
 
 .suggested-articles {
