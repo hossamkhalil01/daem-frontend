@@ -1,24 +1,20 @@
-import React from "react";
 import {
   Button,
-  FormControl,
-  Grid,
-  Input,
-  FormHelperText,
-  InputLabel,
-  Paper,
+  FormControl, FormHelperText, Grid,
+  Input, InputLabel,
+  Paper
 } from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
+import Switch from "@material-ui/core/Switch";
 import TextareaAutosize from "@material-ui/core/TextareaAutosize";
 import CloudUploadIcon from "@material-ui/icons/CloudUpload";
-import { makeStyles } from "@material-ui/core/styles";
-import "../styles/UserProfile.css";
-import { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { BASE_URL } from "../api/urls";
-import validate from "../utils/validations";
 import { useCurrentUser } from "../contexts/CurrentUserContext";
 import * as userService from "../services/userService";
-import Switch from "@material-ui/core/Switch";
-import { Link } from "react-router-dom";
+import "../styles/UserProfile.css";
+import validate from "../utils/validations";
 
 const useStyles = makeStyles((theme) => ({
   root: {

@@ -21,10 +21,10 @@ const AuthPage = ({ isLogin }) => {
   return (
     <>
       <Navbar />
-      <div className="container-fluid w-75 mb-2 mt-5">
-        <div className="row no-gutter">
+      <div className="container-fluid w-75 mb-1 mt-5">
+        <div className="row no-gutter ">
           <img
-            className="d-none d-md-flex col-md-4 col-lg-6 bg-image"
+            className="d-none d-md-flex col-md-4 col-lg-5 bg-image"
             src="/assets/images/auth/auth-cover.jpg"
             alt="login-img"
           />

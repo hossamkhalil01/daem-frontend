@@ -1592,3 +1592,17 @@ a:focus {
     flex-direction: column;
   }
 }
+
+.notfound-container{
+  text-align: center;
+}
+.notfound-container h2{
+  color:#003869;
+  margin-top: 7vh;
+}
+
+.notfound-container img{
+  width:70%;
+  display:block;
+  margin: auto;
+}
