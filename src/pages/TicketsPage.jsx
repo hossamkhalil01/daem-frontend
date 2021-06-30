@@ -8,15 +8,20 @@ import { getTickets } from "../services/ticketsService";
 import Paginator from "../components/Paginator";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 import { UpdateTicketsListProvider } from "../contexts/updateTicketsListContext";
-
+import { Filter } from "../components/Filter";
 export default function TicketsPage() {
   const [loading, setLoading] = useState(true);
   const [tickets, setTickets] = useState([]);
   const [update, setUpdate] = useState(false);
   const [pagination, setPagination] = useState({ page: 1, totalPages: 1 });
-
-  const getAllTickets = async (newPage) => {
-    const params = { page: newPage, limit: 3 };
+  const [filter, setFilter] = useState({
+    from: "",
+    to: "",
+    state: "",
+  });
+  const [onUpdateFilteredState, setOnUpdateFilteredState] = useState(false);
+  const getAllTickets = async (newPage, filterProps) => {
+    const params = { page: newPage, limit: 3, ...filterProps };
     let res = await getTickets(params);
     if (res.data.data.docs.length === 0 && newPage > 1) {
       params.page = newPage - 1;
@@ -35,12 +40,27 @@ export default function TicketsPage() {
   };
 
   useEffect(() => {
-    getAllTickets(pagination.page);
-  }, [update]);
+    const newFilter = {};
+    for (const prop in filter) {
+      if (filter[prop] === "") {
+        newFilter[prop] = null;
+      } else {
+        newFilter[prop] = filter[prop];
+      }
+    }
+    getAllTickets(pagination.page, newFilter);
+  }, [update, onUpdateFilteredState]);
 
   return (
     <>
       <Navbar />
+      <div className="m-5">
+        <Filter
+          filter={filter}
+          setFilter={setFilter}
+          onUpdateFilteredState={setOnUpdateFilteredState}
+        />
+      </div>
       <UpdateTicketsListProvider value={{ update, setUpdate }}>
         {loading ? (
           <Loading />
