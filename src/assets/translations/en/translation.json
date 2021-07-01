@@ -64,5 +64,17 @@
   "latest-articles":"Latest Articles",
   "no-articles-found":"No Articles Found",
   "read-more":"Read More",
-  "new-article-header":"Do you have news or medical information you would like to share?"
+  "new-article-header":"Do you have news or medical information you would like to share?",
+  "about-us-header":"About us",
+  "about-us-subheader":"get to know us",
+  "about-us-sidebar":"Consulting Platform for your COVID-19 inquiries.",
+  "about-us-body":"We are a group of doctors and moderators helping covid patients get support from specialized doctors by providing free medical consultations.",
+  "feature1-header":"Qualified Doctors",
+  "feature2-header":"Helpful Articles",
+  "feature3-header":"Easy to Reach",
+  "feature4-header":"Medical Counseling",
+  "feature1-body":"The platform supports covid-19 patient with a large scale of qualified doctors to help them as much as they can.",
+  "feature2-body":"Doctors creates a helpful article it contains a general steps for COVID-19 protection and how to deal with it.",
+  "feature3-body":"Support Available for 24/7 with qualified doctors to answer you for all question.",
+  "feature4-body":"You can create your free ticket at any time for ask about medical question ."
 }

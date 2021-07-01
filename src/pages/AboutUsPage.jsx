@@ -1,6 +1,8 @@
-import Navbar from "../components/layouts/Navbar";
+import { useTranslation } from "react-i18next";
 import Footer from "../components/layouts/Footer";
+import Navbar from "../components/layouts/Navbar";
 const AboutUsPage = () => {
+  const {t} = useTranslation();
   return (
     <>
       <Navbar />
@@ -10,8 +12,8 @@ const AboutUsPage = () => {
           <div className="row">
             <div className="col-md-12">
               <div className="block text-center">
-                <span className="text-white">About Us</span>
-                <h1 className="text-capitalize mb-5 text-lg">About Us</h1>
+                <span className="text-white">{t("about-us-subheader")}</span>
+                <h1 className="text-capitalize mb-5 text-lg">{t("about-us-header")}</h1>
               </div>
             </div>
           </div>
@@ -22,21 +24,13 @@ const AboutUsPage = () => {
           <div className="row">
             <div className="col-lg-4">
               <h2 className="title-color">
-                Consulting Platform for your COVID-19 question
+                {t("about-us-sidebar")}
               </h2>
             </div>
             <div className="col-lg-8">
               <p>
-                A platform to connect volunteering doctors to Corona patients
-                who need constant support. The idea is inspired by a facebook
-                group where patients create posts with their condition and
-                specialized doctors reply to them.
+                {t("about-us-body")}
               </p>
-              <img
-                src="/assets/images/about/sign.png"
-                alt=""
-                className="img-fluid"
-              />
             </div>
           </div>
         </div>
@@ -52,10 +46,9 @@ const AboutUsPage = () => {
                   alt=""
                   className="img-fluid w-100"
                 />
-                <h4 className="mt-3">Medical Counseling</h4>
+                <h4 className="mt-3">{t("feature1-header")}</h4>
                 <p>
-                  You can create your free ticket at any time for ask about
-                  medical question .
+                {t("feature1-body")}
                 </p>
               </div>
             </div>
@@ -66,10 +59,9 @@ const AboutUsPage = () => {
                   alt=""
                   className="img-fluid w-100"
                 />
-                <h4 className="mt-3">Easy to Reach</h4>
+                <h4 className="mt-3">{t("feature2-header")}</h4>
                 <p>
-                  Support Available for 24/7 with qualified doctors to answer
-                  you for all question .
+                {t("feature2-body")}
                 </p>
               </div>
             </div>
@@ -80,10 +72,9 @@ const AboutUsPage = () => {
                   alt=""
                   className="img-fluid w-100"
                 />
-                <h4 className="mt-3">Helpful Articles</h4>
+                <h4 className="mt-3">{t("feature3-header")}</h4>
                 <p>
-                  Doctors creates a helpful article it contains a general steps
-                  for COVID-19 protection and how to deal with it .
+                {t("feature3-body")}
                 </p>
               </div>
             </div>
@@ -94,10 +85,9 @@ const AboutUsPage = () => {
                   alt=""
                   className="img-fluid w-100"
                 />
-                <h4 className="mt-3">Qualified Doctors</h4>
+                <h4 className="mt-3">{t("feature4-header")}</h4>
                 <p>
-                  The platform supports covid-19 patient with a large scale of
-                  qualified doctors to help them as much as they can .
+                {t("feature4-body")}
                 </p>
               </div>
             </div>
