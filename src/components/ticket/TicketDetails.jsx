@@ -32,6 +32,9 @@ export default function TicketDetails({ticket}) {
       <div className="ticket__description">
         <p>{ticket.description}</p>
       </div>
+      {ticket.patient.diseases ?(
+        <p className="chronic-diseases">{t("chronic-diseases")} : {ticket.patient.diseases}</p>
+      ):""}
       {ticket.images.length ? (
         <div className="ticket-carousel">
           <Carousel images={ticket.images} />
