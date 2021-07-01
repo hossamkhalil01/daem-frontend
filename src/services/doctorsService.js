@@ -5,6 +5,10 @@ export const getAllDoctors = async () => {
   return await requests.get(DOCTORS_API.getAllDoctors());
 };
 
+export const getDoctors = async () => {
+  return await requests.get(DOCTORS_API.getDoctors());
+};
+
 export const getDoctor = async (doctorId) => {
   return await requests.get(DOCTORS_API.getDoctor(doctorId));
 };
