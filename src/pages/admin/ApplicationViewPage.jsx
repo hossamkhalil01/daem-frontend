@@ -2,17 +2,44 @@ import { useState } from "react";
 import Navbar from "../../components/layouts/Navbar";
 import Footer from "../../components/layouts/Footer";
 import { useTranslation } from "react-i18next";
-import DoctorApplicationForm from "../../components/DoctorApplicationForm";
 import { Link } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
+import formatDate from "../../utils/formatData";
+import { makeStyles } from "@material-ui/core/styles";
+import Button from "@material-ui/core/Button";
+import {
+  approveApplication,
+  rejectApplication,
+} from "../../services/doctorApplicationsService";
+import { BASE_URL } from "../../api/urls";
 
-const BecomeDoctorPage = (props) => {
-  const [application, setApplication] = useState(null);
+const useStyles = makeStyles((theme) => ({
+  root: {
+    "& > *": {
+      margin: theme.spacing(1),
+    },
+  },
+}));
+const ApplicationViewPage = () => {
+  const classes = useStyles();
+  const [curApplication, setCurApplication] = useState(null);
+  const location = useLocation();
+  const { application } = location.state;
+  const history = useHistory();
 
   const { t } = useTranslation();
 
-  const handleSuccessSubmit = (newApplication) => {
-    // set the state
-    setApplication(newApplication);
+  const handleApprove = async () => {
+    console.log(application._id);
+    const res = await approveApplication(application._id);
+    history.goBack();
+    console.log(res);
+  };
+
+  const handleReject = async () => {
+    console.log(application._id);
+    const res = await rejectApplication(application._id);
+    console.log(res);
   };
 
   return (
@@ -26,10 +53,10 @@ const BecomeDoctorPage = (props) => {
             <div className="col-md-12">
               <div className="block text-center">
                 <span className="text-white">
-                  {t("become-doctor-subtitle")}
+                  {t("doctor-application-subtitle")}
                 </span>
                 <h1 className="text-capitalize mb-5 text-lg">
-                  {t("become-doctor-title")}{" "}
+                  {t("doctor-application-title")}{" "}
                 </h1>
               </div>
             </div>
@@ -41,12 +68,110 @@ const BecomeDoctorPage = (props) => {
       <section className="appoinment section">
         <div className="row justify-content-center">
           <div className="container col-md-8">
-            {!application ? (
-              <DoctorApplicationForm onSuccessSubmit={handleSuccessSubmit} />
+            <Link to="/admin/dashboard" className="btn btn-sm btn-info mr-4">
+              Back To Dashboard
+            </Link>
+            {application ? (
+              <div className="text-center border p-4">
+                <div className="row">
+                  <div className="col-6 row">
+                    <label className="lead col-6">Status</label>
+                    <p className="text-muted col-6">{application.status}</p>
+                  </div>
+                  <div className="col-6 row">
+                    <label className="lead col-6">Speciality</label>
+                    <p className="text-muted col-6">{application.speciality}</p>
+                  </div>
+                </div>
+
+                <div className="row">
+                  <div className="col-6 row">
+                    <label className="lead col-6">Full Name</label>
+                    <p className="text-muted col-6">
+                      {application.applicant.firstname +
+                        " " +
+                        application.applicant.lastname}
+                    </p>
+                  </div>
+                  <div className="col-6 row">
+                    <label className="lead col-6">Email</label>
+                    <p className="text-muted col-6">
+                      {application.applicant.email}
+                    </p>
+                  </div>
+                </div>
+
+                <div className="row">
+                  <div className="col-6 row">
+                    <label className="lead col-6">Gender</label>
+                    <p className="text-muted col-6">
+                      {application.applicant.gender}
+                    </p>
+                  </div>
+                  <div className="col-6 row">
+                    <label className="lead col-6">Date Of Birth</label>
+                    <p className="text-muted col-6">
+                      {application.applicant.DOB}
+                    </p>
+                  </div>
+                </div>
+
+                <div className="row">
+                  <div className="col-3">
+                    <label className="lead">About</label>
+                  </div>
+                  <div className="col-9">
+                    <p className="text-muted text-justify">
+                      {application.about}
+                    </p>
+                  </div>
+                </div>
+
+                <div className="row align-items-center">
+                  <label className="col-3">National ID</label>
+                  <img
+                    className="img-fluid img-thumbnail col-9 w-50 m-2"
+                    src={BASE_URL + "/" + application.nationalId}
+                    alt=""
+                  />
+                </div>
+
+                <div className="row align-items-center">
+                  <label className="col-3">Doctor ID</label>
+                  <img
+                    className="img-fluid img-thumbnail col-9 w-50 m-2"
+                    src={BASE_URL + "/" + application.doctorId}
+                    alt=""
+                  />
+                </div>
+
+                {application.status === "pending" ? (
+                  <div className="d-flex justify-content-around m-5">
+                    <Button
+                      variant="contained"
+                      color="primary"
+                      onClick={() => {
+                        handleApprove();
+                      }}
+                    >
+                      Approve
+                    </Button>
+                    <Button
+                      variant="contained"
+                      color="secondary"
+                      onClick={() => {
+                        handleReject();
+                      }}
+                    >
+                      Reject
+                    </Button>
+                  </div>
+                ) : null}
+              </div>
             ) : (
               <div className="justify-content-center text-center">
                 <h3 className="title-color">
-                  {t("become-doctor-submission-msg")}
+                  {t("doctor-application-notFound-msg")}
                 </h3>
                 <Link
                   to="/"
@@ -67,4 +192,4 @@ const BecomeDoctorPage = (props) => {
   );
 };
 
-export default BecomeDoctorPage;
+export default ApplicationViewPage;
