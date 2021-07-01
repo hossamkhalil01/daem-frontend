@@ -17,7 +17,7 @@ import TicketsPage from "../../pages/TicketsPage";
 import UpdateArticlePage from "../../pages/UpdateArticlePage";
 import UpdateTicketPage from "../../pages/UpdateTicketPage";
 import Logout from "../auth/Logout";
-import DoctorsApplicationForm from "../../components/DoctorApplicationForm";
+import BecomeDoctorPage from "../../pages/BecomeDoctorPage";
 import AdminDoctorRoute from "./AdminDoctorRoute";
 import AdminRoute from "./AdminRoute";
 import PrivateRoute from "./PrivateRoute";
@@ -31,6 +31,12 @@ const Router = () => {
             <Dashboard />
           </AdminRoute>
         </Route>
+        <Route exact path="/become-doctor">
+          <PrivateRoute>
+            <BecomeDoctorPage />
+          </PrivateRoute>
+        </Route>
+
         <Route exact path="/tickets/new">
           <PrivateRoute>
             <NewTicketPage />

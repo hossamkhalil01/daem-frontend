@@ -59,5 +59,6 @@
   "become-doctor-form-nationalId": ".اختر صورة بطاقة الرقم القومي",
   "become-doctor-form-doctorId": ".اختر صورة من بطاقة النقابه أو العمل (مستشفى)",
   "speciality": "التخصص",
-  "server-error-label": ".لقد واجهتنا مشكلة.نأسف للإزعاج,نحن نعمل على حل المشكلة"
+  "server-error-label": ".لقد واجهتنا مشكلة.نأسف للإزعاج,نحن نعمل على حل المشكلة",
+  "become-doctor-subtitle": "ساعدنا و أدعم المرضى"
 }

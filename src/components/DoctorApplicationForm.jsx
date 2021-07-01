@@ -163,7 +163,7 @@ const DoctorApplicationForm = () => {
 
   return (
     <>
-      <div className="row">
+      <div className="row justify-content-center">
         <div className="col-lg-8">
           <div className="appoinment-wrap mt-5 mt-lg-0 pl-lg-5">
             <h2 className="mb-2 title-color">{t("become-doctor-title")}</h2>
@@ -258,7 +258,7 @@ const DoctorApplicationForm = () => {
                 </div>
               </div>
               <button
-                className="btn btn-main btn-lg btn-round-full mt-3"
+                className="btn btn-main btn-lg btn-round-full mt-3 float-right"
                 type="submit"
               >
                 {t("submit")}
