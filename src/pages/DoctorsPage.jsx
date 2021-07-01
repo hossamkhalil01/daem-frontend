@@ -4,10 +4,8 @@ import Footer from "../components/layouts/Footer";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 import Paginator from "../components/Paginator";
-import { NavLink } from "react-router-dom";
 import { BASE_URL } from "../api/urls";
-import { getAllDoctors } from "../services/doctorsService";
-import { useCurrentUser } from "../contexts/CurrentUserContext";
+import { getDoctors } from "../services/doctorsService";
 import capitalize from "../utils/capitalize";
 import {
   createPaginationParams,
@@ -15,7 +13,6 @@ import {
 } from "../utils/pagination";
 
 const DoctorsPage = (props) => {
-  const { currentUser } = useCurrentUser();
   const { t } = useTranslation();
   const [pagination, setPagination] = useState({ page: 1, totalPages: 1 });
   const [doctors, setDoctors] = useState([]);
@@ -30,7 +27,7 @@ const DoctorsPage = (props) => {
 
     // get the new page from api
     try {
-      const res = await getAllDoctors(params);
+      const res = await getDoctors(params);
       const { data, paginationInfo } = parsePaginatedResponse(res);
       // set the values
       setPagination(paginationInfo);

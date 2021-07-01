@@ -25,7 +25,7 @@ const UsersTable = ({ users, onSelectionError }) => {
       <TableRow>
         <TableCell colSpan={6} align="center">
           <h4 className="alert alert-info text-center">
-            No avaliable Users yet!
+            No avaliable users yet!
           </h4>
         </TableCell>
       </TableRow>

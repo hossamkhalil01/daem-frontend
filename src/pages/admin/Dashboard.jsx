@@ -6,10 +6,11 @@ import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
-import UsersPage from "../../pages/admin/UsersPage";
+import UsersPage from "./UsersPage";
 import Navbar from "../../components/layouts/Navbar";
 import Footer from "../../components/layouts/Footer";
-import AdminArticlesPage from "../../pages/admin/ArticlesPage";
+import ArticlesPage from "./ArticlesPage";
+import ApplicationsPage from "./ApplicationsPage";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -78,11 +79,10 @@ export const Dashboard = () => {
           <UsersPage />
         </TabPanel>
         <TabPanel value={value} index={1}>
-          <AdminArticlesPage />
+          <ArticlesPage />
         </TabPanel>
         <TabPanel value={value} index={2}>
-          {/* add your page here y hoss */}
-          Item Three
+          <ApplicationsPage />
         </TabPanel>
       </div>
       <Footer />

@@ -41,7 +41,7 @@ const BecomeDoctorPage = (props) => {
       <section className="appoinment section">
         <div className="row justify-content-center">
           <div className="container col-md-8">
-            {application ? (
+            {!application ? (
               <DoctorApplicationForm onSuccessSubmit={handleSuccessSubmit} />
             ) : (
               <div className="justify-content-center text-center">

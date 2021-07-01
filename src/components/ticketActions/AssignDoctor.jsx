@@ -5,7 +5,7 @@ import { useTranslation } from "react-i18next";
 import { DoctorsContext } from "../../contexts/doctorsContext";
 import {
   removeTicketDoctor,
-  updateTicketDoctor,
+  updateTicketDoctor
 } from "../../services/ticketsService";
 
 export default function AssignDoctor({ ticketId, ticketDoctor }) {
@@ -23,20 +23,26 @@ export default function AssignDoctor({ ticketId, ticketDoctor }) {
       await removeTicketDoctor(ticketId);
     }
   };
+  const change = async (event) => {
+    console.log(event.target.value);
+  };
 
   return (
+    <>
+    <p>{doctor.firstname}</p>
     <Autocomplete
       className="ticket-doctor"
-      value={doctor || clearField}
+      value={doctor || null}
       id={ticketId}
       size="medium"
       style={{ width: 200 }}
-      options={doctors}
+      options={[clearField,...doctors]}
       onChange={handleChange}
       getOptionLabel={(option) => `${option.firstname} ${option.lastname}`}
       getOptionSelected={(option, value) => option._id === value._id}
       renderInput={(params) => (
         <TextField
+        onChange = {change}
           value={doctor}
           {...params}
           variant="standard"
@@ -44,5 +50,6 @@ export default function AssignDoctor({ ticketId, ticketDoctor }) {
         />
       )}
     />
+    </>
   );
 }

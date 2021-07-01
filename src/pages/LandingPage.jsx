@@ -23,32 +23,35 @@ const LandingPage = (props) => {
     <>
       <Navbar />
       <div>
-        {/* <!-- Slider Start --> */}
-        <section className={`banner banner-${t("language")}`}>
-          <div className="container">
-            <div className="row">
-              <div className="col-lg-6 col-md-12 col-xl-7">
-                <div className="block">
-                  <div className="divider mb-3"></div>
-                  <span className="text-uppercase text-sm letter-spacing "></span>
-                  <h1 className="mb-3 mt-3">{t("banner-header")}</h1>
+        {!currentUser || currentUser.role === "user" ? (
+          <section className={`banner banner-${t("language")}`}>
+            <div className="container">
+              <div className="row">
+                <div className="col-lg-6 col-md-12 col-xl-7">
+                  <div className="block">
+                    <div className="divider mb-3"></div>
+                    <span className="text-uppercase text-sm letter-spacing "></span>
+                    <h1 className="mb-3 mt-3">{t("banner-header")}</h1>
 
-                  <p className="mb-4 pr-5">{t("banner-body")}</p>
-                  <div className="btn-container ">
-                    <NavLink
-                      to="/tickets/new"
-                      exact
-                      className="btn btn-main-2 btn-icon btn-round-full"
-                    >
-                      {t("ask-doctor")}{" "}
-                      <i className="icofont-simple-right ml-2  "></i>
-                    </NavLink>
+                    <p className="mb-4 pr-5">{t("banner-body")}</p>
+                    <div className="btn-container ">
+                      <NavLink
+                        to="/tickets/new"
+                        exact
+                        className="btn btn-main-2 btn-icon btn-round-full"
+                      >
+                        {t("ask-doctor")}{" "}
+                        <i className="icofont-simple-right ml-2  "></i>
+                      </NavLink>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
-        </section>
+          </section>
+        ) : (
+          ""
+        )}
         <section className="section suggested-articles-section">
           <div className="container">
             <div className="suggested-articles__header ">
@@ -56,11 +59,8 @@ const LandingPage = (props) => {
             </div>
             <div className="suggested-articles">
               {articles.map((article) => (
-                <div className="grid">
-                  <ArticleCard
-                    key={article._id}
-                    article={article}
-                  ></ArticleCard>
+                <div className="grid" key={article._id}>
+                  <ArticleCard article={article}></ArticleCard>
                 </div>
               ))}
             </div>
