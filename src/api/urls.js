@@ -19,8 +19,9 @@ export const TICKETS_API = {
 };
 
 export const DOCTORS_API = {
-  getAllDoctors: () => `${BASE_URL}/doctors`,
+  getDoctors: () => `${BASE_URL}/doctors`,
   getDoctor: (id) => `${BASE_URL}/doctors/${id}`,
+  getAllDoctors: () => `${BASE_URL}/all-doctors`,
 };
 
 export const AUTH_API = {

@@ -4,7 +4,7 @@ import Footer from "../components/layouts/Footer";
 import Paginator from "../components/Paginator";
 import { NavLink } from "react-router-dom";
 import { BASE_URL } from "../api/urls";
-import { getAllDoctors } from "../services/doctorsService";
+import { getDoctors } from "../services/doctorsService";
 import capitalize from "../utils/capitalize";
 import {
   createPaginationParams,
@@ -25,7 +25,7 @@ const DoctorsPage = (props) => {
 
     // get the new page from api
     try {
-      const res = await getAllDoctors(params);
+      const res = await getDoctors(params);
       const { data, paginationInfo } = parsePaginatedResponse(res);
       // set the values
       setPagination(paginationInfo);
