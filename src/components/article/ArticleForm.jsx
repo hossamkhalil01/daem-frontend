@@ -28,7 +28,6 @@ export default function ArticleForm({ article, onCreation }) {
 
   useEffect(() => {
     if (article) {
-      console.log(article);
       setCurArticle({ ...article });
       setEditMode(true);
       setImageSource(BASE_URL + "/" + article.image);
