@@ -104,5 +104,15 @@
   "server-error-label": ".لقد واجهتنا مشكلة.نأسف للإزعاج,نحن نعمل على حل المشكلة",
   "become-doctor-subtitle": "ساعدنا و أدعم المرضى",
   "become-doctor-submission-msg": ".شكراً لك للتسليم , يتم الآن مراجعه البيانات الخاصه بك بواسطة فريق العمل الخاص بنا",
-  "chronic-diseases":"امراض مزمنة"
+  "chronic-diseases":"امراض مزمنة",
+  "welcome-back":"مرحبا بعودتك!",
+  "password":"كلمة السر",
+  "confirm-password":"تأكيد كلمة المرور",
+  "remember-password":"تذكر كلمة المرور",
+  "new-to-daem":"مستخدم جديد لموقع دعم؟",
+  "date-of-birth":"تاريخ الميلاد",
+  "gender":"النوع",
+  "already-has-account":"هل لديك حساب بالفعل?",
+  "diseases-placeholder":"يُرجى وصف أي أمراض لديك قد يكون من المفيد معرفتها"
+
 }

@@ -1,13 +1,14 @@
 import { FormHelperText } from "@material-ui/core";
 import React from "react";
-import { useHistory } from "react-router-dom";
+import { useTranslation } from "react-i18next";
+import { NavLink, useHistory } from "react-router-dom";
+import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import * as authService from "../../services/authService";
 import validate from "../../utils/validations";
-import { NavLink } from "react-router-dom";
-import { useCurrentUser } from "../../contexts/CurrentUserContext";
 
 const Register = ({ setAuthenticated }) => {
   const history = useHistory();
+  const {t} = useTranslation();
 
   const { setCurrentUser } = useCurrentUser();
   const [formValues, setFormValues] = React.useState({
@@ -148,7 +149,7 @@ const Register = ({ setAuthenticated }) => {
 
   return (
     <>
-      <h3 className="login-heading mb-4 text-center">Register</h3>
+      <h3 className="login-heading mb-4 text-center">{t("register")}</h3>
       <form onSubmit={handleSubmit}>
         <div className="form-label-group">
           <input
@@ -164,7 +165,7 @@ const Register = ({ setAuthenticated }) => {
             placeholder="First Name*"
             autoFocus
           />
-          <label htmlFor="firstname">First Name *</label>
+          <label htmlFor="firstname">{t("first-name")} *</label>
           <FormHelperText error={formValidations.firstname.err}>
             {formValidations.firstname.msg}
           </FormHelperText>
@@ -182,7 +183,7 @@ const Register = ({ setAuthenticated }) => {
             }
             placeholder="Last Name*"
           />
-          <label htmlFor="lastname">Last Name *</label>
+          <label htmlFor="lastname">{t("last-name")} *</label>
           <FormHelperText error={formValidations.lastname.err}>
             {formValidations.lastname.msg}
           </FormHelperText>
@@ -200,7 +201,7 @@ const Register = ({ setAuthenticated }) => {
             autoComplete="username"
             placeholder="Email*"
           />
-          <label htmlFor="email">Email *</label>
+          <label htmlFor="email">{t("email")} *</label>
           <FormHelperText error={formValidations.email.err}>
             {formValidations.email.msg}
           </FormHelperText>
@@ -220,7 +221,7 @@ const Register = ({ setAuthenticated }) => {
             value={formValues.password}
             autoComplete="current-password"
           />
-          <label htmlFor="password">Password *</label>
+          <label htmlFor="password">{t("password")} *</label>
           <FormHelperText error={formValidations.password.err}>
             {formValidations.password.msg}
           </FormHelperText>
@@ -240,7 +241,7 @@ const Register = ({ setAuthenticated }) => {
             value={formValues.confirmPassword}
             autoComplete="current-password"
           />
-          <label htmlFor="confirm-password">Confirm Password *</label>
+          <label htmlFor="confirm-password">{t("confirm-password")} *</label>
           <FormHelperText error={formValidations.confirmPassword.err}>
             {formValidations.confirmPassword.msg}
           </FormHelperText>
@@ -259,10 +260,10 @@ const Register = ({ setAuthenticated }) => {
               onChange={handleChange("gender")}
             >
               <option value="" disabled>
-                Gender *
+              {t("gender")} *
               </option>
-              <option value="male">Male</option>
-              <option value="female">Female</option>
+              <option value="male">{t("male")}</option>
+              <option value="female">{t("female")}</option>
             </select>
             <FormHelperText error={formValidations.gender.err}>
               {formValidations.gender.msg}
@@ -277,7 +278,7 @@ const Register = ({ setAuthenticated }) => {
                 formValidations.dob.err ? "form-control error" : "form-control"
               }
             />
-            <label htmlFor="dob ">Date Of Birth *</label>
+            <label htmlFor="dob ">{t("date-of-birth")} *</label>
 
             <FormHelperText error={formValidations.dob.err}>
               {formValidations.dob.msg}
@@ -290,7 +291,7 @@ const Register = ({ setAuthenticated }) => {
             id="diseases"
             name="diseases"
             rows="3"
-            placeholder="Please describe any diseases you have that might be useful to know"
+            placeholder={t("diseases-placeholder")}
             value={formValues.diseases}
             onChange={handleChange("diseases")}
           />
@@ -300,13 +301,13 @@ const Register = ({ setAuthenticated }) => {
           className="btn btn-lg btn-primary btn-block btn-login text-uppercase font-weight-bold mb-2"
           type="submit"
         >
-          Sign Up
+          {t("register")}
         </button>
         <div className="text-center">
-          Already have an acoount?
+        {t("already-has-account")}
           <NavLink to="/login" exact>
             {" "}
-            Sign in
+            {t("login")}
           </NavLink>
         </div>
       </form>

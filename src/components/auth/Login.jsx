@@ -1,14 +1,14 @@
 import { FormHelperText } from "@material-ui/core";
 import { useState } from "react";
-import { useHistory } from "react-router-dom";
+import { useTranslation } from "react-i18next";
+import { NavLink, useHistory } from "react-router-dom";
+import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import * as authService from "../../services/authService";
 import validate from "../../utils/validations";
-import { NavLink } from "react-router-dom";
-import { useCurrentUser } from "../../contexts/CurrentUserContext";
-
 const Login = () => {
   const history = useHistory();
   const { setCurrentUser } = useCurrentUser();
+  const {t} = useTranslation();
 
   const [formValues, setFormValues] = useState({
     email: "",
@@ -95,7 +95,7 @@ const Login = () => {
 
   return (
     <>
-      <h3 className="login-heading mb-4 text-center">Welcome back!</h3>
+      <h3 className="login-heading mb-4 text-center">{t("welcome-back")}</h3>
       <form onSubmit={handleSubmit} encType="multipart/form-data">
         <div className="form-label-group">
           <input
@@ -110,7 +110,7 @@ const Login = () => {
             placeholder="Email*"
             autoFocus
           />
-          <label htmlFor="inputEmail">Email *</label>
+          <label htmlFor="inputEmail">{t("email")} *</label>
           <FormHelperText error={formValidations.email.err}>
             {formValidations.email.msg}
           </FormHelperText>
@@ -130,7 +130,7 @@ const Login = () => {
             value={formValues.password}
             autoComplete="current-password"
           />
-          <label htmlFor="inputPassword">Password *</label>
+          <label htmlFor="inputPassword">{t("password")} *</label>
           <FormHelperText error={formValidations.password.err}>
             {formValidations.password.msg}
           </FormHelperText>
@@ -143,20 +143,20 @@ const Login = () => {
             id="customCheck1"
           />
           <label className="custom-control-label" htmlFor="customCheck1">
-            Remember password
+            {t("remember-password")}
           </label>
         </div>
         <button
           className="btn btn-lg btn-primary btn-block btn-login text-uppercase font-weight-bold mb-2"
           type="submit"
         >
-          Sign in
+          {t("login")}
         </button>
         <div className="text-center">
-          New to Daem?
+        {t("new-to-daem")}
           <NavLink to="/register" exact>
             {" "}
-            Sign up
+            {t("register")}
           </NavLink>
         </div>
       </form>
