@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from "react";
 import Navbar from "../components/layouts/Navbar";
 import Footer from "../components/layouts/Footer";
+import { useTranslation } from "react-i18next";
+import { Link } from "react-router-dom";
 import Paginator from "../components/Paginator";
 import { NavLink } from "react-router-dom";
 import { BASE_URL } from "../api/urls";
 import { getAllDoctors } from "../services/doctorsService";
+import { useCurrentUser } from "../contexts/CurrentUserContext";
 import capitalize from "../utils/capitalize";
 import {
   createPaginationParams,
@@ -12,6 +15,8 @@ import {
 } from "../utils/pagination";
 
 const DoctorsPage = (props) => {
+  const { currentUser } = useCurrentUser();
+  const { t } = useTranslation();
   const [pagination, setPagination] = useState({ page: 1, totalPages: 1 });
   const [doctors, setDoctors] = useState([]);
 
@@ -93,11 +98,11 @@ const DoctorsPage = (props) => {
                   </div>
                   <div className="content mt-3">
                     <h4 className="mb-0">
-                      <NavLink to={"/doctors/" + doctor._id} exact>
+                      <Link to={"/doctors/" + doctor._id}>
                         {capitalize(doctor.firstname) +
                           " " +
                           capitalize(doctor.lastname)}
-                      </NavLink>
+                      </Link>
                     </h4>
                     <p></p>
                   </div>
@@ -117,6 +122,7 @@ const DoctorsPage = (props) => {
           />
         </div>
       </section>
+
       {/* <!-- call to action section --> */}
       <section className="section cta-page">
         <div className="container">
@@ -128,13 +134,13 @@ const DoctorsPage = (props) => {
                   We are pleased to help you <br />
                   <span className="title-color">To stay safe.</span>
                 </h2>
-                <NavLink
+                <Link
                   to="/tickets/new"
                   exact
                   className="btn btn-main-2 btn-round-full"
                 >
                   Create Ticket<i className="icofont-simple-right ml-2"></i>
-                </NavLink>
+                </Link>
               </div>
             </div>
           </div>
