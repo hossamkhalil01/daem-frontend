@@ -1,14 +1,17 @@
+import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
+import { Link, NavLink } from "react-router-dom";
+import { Filter } from "../components/Filter";
 import Footer from "../components/layouts/Footer";
 import Navbar from "../components/layouts/Navbar";
 import Loading from "../components/Loading";
-import TicketList from "../components/ticket/TicketsList";
-import { getTickets } from "../services/ticketsService";
 import Paginator from "../components/Paginator";
-import ArrowBackIcon from "@material-ui/icons/ArrowBack";
+import TicketList from "../components/ticket/TicketsList";
+import { useCurrentUser } from "../contexts/CurrentUserContext";
 import { UpdateTicketsListProvider } from "../contexts/updateTicketsListContext";
-import { Filter } from "../components/Filter";
+import { getTickets } from "../services/ticketsService";
+
 export default function TicketsPage() {
   const [loading, setLoading] = useState(true);
   const [tickets, setTickets] = useState([]);
@@ -20,6 +23,9 @@ export default function TicketsPage() {
     state: "",
   });
   const [onUpdateFilteredState, setOnUpdateFilteredState] = useState(false);
+  const { t } = useTranslation();
+  const { currentUser } = useCurrentUser();
+
   const getAllTickets = async (newPage, filterProps) => {
     const params = { page: newPage, limit: 3, ...filterProps };
     let res = await getTickets(params);
@@ -54,6 +60,19 @@ export default function TicketsPage() {
   return (
     <>
       <Navbar />
+      {!currentUser || currentUser.role === "user" ? (
+        <div className="d-flex">
+          <NavLink
+            to="/tickets/new"
+            exact
+            className="m-auto btn btn-main-2 btn-icon btn-round-full"
+          >
+            {t("ask-doctor")} <i className="icofont-simple-right ml-2  "></i>
+          </NavLink>
+        </div>
+      ) : (
+        ""
+      )}
       <div className="m-5">
         <Filter
           filter={filter}
@@ -81,15 +100,14 @@ export default function TicketsPage() {
             </div>
           </>
         ) : (
-          <div className="row justify-content-center m-5">
-            <div className="text-center col-12 col-md-6 alert alert-info">
-              <h2>No tickets yet</h2>
-              <p>
-                <Link to="/">
-                  <ArrowBackIcon /> Back to home
-                </Link>
-              </p>
-            </div>
+          <div className="text-center m-5 alert alert-info">
+            <h2>{t("no-tickets")}</h2>
+            <p>
+              <Link to="/">
+                <ArrowBackIcon />
+                {t("back-to-home")}
+              </Link>
+            </p>
           </div>
         )}
       </UpdateTicketsListProvider>

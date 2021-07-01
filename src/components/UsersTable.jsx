@@ -7,8 +7,9 @@ import TableCell from "@material-ui/core/TableCell";
 import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
-import capitalize from "../utils/capitalize";
+import { useTranslation } from "react-i18next";
 import { BASE_URL } from "../api/urls";
+import capitalize from "../utils/capitalize";
 import RoleSelector from "./RoleSelector";
 
 const useStyles = makeStyles({
@@ -18,6 +19,8 @@ const useStyles = makeStyles({
 });
 
 const UsersTable = ({ users, onSelectionError }) => {
+  const { t } = useTranslation();
+
   const checkEmptyTable = () => {
     if (users.length) return;
 
@@ -25,7 +28,7 @@ const UsersTable = ({ users, onSelectionError }) => {
       <TableRow>
         <TableCell colSpan={6} align="center">
           <h4 className="alert alert-info text-center">
-            No avaliable users yet!
+            {t("no-users")}
           </h4>
         </TableCell>
       </TableRow>
@@ -40,10 +43,10 @@ const UsersTable = ({ users, onSelectionError }) => {
         <TableHead>
           <TableRow>
             <TableCell>#</TableCell>
-            <TableCell align="center">First Name</TableCell>
-            <TableCell align="center">Last Name</TableCell>
-            <TableCell align="center">Email</TableCell>
-            <TableCell align="center">Role</TableCell>
+            <TableCell align="center">{t("first-name")}</TableCell>
+            <TableCell align="center">{t("last-name")}</TableCell>
+            <TableCell align="center">{t("email")}</TableCell>
+            <TableCell align="center">{t("role")}</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>

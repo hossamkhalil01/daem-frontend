@@ -1,20 +1,21 @@
-import React from "react";
-import PropTypes from "prop-types";
-import { makeStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
-import Tabs from "@material-ui/core/Tabs";
-import Tab from "@material-ui/core/Tab";
-import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
-import UsersPage from "./UsersPage";
-import Navbar from "../../components/layouts/Navbar";
+import { makeStyles } from "@material-ui/core/styles";
+import Tab from "@material-ui/core/Tab";
+import Tabs from "@material-ui/core/Tabs";
+import Typography from "@material-ui/core/Typography";
+import PropTypes from "prop-types";
+import React from "react";
+import { useTranslation } from "react-i18next";
 import Footer from "../../components/layouts/Footer";
-import ArticlesPage from "./ArticlesPage";
+import Navbar from "../../components/layouts/Navbar";
+import UsersPage from "../../pages/admin/UsersPage";
 import ApplicationsPage from "./ApplicationsPage";
+import ArticlesPage from "./ArticlesPage";
+
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
-
   return (
     <div
       role="tabpanel"
@@ -55,7 +56,7 @@ const useStyles = makeStyles((theme) => ({
 export const Dashboard = () => {
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
-
+  const { t } = useTranslation();
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
@@ -70,9 +71,9 @@ export const Dashboard = () => {
             onChange={handleChange}
             aria-label="simple tabs example"
           >
-            <Tab label="Users" {...a11yProps(0)} />
-            <Tab label="Articles" {...a11yProps(1)} />
-            <Tab label="Doctor Applications" {...a11yProps(2)} />
+            <Tab label={t("users")} {...a11yProps(0)} />
+            <Tab label={t("articles")} {...a11yProps(1)} />
+            <Tab label={t("doctors-apps")} {...a11yProps(2)} />
           </Tabs>
         </AppBar>
         <TabPanel value={value} index={0}>

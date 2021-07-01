@@ -911,9 +911,16 @@ a:focus {
 }
 
 .cta-page {
-  background: url("../images/bg/banner.jpg") no-repeat;
-  background-size: cover;
+  background-size: cover !important;
   position: relative;
+}
+
+.cta-page-en-US {
+  background: url("../images/bg/banner-right.jpg") no-repeat;
+}
+
+.cta-page-ar-EG {
+  background: url("../images/bg/banner-left.jpg") no-repeat;
 }
 
 .testimonial {

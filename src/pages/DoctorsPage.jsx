@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from "react";
-import Navbar from "../components/layouts/Navbar";
-import Footer from "../components/layouts/Footer";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
-import Paginator from "../components/Paginator";
 import { BASE_URL } from "../api/urls";
+import Footer from "../components/layouts/Footer";
+import Navbar from "../components/layouts/Navbar";
+import Paginator from "../components/Paginator";
 import { getDoctors } from "../services/doctorsService";
 import capitalize from "../utils/capitalize";
 import {
   createPaginationParams,
-  parsePaginatedResponse,
+  parsePaginatedResponse
 } from "../utils/pagination";
 
 const DoctorsPage = (props) => {
@@ -50,9 +50,9 @@ const DoctorsPage = (props) => {
           <div className="row">
             <div className="col-md-12">
               <div className="block text-center">
-                <span className="text-white">All Doctors</span>
+                <span className="text-white">{t("all-doctors")}</span>
                 <h1 className="text-capitalize mb-5 text-lg">
-                  Specalized doctors
+                {t("specialized-doctors")}
                 </h1>
               </div>
             </div>
@@ -65,12 +65,10 @@ const DoctorsPage = (props) => {
           <div className="row justify-content-center">
             <div className="col-lg-6 text-center">
               <div className="section-title">
-                <h2>Doctors</h2>
+                <h2>{t("doctors")}</h2>
                 <div className="divider mx-auto my-4"></div>
                 <p>
-                  Our doctors are avaialbe for your help and answer your
-                  inquiries <br />
-                  to keep you safe.
+                  {t("doctors-page-body")}
                 </p>
               </div>
             </div>
@@ -121,22 +119,21 @@ const DoctorsPage = (props) => {
       </section>
 
       {/* <!-- call to action section --> */}
-      <section className="section cta-page">
+      <section className={`section cta-page cta-page-${t("language")}`}>
         <div className="container">
           <div className="row">
-            <div className="col-lg-7">
+            <div className="col-lg-7 float-left">
               <div className="cta-content">
                 <div className="divider mb-4"></div>
                 <h2 className="mb-5 text-lg">
-                  We are pleased to help you <br />
-                  <span className="title-color">To stay safe.</span>
+                  <span className="title-color">{t("doctors-page-footer")}</span>
                 </h2>
                 <Link
                   to="/tickets/new"
                   exact
                   className="btn btn-main-2 btn-round-full"
                 >
-                  Create Ticket<i className="icofont-simple-right ml-2"></i>
+                  {t("ask-doctor")}<i className="icofont-simple-right ml-2"></i>
                 </Link>
               </div>
             </div>

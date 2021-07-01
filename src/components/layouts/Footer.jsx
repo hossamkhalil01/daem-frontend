@@ -1,11 +1,12 @@
 import React from "react";
-
+import { useTranslation } from "react-i18next";
 const Footer = (props) => {
+  const { t } = useTranslation();
   return (
     <footer className="footer section gray-bg">
       <div className="container">
         <div className="row">
-          <div className="col-lg-4 mr-auto col-sm-6">
+          <div className="col-lg-4 m-auto col-sm-6">
             <div className="widget mb-5 mb-lg-0">
               <div className="logo mb-4">
                 <img
@@ -17,7 +18,7 @@ const Footer = (props) => {
                 />
               </div>
               <p>
-                Developed by ITI students: <br /> <br />
+                {t("footer-developed-by")} <br /> <br />
                 <a
                   href="https://github.com/montaser223"
                   target="_blank"
@@ -37,7 +38,7 @@ const Footer = (props) => {
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  Aya Hammed <br />
+                  Aya Hamed <br />
                 </a>
                 <a
                   href="https://github.com/hossamkhalil01"
@@ -72,40 +73,15 @@ const Footer = (props) => {
             </div>
           </div>
 
-          <div className="col-lg-2 col-md-6 col-sm-6">
-            <div className="widget mb-5 mb-lg-0">
-              <h4 className="text-capitalize mb-3">Support</h4>
-              <div className="divider mb-4"></div>
-
-              <ul className="list-unstyled footer-menu lh-35">
-                <li>
-                  <a href="#">Terms & Conditions</a>
-                </li>
-                <li>
-                  <a href="#">Privacy Policy</a>
-                </li>
-                <li>
-                  <a href="#">Company Support </a>
-                </li>
-                <li>
-                  <a href="#">FAQuestions</a>
-                </li>
-                <li>
-                  <a href="#">Company Licence</a>
-                </li>
-              </ul>
-            </div>
-          </div>
-
           <div className="col-lg-3 col-md-6 col-sm-6">
             <div className="widget widget-contact mb-5 mb-lg-0">
-              <h4 className="text-capitalize mb-3">Get in Touch</h4>
+              <h4 className="text-capitalize mb-3">{t("footer-intouch-header")}</h4>
               <div className="divider mb-4"></div>
 
               <div className="footer-contact-block mb-4">
                 <div className="icon d-flex align-items-center">
                   <i className="icofont-email mr-3"></i>
-                  <span className="h6 mb-0">Support Available for 24/7</span>
+                  <span className="h6 mb-0">{t("footer-intouch-body")}</span>
                 </div>
                 <h5 className="mt-2">
                   <a href="tel:+23-345-67890">daem@gmail.com</a>
