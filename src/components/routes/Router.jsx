@@ -17,6 +17,7 @@ import TicketsPage from "../../pages/TicketsPage";
 import UpdateArticlePage from "../../pages/UpdateArticlePage";
 import UpdateTicketPage from "../../pages/UpdateTicketPage";
 import Logout from "../auth/Logout";
+import DoctorsApplicationForm from "../../components/DoctorApplicationForm";
 import AdminDoctorRoute from "./AdminDoctorRoute";
 import AdminRoute from "./AdminRoute";
 import PrivateRoute from "./PrivateRoute";

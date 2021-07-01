@@ -38,9 +38,10 @@ const DoctorApplicationForm = () => {
   }, []);
 
   const isValidForm = () => {
-    const { speciality, about } = formValidations;
-
-    return !speciality.err && !about.err;
+    for (const key in formValidations) {
+      if (formValidations[key].err) return false;
+    }
+    return true;
   };
 
   const checkRequiredFields = () => {
@@ -65,19 +66,24 @@ const DoctorApplicationForm = () => {
   };
 
   const checkServerValidation = (msg) => {
-    const errors = msg.split("DoctorApplication validation failed: ");
-
     const validationsObj = { ...formValidations };
 
-    let errsArray = [];
+    if (msg.includes("format")) {
+      validationsObj.nationalId = { err: true, msg };
+    }
+    if (msg.includes("validation failed")) {
+      const errors = msg.split("DoctorApplication validation failed: ");
 
-    if (errors) errsArray = errors[1].split(", ");
+      let errsArray = [];
 
-    for (const e of errsArray) {
-      Object.keys(formValidations).forEach((field) => {
-        if (e.includes(field))
-          validationsObj[field] = { err: true, msg: e.split(`${field}: `) };
-      });
+      if (errors) errsArray = errors[1].split(", ");
+
+      for (const e of errsArray) {
+        Object.keys(formValidations).forEach((field) => {
+          if (e.includes(field))
+            validationsObj[field] = { err: true, msg: e.split(`${field}: `) };
+        });
+      }
     }
 
     setFormValidations(validationsObj);
@@ -85,17 +91,29 @@ const DoctorApplicationForm = () => {
 
   const handleImageChange = (prop, validationMethod) => (event) => {
     const value = event.target.files[0];
+
+    // clear prev errors
+    const validationObj = {
+      ...formValidations,
+      nationalId: { err: false, msg: "" },
+    };
+
     // set value and validate
-    handleChange({ prop, value, validationMethod });
+    handleChange({ prop, value, validationMethod, validationObj });
   };
 
   const handleFieldChange = (prop, validationMethod) => (event) => {
     const value = event.target.value;
-    // set value and validate
-    handleChange({ prop, value, validationMethod });
+
+    handleChange({
+      prop,
+      value,
+      validationMethod,
+      validationObj: formValidations,
+    });
   };
 
-  const handleChange = ({ prop, value, validationMethod }) => {
+  const handleChange = ({ prop, value, validationMethod, validationObj }) => {
     let err = false;
     let msg = "";
 
@@ -110,7 +128,7 @@ const DoctorApplicationForm = () => {
 
     // Set the states
     setFormValidations({
-      ...formValidations,
+      ...validationObj,
       [prop]: { err, msg },
     });
 
@@ -135,7 +153,7 @@ const DoctorApplicationForm = () => {
 
     // sumbit request to the backend
     try {
-      services.createApplication(formData);
+      await services.createApplication(formData);
     } catch (err) {
       // invalid data
       const msg = err.response.data.message;
