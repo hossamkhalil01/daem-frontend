@@ -4,8 +4,6 @@ import Footer from "../../components/layouts/Footer";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 import { useHistory, useLocation } from "react-router-dom";
-import formatDate from "../../utils/formatData";
-import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import {
   approveApplication,
@@ -13,15 +11,7 @@ import {
 } from "../../services/doctorApplicationsService";
 import { BASE_URL } from "../../api/urls";
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    "& > *": {
-      margin: theme.spacing(1),
-    },
-  },
-}));
 const ApplicationViewPage = () => {
-  const classes = useStyles();
   const [curApplication, setCurApplication] = useState(null);
   const location = useLocation();
   const { application } = location.state;
@@ -30,16 +20,12 @@ const ApplicationViewPage = () => {
   const { t } = useTranslation();
 
   const handleApprove = async () => {
-    console.log(application._id);
     const res = await approveApplication(application._id);
     history.goBack();
-    console.log(res);
   };
 
   const handleReject = async () => {
-    console.log(application._id);
     const res = await rejectApplication(application._id);
-    console.log(res);
   };
 
   return (
