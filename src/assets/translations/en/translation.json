@@ -59,5 +59,8 @@
   "become-doctor-form-nationalId": "Upload Your National ID Image",
   "become-doctor-form-doctorId": "Upload Your Doctors Syndicate or Hospital ID Image",
   "speciality": "Speciality",
-  "server-error-label": "OOPS .. something went worng. Sorry for the inconvenience. We're working on it."
+  "server-error-label": "OOPS .. something went worng. Sorry for the inconvenience. We're working on it.",
+  "become-doctor-subtitle": "Help us and support people!",
+  "become-doctor-submission-msg": "Thank you for submitting your application, it is now being reviewed by our team.",
+  "back-to-home": "Back To Home"
 }

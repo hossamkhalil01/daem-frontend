@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { NavLink } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 import ArticleCard from "../components/article/ArticleCard";
 import Footer from "../components/layouts/Footer";
 import Navbar from "../components/layouts/Navbar";
@@ -54,15 +54,13 @@ const LandingPage = (props) => {
         )}
         <section className="section suggested-articles-section">
           <div className="container">
-            <div className="suggested-articles__header">
-              <h2>{t("articles-section-header")}</h2>
+            <div className="suggested-articles__header ">
+              <h2 className="mb-5">{t("articles-section-header")}</h2>
             </div>
             <div className="suggested-articles">
               {articles.map((article) => (
-                <div key={article._id} className="grid">
-                  <ArticleCard
-                    article={article}
-                  ></ArticleCard>
+                <div className="grid" key={article._id}>
+                  <ArticleCard article={article}></ArticleCard>
                 </div>
               ))}
             </div>
@@ -70,7 +68,7 @@ const LandingPage = (props) => {
               <NavLink
                 to="/articles"
                 exact
-                className="btn btn-main-1 btn-icon btn-round-full"
+                className="btn btn-main-2 float-right mt-3 btn-icon btn-round-full"
               >
                 {t("view-all-articles")}{" "}
                 <i className="icofont-simple-right ml-2  "></i>
@@ -79,7 +77,7 @@ const LandingPage = (props) => {
           </div>
         </section>
         {!currentUser || currentUser.role === "user" ? (
-          <section className={`section about about-${t("language")}`}>
+          <section className={`section about about-${t("language")} mb-5`}>
             <div className="container">
               <div className="row align-items-center">
                 <div className="col-lg-4">
@@ -89,13 +87,13 @@ const LandingPage = (props) => {
                     </h2>
                     <p className="mt-4 mb-5">{t("doctor-register-body")}</p>
 
-                    <a
-                      href="service.html"
+                    <Link
+                      to="/become-doctor"
                       className="btn btn-main-2 btn-round-full btn-icon"
                     >
                       {t("doctor-register-btn")}
                       <i className="icofont-simple-right ml-3"></i>
-                    </a>
+                    </Link>
                   </div>
                 </div>
               </div>

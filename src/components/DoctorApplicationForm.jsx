@@ -2,13 +2,12 @@ import { FormHelperText } from "@material-ui/core";
 import { useState, useEffect } from "react";
 import validate from "../utils/validations";
 import * as services from "../services/doctorApplicationsService";
-import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useCurrentUser } from "../contexts/CurrentUserContext";
 
 const requriedFields = ["speciality", "nationalId", "doctorId"];
 
-const DoctorApplicationForm = () => {
+const DoctorApplicationForm = ({ onSuccessSubmit }) => {
   const { currentUser } = useCurrentUser();
   const [specialitiesList, setSpecialitiesList] = useState([]);
   const { t } = useTranslation();
@@ -153,7 +152,11 @@ const DoctorApplicationForm = () => {
 
     // sumbit request to the backend
     try {
-      await services.createApplication(formData);
+      const {
+        data: { data },
+      } = await services.createApplication(formData);
+      // pass data to parent
+      onSuccessSubmit(data);
     } catch (err) {
       // invalid data
       const msg = err.response.data.message;
@@ -163,7 +166,7 @@ const DoctorApplicationForm = () => {
 
   return (
     <>
-      <div className="row">
+      <div className="row justify-content-center">
         <div className="col-lg-8">
           <div className="appoinment-wrap mt-5 mt-lg-0 pl-lg-5">
             <h2 className="mb-2 title-color">{t("become-doctor-title")}</h2>
@@ -258,7 +261,7 @@ const DoctorApplicationForm = () => {
                 </div>
               </div>
               <button
-                className="btn btn-main btn-lg btn-round-full mt-3"
+                className="btn btn-main btn-lg btn-round-full mt-3 float-right"
                 type="submit"
               >
                 {t("submit")}
