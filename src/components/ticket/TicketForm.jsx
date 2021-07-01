@@ -10,10 +10,12 @@ import { useTranslation } from "react-i18next";
 import { useHistory } from "react-router";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import {
-  createTicket, updateTicketDoctor,
+  createTicket,
+  updateTicketDoctor,
   updateTicketModerator,
-  updateTicketUser
+  updateTicketUser,
 } from "../../services/ticketsService";
+import validate from "../../utils/validations";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -29,23 +31,22 @@ const useStyles = makeStyles((theme) => ({
 
 export default function TicketForm({ ticket, onCreation }) {
   const classes = useStyles();
-  const [subject, setSubject] = useState("");
-  const [description, setDescription] = useState("");
-  const [images, setImages] = useState([]);
+  const [curTicket, setCurTicket] = useState({
+    subject: "",
+    description: "",
+    images: [],
+  });
   const [editMode, setEditMode] = useState(false);
-  const [errorSubject, setErrorSubject] = useState(false);
-  const [errorDesc, setErrorDesc] = useState(false);
-  const [errorImages, setErrorImages] = useState(false);
+
   const [openAlert, setOpenAlert] = useState(false);
-  const [alertMessage, setAlerMessage] = useState("");
+  const [alertMessage, setAlertMessage] = useState("");
   const history = useHistory();
   const { t } = useTranslation();
   const { currentUser } = useCurrentUser();
 
   useEffect(() => {
     if (ticket) {
-      setSubject(ticket.subject);
-      setDescription(ticket.description);
+      setCurTicket(ticket);
       setEditMode(true);
     }
   }, [ticket]);
@@ -58,60 +59,164 @@ export default function TicketForm({ ticket, onCreation }) {
     history.push(`/tickets`);
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    subject.length < 3 ? setErrorSubject(true) : setErrorSubject(false);
-    description.length < 10 ? setErrorDesc(true) : setErrorDesc(false);
-    images.length > 5 ? setErrorImages(true) : setErrorImages(false);
+  const [formValidations, setFormValidations] = useState({
+    images: { err: false, msg: "" },
+    subject: { err: false, msg: "" },
+    description: { err: false, msg: "" },
+  });
 
-    if (!errorSubject && !errorDesc && !errorImages) {
-      // Create an object of formData
-      let formData = new FormData();
+  const checkRequiredFields = () => {
+    let hasErrors = false;
+    let errors = [];
+    const validationsObj = { ...formValidations };
 
-      // Update the formData object with subject
-      formData.append("subject", subject);
-
-      // Update the formData object with description
-      formData.append("description", description);
-
-      // Update the formData object with images array
-
-      for (const key of Object.keys(images)) {
-        formData.append("images", images[key]);
+    Object.keys(formValidations).forEach((field) => {
+      if (field !== "images") {
+        errors = validate.required(curTicket[field]);
       }
 
+      if (errors.length) {
+        hasErrors = true;
+
+        // Set the errors
+        validationsObj[field] = { err: true, msg: errors[0] };
+      }
+    });
+
+    setFormValidations(validationsObj);
+
+    return !hasErrors;
+  };
+
+  const isFormValid = () => {
+    for (const key in formValidations) {
+      if (formValidations[key].err) return false;
+    }
+    return true;
+  };
+
+  const checkServerValidation = (msg) => {
+    const errors = [""];
+    if (msg.includes("Ticket validation failed: ")) {
+      errors[1] = msg.split("Ticket validation failed: ");
+    } else {
+      errors[0] = msg;
+    }
+
+    const validationsObj = { ...formValidations };
+
+    let errsArray = [];
+
+    if (errors[1]) errsArray = errors[1].split(", ");
+
+    for (const e of errsArray) {
+      Object.keys(formValidations).forEach((field) => {
+        if (e.includes(field))
+          validationsObj[field] = { err: true, msg: e.split(`${field}: `) };
+      });
+    }
+
+    if (errors[0].length > 0) {
+      validationsObj.images = { err: true, msg: msg };
+    }
+
+    setFormValidations(validationsObj);
+  };
+
+  const handleUploadClick = (event) => {
+    setCurTicket({
+      ...curTicket,
+      images: event.target.files,
+    });
+    if (event.target.files.length > 5) {
+      formValidations.images = {
+        err: true,
+        msg: "Max Count Of Allowed images is 5!",
+      };
+    } else {
+      formValidations.images = { err: false, msg: "" };
+    }
+  };
+
+  const handleChange = (prop, validationMethod) => (event) => {
+    let err = false;
+    let msg = "";
+
+    if (validationMethod) {
+      // call the method with password as param if the prop is confirm password
+      const errorsArr = validationMethod(event.target.value);
+
+      // set the errors if found
+      if (errorsArr.length) {
+        err = true;
+        msg = errorsArr[0];
+      }
+    }
+
+    // Set the states
+    setFormValidations({
+      ...formValidations,
+      [prop]: { err, msg },
+    });
+
+    setCurTicket({ ...curTicket, [prop]: event.target.value });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    // check if all the required fields exists
+    if (!checkRequiredFields()) return;
+
+    // don't submit if there are errors
+    if (!isFormValid()) return;
+
+    // Create an object of formData
+    let formData = new FormData();
+
+    // Update the formData object with subject
+    formData.append("subject", curTicket.subject);
+
+    // Update the formData object with description
+    formData.append("description", curTicket.description);
+
+    // Update the formData object with images array
+
+    for (const key of Object.keys(curTicket.images)) {
+      formData.append("images", curTicket.images[key]);
+    }
+
+    try {
       // Request made to the backend api
       if (ticket) {
         // Send formData object in case of update
         // updateTicket based on role
 
         if (currentUser.role === "moderator") {
-          updateTicketModerator(ticket._id, formData).then((res) => {
-            onCreation(res.data.data);
-          });
+          const res = await updateTicketModerator(ticket._id, formData);
+          onCreation(res.data.data);
         } else if (currentUser.role === "doctor") {
-          updateTicketDoctor(ticket._id, formData).then((res) => {
-            onCreation(res.data.data);
-          });
+          const res = await updateTicketDoctor(ticket._id, formData);
+          onCreation(res.data.data);
         } else {
-          updateTicketUser(ticket._id, formData).then((res) => {
-            onCreation(res.data.data);
-          });
+          const res = await updateTicketUser(ticket._id, formData);
+          onCreation(res.data.data);
         }
       } else {
         // Send formData object
-        createTicket(formData)
-          .then((res) => {
-            onCreation(res.data.data);
-          })
-          .catch((err) => {
-            setAlerMessage(err.response.data.data);
-            setOpenAlert(true);
-          });
+        const res = await createTicket(formData);
+        onCreation(res.data.data);
+      }
+    } catch (err) {
+      if (err.response.data.data === "exceeded-limit") {
+        setAlertMessage(err.response.data.data);
+        setOpenAlert(true);
+      } else {
+        const msg = err.response.data.message;
+        checkServerValidation(msg);
       }
     }
   };
-  
+
   return (
     <>
       <div
@@ -130,13 +235,11 @@ export default function TicketForm({ ticket, onCreation }) {
           onSubmit={handleSubmit}
           encType="multipart/form-data"
         >
-          {errorSubject ? (
-            <small className="text-danger">
-              Min length of subject is 3 characters
-            </small>
+          {formValidations.subject.err ? (
+            <small className="text-danger">{formValidations.subject.msg}</small>
           ) : null}
           <TextField
-            error={errorSubject}
+            error={formValidations.subject.err}
             id="subject"
             label="Ticket Subject"
             placeholder="Subject"
@@ -144,28 +247,18 @@ export default function TicketForm({ ticket, onCreation }) {
             fullWidth
             multiline
             style={{ margin: 10 }}
-            onChange={(event) => {
-              setSubject(event.target.value);
-            }}
-            onBlur={(e) => {
-              if (e.target.value.length < 3) {
-                setErrorSubject(true);
-              } else {
-                setErrorSubject(false);
-              }
-            }}
-            // defaultValue={subject}
-            value={subject}
+            onChange={handleChange("subject", validate.subject)}
+            value={curTicket.subject}
           />
 
-          {errorDesc ? (
+          {formValidations.description.err ? (
             <small className="text-danger">
-              Min length of description is 10 characters
+              {formValidations.description.msg}
             </small>
           ) : null}
 
           <TextField
-            error={errorDesc}
+            error={formValidations.description.err}
             id="description"
             label="Ticket Description"
             placeholder="Description"
@@ -174,22 +267,12 @@ export default function TicketForm({ ticket, onCreation }) {
             variant="outlined"
             fullWidth
             style={{ margin: 10 }}
-            onChange={(e) => {
-              setDescription(e.target.value);
-            }}
-            onBlur={(e) => {
-              if (e.target.value.length < 10) {
-                setErrorDesc(true);
-              } else {
-                setErrorDesc(false);
-              }
-            }}
-            // defaultValue={description}
-            value={description}
+            onChange={handleChange("description", validate.description)}
+            value={curTicket.description}
           />
 
-          {errorImages ? (
-            <small className="text-danger">Max Images count is 5!</small>
+          {formValidations.images.err ? (
+            <small className="text-danger">{formValidations.images.msg}</small>
           ) : null}
           <div className="w-100 text-start">
             <label htmlFor="images" className="pe-3">
@@ -202,15 +285,7 @@ export default function TicketForm({ ticket, onCreation }) {
               id="images"
               multiple
               // className="form-control"
-              onChange={(e) => {
-                if (e.target.files.length > 5) {
-                  setErrorImages(true);
-                } else {
-                  setErrorImages(false);
-
-                  setImages(e.target.files);
-                }
-              }}
+              onChange={handleUploadClick}
             />
           </div>
           <Button
@@ -218,7 +293,13 @@ export default function TicketForm({ ticket, onCreation }) {
             color="primary"
             type="submit"
             className="m-auto mt-5"
-            disabled={errorSubject || errorDesc || errorImages ? true : false}
+            disabled={
+              formValidations.images.err ||
+              formValidations.subject.err ||
+              formValidations.description.err
+                ? true
+                : false
+            }
           >
             {editMode ? "Save" : "Submit"}
           </Button>

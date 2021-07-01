@@ -58,5 +58,6 @@
   "become-doctor-form-about": "Tell us in brief about you, your career and your professional experience.",
   "become-doctor-form-nationalId": "Upload Your National ID Image",
   "become-doctor-form-doctorId": "Upload Your Doctors Syndicate or Hospital ID Image",
-  "speciality": "Speciality"
+  "speciality": "Speciality",
+  "server-error-label": "OOPS .. something went worng. Sorry for the inconvenience. We're working on it."
 }

@@ -28,7 +28,6 @@ export default function ArticleForm({ article, onCreation }) {
 
   useEffect(() => {
     if (article) {
-      console.log(article);
       setCurArticle({ ...article });
       setEditMode(true);
       setImageSource(BASE_URL + "/" + article.image);
@@ -36,6 +35,7 @@ export default function ArticleForm({ article, onCreation }) {
   }, [article]);
 
   const [formValidations, setFormValidations] = useState({
+    image: { err: false, msg: "" },
     title: { err: false, msg: "" },
     body: { err: false, msg: "" },
   });
@@ -46,7 +46,9 @@ export default function ArticleForm({ article, onCreation }) {
     const validationsObj = { ...formValidations };
 
     Object.keys(formValidations).forEach((field) => {
-      errors = validate.required(curArticle[field]);
+      if (field !== "image") {
+        errors = validate.required(curArticle[field]);
+      }
 
       if (errors.length) {
         hasErrors = true;
@@ -69,7 +71,12 @@ export default function ArticleForm({ article, onCreation }) {
   };
 
   const checkServerValidation = (msg) => {
-    const errors = msg.split("Article validation failed: ");
+    const errors = [""];
+    if (msg.includes("Article validation failed: ")) {
+      errors[1] = msg.split("Article validation failed: ");
+    } else {
+      errors[0] = msg;
+    }
 
     const validationsObj = { ...formValidations };
 
@@ -82,6 +89,10 @@ export default function ArticleForm({ article, onCreation }) {
         if (e.includes(field))
           validationsObj[field] = { err: true, msg: e.split(`${field}: `) };
       });
+    }
+
+    if (errors[0].length > 0) {
+      validationsObj["image"] = { err: true, msg: errors[0] };
     }
 
     setFormValidations(validationsObj);
@@ -100,6 +111,7 @@ export default function ArticleForm({ article, onCreation }) {
       };
       reader.readAsDataURL(event.target.files[0]);
     }
+    formValidations.image = { err: false, msg: "" };
   };
 
   const handleChange = (prop, validationMethod) => (event) => {
@@ -243,6 +255,10 @@ export default function ArticleForm({ article, onCreation }) {
               onChange={handleUploadClick}
             />
           </div>
+
+          {formValidations.image.err ? (
+            <small className="text-danger">{formValidations.image.msg}</small>
+          ) : null}
 
           <Button
             variant="contained"

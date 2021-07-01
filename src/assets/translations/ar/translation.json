@@ -58,5 +58,6 @@
   "become-doctor-form-about": ".عرفنا أكثر بنفسك ومجال اختصاصك وعن سنين الخبرة المكتسبه",
   "become-doctor-form-nationalId": ".اختر صورة بطاقة الرقم القومي",
   "become-doctor-form-doctorId": ".اختر صورة من بطاقة النقابه أو العمل (مستشفى)",
-  "speciality": "التخصص"
+  "speciality": "التخصص",
+  "server-error-label": ".لقد واجهتنا مشكلة.نأسف للإزعاج,نحن نعمل على حل المشكلة"
 }

@@ -20,6 +20,7 @@ import { useCurrentUser } from "../contexts/CurrentUserContext";
 import * as userService from "../services/userService";
 import "../styles/UserProfile.css";
 import validate from "../utils/validations";
+import Alert from "@material-ui/lab/Alert";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -53,6 +54,7 @@ export default function UserProfile() {
   const classes = useStyles();
   const [user, setUser] = useState(currentUser);
   const { t } = useTranslation();
+  const [success, setSuccess] = useState(false);
 
   const [imageSource, setImageSource] = useState(
     BASE_URL + "/" + currentUser.avatar
@@ -61,7 +63,7 @@ export default function UserProfile() {
   useEffect(() => {}, []);
 
   const [formValidations, setFormValidations] = useState({
-    avatar: "",
+    avatar: { err: false, msg: "" },
     firstname: { err: false, msg: "" },
     lastname: { err: false, msg: "" },
     // DOB: { err: false, msg: "" },
@@ -76,7 +78,9 @@ export default function UserProfile() {
     const validationsObj = { ...formValidations };
 
     Object.keys(formValidations).forEach((field) => {
-      errors = validate.required(user[field]);
+      if (field !== "avatar") {
+        errors = validate.required(user[field]);
+      }
 
       if (errors.length) {
         hasErrors = true;
@@ -99,7 +103,16 @@ export default function UserProfile() {
   };
 
   const checkServerValidation = (msg) => {
-    const errors = msg.split("User validation failed: ");
+    const errors = [""];
+
+    if (msg.includes("User validation failed: ")) {
+      const dbValidationErrors = msg.split("User validation failed: ");
+      dbValidationErrors.forEach((element) => {
+        errors.push(element);
+      });
+    } else {
+      errors[0] = msg;
+    }
 
     const validationsObj = { ...formValidations };
 
@@ -112,6 +125,9 @@ export default function UserProfile() {
         if (e.includes(field))
           validationsObj[field] = { err: true, msg: e.split(`${field}: `) };
       });
+    }
+    if (errors[0].length > 0) {
+      validationsObj["avatar"] = { err: true, msg: errors[0] };
     }
 
     setFormValidations(validationsObj);
@@ -129,6 +145,7 @@ export default function UserProfile() {
       };
       reader.readAsDataURL(event.target.files[0]);
     }
+    formValidations.avatar = { err: false, msg: "" };
   };
 
   const handleChange = (prop, validationMethod) => (event) => {
@@ -186,15 +203,23 @@ export default function UserProfile() {
         data: { data },
       } = await userService.updateUser(formData);
       setCurrentUser(data);
+      setSuccess(true);
     } catch (err) {
       // registration validations
       const msg = err.response.data.message;
       checkServerValidation(msg);
+      setSuccess(false);
     }
   };
 
   return (
     <>
+      {success ? (
+        <Alert severity="success" className="w-25">
+          Profile Updated Successfully
+        </Alert>
+      ) : null}
+
       <div className="main-content">
         <div className="container mt-7">
           <div className="row">
@@ -352,6 +377,9 @@ export default function UserProfile() {
                                 />
                               </Button>
                             </FormControl>
+                            <FormHelperText error={formValidations.avatar.err}>
+                              {formValidations.avatar.msg}
+                            </FormHelperText>
                           </Grid>
                           <Grid
                             container
