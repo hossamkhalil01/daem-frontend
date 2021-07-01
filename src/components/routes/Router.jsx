@@ -17,22 +17,27 @@ import TicketsPage from "../../pages/TicketsPage";
 import UpdateArticlePage from "../../pages/UpdateArticlePage";
 import UpdateTicketPage from "../../pages/UpdateTicketPage";
 import Logout from "../auth/Logout";
+import BecomeDoctorPage from "../../pages/BecomeDoctorPage";
 import AdminDoctorRoute from "./AdminDoctorRoute";
 import AdminRoute from "./AdminRoute";
-// import Navbar from "../layouts/Navbar";
-// import Footer from "../layouts/Footer";
 import PrivateRoute from "./PrivateRoute";
+import UserDoctorRoute from "./UserDoctorRoute";
 
 const Router = () => {
   return (
     <BrowserRouter>
-      {/* <Navbar /> */}
       <Switch>
         <Route exact path="/admin/dashboard">
           <AdminRoute>
             <Dashboard />
           </AdminRoute>
         </Route>
+        <Route exact path="/become-doctor">
+          <UserDoctorRoute>
+            <BecomeDoctorPage />
+          </UserDoctorRoute>
+        </Route>
+
         <Route exact path="/tickets/new">
           <PrivateRoute>
             <NewTicketPage />
@@ -77,7 +82,7 @@ const Router = () => {
         <Route exact path="/tickets/:id/edit">
           <UpdateTicketPage />
         </Route>
-        <Route path="/tickets">
+        <Route exact path="/tickets">
           <PrivateRoute>
             <TicketsPage />
           </PrivateRoute>
@@ -96,11 +101,17 @@ const Router = () => {
             <ProfilePage />
           </PrivateRoute>
         </Route>
-        <Route path='*'>
-          <NotFound/>
+        <Route exact path="/notFound">
+          <NotFound />
+        </Route>
+        <Route path="*">
+          <Redirect
+            to={{
+              pathname: "/notFound",
+            }}
+          />
         </Route>
       </Switch>
-      {/* <Footer /> */}
     </BrowserRouter>
   );
 };

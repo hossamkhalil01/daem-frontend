@@ -8,7 +8,7 @@ function AdminDoctorRoute(props) {
   const { component: Component, ...rest } = props;
 
   //redirect if is not admin or doctor
-  if (currentUser?.role !== ROLES.admin && currentUser?.role !== ROLES.doc)
+  if (currentUser?.role !== ROLES.user && currentUser?.role !== ROLES.doc)
     return <Redirect to="/" />;
 
   return <Route {...rest} render={(props) => <Component {...props} />} />;

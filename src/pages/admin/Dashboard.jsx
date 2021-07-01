@@ -9,8 +9,9 @@ import React from "react";
 import { useTranslation } from "react-i18next";
 import Footer from "../../components/layouts/Footer";
 import Navbar from "../../components/layouts/Navbar";
-import AdminArticlesPage from "../../pages/admin/ArticlesPage";
 import UsersPage from "../../pages/admin/UsersPage";
+import ApplicationsPage from "./ApplicationsPage";
+import ArticlesPage from "./ArticlesPage";
 
 
 function TabPanel(props) {
@@ -79,11 +80,10 @@ export const Dashboard = () => {
           <UsersPage />
         </TabPanel>
         <TabPanel value={value} index={1}>
-          <AdminArticlesPage />
+          <ArticlesPage />
         </TabPanel>
         <TabPanel value={value} index={2}>
-          {/* add your page here y hoss */}
-          Item Three
+          <ApplicationsPage />
         </TabPanel>
       </div>
       <Footer />

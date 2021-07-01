@@ -4,7 +4,7 @@ export const BASE_URL = env.get("REACT_APP_API_URL") || "http://localhost:8000";
 
 // base urls
 const AUTH_BASE = `${BASE_URL}/auth`;
-
+const APPLICATIONS_BASE = `${BASE_URL}/doctor-applications`
 // end points
 export const TICKETS_API = {
   ticket: (ticketId) => `${BASE_URL}/tickets/${ticketId}`,
@@ -19,8 +19,9 @@ export const TICKETS_API = {
 };
 
 export const DOCTORS_API = {
-  getAllDoctors: () => `${BASE_URL}/doctors`,
+  getDoctors: () => `${BASE_URL}/doctors`,
   getDoctor: (id) => `${BASE_URL}/doctors/${id}`,
+  getAllDoctors: () => `${BASE_URL}/all-doctors`,
 };
 
 export const AUTH_API = {
@@ -49,3 +50,11 @@ export const ARTICLES_API = {
   article: (articleId) => `${BASE_URL}/articles/${articleId}`,
   allArticles: () => `${BASE_URL}/articles`,
 };
+
+export const DOCTORS_APPLICATION_API = {
+  BASE_URL: APPLICATIONS_BASE,
+  specialities: `${APPLICATIONS_BASE}/specialities`,
+  approve: (id) => `${APPLICATIONS_BASE}/${id}/approve`,
+  reject: (id) => `${APPLICATIONS_BASE}/${id}/reject`,
+  application: (id) => `${APPLICATIONS_BASE}/${id}`,
+}

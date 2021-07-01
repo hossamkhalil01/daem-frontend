@@ -57,7 +57,6 @@
   "from": "from",
   "to": "to",
   "no-tickets": "No tickets yet",
-  "back-to-home": "Back to Home",
   "all-doctors": "All doctors",
   "specialized-doctors": "Specialized Doctors",
   "doctors-page-body": "Our doctors are available for your help and answer your inquiries to keep you safe.",
@@ -93,5 +92,16 @@
   "date": "Date",
   "footer-developed-by":"Developed by ITI students",
   "footer-intouch-header":"Get in touch",
-  "footer-intouch-body":"Support Available for 24/7"
+  "footer-intouch-body":"Support Available for 24/7",
+  "become-doctor-title": "Become A Doctor",
+  "become-doctor-form-header1": "Thank you for wanting to become one of our doctors to help patients and support them.",
+  "become-doctor-form-header2": "Please fill the form and submit it so that our team can review your application.",
+  "become-doctor-form-about": "Tell us in brief about you, your career and your professional experience.",
+  "become-doctor-form-nationalId": "Upload Your National ID Image",
+  "become-doctor-form-doctorId": "Upload Your Doctors Syndicate or Hospital ID Image",
+  "speciality": "Speciality",
+  "server-error-label": "OOPS .. something went worng. Sorry for the inconvenience. We're working on it.",
+  "become-doctor-subtitle": "Help us and support people!",
+  "become-doctor-submission-msg": "Thank you for submitting your application, it is now being reviewed by our team.",
+  "back-to-home": "Back To Home"
 }

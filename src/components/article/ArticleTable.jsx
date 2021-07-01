@@ -76,7 +76,7 @@ const ArticleTable = ({ articles }) => {
                 <TableCell align="center">
                   {article.author.firstname + " " + article.author.lastname}
                 </TableCell>
-                <TableCell>
+                <TableCell align="center">
                   {moment(article.createdAt, "YYYY-MM-DDTh:mm:ss").fromNow()}
                 </TableCell>
                 <TableCell align="center">

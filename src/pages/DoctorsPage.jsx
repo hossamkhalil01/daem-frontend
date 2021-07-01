@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { BASE_URL } from "../api/urls";
 import Footer from "../components/layouts/Footer";
 import Navbar from "../components/layouts/Navbar";
 import Paginator from "../components/Paginator";
-import { getAllDoctors } from "../services/doctorsService";
+import { getDoctors } from "../services/doctorsService";
 import capitalize from "../utils/capitalize";
 import {
   createPaginationParams,
@@ -13,9 +13,9 @@ import {
 } from "../utils/pagination";
 
 const DoctorsPage = (props) => {
+  const { t } = useTranslation();
   const [pagination, setPagination] = useState({ page: 1, totalPages: 1 });
   const [doctors, setDoctors] = useState([]);
-  const { t } = useTranslation();
 
   const handlePageChange = async (newPage = 1, filterObj = {}) => {
     // construct the params
@@ -27,7 +27,7 @@ const DoctorsPage = (props) => {
 
     // get the new page from api
     try {
-      const res = await getAllDoctors(params);
+      const res = await getDoctors(params);
       const { data, paginationInfo } = parsePaginatedResponse(res);
       // set the values
       setPagination(paginationInfo);
@@ -93,11 +93,11 @@ const DoctorsPage = (props) => {
                   </div>
                   <div className="content mt-3">
                     <h4 className="mb-0">
-                      <NavLink to={"/doctors/" + doctor._id} exact>
+                      <Link to={"/doctors/" + doctor._id}>
                         {capitalize(doctor.firstname) +
                           " " +
                           capitalize(doctor.lastname)}
-                      </NavLink>
+                      </Link>
                     </h4>
                     <p></p>
                   </div>
@@ -117,6 +117,7 @@ const DoctorsPage = (props) => {
           />
         </div>
       </section>
+
       {/* <!-- call to action section --> */}
       <section className={`section cta-page cta-page-${t("language")}`}>
         <div className="container">
@@ -127,13 +128,13 @@ const DoctorsPage = (props) => {
                 <h2 className="mb-5 text-lg">
                   <span className="title-color">{t("doctors-page-footer")}</span>
                 </h2>
-                <NavLink
+                <Link
                   to="/tickets/new"
                   exact
                   className="btn btn-main-2 btn-round-full"
                 >
                   {t("ask-doctor")}<i className="icofont-simple-right ml-2"></i>
-                </NavLink>
+                </Link>
               </div>
             </div>
           </div>

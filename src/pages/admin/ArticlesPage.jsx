@@ -10,8 +10,7 @@ import {
   parsePaginatedResponse
 } from "../../utils/pagination";
 
-
-const AdminArticlesPage = (props) => {
+const ArticlesPage = (props) => {
   const [pagination, setPagination] = useState({ page: 1, totalPages: 1 });
   const [articles, setArticles] = useState([]);
   const [update, setUpdate] = useState(false);
@@ -83,4 +82,4 @@ const AdminArticlesPage = (props) => {
   );
 };
 
-export default AdminArticlesPage;
+export default ArticlesPage;

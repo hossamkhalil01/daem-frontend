@@ -13,7 +13,6 @@ const Login = () => {
   const [formValues, setFormValues] = useState({
     email: "",
     password: "",
-    showPassword: false,
   });
   const [formValidations, setFormValidations] = useState({
     email: { err: false, msg: "" },
