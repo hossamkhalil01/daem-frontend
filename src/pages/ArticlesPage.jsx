@@ -1,16 +1,16 @@
+import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 import React, { useEffect, useState } from "react";
-import Navbar from "../components/layouts/Navbar";
-import Footer from "../components/layouts/Footer";
-import Paginator from "../components/Paginator";
-import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
+import { Link, NavLink } from "react-router-dom";
 import { BASE_URL } from "../api/urls";
+import ArticleCard from "../components/article/ArticleCard";
+import Footer from "../components/layouts/Footer";
+import Navbar from "../components/layouts/Navbar";
+import Paginator from "../components/Paginator";
+import Search from "../components/Search";
+import { useCurrentUser } from "../contexts/CurrentUserContext";
 import { getArticles } from "../services/articlesService";
 import { formatDate } from "../services/dateService";
-import ArticleCard from "../components/article/ArticleCard";
-import Search from "../components/Search";
-import ArrowBackIcon from "@material-ui/icons/ArrowBack";
-import { useTranslation } from "react-i18next";
-
 import {
   createPaginationParams,
   parsePaginatedResponse,
@@ -21,7 +21,7 @@ const ArticlesPage = (props) => {
   const [articles, setArticles] = useState([]);
   const [latestArticles, setLatestArticles] = useState([]);
   const { t } = useTranslation();
-
+  const { currentUser } = useCurrentUser();
   const handlePageChange = async (newPage = 1, filterObj = {}) => {
     // construct the params
     const params = createPaginationParams(filterObj, {
@@ -62,15 +62,16 @@ const ArticlesPage = (props) => {
   return (
     <>
       <Navbar />
-
       <section className="page-title bg-1">
         <div className="overlay"></div>
         <div className="container">
           <div className="row">
             <div className="col-md-12">
               <div className="block text-center">
-                <span className="text-white">Our Doctor's</span>
-                <h1 className="text-capitalize mb-5 text-lg">Articles</h1>
+                <span className="text-white">{t("articles-header")}</span>
+                <h1 className="text-capitalize mb-5 text-lg">
+                  {t("articles-section-header")}
+                </h1>
               </div>
             </div>
           </div>
@@ -86,10 +87,13 @@ const ArticlesPage = (props) => {
               <div className="row">
                 {!articles.length ? (
                   <div className="col-lg-12 col-md-12 mb-5 text-center alert alert-info">
-                    <h2>No Articles Found</h2>
+                    <h2>
+                      <h5>{t("no-articles-found")}</h5>
+                    </h2>
                     <p>
                       <Link to="/">
-                        <ArrowBackIcon /> Back to home
+                        <ArrowBackIcon />
+                        <h5>{t("back-to-home")}</h5>
                       </Link>
                     </p>
                   </div>
@@ -111,14 +115,15 @@ const ArticlesPage = (props) => {
                           <div className="blog-item-content">
                             <div className="blog-item-meta mb-3 mt-4">
                               <span className="text-muted text-capitalize mr-3">
-                                <i className="icofont-user mr-2"></i>{" "}
+                                <i className="icofont-user mr-2"></i>
                                 {article.author.firstname +
                                   " " +
                                   article.author.lastname}
                               </span>
+                              <br />
                               <span className="text-black text-capitalize mr-3">
-                                <i className="icofont-calendar mr-1"></i>
-                                {formatDate(article.createdAt)}
+                                <i className="float-left icofont-calendar mr-1"></i>
+                                {formatDate(article.createdAt, t("language"))}
                               </span>
                             </div>
 
@@ -136,7 +141,7 @@ const ArticlesPage = (props) => {
                               to={`/articles/${article._id}`}
                               className="btn btn-main btn-icon btn-round-full"
                             >
-                              Read More{" "}
+                              {t("read-more")}{" "}
                               <i className="icofont-simple-right ml-2"></i>
                             </Link>
                           </div>
@@ -162,15 +167,31 @@ const ArticlesPage = (props) => {
             {/* Side Nav */}
             <section className="col-lg-4">
               <div className="sidebar-wrap pl-lg-4 mt-5 mt-lg-0">
+                {currentUser && currentUser.role !== "user" ? (
+                  <div className="sidebar-widget search mb-3">
+                    <h5>{t("new-article-header")}</h5>
+                    <NavLink
+                      to="/articles/new"
+                      exact
+                      className="float-right mb-5 btn btn-main-2 btn-icon btn-round-full"
+                    >
+                      {t("new-article")}{" "}
+                      <i className="icofont-simple-right ml-2  "></i>
+                    </NavLink>
+                  </div>
+                ) : (
+                  ""
+                )}
+
                 <div className="sidebar-widget search mb-3">
-                  <h5>Search Here</h5>
+                  <h5>{t("search-here")}</h5>
                   <Search
                     onSearch={handleSearchChange}
                     placeholder={t("search-by-title")}
                   />
                 </div>
                 <div className="sidebar-widget latest-post mb-3">
-                  <h5>Latest Articles</h5>
+                  <h5>{t("latest-articles")}</h5>
 
                   {latestArticles.map((article) => (
                     <Link to={`/articles/${article._id}`} key={article._id}>

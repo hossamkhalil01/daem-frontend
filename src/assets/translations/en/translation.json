@@ -49,5 +49,20 @@
   "exceeded-limit": "You have reached the maximum number of tickets today",
   "go-to-tickets": "Go to tickets",
   "dashboard": "Dashboard",
-  "page-not-found": "Page not found"
+  "page-not-found": "Page not found",
+  "search":"Search",
+  "from":"from",
+  "to":"to",
+  "no-tickets":"No tickets yet",
+  "back-to-home":"Back to Home",
+  "all-doctors":"All doctors",
+  "specialized-doctors":"Specialized Doctors",
+  "doctors-page-body":"Our doctors are available for your help and answer your inquiries to keep you safe.",
+  "doctors-page-footer":"We are pleased to help you to stay safe.",
+  "articles-header":"from doctors and daem's team",
+  "search-here":"Search Here",
+  "latest-articles":"Latest Articles",
+  "no-articles-found":"No Articles Found",
+  "read-more":"Read More",
+  "new-article-header":"Do you have news or medical information you would like to share?"
 }

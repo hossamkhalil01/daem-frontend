@@ -12,18 +12,6 @@ const AboutUsPage = () => {
               <div className="block text-center">
                 <span className="text-white">About Us</span>
                 <h1 className="text-capitalize mb-5 text-lg">About Us</h1>
-
-                <ul className="list-inline breadcumb-nav">
-                  <li className="list-inline-item">
-                    <p className="text-white">Home</p>
-                  </li>
-                  <li className="list-inline-item">
-                    <span className="text-white">/</span>
-                  </li>
-                  <li className="list-inline-item">
-                    <p className="text-white-50">About Us</p>
-                  </li>
-                </ul>
               </div>
             </div>
           </div>

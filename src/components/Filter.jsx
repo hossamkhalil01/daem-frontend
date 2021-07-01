@@ -1,22 +1,21 @@
 import {
   Button,
-  FormControl,
-  Grid,
+  FormControl, FormHelperText, Grid,
   Input,
   InputLabel,
   Paper,
-  Select,
-  FormHelperText,
+  Select
 } from "@material-ui/core";
 import { useState } from "react";
-
+import { useTranslation } from "react-i18next";
 export const Filter = ({ filter, setFilter, onUpdateFilteredState }) => {
   const [formValidations, setFormValidations] = useState({
     from: { err: false, msg: "" },
     to: { err: false, msg: "" },
   });
   const [errorsExist, setErrorsExist] = useState(false);
-
+  const {t}=useTranslation();
+  
   const handleChange = (prop) => (event) => {
     setFormValidations({
       ...formValidations,
@@ -67,12 +66,12 @@ export const Filter = ({ filter, setFilter, onUpdateFilteredState }) => {
         <Grid
           container
           alignItems="baseline"
-          alignContent="space-around"
+          alignContent="space-s"
           justify="space-around"
         >
           <Grid item xs={3}>
             <FormControl>
-              <InputLabel htmlFor="dateFrom">From</InputLabel>
+              <InputLabel htmlFor="dateFrom" shrink={true}>{t("from")}</InputLabel>
               <Input
                 id="dateFrom"
                 type="date"
@@ -87,7 +86,7 @@ export const Filter = ({ filter, setFilter, onUpdateFilteredState }) => {
           </Grid>
           <Grid item xs={3}>
             <FormControl>
-              <InputLabel htmlFor="dateTo">To</InputLabel>
+              <InputLabel htmlFor="dateTo" shrink={true}>{t("to")}</InputLabel>
               <Input
                 id="dateTo"
                 type="date"
@@ -101,7 +100,7 @@ export const Filter = ({ filter, setFilter, onUpdateFilteredState }) => {
             </FormControl>
           </Grid>
           <Grid item xs={3}>
-            <InputLabel htmlFor="state">State</InputLabel>
+            <InputLabel htmlFor="state">{t("state")}</InputLabel>
             <Select
               native
               id="state"
@@ -109,15 +108,15 @@ export const Filter = ({ filter, setFilter, onUpdateFilteredState }) => {
               onChange={(e) => setFilter({ ...filter, state: e.target.value })}
             >
               <option></option>
-              <option value={"unresolved"}>Unresolved</option>
-              <option value={"resolved"}>Resolved</option>
-              <option value={"expired"}>Expired</option>
+              <option value={"unresolved"}>{t("unresolved")}</option>
+              <option value={"resolved"}>{t("resolved")}</option>
+              <option value={"expired"}>{t("expired")}</option>
             </Select>
           </Grid>
           <Grid item xs={3}>
-            <FormControl fullWidth className="mt-2">
+            <FormControl fullWidth className="mt-2 mr-3">
               <Button variant="contained" color="default" type="submit">
-                Search
+              {t("search")}
               </Button>
             </FormControl>
           </Grid>

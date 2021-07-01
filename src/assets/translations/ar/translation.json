@@ -49,5 +49,24 @@
   "search-by-title": "ابحث بالعنوان",
   "exceeded-limit":"لقد وصلت إلى الحد الأقصى لعدد التذاكر اليوم",
   "dashboard":"لوحة التحكم",
-  "page-not-found": "الصفحة غير موجودة"
+  "page-not-found": "الصفحة غير موجودة",
+  "search":"إبحث",
+  "from":"من",
+  "to":"إلى",
+  "no-tickets":"لا يوجد تذاكر حتى الآن",
+  "back-to-home":"الذهاب للصفحة الرئيسية",
+  "all-doctors":"جميع الأطباء",
+  "specialized-doctors":"أطباء متخصصون",
+  "doctors-page-body":"أطبائنا جاهزون لمساعدتك والإجابة على استفساراتك للحفاظ على سلامتك.",
+  "doctors-page-footer":"نحن سعداء لمساعدتك للبقاء في أمان.",
+  "articles-header":"من أطباء وفريق دعم",
+  "search-here":"ابحث هنا",
+  "latest-articles":"أحدث المقالات",
+  "read-more":"قراءة المزيد",
+  "about-us-header":"",
+  "about-us-subheader":"",
+  "new-article": "إكتب مقالة جديدة",
+  "new-article-header":"هل لديك اخبار او معلومات طبية تود بمشاركتها"
 }
+
+
