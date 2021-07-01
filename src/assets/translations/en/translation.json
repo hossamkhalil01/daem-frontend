@@ -104,6 +104,9 @@
   "become-doctor-subtitle": "Help us and support people!",
   "become-doctor-submission-msg": "Thank you for submitting your application, it is now being reviewed by our team.",
   "back-to-home": "Back To Home",
+  "doctor-application-title" : "Doctor Application",
+  "doctor-application-subtitle" : "Add a new doctor to the team",
+  "doctor-application-notFound-msg": "Error with this application"  
   "chronic-diseases":"Chronic diseases",
   "welcome-back":"Welcome back!",
   "password":"Password",

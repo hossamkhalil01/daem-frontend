@@ -104,6 +104,9 @@
   "server-error-label": ".لقد واجهتنا مشكلة.نأسف للإزعاج,نحن نعمل على حل المشكلة",
   "become-doctor-subtitle": "ساعدنا و أدعم المرضى",
   "become-doctor-submission-msg": ".شكراً لك للتسليم , يتم الآن مراجعه البيانات الخاصه بك بواسطة فريق العمل الخاص بنا",
+  "doctor-application-title" : "طلب طبيب للإلتحاق",
+  "doctor-application-subtitle" : "أضف طبيباً لفريقنا",
+  "doctor-application-notFound-msg": "خطأ في هذا الطلب"
   "chronic-diseases":"امراض مزمنة",
   "welcome-back":"مرحبا بعودتك!",
   "password":"كلمة السر",
@@ -114,5 +117,4 @@
   "gender":"النوع",
   "already-has-account":"هل لديك حساب بالفعل?",
   "diseases-placeholder":"يُرجى وصف أي أمراض لديك قد يكون من المفيد معرفتها"
-
 }
