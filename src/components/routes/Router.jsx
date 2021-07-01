@@ -17,6 +17,7 @@ import TicketsPage from "../../pages/TicketsPage";
 import UpdateArticlePage from "../../pages/UpdateArticlePage";
 import UpdateTicketPage from "../../pages/UpdateTicketPage";
 import Logout from "../auth/Logout";
+import DoctorsApplicationForm from "../../components/DoctorApplicationForm";
 import AdminDoctorRoute from "./AdminDoctorRoute";
 import AdminRoute from "./AdminRoute";
 import PrivateRoute from "./PrivateRoute";
@@ -74,7 +75,7 @@ const Router = () => {
         <Route exact path="/tickets/:id/edit">
           <UpdateTicketPage />
         </Route>
-        <Route path="/tickets">
+        <Route exact path="/tickets">
           <PrivateRoute>
             <TicketsPage />
           </PrivateRoute>
@@ -93,8 +94,15 @@ const Router = () => {
             <ProfilePage />
           </PrivateRoute>
         </Route>
-        <Route path='*'>
-          <NotFound/>
+        <Route exact path="/notFound">
+          <NotFound />
+        </Route>
+        <Route path="*">
+          <Redirect
+            to={{
+              pathname: "/notFound",
+            }}
+          />
         </Route>
       </Switch>
     </BrowserRouter>

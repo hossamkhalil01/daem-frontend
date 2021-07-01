@@ -1,7 +1,8 @@
 import Avatar from "@material-ui/core/Avatar";
 import React from "react";
 import { useTranslation } from "react-i18next";
-import { NavLink } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
+import ROLES from "../../api/roles";
 import { BASE_URL } from "../../api/urls";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import LanguageSelect from "../LanguageSelect";
@@ -114,35 +115,31 @@ const Navbar = (props) => {
                       ></Avatar>{" "}
                     </a>
                     <ul className="dropdown-menu" aria-labelledby="dropdown02">
-                      {currentUser?.role === "moderator" && (
+                      {currentUser?.role === ROLES.admin && (
                         <li className="nav-item">
-                          <NavLink
+                          <Link
                             className="dropdown-item nav-link"
                             to="/admin/dashboard"
                             exact
                           >
                             {t("dashboard")}
-                          </NavLink>
+                          </Link>
                         </li>
                       )}
 
                       <li className="nav-item">
-                        <NavLink
-                          className="dropdown-item nav-link"
-                          to="/profile"
-                          exact
-                        >
+                        <Link className="dropdown-item nav-link" to="/profile">
                           {t("profile")}
-                        </NavLink>
+                        </Link>
                       </li>
                       <li className="nav-item">
-                        <NavLink
+                        <Link
                           className="dropdown-item nav-link"
                           to="/logout"
                           exact
                         >
                           {t("logout")}
-                        </NavLink>
+                        </Link>
                       </li>
                     </ul>
                   </li>

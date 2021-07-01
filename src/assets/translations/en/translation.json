@@ -49,6 +49,15 @@
   "exceeded-limit": "You have reached the maximum number of tickets today",
   "go-to-tickets": "Go to tickets",
   "dashboard": "Dashboard",
-  "server-error-label" : "OOPS .. something went worng. Sorry for the inconvenience. We're working on it.",
-  "page-not-found": "Page not found"
+  "page-not-found": "Page not found",
+  "doctor": "Doctor",
+  "moderator": "Moderator",
+  "become-doctor-title": "Become A Doctor",
+  "become-doctor-form-header1": "Thank you for wanting to become one of our doctors to help patients and support them.",
+  "become-doctor-form-header2": "Please fill the form and submit it so that our team can review your application.",
+  "become-doctor-form-about": "Tell us in brief about you, your career and your professional experience.",
+  "become-doctor-form-nationalId": "Upload Your National ID Image",
+  "become-doctor-form-doctorId": "Upload Your Doctors Syndicate or Hospital ID Image",
+  "speciality": "Speciality",
+  "server-error-label": "OOPS .. something went worng. Sorry for the inconvenience. We're working on it."
 }

@@ -13,7 +13,9 @@ import TextareaAutosize from "@material-ui/core/TextareaAutosize";
 import CloudUploadIcon from "@material-ui/icons/CloudUpload";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import ROLES from "../api/roles";
 import { BASE_URL } from "../api/urls";
+import { useTranslation } from "react-i18next";
 import { useCurrentUser } from "../contexts/CurrentUserContext";
 import * as userService from "../services/userService";
 import "../styles/UserProfile.css";
@@ -51,6 +53,7 @@ export default function UserProfile() {
   const { currentUser, setCurrentUser } = useCurrentUser();
   const classes = useStyles();
   const [user, setUser] = useState(currentUser);
+  const { t } = useTranslation();
   const [success, setSuccess] = useState(false);
 
   const [imageSource, setImageSource] = useState(
@@ -244,8 +247,24 @@ export default function UserProfile() {
                   <div className="row">
                     <div className="col">
                       <div className="card-profile-stats mt-md-5">
-                        <div className="lead">{user.email}</div>
-                        {/* <div className="text-muted">{user.email}</div> */}
+                        <div className="lead">
+                          {user.email} <br />
+                          {currentUser.role === ROLES.doc ? (
+                            <span className="text-center badge bg-primary">
+                              {t("doctor")}
+                            </span>
+                          ) : (
+                            ""
+                          )}
+                          {currentUser.role === ROLES.admin ? (
+                            <span className="badge bg-danger">
+                              {" "}
+                              {t("moderator")}
+                            </span>
+                          ) : (
+                            ""
+                          )}
+                        </div>
                       </div>
                     </div>
                   </div>
