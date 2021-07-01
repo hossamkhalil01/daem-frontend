@@ -60,5 +60,7 @@
   "become-doctor-form-doctorId": ".اختر صورة من بطاقة النقابه أو العمل (مستشفى)",
   "speciality": "التخصص",
   "server-error-label": ".لقد واجهتنا مشكلة.نأسف للإزعاج,نحن نعمل على حل المشكلة",
-  "become-doctor-subtitle": "ساعدنا و أدعم المرضى"
+  "become-doctor-subtitle": "ساعدنا و أدعم المرضى",
+  "become-doctor-submission-msg": ".شكراً لك للتسليم , يتم الآن مراجعه البيانات الخاصه بك بواسطة فريق العمل الخاص بنا",
+  "back-to-home": "العوده للصفحة الرئيسيه"
 }

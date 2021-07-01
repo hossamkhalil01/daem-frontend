@@ -21,6 +21,7 @@ import BecomeDoctorPage from "../../pages/BecomeDoctorPage";
 import AdminDoctorRoute from "./AdminDoctorRoute";
 import AdminRoute from "./AdminRoute";
 import PrivateRoute from "./PrivateRoute";
+import UserDoctorRoute from "./UserDoctorRoute";
 
 const Router = () => {
   return (
@@ -32,9 +33,9 @@ const Router = () => {
           </AdminRoute>
         </Route>
         <Route exact path="/become-doctor">
-          <PrivateRoute>
+          <UserDoctorRoute>
             <BecomeDoctorPage />
-          </PrivateRoute>
+          </UserDoctorRoute>
         </Route>
 
         <Route exact path="/tickets/new">

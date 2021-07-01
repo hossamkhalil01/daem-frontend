@@ -2,13 +2,12 @@ import { FormHelperText } from "@material-ui/core";
 import { useState, useEffect } from "react";
 import validate from "../utils/validations";
 import * as services from "../services/doctorApplicationsService";
-import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useCurrentUser } from "../contexts/CurrentUserContext";
 
 const requriedFields = ["speciality", "nationalId", "doctorId"];
 
-const DoctorApplicationForm = () => {
+const DoctorApplicationForm = ({ onSuccessSubmit }) => {
   const { currentUser } = useCurrentUser();
   const [specialitiesList, setSpecialitiesList] = useState([]);
   const { t } = useTranslation();
@@ -153,7 +152,11 @@ const DoctorApplicationForm = () => {
 
     // sumbit request to the backend
     try {
-      await services.createApplication(formData);
+      const {
+        data: { data },
+      } = await services.createApplication(formData);
+      // pass data to parent
+      onSuccessSubmit(data);
     } catch (err) {
       // invalid data
       const msg = err.response.data.message;

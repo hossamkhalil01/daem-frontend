@@ -1,11 +1,19 @@
+import { useState } from "react";
 import Navbar from "../components/layouts/Navbar";
 import Footer from "../components/layouts/Footer";
 import { useTranslation } from "react-i18next";
-
 import DoctorApplicationForm from "../components/DoctorApplicationForm";
+import { Link } from "react-router-dom";
 
 const BecomeDoctorPage = (props) => {
+  const [application, setApplication] = useState(null);
+
   const { t } = useTranslation();
+
+  const handleSuccessSubmit = (newApplication) => {
+    // set the state
+    setApplication(newApplication);
+  };
 
   return (
     <>
@@ -33,8 +41,25 @@ const BecomeDoctorPage = (props) => {
       <section className="appoinment section">
         <div className="row justify-content-center">
           <div className="container col-md-8">
-            <DoctorApplicationForm />
+            {application ? (
+              <DoctorApplicationForm onSuccessSubmit={handleSuccessSubmit} />
+            ) : (
+              <div className="justify-content-center text-center">
+                <h3 className="title-color">
+                  {t("become-doctor-submission-msg")}
+                </h3>
+                <Link
+                  to="/"
+                  className="btn btn-main btn-lg btn-round-full mt-5"
+                >
+                  {" "}
+                  {t("back-to-home")}
+                  <i className="icofont-simple-left ml-2"></i>
+                </Link>
+              </div>
+            )}
           </div>
+          )
         </div>
       </section>
       <Footer />
