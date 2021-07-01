@@ -5,10 +5,12 @@ import {
   Input,
   InputLabel,
   Paper,
-  Select,
+  Select
 } from "@material-ui/core";
+import { useTranslation } from "react-i18next";
 
 export const UserFilter = ({ filter, setFilter, onUpdateFilterdState }) => {
+  const {t} = useTranslation();
   const handleChange = (prop) => (event) => {
     if (!event.target.value) return setFilter({ ...filter, [prop]: null });
     setFilter({ ...filter, [prop]: event.target.value });
@@ -16,7 +18,6 @@ export const UserFilter = ({ filter, setFilter, onUpdateFilterdState }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     onUpdateFilterdState((filterd) => !filterd);
-    // console.log(filter);
   };
   return (
     <form className="mt-5" onSubmit={handleSubmit}>
@@ -32,7 +33,7 @@ export const UserFilter = ({ filter, setFilter, onUpdateFilterdState }) => {
         >
           <Grid item xs={3}>
             <FormControl>
-              <InputLabel htmlFor="name">Name</InputLabel>
+              <InputLabel htmlFor="name">{t("name")}</InputLabel>
               <Input
                 id="name"
                 type="text"
@@ -42,7 +43,7 @@ export const UserFilter = ({ filter, setFilter, onUpdateFilterdState }) => {
             </FormControl>
           </Grid>
           <Grid item xs={3}>
-            <InputLabel htmlFor="state">Role</InputLabel>
+            <InputLabel htmlFor="state">{t("role")}</InputLabel>
             <Select
               native
               id="state"
@@ -50,15 +51,15 @@ export const UserFilter = ({ filter, setFilter, onUpdateFilterdState }) => {
               onChange={handleChange("role")}
             >
               <option selected></option>
-              <option value={"moderator"}>Moderator</option>
-              <option value={"doctor"}>Doctor</option>
-              <option value={"user"}>User</option>
+              <option value={"moderator"}>{t("moderator")}</option>
+              <option value={"doctor"}>{t("doctor")}</option>
+              <option value={"user"}>{t("user")}</option>
             </Select>
           </Grid>
           <Grid item xs={3}>
             <FormControl fullWidth className="mt-2">
               <Button variant="contained" color="default" type="submit">
-                Search
+               {t("search")}
               </Button>
             </FormControl>
           </Grid>

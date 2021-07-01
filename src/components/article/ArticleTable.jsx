@@ -7,12 +7,12 @@ import TableCell from "@material-ui/core/TableCell";
 import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
-import capitalize from "../../utils/capitalize";
-import { BASE_URL } from "../../api/urls";
-import { Link } from "react-router-dom";
-import DeleteArticle from "../../components/articleActions/DeleteArticle";
 import moment from "moment";
-
+import { Link } from "react-router-dom";
+import { BASE_URL } from "../../api/urls";
+import DeleteArticle from "../../components/articleActions/DeleteArticle";
+import capitalize from "../../utils/capitalize";
+import { useTranslation } from "react-i18next";
 const useStyles = makeStyles({
   table: {
     minWidth: 650,
@@ -33,13 +33,13 @@ const ArticleTable = ({ articles }) => {
       <TableRow>
         <TableCell colSpan={6} align="center">
           <h4 className="alert alert-info text-center">
-            No avaliable Articles yet!
+          {t("no-articles")}
           </h4>
         </TableCell>
       </TableRow>
     );
   };
-
+  const {t} = useTranslation();
   const classes = useStyles();
 
   return (
@@ -49,12 +49,12 @@ const ArticleTable = ({ articles }) => {
           <TableHead>
             <TableRow>
               <TableCell>#</TableCell>
-              <TableCell align="center">Title</TableCell>
-              <TableCell align="center">Body</TableCell>
-              <TableCell align="center">Author</TableCell>
-              <TableCell align="center">Date</TableCell>
+              <TableCell align="center">{t("title")}</TableCell>
+              <TableCell align="center">{t("body")}</TableCell>
+              <TableCell align="center">{t("author")}</TableCell>
+              <TableCell align="center">{t("date")}</TableCell>
 
-              <TableCell align="center">Delete</TableCell>
+              <TableCell align="center">{t("delete")}</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>

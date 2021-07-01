@@ -7,7 +7,7 @@ import {
   parsePaginatedResponse,
 } from "../../utils/pagination";
 import { UserFilter } from "../../components/UsersFilter";
-
+import { useTranslation } from "react-i18next";
 const UsersPage = () => {
   const [pagination, setPagination] = useState({ page: 1, totalPages: 1 });
   const [users, setUsers] = useState([]);
@@ -16,7 +16,7 @@ const UsersPage = () => {
     role: null,
   });
   const [isFilterd, updateFilterdState] = useState(false);
-
+  const { t } = useTranslation();
   const handlePageChange = async (newPage = 1) => {
     // construct the params
     const params = createPaginationParams(filter, {

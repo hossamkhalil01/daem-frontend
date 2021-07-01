@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from "react";
-import Paginator from "../../components/Paginator";
-import { getArticles } from "../../services/articlesService";
-import Search from "../../components/Search";
 import { useTranslation } from "react-i18next";
 import ArticleTable from "../../components/article/ArticleTable";
+import Paginator from "../../components/Paginator";
+import Search from "../../components/Search";
 import { UpdateArticlesListProvider } from "../../contexts/updateArticlesListContext";
-
+import { getArticles } from "../../services/articlesService";
 import {
   createPaginationParams,
-  parsePaginatedResponse,
+  parsePaginatedResponse
 } from "../../utils/pagination";
+
 
 const AdminArticlesPage = (props) => {
   const [pagination, setPagination] = useState({ page: 1, totalPages: 1 });
@@ -53,7 +53,7 @@ const AdminArticlesPage = (props) => {
         <div className="container">
           <div className="sidebar-wrap pl-lg-4 mt-5 mt-lg-0">
             <div className="sidebar-widget search mb-3">
-              <h5>Search Here</h5>
+              <h5>{t("search-here")}</h5>
               <Search
                 onSearch={handleSearchChange}
                 placeholder={t("search-by-title")}
