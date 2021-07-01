@@ -11,6 +11,7 @@ import TableRow from "@material-ui/core/TableRow";
 import capitalize from "../utils/capitalize";
 import { useTranslation } from "react-i18next";
 import { BASE_URL } from "../api/urls";
+import { useHistory } from "react-router";
 
 const useStyles = makeStyles({
   table: {
@@ -20,7 +21,14 @@ const useStyles = makeStyles({
 
 const ApplicationsTable = ({ applications }) => {
   const { t } = useTranslation();
+  const history = useHistory();
 
+  const handleViewApplication = (application) => {
+    history.push({
+      pathname: `/admin/doctor-application/view`,
+      state: { application },
+    });
+  };
   const checkEmptyTable = () => {
     if (applications.length) return;
 
@@ -87,10 +95,10 @@ const ApplicationsTable = ({ applications }) => {
               </TableCell>
               <TableCell align="center">
                 <Button
-                  onClick={console.log("view application")}
                   variant="contained"
                   color="primary"
                   size="small"
+                  onClick={() => handleViewApplication(application)}
                 >
                   {t("view")}
                 </Button>

@@ -18,11 +18,11 @@ export const createApplication = async (formData) => {
   return requests.create(DOCTORS_APPLICATION_API.BASE_URL, formData);
 };
 
-export const approveApplication = async () => {
-  return requests.create(DOCTORS_APPLICATION_API.approve);
+export const approveApplication = async (id) => {
+  return requests.create(DOCTORS_APPLICATION_API.approve(id));
 };
 
 
-export const rejectApplication = async (formData) => {
-  return requests.create(DOCTORS_APPLICATION_API.reject);
+export const rejectApplication = async (id) => {
+  return requests.create(DOCTORS_APPLICATION_API.reject(id));
 };

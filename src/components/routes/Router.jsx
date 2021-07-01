@@ -18,6 +18,8 @@ import UpdateArticlePage from "../../pages/UpdateArticlePage";
 import UpdateTicketPage from "../../pages/UpdateTicketPage";
 import Logout from "../auth/Logout";
 import BecomeDoctorPage from "../../pages/BecomeDoctorPage";
+import ApplicationViewPage from "../../pages/admin/ApplicationViewPage";
+
 import AdminDoctorRoute from "./AdminDoctorRoute";
 import AdminRoute from "./AdminRoute";
 import PrivateRoute from "./PrivateRoute";
@@ -30,6 +32,11 @@ const Router = () => {
         <Route exact path="/admin/dashboard">
           <AdminRoute>
             <Dashboard />
+          </AdminRoute>
+        </Route>
+        <Route exact path="/admin/doctor-application/view">
+          <AdminRoute>
+            <ApplicationViewPage />
           </AdminRoute>
         </Route>
         <Route exact path="/become-doctor">
