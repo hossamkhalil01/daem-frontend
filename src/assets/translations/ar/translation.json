@@ -72,7 +72,7 @@
   "about-us-body": "نحن مجموعة من الأطباء والمشرفين نساعد مرضى كوفيد في الحصول على الدعم من الأطباء المتخصصين من خلال تقديم الاستشارات الطبية المجانية.",
   "new-article": "إكتب مقالة جديدة",
   "new-article-header": "هل لديك اخبار او معلومات طبية تود بمشاركتها",
-  "feature1-header": "أطباء المؤهلون",
+  "feature1-header": "أطباء مؤهلون",
   "feature2-header": "مقالات مفيدة",
   "feature3-header": "سهل الوصول",
   "feature4-header": "الاستشارة الطبية",
@@ -107,4 +107,14 @@
   "doctor-application-title" : "طلب طبيب للإلتحاق",
   "doctor-application-subtitle" : "أضف طبيباً لفريقنا",
   "doctor-application-notFound-msg": "خطأ في هذا الطلب"
+  "chronic-diseases":"امراض مزمنة",
+  "welcome-back":"مرحبا بعودتك!",
+  "password":"كلمة السر",
+  "confirm-password":"تأكيد كلمة المرور",
+  "remember-password":"تذكر كلمة المرور",
+  "new-to-daem":"مستخدم جديد لموقع دعم؟",
+  "date-of-birth":"تاريخ الميلاد",
+  "gender":"النوع",
+  "already-has-account":"هل لديك حساب بالفعل?",
+  "diseases-placeholder":"يُرجى وصف أي أمراض لديك قد يكون من المفيد معرفتها"
 }
