@@ -7,7 +7,7 @@ import DialogTitle from "@material-ui/core/DialogTitle";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useHistory } from "react-router";
-import { formatDate } from "../services/dateService";
+import { formatDate } from "../utils/formatDate";
 
 export default function RecordCard({ ticket }) {
   const [openModal, setOpenModal] = useState(false);

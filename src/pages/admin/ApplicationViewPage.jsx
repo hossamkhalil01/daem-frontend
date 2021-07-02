@@ -10,6 +10,7 @@ import {
   rejectApplication,
 } from "../../services/doctorApplicationsService";
 import { BASE_URL } from "../../api/urls";
+import { formatDate } from "../../utils/formatDate";
 
 const ApplicationViewPage = () => {
   const [curApplication, setCurApplication] = useState(null);
@@ -97,7 +98,7 @@ const ApplicationViewPage = () => {
                   <div className="col-6 row">
                     <label className="lead col-6">Date Of Birth</label>
                     <p className="text-muted col-6">
-                      {application.applicant.DOB}
+                      {formatDate(application.applicant.DOB)}
                     </p>
                   </div>
                 </div>
