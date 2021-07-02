@@ -27,8 +27,11 @@ const NotificationCard = ({ notification }) => {
     return (
       <>
         <div class="notification-list_detail">
+          {t("your-app-was")} {t(notification.appStatus)}
           <p>
-            <b>ledsa</b>
+            <small>
+              {moment(notification.createdAt, "YYYY-MM-DDTh:mm:ss").fromNow()}
+            </small>
           </p>
         </div>
       </>

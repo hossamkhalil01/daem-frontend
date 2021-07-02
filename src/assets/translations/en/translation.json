@@ -144,5 +144,8 @@
   "diseases-placeholder":"Please describe any diseases you have that might be useful to know",
   "commented-on-ticket":"commented on your ticket.",
   "no-unread-notifications": "You have no unread notifications.",
-  "view-all-notifications":"View all notifications."
+  "view-all-notifications":"View all notifications.",
+  "your-app-was": "Your doctor application was",
+  "rejected":"rejected",
+  "approved":"approved"
 }

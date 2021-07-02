@@ -22,6 +22,7 @@ const Notifications = (props) => {
       state = [action.notification, ...state];
       state = state.filter((n, index) => state.indexOf(n) === index);
       setUnread(unread + 1);
+      console.log(action.notification);
       return state;
     } else if (action.type === "GET_NOTIFICATIONS") {
       state = action.notifications;
