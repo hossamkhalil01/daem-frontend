@@ -1,15 +1,14 @@
 import Avatar from "@material-ui/core/Avatar";
 import React from "react";
 import { useTranslation } from "react-i18next";
-import { NavLink, Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import ROLES from "../../api/roles";
 import { BASE_URL } from "../../api/urls";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import LanguageSelect from "../LanguageSelect";
-
+import Notifications from "./Notifications";
 const Navbar = (props) => {
   const { currentUser } = useCurrentUser();
-
   const { t } = useTranslation();
   return (
     <header>
@@ -100,6 +99,7 @@ const Navbar = (props) => {
             <ul className="navbar-nav ml-auto">
               {currentUser?._id ? (
                 <>
+                 <Notifications/>
                   <li className="nav-item dropdown">
                     <a
                       href="#"

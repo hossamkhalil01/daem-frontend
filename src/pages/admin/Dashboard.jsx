@@ -7,8 +7,6 @@ import Typography from "@material-ui/core/Typography";
 import PropTypes from "prop-types";
 import React from "react";
 import { useTranslation } from "react-i18next";
-import Footer from "../../components/layouts/Footer";
-import Navbar from "../../components/layouts/Navbar";
 import UsersPage from "../../pages/admin/UsersPage";
 import ApplicationsPage from "./ApplicationsPage";
 import ArticlesPage from "./ArticlesPage";
@@ -63,7 +61,6 @@ export const Dashboard = () => {
 
   return (
     <>
-      <Navbar />
       <div className={classes.root}>
         <AppBar position="static">
           <Tabs
@@ -86,7 +83,6 @@ export const Dashboard = () => {
           <ApplicationsPage />
         </TabPanel>
       </div>
-      <Footer />
     </>
   );
 };

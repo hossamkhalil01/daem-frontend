@@ -29,7 +29,6 @@ export default function AssignDoctor({ ticketId, ticketDoctor }) {
 
   return (
     <>
-    <p>{doctor.firstname}</p>
     <Autocomplete
       className="ticket-doctor"
       value={doctor || null}

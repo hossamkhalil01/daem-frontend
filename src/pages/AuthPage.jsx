@@ -1,8 +1,6 @@
 import React, { useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import Login from "../components/auth/Login";
-import Navbar from "../components/layouts/Navbar";
-import Footer from "../components/layouts/Footer";
 import Register from "../components/auth/Register";
 import PageHeaders from "../components/PageHeaders";
 import { useCurrentUser } from "../contexts/CurrentUserContext";
@@ -23,7 +21,6 @@ const AuthPage = ({ isLogin }) => {
   return (
     <>
       <PageHeaders pageTitle={isLogin ? t("login") : t("register")} />
-      <Navbar />
       <div className="container-fluid w-75 mb-1 mt-5">
         <div className="row no-gutter ">
           <img
@@ -44,7 +41,6 @@ const AuthPage = ({ isLogin }) => {
           </div>
         </div>
       </div>
-      <Footer />
     </>
   );
 };

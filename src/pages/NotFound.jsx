@@ -1,15 +1,12 @@
 import { useTranslation } from "react-i18next";
 import { NavLink } from "react-router-dom";
-import Footer from "../components/layouts/Footer";
 import PageHeaders from "../components/PageHeaders";
-import Navbar from "../components/layouts/Navbar";
 
 export default function NotFound() {
   const { t } = useTranslation();
   return (
     <>
       <PageHeaders pageTitle={t("page-not-found")} />
-      <Navbar />
       <div className="container notfound-container mb-5 mt-5">
         <h2>{t("page-not-found")}</h2>
         <img src="/assets/images/bg/404.png" alt="Not found" />
@@ -23,7 +20,6 @@ export default function NotFound() {
         </NavLink>
       </div>
 
-      <Footer />
     </>
   );
 }

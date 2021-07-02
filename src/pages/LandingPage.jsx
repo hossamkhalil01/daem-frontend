@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { NavLink, Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import ArticleCard from "../components/article/ArticleCard";
-import Footer from "../components/layouts/Footer";
-import Navbar from "../components/layouts/Navbar";
 import PageHeaders from "../components/PageHeaders";
 import { useCurrentUser } from "../contexts/CurrentUserContext";
 import { getArticles } from "../services/articlesService";
@@ -23,7 +21,6 @@ const LandingPage = (props) => {
   return (
     <>
       <PageHeaders pageTitle={t("home")} />
-      <Navbar />
       <div>
         {!currentUser || currentUser.role === "user" ? (
           <section className={`banner banner-${t("language")}`}>
@@ -106,7 +103,6 @@ const LandingPage = (props) => {
         )}
       </div>
 
-      <Footer />
     </>
   );
 };

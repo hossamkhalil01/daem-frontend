@@ -6,6 +6,7 @@ import capitalize from "../utils/capitalize";
 import Navbar from "../components/layouts/Navbar";
 import Footer from "../components/layouts/Footer";
 import PageHeaders from "../components/PageHeaders";
+
 import { NavLink } from "react-router-dom";
 import { BASE_URL } from "../api/urls";
 const DoctorPage = (props) => {
@@ -22,8 +23,6 @@ const DoctorPage = (props) => {
   return (
     <>
       <PageHeaders pageTitle={t("doctor-details")} />
-
-      <Navbar />
       <div>
         <section className="page-title bg-1">
           <div className="overlay"></div>
@@ -87,7 +86,6 @@ const DoctorPage = (props) => {
           </div>
         </section>
       </div>
-      <Footer />
     </>
   );
 };

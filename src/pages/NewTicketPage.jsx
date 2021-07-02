@@ -1,6 +1,4 @@
 import React from "react";
-import Navbar from "../components/layouts/Navbar";
-import Footer from "../components/layouts/Footer";
 import TicketForm from "../components/ticket/TicketForm";
 import PageHeaders from "../components/PageHeaders";
 import { useTranslation } from "react-i18next";
@@ -16,9 +14,7 @@ export default function NewTicketPage() {
   return (
     <>
       <PageHeaders pageTitle={t("new-ticket")} />
-      <Navbar />
       <TicketForm onCreation={handleTicketCreation} />
-      <Footer />
     </>
   );
 }

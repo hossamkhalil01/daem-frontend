@@ -1,14 +1,11 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import Footer from "../components/layouts/Footer";
-import Navbar from "../components/layouts/Navbar";
+import { useTranslation } from "react-i18next";
+import { useHistory, useParams } from "react-router-dom";
 import Loading from "../components/Loading";
 import MedicalRecord from "../components/MedicalRecord";
+import PageHeaders from "../components/PageHeaders";
 import TicketDetails from "../components/ticket/TicketDetails";
 import TicketComments from "../components/TicketComments";
-import PageHeaders from "../components/PageHeaders";
-import { useHistory } from "react-router-dom";
-import { useTranslation } from "react-i18next";
 import { useCurrentUser } from "../contexts/CurrentUserContext";
 import { getTicket } from "../services/ticketsService";
 
@@ -38,7 +35,6 @@ export default function TicketPage() {
   return (
     <>
       <PageHeaders pageTitle={t("ticket-details")} />
-      <Navbar />
       {loading ? (
         <Loading />
       ) : (
@@ -54,7 +50,6 @@ export default function TicketPage() {
           </div>
         </div>
       )}
-      <Footer />
     </>
   );
 }

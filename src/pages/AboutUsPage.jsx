@@ -1,13 +1,10 @@
 import { useTranslation } from "react-i18next";
-import Footer from "../components/layouts/Footer";
-import Navbar from "../components/layouts/Navbar";
 import PageHeaders from "../components/PageHeaders";
 
 const AboutUsPage = () => {
   const { t } = useTranslation();
   return (
     <>
-      <Navbar />
       <PageHeaders pageTitle={t("about-us")} />
       <section className="page-title bg-1">
         <div className="overlay"></div>
@@ -87,8 +84,6 @@ const AboutUsPage = () => {
           </div>
         </div>
       </section>
-
-      <Footer />
     </>
   );
 };
