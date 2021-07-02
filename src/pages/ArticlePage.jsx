@@ -9,7 +9,7 @@ import Navbar from "../components/layouts/Navbar";
 import Loading from "../components/Loading";
 import { useCurrentUser } from "../contexts/CurrentUserContext";
 import { getArticle, getArticles } from "../services/articlesService";
-import { formatDate } from "../services/dateService";
+import { formatDate } from "../utils/formatDate";
 import { useHistory } from "react-router-dom";
 
 export default function ArticlePage() {

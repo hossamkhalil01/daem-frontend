@@ -10,7 +10,7 @@ import Paginator from "../components/Paginator";
 import Search from "../components/Search";
 import { useCurrentUser } from "../contexts/CurrentUserContext";
 import { getArticles } from "../services/articlesService";
-import { formatDate } from "../services/dateService";
+import { formatDate } from "../utils/formatDate";
 import {
   createPaginationParams,
   parsePaginatedResponse,
