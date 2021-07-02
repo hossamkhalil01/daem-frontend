@@ -2,13 +2,13 @@ import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 import { BASE_URL } from "../api/urls";
-import Paginator from "../components/Paginator";
 import PageHeaders from "../components/PageHeaders";
+import Paginator from "../components/Paginator";
 import { getDoctors } from "../services/doctorsService";
 import capitalize from "../utils/capitalize";
 import {
   createPaginationParams,
-  parsePaginatedResponse,
+  parsePaginatedResponse
 } from "../utils/pagination";
 
 const DoctorsPage = (props) => {
@@ -23,7 +23,6 @@ const DoctorsPage = (props) => {
       page: newPage,
       limit: 8,
     });
-
     // get the new page from api
     try {
       const res = await getDoctors(params);

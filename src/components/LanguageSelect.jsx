@@ -5,11 +5,11 @@ import ListSubheader from "@material-ui/core/ListSubheader";
 import Popover from "@material-ui/core/Popover";
 import ArrowDropDown from "@material-ui/icons/ArrowDropDown";
 import i18next from "i18next";
+import moment from 'moment';
+import localization from 'moment/locale/ar';
 import React from "react";
 import { useTranslation } from "react-i18next";
 import storage from "../utils/storage";
-import moment from 'moment';
-import localization from 'moment/locale/ar';
 
 
 const languageMap = {
@@ -23,6 +23,7 @@ export default function LanguageSelect() {
 
   const [menuAnchor, setMenuAnchor] = React.useState(null);
   React.useEffect(() => {
+    moment.updateLocale(t("language"), localization);
     document.body.dir = languageMap[selected].dir;
   }, [menuAnchor, selected]);
 

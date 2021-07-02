@@ -1,17 +1,17 @@
 import Avatar from "@material-ui/core/Avatar";
+import Button from "@material-ui/core/Button";
 import Paper from "@material-ui/core/Paper";
 import { makeStyles } from "@material-ui/core/styles";
-import Button from "@material-ui/core/Button";
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
 import TableCell from "@material-ui/core/TableCell";
 import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
-import capitalize from "../utils/capitalize";
 import { useTranslation } from "react-i18next";
-import { BASE_URL } from "../api/urls";
 import { useHistory } from "react-router";
+import { BASE_URL } from "../api/urls";
+import capitalize from "../utils/capitalize";
 
 const useStyles = makeStyles({
   table: {
@@ -77,19 +77,19 @@ const ApplicationsTable = ({ applications }) => {
               <TableCell align="center">
                 {application.applicant.email}
               </TableCell>
-              <TableCell align="center">{application.speciality}</TableCell>
+              <TableCell align="center">{t(application.speciality)}</TableCell>
               <TableCell align="center">
                 <div className="lead">
                   <span
                     className={
-                      application.status === "approve"
+                      application.status === "approved"
                         ? "badge bg-success"
                         : application.status === "pending"
                         ? "badge bg-warning"
                         : "badge bg-danger"
                     }
                   >
-                    {capitalize(application.status)}
+                    {t(application.status)}
                   </span>
                 </div>
               </TableCell>

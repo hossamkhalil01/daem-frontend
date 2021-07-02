@@ -50,24 +50,24 @@ const ApplicationViewPage = () => {
         <div className="row justify-content-center">
           <div className="container col-md-8">
             <Link to="/admin/dashboard" className="btn btn-sm btn-info mr-4">
-              Back To Dashboard
+              {t("back-to-dashboard")}
             </Link>
             {application ? (
               <div className="text-center border p-4">
                 <div className="row">
                   <div className="col-6 row">
-                    <label className="lead col-6">Status</label>
-                    <p className="text-muted col-6">{application.status}</p>
+                    <label className="lead col-6">{t("state")}</label>
+                    <p className="text-muted col-6">{t(application.status)}</p>
                   </div>
                   <div className="col-6 row">
-                    <label className="lead col-6">Speciality</label>
-                    <p className="text-muted col-6">{application.speciality}</p>
+                    <label className="lead col-6">{t("speciality")}</label>
+                    <p className="text-muted col-6">{t(application.speciality)}</p>
                   </div>
                 </div>
 
                 <div className="row">
                   <div className="col-6 row">
-                    <label className="lead col-6">Full Name</label>
+                    <label className="lead col-6">{t("name")}</label>
                     <p className="text-muted col-6">
                       {application.applicant.firstname +
                         " " +
@@ -75,7 +75,7 @@ const ApplicationViewPage = () => {
                     </p>
                   </div>
                   <div className="col-6 row">
-                    <label className="lead col-6">Email</label>
+                    <label className="lead col-6">{t("email")}</label>
                     <p className="text-muted col-6">
                       {application.applicant.email}
                     </p>
@@ -84,22 +84,22 @@ const ApplicationViewPage = () => {
 
                 <div className="row">
                   <div className="col-6 row">
-                    <label className="lead col-6">Gender</label>
+                    <label className="lead col-6">{t("gender")}</label>
                     <p className="text-muted col-6">
                       {application.applicant.gender}
                     </p>
                   </div>
                   <div className="col-6 row">
-                    <label className="lead col-6">Date Of Birth</label>
+                    <label className="lead col-6">{t("date-of-birth")}</label>
                     <p className="text-muted col-6">
-                      {formatDate(application.applicant.DOB)}
+                      {formatDate(application.applicant.DOB,t("language"))}
                     </p>
                   </div>
                 </div>
 
                 <div className="row">
                   <div className="col-3">
-                    <label className="lead">About</label>
+                    <label className="lead">{t("about")}</label>
                   </div>
                   <div className="col-9">
                     <p className="text-muted text-justify">
@@ -109,7 +109,7 @@ const ApplicationViewPage = () => {
                 </div>
 
                 <div className="row align-items-center">
-                  <label className="col-3">National ID</label>
+                  <label className="col-3">{t("national-id")}</label>
                   <img
                     className="img-fluid img-thumbnail col-9 w-50 m-2"
                     src={BASE_URL + "/" + application.nationalId}
@@ -118,7 +118,7 @@ const ApplicationViewPage = () => {
                 </div>
 
                 <div className="row align-items-center">
-                  <label className="col-3">Doctor ID</label>
+                  <label className="col-3">{t("doctor-id")}</label>
                   <img
                     className="img-fluid img-thumbnail col-9 w-50 m-2"
                     src={BASE_URL + "/" + application.doctorId}
@@ -135,7 +135,7 @@ const ApplicationViewPage = () => {
                         handleApprove();
                       }}
                     >
-                      Approve
+                      {t("approve")}
                     </Button>
                     <Button
                       variant="contained"
@@ -144,7 +144,7 @@ const ApplicationViewPage = () => {
                         handleReject();
                       }}
                     >
-                      Reject
+                     {t("reject")}
                     </Button>
                   </div>
                 ) : null}
