@@ -97,7 +97,7 @@
   "last-name": "اسم العائلة",
   "email": "البريد الإلكتروني",
   "role": "الدور",
-  "doctors-apps": "تطبيقات الأطباء",
+  "doctors-apps": "طلبات الأطباء",
   "no-users": "لا يوجد مستخدمون متوفرون بعد!",
   "name": "الإسم",
   "title": "العنوان",
@@ -136,5 +136,9 @@
   "about": "عن",
   "profile-updated": "تم تحديث الصفحة الشخصية بنجاح",
   "profile-update-switch": "إضغط لتحديث بياناتك الشخصية",
-  "profile-picture": "الصورة الشخصية"
+  "profile-picture": "الصورة الشخصية",
+  "applications": "الطلبات",
+  "no-applications": "لا يوجد أي طلبات في الوقت الحالي",
+  "applicant-name": "اسم صاحب الطلب",
+  "actions": "أفعال"
 }

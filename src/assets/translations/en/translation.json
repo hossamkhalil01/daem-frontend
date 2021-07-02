@@ -138,5 +138,8 @@
   "about": "About",
   "profile-updated": "Profile updated successfully",
   "profile-update-switch": "Switch on to update profile data",
-  "profile-picture": "Profile Picture"
+  "profile-picture": "Profile Picture",
+  "no-applications": "No avaliable applications yet",
+  "applicant-name": "Applicant Name",
+  "actions": "Actions"
 }

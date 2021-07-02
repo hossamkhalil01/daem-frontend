@@ -1,13 +1,16 @@
 import { useEffect, useState } from "react";
 import Paginator from "../../components/Paginator";
+import PageHeaders from "../../components/PageHeaders";
 import { getApplications } from "../../services/doctorApplicationsService";
 import {
   createPaginationParams,
   parsePaginatedResponse,
 } from "../../utils/pagination";
 import ApplicationsTable from "../../components/ApplicationsTable";
+import { useTranslation } from "react-i18next";
 
 const ApplicationsPage = () => {
+  const { t } = useTranslation();
   const [pagination, setPagination] = useState({ page: 1, totalPages: 1 });
   const [applications, setApplciations] = useState([]);
 
@@ -44,6 +47,7 @@ const ApplicationsPage = () => {
 
   return (
     <>
+      <PageHeaders pageTitle={`${t("dashboard")} (${t("doctors-apps")})`} />
       <div>
         <div className="row mt-5 container-fluid justify-content-center main-content">
           <div className="col-8">

@@ -32,14 +32,12 @@ const ArticleTable = ({ articles }) => {
     return (
       <TableRow>
         <TableCell colSpan={6} align="center">
-          <h4 className="alert alert-info text-center">
-          {t("no-articles")}
-          </h4>
+          <h4 className="alert alert-info text-center">{t("no-articles")}</h4>
         </TableCell>
       </TableRow>
     );
   };
-  const {t} = useTranslation();
+  const { t } = useTranslation();
   const classes = useStyles();
 
   return (
@@ -48,7 +46,7 @@ const ArticleTable = ({ articles }) => {
         <Table className={classes.table} aria-label="simple table">
           <TableHead>
             <TableRow>
-              <TableCell>#</TableCell>
+              <TableCell></TableCell>
               <TableCell align="center">{t("title")}</TableCell>
               <TableCell align="center">{t("body")}</TableCell>
               <TableCell align="center">{t("author")}</TableCell>

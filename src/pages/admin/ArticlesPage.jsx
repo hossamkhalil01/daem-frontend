@@ -3,11 +3,12 @@ import { useTranslation } from "react-i18next";
 import ArticleTable from "../../components/article/ArticleTable";
 import Paginator from "../../components/Paginator";
 import Search from "../../components/Search";
+import PageHeaders from "../../components/PageHeaders";
 import { UpdateArticlesListProvider } from "../../contexts/updateArticlesListContext";
 import { getArticles } from "../../services/articlesService";
 import {
   createPaginationParams,
-  parsePaginatedResponse
+  parsePaginatedResponse,
 } from "../../utils/pagination";
 
 const ArticlesPage = (props) => {
@@ -48,6 +49,7 @@ const ArticlesPage = (props) => {
 
   return (
     <>
+      <PageHeaders pageTitle={`${t("dashboard")} (${t("articles")})`} />
       <UpdateArticlesListProvider value={{ update, setUpdate }}>
         <div className="container">
           <div className="sidebar-wrap pl-lg-4 mt-5 mt-lg-0">
