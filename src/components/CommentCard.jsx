@@ -19,15 +19,14 @@ export default function Comment({ comment, removeCommentFromList }) {
 
   const isAuthor = () => currentUser._id === comment.author?._id;
 
-  useEffect(()=>console.log(moment.utc(comment.createdAt).toDate())
-  )
+  useEffect(() => console.log(moment.utc(comment.createdAt).toDate()));
   return (
     <div className="comment d-flex">
       <div className="flex-shrink-0">
         <div className="avatar avatar-sm rounded-circle">
           <img
             className="avatar-img"
-            src={BASE_URL +"/"+ comment.author?.avatar}
+            src={BASE_URL + "/" + comment.author?.avatar}
             alt=""
           />
         </div>
@@ -35,6 +34,7 @@ export default function Comment({ comment, removeCommentFromList }) {
       <div className="flex-shrink-1 ms-sm-3">
         <div className="comment-meta d-flex">
           <p className="me-2 comment__doctor-name">
+            {comment.author.role === "doctor" ? "Dr. " : ""}
             {comment.author?.firstname + " " + comment.author?.lastname}
           </p>
         </div>
@@ -47,7 +47,9 @@ export default function Comment({ comment, removeCommentFromList }) {
           />
         ) : (
           <div>
+            <div className="d-flex">
             <p className="comment__body">{commentBody}</p>
+            </div>
             <div className="comment__time">
               <span className="text-muted comment__time">
                 {moment(moment.utc(comment.createdAt).toDate()).fromNow()}

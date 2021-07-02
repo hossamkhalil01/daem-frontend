@@ -147,5 +147,9 @@
   "view-all-notifications":"View all notifications.",
   "your-app-was": "Your doctor application was",
   "rejected":"rejected.",
-  "approved":"approved."
+  "approved":"approved.",
+  "pending":"Pending",
+  "back-to-dashboard":"Back to Dashboard",
+  "national-id":"National ID",
+  "doctor-id":"Doctor ID"
 }

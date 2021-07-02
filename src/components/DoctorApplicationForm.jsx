@@ -1,8 +1,8 @@
 import { FormHelperText } from "@material-ui/core";
-import { useState, useEffect } from "react";
-import validate from "../utils/validations";
-import * as services from "../services/doctorApplicationsService";
+import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
+import * as services from "../services/doctorApplicationsService";
+import validate from "../utils/validations";
 
 const requriedFields = ["speciality", "nationalId", "doctorId"];
 
@@ -195,7 +195,7 @@ const DoctorApplicationForm = ({ onSuccessSubmit }) => {
                       {specialitiesList.map((speciality, indx) => {
                         return (
                           <option key={indx} value={speciality}>
-                            {speciality}
+                            {t(speciality)}
                           </option>
                         );
                       })}
