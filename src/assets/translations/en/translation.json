@@ -146,6 +146,6 @@
   "no-unread-notifications": "You have no unread notifications.",
   "view-all-notifications":"View all notifications.",
   "your-app-was": "Your doctor application was",
-  "rejected":"rejected",
-  "approved":"approved"
+  "rejected":"rejected.",
+  "approved":"approved."
 }

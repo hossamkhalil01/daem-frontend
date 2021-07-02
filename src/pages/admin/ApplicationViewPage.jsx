@@ -1,15 +1,11 @@
-import { useState } from "react";
-import Navbar from "../../components/layouts/Navbar";
-import Footer from "../../components/layouts/Footer";
-import { useTranslation } from "react-i18next";
-import { Link } from "react-router-dom";
-import { useHistory, useLocation } from "react-router-dom";
 import Button from "@material-ui/core/Button";
+import { useTranslation } from "react-i18next";
+import { Link, useHistory, useLocation } from "react-router-dom";
+import { BASE_URL } from "../../api/urls";
 import {
   approveApplication,
-  rejectApplication,
+  rejectApplication
 } from "../../services/doctorApplicationsService";
-import { BASE_URL } from "../../api/urls";
 import { formatDate } from "../../utils/formatDate";
 
 const ApplicationViewPage = () => {
@@ -30,7 +26,6 @@ const ApplicationViewPage = () => {
 
   return (
     <>
-      <Navbar />
       {/* Page Title Section */}
       <section className="page-title bg-1">
         <div className="overlay"></div>
@@ -173,7 +168,6 @@ const ApplicationViewPage = () => {
           )
         </div>
       </section>
-      <Footer />
     </>
   );
 };
