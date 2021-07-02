@@ -7,11 +7,13 @@ import MedicalRecord from "../components/MedicalRecord";
 import TicketDetails from "../components/ticket/TicketDetails";
 import TicketComments from "../components/TicketComments";
 import PageHeaders from "../components/PageHeaders";
+import { useHistory } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useCurrentUser } from "../contexts/CurrentUserContext";
 import { getTicket } from "../services/ticketsService";
 
 export default function TicketPage() {
+  const history = useHistory();
   const { t } = useTranslation();
   const { currentUser } = useCurrentUser();
   const { id } = useParams();
@@ -19,9 +21,14 @@ export default function TicketPage() {
   const [loading, setLoading] = useState(true);
 
   const getTicketDetails = async () => {
-    const _ticket = await getTicket(id);
-    setTicket(_ticket.data.data);
-    setLoading(false);
+    try {
+      const _ticket = await getTicket(id);
+      setTicket(_ticket.data.data);
+      setLoading(false);
+    } catch (err) {
+      if (err.response.status === 500) history.push("/server-error");
+      history.push("/notFound");
+    }
   };
 
   useEffect(() => {

@@ -41,7 +41,8 @@ export default function ArticlePage() {
     try {
       const res = await getArticle(id);
       setCurArticle(res.data.data);
-    } catch (error) {
+    } catch (err) {
+      if (err.response.status === 500) history.push("/server-error");
       history.push("/notFound");
     }
   };

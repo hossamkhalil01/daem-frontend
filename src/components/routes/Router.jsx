@@ -19,7 +19,7 @@ import UpdateTicketPage from "../../pages/UpdateTicketPage";
 import Logout from "../auth/Logout";
 import BecomeDoctorPage from "../../pages/BecomeDoctorPage";
 import ApplicationViewPage from "../../pages/admin/ApplicationViewPage";
-
+import ServerError from "../../pages/ServerErrorPage";
 import AdminDoctorRoute from "./AdminDoctorRoute";
 import AdminRoute from "./AdminRoute";
 import PrivateRoute from "./PrivateRoute";
@@ -110,6 +110,9 @@ const Router = () => {
         </Route>
         <Route exact path="/notFound">
           <NotFound />
+        </Route>
+        <Route exact path="/server-error">
+          <ServerError />
         </Route>
         <Route path="*">
           <Redirect
