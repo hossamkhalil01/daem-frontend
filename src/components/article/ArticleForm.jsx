@@ -4,6 +4,7 @@ import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import validate from "../../utils/validations";
 import { createArticle, updateArticle } from "../../services/articlesService";
+import { useTranslation } from "react-i18next";
 import { BASE_URL } from "../../api/urls";
 
 const useStyles = makeStyles((theme) => ({
@@ -17,12 +18,14 @@ const useStyles = makeStyles((theme) => ({
     width: "25ch",
   },
 }));
+
 export default function ArticleForm({ article, onCreation }) {
   const classes = useStyles();
   const [curArticle, setCurArticle] = useState({
     title: "",
     body: "",
   });
+  const { t } = useTranslation();
   const [editMode, setEditMode] = useState(false);
   const [imageSource, setImageSource] = useState("");
 
@@ -189,7 +192,7 @@ export default function ArticleForm({ article, onCreation }) {
           padding: "2%",
         }}
       >
-        <h2>{editMode ? "Edit" : "New"} Article</h2>
+        <h2>{editMode ? t("edit-article") : t("new-article")} </h2>
         <form
           className={classes.root}
           onSubmit={handleSubmit}
@@ -202,8 +205,7 @@ export default function ArticleForm({ article, onCreation }) {
             required
             error={formValidations.title.err}
             id="title"
-            label="Article Title"
-            placeholder="Title"
+            placeholder={t("article-title") + " * "}
             variant="outlined"
             fullWidth
             multiline
@@ -220,8 +222,7 @@ export default function ArticleForm({ article, onCreation }) {
             required
             error={formValidations.body.err}
             id="body"
-            label="Article Body"
-            placeholder="Body"
+            placeholder={t("article-body") + " * "}
             multiline
             rows={8}
             variant="outlined"
@@ -245,7 +246,7 @@ export default function ArticleForm({ article, onCreation }) {
 
           <div className="w-100 text-start">
             <label htmlFor="images" className="pe-3">
-              Upload Article image:{" "}
+              {t("article-upload-image")}:{" "}
             </label>
             <input
               type="file"
@@ -271,7 +272,7 @@ export default function ArticleForm({ article, onCreation }) {
                 : false
             }
           >
-            {editMode ? "Save" : "Submit"}
+            {editMode ? t("save") : t("submit")}
           </Button>
         </form>
       </div>

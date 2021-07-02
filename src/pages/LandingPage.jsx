@@ -4,6 +4,7 @@ import { NavLink, Link } from "react-router-dom";
 import ArticleCard from "../components/article/ArticleCard";
 import Footer from "../components/layouts/Footer";
 import Navbar from "../components/layouts/Navbar";
+import PageHeaders from "../components/PageHeaders";
 import { useCurrentUser } from "../contexts/CurrentUserContext";
 import { getArticles } from "../services/articlesService";
 
@@ -21,6 +22,7 @@ const LandingPage = (props) => {
   }, []);
   return (
     <>
+      <PageHeaders pageTitle={t("home")} />
       <Navbar />
       <div>
         {!currentUser || currentUser.role === "user" ? (

@@ -8,6 +8,7 @@ import Footer from "../components/layouts/Footer";
 import Navbar from "../components/layouts/Navbar";
 import Paginator from "../components/Paginator";
 import Search from "../components/Search";
+import PageHeaders from "../components/PageHeaders";
 import { useCurrentUser } from "../contexts/CurrentUserContext";
 import { getArticles } from "../services/articlesService";
 import { formatDate } from "../utils/formatDate";
@@ -61,6 +62,8 @@ const ArticlesPage = (props) => {
 
   return (
     <>
+      <PageHeaders pageTitle={t("articles")} />
+
       <Navbar />
       <section className="page-title bg-1">
         <div className="overlay"></div>
@@ -176,7 +179,7 @@ const ArticlesPage = (props) => {
                       className="float-right mb-5 btn btn-main-2 btn-icon btn-round-full"
                     >
                       {t("new-article")}{" "}
-                      <i className="icofont-simple-right ml-2  "></i>
+                      <i className="icofont-simple-right ml-2"></i>
                     </NavLink>
                   </div>
                 ) : (

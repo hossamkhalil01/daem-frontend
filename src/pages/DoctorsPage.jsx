@@ -5,11 +5,12 @@ import { BASE_URL } from "../api/urls";
 import Footer from "../components/layouts/Footer";
 import Navbar from "../components/layouts/Navbar";
 import Paginator from "../components/Paginator";
+import PageHeaders from "../components/PageHeaders";
 import { getDoctors } from "../services/doctorsService";
 import capitalize from "../utils/capitalize";
 import {
   createPaginationParams,
-  parsePaginatedResponse
+  parsePaginatedResponse,
 } from "../utils/pagination";
 
 const DoctorsPage = (props) => {
@@ -43,6 +44,8 @@ const DoctorsPage = (props) => {
 
   return (
     <>
+      <PageHeaders pageTitle={t("doctors")} />
+
       <Navbar />
       <section className="page-title bg-1">
         <div className="overlay"></div>
@@ -52,7 +55,7 @@ const DoctorsPage = (props) => {
               <div className="block text-center">
                 <span className="text-white">{t("all-doctors")}</span>
                 <h1 className="text-capitalize mb-5 text-lg">
-                {t("specialized-doctors")}
+                  {t("specialized-doctors")}
                 </h1>
               </div>
             </div>
@@ -67,9 +70,7 @@ const DoctorsPage = (props) => {
               <div className="section-title">
                 <h2>{t("doctors")}</h2>
                 <div className="divider mx-auto my-4"></div>
-                <p>
-                  {t("doctors-page-body")}
-                </p>
+                <p>{t("doctors-page-body")}</p>
               </div>
             </div>
           </div>
@@ -126,14 +127,17 @@ const DoctorsPage = (props) => {
               <div className="cta-content">
                 <div className="divider mb-4"></div>
                 <h2 className="mb-5 text-lg">
-                  <span className="title-color">{t("doctors-page-footer")}</span>
+                  <span className="title-color">
+                    {t("doctors-page-footer")}
+                  </span>
                 </h2>
                 <Link
                   to="/tickets/new"
                   exact
                   className="btn btn-main-2 btn-round-full"
                 >
-                  {t("ask-doctor")}<i className="icofont-simple-right ml-2"></i>
+                  {t("ask-doctor")}
+                  <i className="icofont-simple-right ml-2"></i>
                 </Link>
               </div>
             </div>

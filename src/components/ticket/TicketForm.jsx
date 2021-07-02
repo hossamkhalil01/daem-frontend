@@ -227,7 +227,7 @@ export default function TicketForm({ ticket, onCreation }) {
           padding: "2%",
         }}
       >
-        <h2>{editMode ? "Edit" : "New"} Ticket</h2>
+        <h2>{editMode ? t("edit-ticket") : t("new-ticket")}</h2>
         <form
           className={classes.root}
           noValidate
@@ -241,8 +241,7 @@ export default function TicketForm({ ticket, onCreation }) {
           <TextField
             error={formValidations.subject.err}
             id="subject"
-            label="Ticket Subject"
-            placeholder="Subject"
+            placeholder={t("subject") + " *"}
             variant="outlined"
             fullWidth
             multiline
@@ -260,8 +259,7 @@ export default function TicketForm({ ticket, onCreation }) {
           <TextField
             error={formValidations.description.err}
             id="description"
-            label="Ticket Description"
-            placeholder="Description"
+            placeholder={t("ticket-description") + " *"}
             multiline
             rows={8}
             variant="outlined"
@@ -276,7 +274,7 @@ export default function TicketForm({ ticket, onCreation }) {
           ) : null}
           <div className="w-100 text-start">
             <label htmlFor="images" className="pe-3">
-              Upload related images if any (max 5):{" "}
+              {t("ticket-upload-images")}{" "}
             </label>
             <input
               type="file"
@@ -301,7 +299,7 @@ export default function TicketForm({ ticket, onCreation }) {
                 : false
             }
           >
-            {editMode ? "Save" : "Submit"}
+            {editMode ? t("save") : t("submit")}
           </Button>
         </form>
       </div>

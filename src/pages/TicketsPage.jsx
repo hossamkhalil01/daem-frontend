@@ -8,6 +8,7 @@ import Navbar from "../components/layouts/Navbar";
 import Loading from "../components/Loading";
 import Paginator from "../components/Paginator";
 import TicketList from "../components/ticket/TicketsList";
+import PageHeaders from "../components/PageHeaders";
 import { useCurrentUser } from "../contexts/CurrentUserContext";
 import { UpdateTicketsListProvider } from "../contexts/updateTicketsListContext";
 import { getTickets } from "../services/ticketsService";
@@ -59,6 +60,7 @@ export default function TicketsPage() {
 
   return (
     <>
+      <PageHeaders pageTitle={t("tickets")} />
       <Navbar />
       {!currentUser || currentUser.role === "user" ? (
         <div className="d-flex">

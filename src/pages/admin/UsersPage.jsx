@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import Paginator from "../../components/Paginator";
 import UsersTable from "../../components/UsersTable";
+import PageHeaders from "../../components/PageHeaders";
 import { getAllUsers } from "../../services/adminService";
 import {
   createPaginationParams,
@@ -53,6 +54,8 @@ const UsersPage = () => {
 
   return (
     <>
+      <PageHeaders pageTitle={`${t("dashboard")} (${t("users")})`} />
+
       <div>
         <UserFilter
           filter={filter}

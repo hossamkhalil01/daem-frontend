@@ -36,7 +36,7 @@ const ApplicationsTable = ({ applications }) => {
       <TableRow>
         <TableCell colSpan={6} align="center">
           <h4 className="alert alert-info text-center">
-            No avaliable applications yet!
+            {t("no-applications")}
           </h4>
         </TableCell>
       </TableRow>
@@ -50,12 +50,12 @@ const ApplicationsTable = ({ applications }) => {
       <Table className={classes.table} aria-label="simple table">
         <TableHead>
           <TableRow>
-            <TableCell>#</TableCell>
-            <TableCell align="center">Applicant Name</TableCell>
-            <TableCell align="center">Email</TableCell>
-            <TableCell align="center">Speciality</TableCell>
-            <TableCell align="center">Status</TableCell>
-            <TableCell align="center">Actions</TableCell>
+            <TableCell></TableCell>
+            <TableCell align="center">{t("applicant-name")}</TableCell>
+            <TableCell align="center">{t("email")}</TableCell>
+            <TableCell align="center">{t("speciality")}</TableCell>
+            <TableCell align="center">{t("state")}</TableCell>
+            <TableCell align="center">{t("actions")}</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -63,7 +63,7 @@ const ApplicationsTable = ({ applications }) => {
 
           {applications.map((application) => (
             <TableRow key={application._id}>
-              <TableCell align="center" component="th" scope="row">
+              <TableCell component="th" scope="row">
                 <Avatar
                   alt="avatar"
                   src={`${BASE_URL}/${application.applicant.avatar}`}

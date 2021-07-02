@@ -216,7 +216,7 @@ export default function UserProfile() {
     <>
       {success ? (
         <Alert severity="success" className="w-25">
-          Profile Updated Successfully
+          {t("profile-updated")}
         </Alert>
       ) : null}
 
@@ -239,7 +239,7 @@ export default function UserProfile() {
                 <div className="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
                   <div className="d-flex justify-content-between">
                     <Link to="/home" className="btn btn-sm btn-info mr-4">
-                      Back To Home
+                      {t("back-to-home")}
                     </Link>
                   </div>
                 </div>
@@ -269,7 +269,7 @@ export default function UserProfile() {
                     </div>
                   </div>
                   <div className="text-center">
-                    <div>switch on to update profile data</div>
+                    <div>{t("profile-update-switch")}</div>
                     <Switch
                       checked={updatable}
                       onChange={() => {
@@ -295,7 +295,7 @@ export default function UserProfile() {
                           <Grid item xs={6}>
                             <FormControl fullWidth>
                               <InputLabel htmlFor="firstname" required>
-                                First Name
+                                {t("first-name")}
                               </InputLabel>
                               <Input
                                 id="firstname"
@@ -319,7 +319,7 @@ export default function UserProfile() {
                           <Grid item xs={6}>
                             <FormControl fullWidth>
                               <InputLabel htmlFor="lastname" required>
-                                Last Name
+                                {t("last-name")}
                               </InputLabel>
                               <Input
                                 id="lastname"
@@ -342,14 +342,16 @@ export default function UserProfile() {
                           </Grid>
 
                           <Grid item xs={12}>
-                            <InputLabel htmlFor="diseases">Diseases</InputLabel>
+                            <InputLabel htmlFor="diseases">
+                              {t("chronic-diseases")}
+                            </InputLabel>
                             <FormControl fullWidth>
                               <TextareaAutosize
                                 //   labelId="diseases"
                                 rowsMin={3}
                                 rowsMax={5}
                                 aria-label="maximum height"
-                                placeholder="Please describe any diseases you have that might be useful to know"
+                                placeholder={t("diseases-placeholder")}
                                 value={user.diseases}
                                 onChange={handleChange("diseases")}
                                 disabled={!updatable}
@@ -366,7 +368,7 @@ export default function UserProfile() {
                                 disabled={!updatable}
                                 startIcon={<CloudUploadIcon />}
                               >
-                                Profile Picture
+                                {t("profile-picture")}
                                 <input
                                   accept="image/*"
                                   id="avatar"
@@ -393,7 +395,7 @@ export default function UserProfile() {
                                 color="primary"
                                 type="submit"
                               >
-                                Done
+                                {t("save")}
                               </Button>
                             ) : null}
                           </Grid>

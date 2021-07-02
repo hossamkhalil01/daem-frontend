@@ -4,13 +4,15 @@ import Login from "../components/auth/Login";
 import Navbar from "../components/layouts/Navbar";
 import Footer from "../components/layouts/Footer";
 import Register from "../components/auth/Register";
+import PageHeaders from "../components/PageHeaders";
 import { useCurrentUser } from "../contexts/CurrentUserContext";
+import { useTranslation } from "react-i18next";
 import "../styles/Auth.css";
 
 const AuthPage = ({ isLogin }) => {
   const { currentUser } = useCurrentUser();
   const history = useHistory();
-
+  const { t } = useTranslation();
   useEffect(() => {
     // check if already logged in
     if (currentUser)
@@ -20,6 +22,7 @@ const AuthPage = ({ isLogin }) => {
 
   return (
     <>
+      <PageHeaders pageTitle={isLogin ? t("login") : t("register")} />
       <Navbar />
       <div className="container-fluid w-75 mb-1 mt-5">
         <div className="row no-gutter ">
