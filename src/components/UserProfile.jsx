@@ -67,7 +67,7 @@ export default function UserProfile() {
     firstname: { err: false, msg: "" },
     lastname: { err: false, msg: "" },
     // DOB: { err: false, msg: "" },
-    diseases: { err: false, msg: "" },
+    // diseases: { err: false, msg: "" },
   });
 
   const [updatable, setUpdatable] = useState(false);
