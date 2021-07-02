@@ -99,7 +99,7 @@ const Navbar = (props) => {
             <ul className="navbar-nav ml-auto">
               {currentUser?._id ? (
                 <>
-                 <Notifications/>
+                  {currentUser?.role !== "moderator" ? <Notifications /> : ""}
                   <li className="nav-item dropdown">
                     <a
                       href="#"
@@ -114,6 +114,7 @@ const Navbar = (props) => {
                         src={`${BASE_URL}/${currentUser.avatar}`}
                       ></Avatar>{" "}
                     </a>
+
                     <ul className="dropdown-menu" aria-labelledby="dropdown02">
                       {currentUser?.role === ROLES.admin && (
                         <li className="nav-item">

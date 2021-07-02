@@ -4,20 +4,21 @@
 
 .notification-ui_icon {
     position: relative;
+    margin-top: 15px;
 }
 
 .notification-ui_icon .unread-notification {
     display: inline-block;
-    height: 7px;
-    width: 7px;
+    height: 9px;
+    width: 9px;
     border-radius: 7px;
     background-color: #66BB6A;
     position: absolute;
-    top: 7px;
+    top: 5px;
     left: 12px;
 }
 
-@media (min-width: 900px) {
+@media(min-width: 900px) {
     .notification-ui_icon .unread-notification {
         left: 20px;
     }
@@ -32,7 +33,7 @@
     max-width: 400px;
 }
 
-@media (min-width: 900px) {
+@media(min-width: 900px) {
     .notification-ui_dd {
         min-width: 400px;
         position: absolute;
@@ -88,4 +89,9 @@
     width: 48px;
     border-radius: 5px;
     margin-left: 20px;
+}
+
+.notification-body:hover {
+    cursor: pointer;
+    color: rgb(45, 45, 175);
 }
