@@ -1,0 +1,37 @@
+.ticket__actions {
+    display: flex;
+    justify-content: space-evenly;
+    padding-bottom: 4vh;
+}
+
+.ticket__actions button {
+    height: 40px;
+}
+
+
+.ticket-doctor .MuiInputBase-root {
+    height: 42px;
+}
+
+.ticket-doctor input{
+    height: 20px;
+}
+
+.ticket-doctor .MuiInput-underline:after{
+    border-bottom: 0px !important;
+}
+
+.ticket-doctor .MuiAutocomplete-input:focus {
+    border: 0 !important;
+}
+
+.ticket-doctor .MuiIconButton-root {
+    padding-bottom: 6px;
+}
+@media(max-width: 480px) {
+    .ticket__actions {
+        flex-wrap: wrap;
+        align-items: center;
+
+    }
+}
