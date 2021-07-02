@@ -1,21 +1,24 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
+import { NavLink } from "react-router-dom";
 const Footer = (props) => {
   const { t } = useTranslation();
   return (
-    <footer className="footer section gray-bg">
+    <footer className="footer section gray-bg mt-5">
       <div className="container">
-        <div className="row">
-          <div className="col-lg-4 m-auto col-sm-6">
+        <div className="row justify-content-between">
+          <div className="col-lg-4  col-sm-6">
             <div className="widget mb-5 mb-lg-0">
               <div className="logo mb-4">
-                <img
-                  src="/assets/images/logo-text.png"
-                  alt="Daem"
-                  width="300"
-                  height="200"
-                  className="img-fluid"
-                />
+                <NavLink to="/home" exact>
+                  <img
+                    src="/assets/images/logo-text.png"
+                    alt="Daem"
+                    width="300"
+                    height="200"
+                    className="img-fluid"
+                  />
+                </NavLink>
               </div>
               <p>
                 {t("footer-developed-by")} <br /> <br />
@@ -75,7 +78,9 @@ const Footer = (props) => {
 
           <div className="col-lg-3 col-md-6 col-sm-6">
             <div className="widget widget-contact mb-5 mb-lg-0">
-              <h4 className="text-capitalize mb-3">{t("footer-intouch-header")}</h4>
+              <h4 className="text-capitalize mb-3">
+                {t("footer-intouch-header")}
+              </h4>
               <div className="divider mb-4"></div>
 
               <div className="footer-contact-block mb-4">
@@ -84,7 +89,7 @@ const Footer = (props) => {
                   <span className="h6 mb-0">{t("footer-intouch-body")}</span>
                 </div>
                 <h5 className="mt-2">
-                  <a href="tel:+23-345-67890">daem@gmail.com</a>
+                  <a href="#">daem@gmail.com</a>
                 </h5>
               </div>
             </div>
