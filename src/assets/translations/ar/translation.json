@@ -142,5 +142,7 @@
   "gender":"النوع",
   "already-has-account":"هل لديك حساب بالفعل?",
   "diseases-placeholder":"يُرجى وصف أي أمراض لديك قد يكون من المفيد معرفتها",
-  "commented-on-ticket":" أدلى بتعليق على بطاقتك."
+  "commented-on-ticket":" أدلى بتعليق على بطاقتك.",
+  "no-unread-notifications": "ليس لديك إشعارات غير مقروءة.",
+  "view-all-notifications":"عرض جميع الإشعارات."
 }

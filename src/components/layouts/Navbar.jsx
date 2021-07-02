@@ -101,8 +101,7 @@ const Navbar = (props) => {
                 <>
                   {currentUser?.role !== "moderator" ? <Notifications /> : ""}
                   <li className="nav-item dropdown">
-                    <a
-                      href="#"
+                    <p
                       className="nav-link"
                       id="dropdown04"
                       data-toggle="dropdown"
@@ -113,7 +112,7 @@ const Navbar = (props) => {
                         alt="avatar"
                         src={`${BASE_URL}/${currentUser.avatar}`}
                       ></Avatar>{" "}
-                    </a>
+                    </p>
 
                     <ul className="dropdown-menu" aria-labelledby="dropdown02">
                       {currentUser?.role === ROLES.admin && (

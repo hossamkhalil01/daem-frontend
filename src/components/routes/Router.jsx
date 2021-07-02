@@ -5,6 +5,7 @@ import Navbar from "../../components/layouts/Navbar";
 import AboutUsPage from "../../pages/AboutUsPage";
 import ApplicationViewPage from "../../pages/admin/ApplicationViewPage";
 import { Dashboard } from "../../pages/admin/Dashboard";
+import AllNotificationsPage from "../../pages/AllNotifications";
 import ArticlePage from "../../pages/ArticlePage";
 import ArticlesPage from "../../pages/ArticlesPage";
 import AuthPage from "../../pages/AuthPage";
@@ -26,7 +27,6 @@ import AdminDoctorRoute from "./AdminDoctorRoute";
 import AdminRoute from "./AdminRoute";
 import PrivateRoute from "./PrivateRoute";
 import UserDoctorRoute from "./UserDoctorRoute";
-
 const Router = () => {
   return (
     <BrowserRouter>
@@ -87,6 +87,11 @@ const Router = () => {
         <Route exact path="/tickets/:id">
           <PrivateRoute>
             <TicketPage />
+          </PrivateRoute>
+        </Route>
+        <Route exact path="/notifications">
+          <PrivateRoute>
+            <AllNotificationsPage />
           </PrivateRoute>
         </Route>
         <Route exact path="/tickets/:id/edit">

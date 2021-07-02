@@ -8,8 +8,6 @@ const NotificationCard = ({ notification }) => {
   const history = useHistory();
   const handleTicketRedirection = () =>
     history.push(`/tickets/${notification.ticket}`);
-
-  console.log(notification);
   if (notification.action === "comment")
     return (
       <>
