@@ -494,12 +494,6 @@ a:focus {
   margin-right: 10px;
 }
 
-.bg-1 {
-  background: url("../images/bg/22.jpg") no-repeat 50% 50%;
-  background-size: cover;
-  position: relative;
-}
-
 .about {
   position: relative;
   overflow: hidden;
@@ -1600,25 +1594,26 @@ a:focus {
   }
 }
 
-.server-error-container,.notfound-container{
+.server-error-container,
+.notfound-container {
   text-align: center;
 }
-.server-error-container h2{
-  color:#003869;
+.server-error-container h2 {
+  color: #003869;
   margin-top: 7vh;
 }
 
-.server-error-container img{
-  width:50%;
-  display:block;
+.server-error-container img {
+  width: 50%;
+  display: block;
   margin: auto;
-} 
-.notfound-container img{
-  width:70%;
-  display:block;
+}
+.notfound-container img {
+  width: 70%;
+  display: block;
   margin: auto;
 }
 
-.chronic-diseases{
+.chronic-diseases {
   color: #555;
 }
