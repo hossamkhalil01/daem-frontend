@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useEffect, useReducer, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
+import { getNotifications } from "../../services/notificationsService";
 import socket from "../../socketConfig";
 import NotificationCard from "../NotificationCard";
 const Notifications = (props) => {
@@ -18,16 +19,26 @@ const Notifications = (props) => {
           (n, index) => state.notifications.indexOf(n) === index
         );
         setUnread(state.notifications.filter((n) => n.new).length);
-        console.log(state.notifications);
         return state;
+      }
+      else if (action.type === "GET_NOTIFICATIONS"){
+        state.notifications = action.notifications;
       }
       return state;
     },
     { notifications: [] }
   );
 
+  const getUserNotifications = async (userId)=>{
+      const _notifications = await getNotifications({recipient : userId});
+      dispatch({ type: "GET_NOTIFICATIONS", notifications: _notifications.data.data.docs });
+      console.log(notifications);
+  }
   useEffect(() => {
-    if (currentUser) socket.emit("authenticated", currentUser._id);
+    if (currentUser) {
+        getUserNotifications(currentUser._id);
+        socket.emit("authenticated", currentUser._id);
+    }
     socket.on("newNotification", (notification) => {
       dispatch({ type: "NEW", notification });
     });

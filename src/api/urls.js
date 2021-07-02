@@ -58,3 +58,8 @@ export const DOCTORS_APPLICATION_API = {
   reject: (id) => `${APPLICATIONS_BASE}/${id}/reject`,
   application: (id) => `${APPLICATIONS_BASE}/${id}`,
 }
+
+export const NOTIFICATIONS_API = {
+  setReadNotifications: ()=> `${BASE_URL}/notifications/read`,
+  getNotifications: () => `${BASE_URL}/notifications`,
+};
