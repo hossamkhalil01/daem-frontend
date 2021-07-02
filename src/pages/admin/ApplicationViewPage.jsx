@@ -13,7 +13,6 @@ import { BASE_URL } from "../../api/urls";
 import { formatDate } from "../../utils/formatDate";
 
 const ApplicationViewPage = () => {
-  const [curApplication, setCurApplication] = useState(null);
   const location = useLocation();
   const { application } = location.state;
   const history = useHistory();
@@ -21,12 +20,12 @@ const ApplicationViewPage = () => {
   const { t } = useTranslation();
 
   const handleApprove = async () => {
-    const res = await approveApplication(application._id);
+    await approveApplication(application._id);
     history.goBack();
   };
 
   const handleReject = async () => {
-    const res = await rejectApplication(application._id);
+    await rejectApplication(application._id);
   };
 
   return (

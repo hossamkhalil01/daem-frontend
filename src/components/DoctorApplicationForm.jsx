@@ -3,12 +3,10 @@ import { useState, useEffect } from "react";
 import validate from "../utils/validations";
 import * as services from "../services/doctorApplicationsService";
 import { useTranslation } from "react-i18next";
-import { useCurrentUser } from "../contexts/CurrentUserContext";
 
 const requriedFields = ["speciality", "nationalId", "doctorId"];
 
 const DoctorApplicationForm = ({ onSuccessSubmit }) => {
-  const { currentUser } = useCurrentUser();
   const [specialitiesList, setSpecialitiesList] = useState([]);
   const { t } = useTranslation();
   const [formValues, setFormValues] = useState({
