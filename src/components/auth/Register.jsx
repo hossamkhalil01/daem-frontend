@@ -4,6 +4,7 @@ import { useTranslation } from "react-i18next";
 import { NavLink, useHistory } from "react-router-dom";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import * as authService from "../../services/authService";
+import socket from "../../socketConfig";
 import validate from "../../utils/validations";
 
 const Register = ({ setAuthenticated }) => {
@@ -138,7 +139,7 @@ const Register = ({ setAuthenticated }) => {
       await authService.register(formData);
       const user = await authService.login(data);
       setCurrentUser(user);
-
+      // socket.emit("authenticated");
       history.push("/");
     } catch (err) {
       // registration validations

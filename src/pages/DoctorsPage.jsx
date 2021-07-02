@@ -2,8 +2,6 @@ import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 import { BASE_URL } from "../api/urls";
-import Footer from "../components/layouts/Footer";
-import Navbar from "../components/layouts/Navbar";
 import Paginator from "../components/Paginator";
 import PageHeaders from "../components/PageHeaders";
 import { getDoctors } from "../services/doctorsService";
@@ -45,8 +43,6 @@ const DoctorsPage = (props) => {
   return (
     <>
       <PageHeaders pageTitle={t("doctors")} />
-
-      <Navbar />
       <section className="page-title bg-1">
         <div className="overlay"></div>
         <div className="container">
@@ -144,8 +140,6 @@ const DoctorsPage = (props) => {
           </div>
         </div>
       </section>
-
-      <Footer />
     </>
   );
 };

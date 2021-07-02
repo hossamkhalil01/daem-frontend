@@ -3,12 +3,10 @@ import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Link, NavLink } from "react-router-dom";
 import { Filter } from "../components/Filter";
-import Footer from "../components/layouts/Footer";
-import Navbar from "../components/layouts/Navbar";
 import Loading from "../components/Loading";
+import PageHeaders from "../components/PageHeaders";
 import Paginator from "../components/Paginator";
 import TicketList from "../components/ticket/TicketsList";
-import PageHeaders from "../components/PageHeaders";
 import { useCurrentUser } from "../contexts/CurrentUserContext";
 import { UpdateTicketsListProvider } from "../contexts/updateTicketsListContext";
 import { getTickets } from "../services/ticketsService";
@@ -61,7 +59,6 @@ export default function TicketsPage() {
   return (
     <>
       <PageHeaders pageTitle={t("tickets")} />
-      <Navbar />
       {!currentUser || currentUser.role === "user" ? (
         <div className="d-flex">
           <NavLink
@@ -114,7 +111,6 @@ export default function TicketsPage() {
         )}
       </UpdateTicketsListProvider>
 
-      <Footer />
     </>
   );
 }

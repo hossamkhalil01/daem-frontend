@@ -1,18 +1,15 @@
 import React, { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { useTranslation } from "react-i18next";
+import { Link, useHistory, useParams } from "react-router-dom";
 import { BASE_URL } from "../api/urls";
 import ArticleCard from "../components/article/ArticleCard";
 import DeleteArticle from "../components/articleActions/DeleteArticle";
 import EditArticle from "../components/articleActions/EditArticle";
-import Footer from "../components/layouts/Footer";
-import Navbar from "../components/layouts/Navbar";
 import Loading from "../components/Loading";
+import PageHeaders from "../components/PageHeaders";
 import { useCurrentUser } from "../contexts/CurrentUserContext";
 import { getArticle, getArticles } from "../services/articlesService";
 import { formatDate } from "../utils/formatDate";
-import { useHistory } from "react-router-dom";
-import { useTranslation } from "react-i18next";
-import PageHeaders from "../components/PageHeaders";
 
 export default function ArticlePage() {
   const history = useHistory();
@@ -54,7 +51,6 @@ export default function ArticlePage() {
   return (
     <>
       <PageHeaders pageTitle={t("article-details")} />
-      <Navbar />
       {loading ? (
         <Loading />
       ) : (
@@ -141,7 +137,6 @@ export default function ArticlePage() {
           </section>
         </>
       )}
-      <Footer />
     </>
   );
 }

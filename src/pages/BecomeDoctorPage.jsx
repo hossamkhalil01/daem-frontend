@@ -1,10 +1,8 @@
 import { useState } from "react";
-import Navbar from "../components/layouts/Navbar";
-import Footer from "../components/layouts/Footer";
 import { useTranslation } from "react-i18next";
+import { Link } from "react-router-dom";
 import DoctorApplicationForm from "../components/DoctorApplicationForm";
 import PageHeaders from "../components/PageHeaders";
-import { Link } from "react-router-dom";
 
 const BecomeDoctorPage = (props) => {
   const [application, setApplication] = useState(null);
@@ -18,7 +16,6 @@ const BecomeDoctorPage = (props) => {
   return (
     <>
       <PageHeaders pageTitle={t("become-doctor-title")} />
-      <Navbar />
       {/* Page Title Section */}
       <section className="page-title bg-1">
         <div className="overlay"></div>
@@ -63,7 +60,6 @@ const BecomeDoctorPage = (props) => {
           )
         </div>
       </section>
-      <Footer />
     </>
   );
 };

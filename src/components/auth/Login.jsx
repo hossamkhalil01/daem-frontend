@@ -5,6 +5,7 @@ import { NavLink, useHistory } from "react-router-dom";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import * as authService from "../../services/authService";
 import validate from "../../utils/validations";
+
 const Login = () => {
   const history = useHistory();
   const { setCurrentUser } = useCurrentUser();
@@ -81,7 +82,7 @@ const Login = () => {
     try {
       const user = await authService.login(data);
       setCurrentUser(user);
-
+      // socket.emit("authenticated",user._id);
       history.push("/");
     } catch (err) {
       // invalid login credientials

@@ -4,8 +4,6 @@ import { useTranslation } from "react-i18next";
 import { Link, NavLink } from "react-router-dom";
 import { BASE_URL } from "../api/urls";
 import ArticleCard from "../components/article/ArticleCard";
-import Footer from "../components/layouts/Footer";
-import Navbar from "../components/layouts/Navbar";
 import Paginator from "../components/Paginator";
 import Search from "../components/Search";
 import PageHeaders from "../components/PageHeaders";
@@ -63,8 +61,6 @@ const ArticlesPage = (props) => {
   return (
     <>
       <PageHeaders pageTitle={t("articles")} />
-
-      <Navbar />
       <section className="page-title bg-1">
         <div className="overlay"></div>
         <div className="container">
@@ -209,8 +205,6 @@ const ArticlesPage = (props) => {
           </div>
         </div>
       </section>
-
-      <Footer />
     </>
   );
 };
