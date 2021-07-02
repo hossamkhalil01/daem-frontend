@@ -6,9 +6,13 @@ import Loading from "../components/Loading";
 import MedicalRecord from "../components/MedicalRecord";
 import TicketDetails from "../components/ticket/TicketDetails";
 import TicketComments from "../components/TicketComments";
+import PageHeaders from "../components/PageHeaders";
+import { useTranslation } from "react-i18next";
 import { useCurrentUser } from "../contexts/CurrentUserContext";
 import { getTicket } from "../services/ticketsService";
+
 export default function TicketPage() {
+  const { t } = useTranslation();
   const { currentUser } = useCurrentUser();
   const { id } = useParams();
   const [ticket, setTicket] = useState({});
@@ -26,6 +30,7 @@ export default function TicketPage() {
 
   return (
     <>
+      <PageHeaders pageTitle={t("ticket-details")} />
       <Navbar />
       {loading ? (
         <Loading />
@@ -38,7 +43,7 @@ export default function TicketPage() {
             ) : (
               " "
             )}
-            <TicketComments ticketId={ticket._id} ticketState={ticket.state}/>
+            <TicketComments ticketId={ticket._id} ticketState={ticket.state} />
           </div>
         </div>
       )}

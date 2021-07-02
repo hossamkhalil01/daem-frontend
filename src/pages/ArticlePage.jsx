@@ -11,10 +11,12 @@ import { useCurrentUser } from "../contexts/CurrentUserContext";
 import { getArticle, getArticles } from "../services/articlesService";
 import { formatDate } from "../utils/formatDate";
 import { useHistory } from "react-router-dom";
+import { useTranslation } from "react-i18next";
+import PageHeaders from "../components/PageHeaders";
 
 export default function ArticlePage() {
   const history = useHistory();
-
+  const { t } = useTranslation();
   const { id } = useParams();
   const [loading, setLoading] = useState(true);
 
@@ -50,6 +52,7 @@ export default function ArticlePage() {
   }, [id]);
   return (
     <>
+      <PageHeaders pageTitle={t("article-details")} />
       <Navbar />
       {loading ? (
         <Loading />
@@ -61,7 +64,7 @@ export default function ArticlePage() {
               <div className="row">
                 <div className="col-md-12">
                   <div className="block text-center">
-                    <span className="text-white">Article details</span>
+                    <span className="text-white">{t("article-details")}</span>
                     <h1 className="text-capitalize mb-5 text-lg">
                       {curArticle.title}
                     </h1>
