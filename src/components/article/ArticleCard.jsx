@@ -12,14 +12,13 @@ export default function ArticleCard({ article }) {
   return (
     <div className="card article-card">
       <div className="card__image">
-        <img src={BASE_URL + "/" + article.image} alt="" />
+        <img src={BASE_URL + "/" + article.image} alt="" onError={(e)=>{e.target.onerror = null; e.target.src="/assets/images/default.jpeg"}}/>
         <div className="card__overlay card__overlay--indigo">
           <div className="card__overlay-content">
             <ul className="card__meta">
               <li>
                 <FontAwesomeIcon icon={faClock}></FontAwesomeIcon>{" "}
-                {moment(article.createdAt, "YYYY-MM-DDTh:mm:ss").fromNow()}
-              </li>
+                {moment(moment.utc(article.createdAt).toDate()).fromNow()}              </li>
             </ul>
             <div className="card__title">
               <p onClick={handleArticleRedirection}>{article.title}</p>

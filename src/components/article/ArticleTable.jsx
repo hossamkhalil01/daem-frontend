@@ -8,11 +8,11 @@ import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import moment from "moment";
+import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 import { BASE_URL } from "../../api/urls";
 import DeleteArticle from "../../components/articleActions/DeleteArticle";
 import capitalize from "../../utils/capitalize";
-import { useTranslation } from "react-i18next";
 const useStyles = makeStyles({
   table: {
     minWidth: 650,
@@ -75,7 +75,7 @@ const ArticleTable = ({ articles }) => {
                   {article.author.firstname + " " + article.author.lastname}
                 </TableCell>
                 <TableCell align="center">
-                  {moment(article.createdAt, "YYYY-MM-DDTh:mm:ss").fromNow()}
+                  {moment(moment.utc(article.createdAt).toDate()).fromNow()}
                 </TableCell>
                 <TableCell align="center">
                   <DeleteArticle articleId={article._id} />

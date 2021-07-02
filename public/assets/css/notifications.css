@@ -84,8 +84,6 @@
     display: flex;
 }
 
-.notification-list_detail p small{
-}
 .notification-body:hover {
     cursor: pointer;
     color: rgb(45, 45, 175);
@@ -97,7 +95,6 @@
 }
 
 .all-notifications-page{
-    background-color: #f7fafc;
     padding-top: 5vh;
     padding-bottom: 5vh;
 }

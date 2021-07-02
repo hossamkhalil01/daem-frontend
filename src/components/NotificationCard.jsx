@@ -13,11 +13,11 @@ const NotificationCard = ({ notification }) => {
       <>
         <div class="notification-list_detail notification-comment">
           <p onClick={handleTicketRedirection} class="notification-body">
-            <b>{notification.actor}</b> {t("commented-on-ticket")}
+            <strong>{notification.actor}</strong>  &nbsp; {t("commented-on-ticket")}
           </p>
           <p>
             <small>
-              {moment(notification.createdAt, "YYYY-MM-DDTh:mm:ss").fromNow()}
+              {moment(moment.utc(notification.createdAt).toDate()).fromNow()}
             </small>
           </p>
         </div>
@@ -30,7 +30,7 @@ const NotificationCard = ({ notification }) => {
           {t("your-app-was")} {t(notification.appStatus)}
           <p>
             <small>
-              {moment(notification.createdAt, "YYYY-MM-DDTh:mm:ss").fromNow()}
+              {moment(moment.utc(notification.createdAt).toDate()).fromNow()}
             </small>
           </p>
         </div>

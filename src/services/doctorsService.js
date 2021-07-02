@@ -5,8 +5,8 @@ export const getAllDoctors = async () => {
   return await requests.get(DOCTORS_API.getAllDoctors());
 };
 
-export const getDoctors = async () => {
-  return await requests.get(DOCTORS_API.getDoctors());
+export const getDoctors = async (params) => {
+  return await requests.get(DOCTORS_API.getDoctors(),params);
 };
 
 export const getDoctor = async (doctorId) => {
