@@ -1,7 +1,7 @@
 import { faEdit } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import moment from "moment";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { BASE_URL } from "../api/urls";
 import { useCurrentUser } from "../contexts/CurrentUserContext";
 import DeleteComment from "./commentActions/DeleteComment";
@@ -18,8 +18,6 @@ export default function Comment({ comment, removeCommentFromList }) {
   };
 
   const isAuthor = () => currentUser._id === comment.author?._id;
-
-  useEffect(() => console.log(moment.utc(comment.createdAt).toDate()));
   return (
     <div className="comment d-flex">
       <div className="flex-shrink-0">
@@ -48,7 +46,7 @@ export default function Comment({ comment, removeCommentFromList }) {
         ) : (
           <div>
             <div className="d-flex">
-            <p className="comment__body">{commentBody}</p>
+              <p className="comment__body">{commentBody}</p>
             </div>
             <div className="comment__time">
               <span className="text-muted comment__time">

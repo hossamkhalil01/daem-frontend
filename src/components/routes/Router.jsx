@@ -26,7 +26,6 @@ import Logout from "../auth/Logout";
 import AdminDoctorRoute from "./AdminDoctorRoute";
 import AdminRoute from "./AdminRoute";
 import PrivateRoute from "./PrivateRoute";
-import UserDoctorRoute from "./UserDoctorRoute";
 const Router = () => {
   return (
     <BrowserRouter>
@@ -43,11 +42,10 @@ const Router = () => {
           </AdminRoute>
         </Route>
         <Route exact path="/become-doctor">
-          <UserDoctorRoute>
+          <PrivateRoute>
             <BecomeDoctorPage />
-          </UserDoctorRoute>
+          </PrivateRoute>
         </Route>
-
         <Route exact path="/tickets/new">
           <PrivateRoute>
             <NewTicketPage />
