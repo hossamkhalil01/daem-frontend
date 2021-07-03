@@ -42,7 +42,7 @@ export default function TicketPage() {
           <div className="ticket-container">
             <TicketDetails ticket={ticket} />
             {currentUser.role === "doctor" ? (
-              <MedicalRecord userId={ticket.patient.id} />
+              <MedicalRecord userId={ticket.patient._id} />
             ) : (
               " "
             )}

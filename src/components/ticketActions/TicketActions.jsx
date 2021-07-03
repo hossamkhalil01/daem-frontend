@@ -12,7 +12,7 @@ export default function TicketActions({ ticket }) {
   if (currentUser.role === "doctor") {
     return (
       <>
-        <SetState ticketId={ticket._id} ticketUrgency={ticket.urgency} />
+        <SetState ticketId={ticket._id} ticketState={ticket.state} />
         <SetUrgency ticketId={ticket._id} ticketUrgency={ticket.urgency} />
         <AssignDoctor ticketId={ticket._id} ticketDoctor={ticket.doctor} />
       </>
